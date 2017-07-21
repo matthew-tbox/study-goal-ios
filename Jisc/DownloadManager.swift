@@ -11,7 +11,7 @@ import UIKit
 let LOG_ACTIVITY = true
 
 //let hostPath = "http://therapy-box.com/jisc/"
-let hostPath = "http://stuapp.analytics.alpha.jisc.ac.uk/"
+let hostPath = "https://stuapp.analytics.alpha.jisc.ac.uk/"
 let hostName = URL(string: hostPath)?.host
 
 let getInstitutesPath = "fn_get_institutions"

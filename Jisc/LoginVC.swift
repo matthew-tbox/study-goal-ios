@@ -407,7 +407,11 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 		GIDSignIn.sharedInstance().signIn()
 	}
 	
-	func socialLogin(email:String, name:String, userId:String) {
+    @IBAction func backToFirstPage(_ sender: UIButton) {
+        goToStep1()
+    }
+    
+    func socialLogin(email:String, name:String, userId:String) {
 		if shouldRememberMe() {
 			saveSocialData(email: email, name: name, userId: userId)
 		}

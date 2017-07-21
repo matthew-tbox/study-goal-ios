@@ -36,9 +36,9 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 			locationOn = false
 		}
 		if !locationOn {
-			let alert = UIAlertController(title: "", message: localized("turn_location_on"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("not_now"), style: .cancel, handler: nil))
-			alert.addAction(UIAlertAction(title: localized("take_me_to_settings"), style: .default, handler: { (action) in
+			let alert = UIAlertController(title: "", message: localized("You'll need to turn location services on to check in."), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("Cancel"), style: .cancel, handler: nil))
+			alert.addAction(UIAlertAction(title: localized("Take me to settings"), style: .default, handler: { (action) in
 				self.didChangeLocationPermissions = true
 				UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
 			}))
@@ -84,9 +84,9 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 					locationManager.startUpdatingLocation()
 				}
 				if !locationOn {
-					let alert = UIAlertController(title: "", message: localized("turn_location_on"), preferredStyle: .alert)
-					alert.addAction(UIAlertAction(title: localized("not_now"), style: .cancel, handler: nil))
-					alert.addAction(UIAlertAction(title: localized("take_me_to_settings"), style: .default, handler: { (action) in
+					let alert = UIAlertController(title: "", message: localized("You'll need to turn location services on to check in."), preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: localized("Cancel"), style: .cancel, handler: nil))
+					alert.addAction(UIAlertAction(title: localized("Take me to settings"), style: .default, handler: { (action) in
 						self.didChangeLocationPermissions = true
 						UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
 					}))
@@ -127,11 +127,11 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 					alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: { (action) in
 						if self.didChangeLocationPermissions {
 							self.didChangeLocationPermissions = false
-							let alert = UIAlertController(title: "", message: localized("turn_location_off"), preferredStyle: .alert)
-							alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
+							let alert = UIAlertController(title: "", message: localized("Would you like to turn location services off again?"), preferredStyle: .alert)
+							alert.addAction(UIAlertAction(title: localized("Yes"), style: .default, handler: { (action) in
 								UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
 							}))
-							alert.addAction(UIAlertAction(title: localized("not_now"), style: .cancel, handler: nil))
+							alert.addAction(UIAlertAction(title: localized("No"), style: .cancel, handler: nil))
 							self.navigationController?.present(alert, animated: true, completion: nil)
 						}
 					}))
@@ -141,11 +141,11 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 					alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: { (action) in
 						if self.didChangeLocationPermissions {
 							self.didChangeLocationPermissions = false
-							let alert = UIAlertController(title: "", message: localized("turn_location_off"), preferredStyle: .alert)
-							alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
+							let alert = UIAlertController(title: "", message: localized("Would you like to turn location services off again?"), preferredStyle: .alert)
+							alert.addAction(UIAlertAction(title: localized("Yes"), style: .default, handler: { (action) in
 								UIApplication.shared.openURL(URL(string:UIApplicationOpenSettingsURLString)!)
 							}))
-							alert.addAction(UIAlertAction(title: localized("not_now"), style: .cancel, handler: nil))
+							alert.addAction(UIAlertAction(title: localized("No"), style: .cancel, handler: nil))
 							self.navigationController?.present(alert, animated: true, completion: nil)
 						}
 					}))

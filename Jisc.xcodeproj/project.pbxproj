@@ -202,6 +202,8 @@
 		DAFBC44F1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */; };
 		DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */; };
 		DAFC711F1BDFE33700A06C9A /* AttainmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */; };
+		DD6518411F22030A00003916 /* PrivacyWebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */; };
+		DD6518421F22030A00003916 /* PrivacyWebViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */; };
 		E18AFD6288449EE9B270EF5D /* Pods_Jisc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */; };
 /* End PBXBuildFile section */
 
@@ -494,6 +496,8 @@
 		DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StretchTarget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchTarget.swift; sourceTree = "<group>"; };
 		DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
+		DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyWebViewVC.swift; sourceTree = "<group>"; };
+		DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyWebViewVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1091,6 +1095,8 @@
 		DAD1D7F71C50F0A8005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */,
+				DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */,
 				DA7F1D291BD8E1A3004EA957 /* MyFriendsVC.swift */,
 				DAB0C8931C4CEB3700F7A3C6 /* MyFriendsVC.xib */,
 				DA7F1D3D1BD8FBD9004EA957 /* SelectHomeScreenVC.swift */,
@@ -1330,6 +1336,7 @@
 				DAC32DC91BCF9F5B00C4FBF5 /* MyriadPro-Regular.otf in Resources */,
 				DAB0C8071C4CE96400F7A3C6 /* AttainmentCell.xib in Resources */,
 				DAD66C9C1C52745500074B79 /* LoginVC~ipad-OLD.xib in Resources */,
+				DD6518421F22030A00003916 /* PrivacyWebViewVC.xib in Resources */,
 				DAB0C8551C4CEA6600F7A3C6 /* ActivityDetailsVC.xib in Resources */,
 				DA593A661C479E9B00C68513 /* ActivityTypesIcons.xcassets in Resources */,
 				DAD66C6F1C52336400074B79 /* TrophiesSilverBig.xcassets in Resources */,
@@ -1475,6 +1482,7 @@
 				DA46D9791BF2482400AA1476 /* Activity+CoreDataProperties.swift in Sources */,
 				DADBA8B81BD1340300BC9CE4 /* OneActivityCell.swift in Sources */,
 				DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */,
+				DD6518411F22030A00003916 /* PrivacyWebViewVC.swift in Sources */,
 				DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */,
 				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
 				DAD573931C3D46360080B49B /* TrophiesCell.swift in Sources */,
