@@ -481,11 +481,40 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         if var request = request {
             if let token = xAPIToken() {
-                print("This is the token Ahmed",token)
+               // print("This is the token Ahmed",token)
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 print("This is the data from the request AHMED!!!",NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! Any)
+            }
+            //startConnectionWithRequest(request)
+        } else {
+            completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+    }
+    func settingsCall(testUrl:String){
+        var request:URLRequest?
+        var returnedString:String = ""
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                // print("This is the token Ahmed",token)
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String
+                print("This is the data from the request AHMED!!!",returnedString)
+                if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"){
+                    let defaults = UserDefaults.standard
+                    defaults.set(returnedString, forKey: "SettingsReturn")
+                } else {
+                    let defaults = UserDefaults.standard
+                    defaults.set(returnedString, forKey: "SettingsReturnAttendance")
+                }
             }
             //startConnectionWithRequest(request)
         } else {

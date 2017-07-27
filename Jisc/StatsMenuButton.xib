@@ -167,6 +167,7 @@
                 <outlet property="arrow" destination="9Uj-cA-21y" id="aLU-p9-tQO"/>
                 <outlet property="button" destination="qvn-Jy-HdG" id="Eyb-jq-48n"/>
                 <outlet property="buttonsHeight" destination="Pot-1N-6eR" id="taV-tA-GQh"/>
+                <outlet property="leaderboardButton" destination="Xyz-iV-Pau" id="VJY-cj-ire"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="-9"/>
         </view>

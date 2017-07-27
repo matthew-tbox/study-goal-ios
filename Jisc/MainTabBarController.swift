@@ -24,6 +24,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 		selectedIndex = getHomeScreenTab().rawValue
 		tabBar.frame = CGRect(x: tabBar.frame.origin.x, y: tabBar.frame.origin.y, width: tabBar.frame.size.width, height: 45)
 		self.delegate = self
+
 	}
 	
 	func createdViewControllers() -> [UIViewController]? {

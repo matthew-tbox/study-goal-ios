@@ -26,6 +26,7 @@ class MenuButton: UIView {
 	var type = MenuButtonType.Feed
 	weak var parent:MenuView?
 	
+    
 	class func insertSelfinView(_ view:UIView, buttonType: MenuButtonType, previousButton:MenuButton?, isLastButton:Bool, parent:MenuView) -> MenuButton {
 		let button = Bundle.main.loadNibNamed("\(self.classForCoder())", owner: nil, options: nil)!.first as! MenuButton
 		button.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +132,8 @@ class StatsMenuButton: MenuButton {
 	
 	@IBOutlet weak var arrow:UIImageView!
 	@IBOutlet weak var buttonsHeight:NSLayoutConstraint!
+    @IBOutlet weak var leaderboardButton: UIButton!
+
 	var expanded = false
 	
 	override func buttonAction(_ sender: UIButton?) {
@@ -148,6 +151,15 @@ class StatsMenuButton: MenuButton {
 			self.buttonsHeight.constant = 40 * 6
 			self.parent?.layoutIfNeeded()
 		}
+        let defaults = UserDefaults.standard
+        let result = defaults.object(forKey: "SettingsReturnAttendance") as! String
+
+        if (result.range(of: "false") != nil){
+            print("AHMED IT EXISTS")
+            leaderboardButton.alpha = 1.0
+        } else {
+            leaderboardButton.alpha = 0.0
+        }
 	}
 	
 	func retract() {

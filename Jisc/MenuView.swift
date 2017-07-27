@@ -40,6 +40,11 @@ class MenuView: UIView {
 		view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in
 			
 		}
+        
+        let defaults = UserDefaults.standard
+        let result = defaults.object(forKey: "SettingsReturn") as! String
+        print("AHMED LOGIN RESULT RETURNED ATTENDANCE at", result)
+        
 		var lastButton:MenuButton?
 		let index = getHomeScreenTab().rawValue
 		if social() {
@@ -66,7 +71,12 @@ class MenuView: UIView {
 				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
 //			}
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
-				lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
+            if (result.range(of: "false") != nil){
+                print("AHMED IT EXISTS")
+            } else {
+                lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
+            }
+
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Target, previousButton: lastButton, isLastButton: false, parent: view)
             
 			if index == 0 {

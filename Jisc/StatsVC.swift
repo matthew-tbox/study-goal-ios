@@ -187,6 +187,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         xAPIManager().checkMod(testUrl:urlString)
         
+        
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
