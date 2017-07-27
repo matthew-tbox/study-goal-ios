@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -36,12 +37,6 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="cpC-He-mWx">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLW-1h-Z1l" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="8" y="8" width="28" height="17"/>
-                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check-in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mio-T4-8pw">
                             <rect key="frame" x="146" y="28" width="83" height="22"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
@@ -59,38 +54,47 @@
                                 <action selector="settings:" destination="-1" eventType="touchUpInside" id="JQs-Qs-kgo"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1H-Xm-1EH" userLabel="BackButton">
-                            <rect key="frame" x="17" y="28" width="10" height="17"/>
-                            <state key="normal" backgroundImage="backButton"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAV-y0-qjP" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="9" y="14" width="37" height="17"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZX-1j-f8P">
+                            <rect key="frame" x="6" y="19" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="UTb-7t-xOp"/>
+                                <constraint firstAttribute="height" constant="40" id="Zri-DJ-540"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="backButton"/>
                             <connections>
-                                <action selector="backButton:" destination="-1" eventType="touchUpInside" id="7rr-Rg-HHD"/>
+                                <action selector="backButton:" destination="-1" eventType="touchUpInside" id="9cf-cU-kB4"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="r1H-Xm-1EH" firstAttribute="top" secondItem="dLW-1h-Z1l" secondAttribute="bottom" constant="3" id="0iG-gM-8DT"/>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="8cy-i8-wZj"/>
+                        <constraint firstItem="qZX-1j-f8P" firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="9" id="9mw-eU-SNw"/>
                         <constraint firstAttribute="height" constant="60" id="BEW-6C-Wu7"/>
                         <constraint firstItem="vcp-kc-cRi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mio-T4-8pw" secondAttribute="trailing" constant="5" id="EZe-aQ-8a6"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="centerY" secondItem="vcp-kc-cRi" secondAttribute="centerY" id="N7b-Q0-FQr"/>
                         <constraint firstAttribute="bottom" secondItem="cpC-He-mWx" secondAttribute="bottom" id="ONn-Yy-Zz7"/>
-                        <constraint firstItem="Mio-T4-8pw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dLW-1h-Z1l" secondAttribute="trailing" constant="5" id="Q9B-ly-q1e"/>
+                        <constraint firstItem="qZX-1j-f8P" firstAttribute="leading" secondItem="BAV-y0-qjP" secondAttribute="leading" constant="-3" id="QI7-at-AgJ"/>
                         <constraint firstAttribute="trailing" secondItem="cpC-He-mWx" secondAttribute="trailing" id="T4S-7c-rJS"/>
-                        <constraint firstItem="dLW-1h-Z1l" firstAttribute="centerY" secondItem="Mio-T4-8pw" secondAttribute="centerY" constant="-22.5" id="egI-oV-eDg"/>
-                        <constraint firstItem="dLW-1h-Z1l" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leading" constant="8" id="fiC-2h-QHz"/>
+                        <constraint firstItem="qZX-1j-f8P" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leadingMargin" constant="-2" id="VIF-Jb-9iQ"/>
+                        <constraint firstItem="BAV-y0-qjP" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="topMargin" constant="6" id="c2w-6W-y5G"/>
                         <constraint firstItem="cpC-He-mWx" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="top" id="fla-zf-P6a"/>
                         <constraint firstAttribute="bottom" secondItem="vcp-kc-cRi" secondAttribute="bottom" id="i8Z-d4-7L8"/>
-                        <constraint firstItem="r1H-Xm-1EH" firstAttribute="leading" secondItem="dLW-1h-Z1l" secondAttribute="leading" constant="9" id="j7P-wa-bxL"/>
                         <constraint firstAttribute="trailing" secondItem="vcp-kc-cRi" secondAttribute="trailing" id="m7h-y6-zIV"/>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="mK8-wS-jha"/>
+                        <constraint firstItem="qZX-1j-f8P" firstAttribute="trailing" secondItem="BAV-y0-qjP" secondAttribute="trailing" id="pop-HA-gV0"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="centerX" secondItem="XBF-hw-RIk" secondAttribute="centerX" id="r7R-Y3-tAD"/>
                         <constraint firstItem="cpC-He-mWx" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leading" id="rIQ-NH-S31"/>
-                        <constraint firstItem="dLW-1h-Z1l" firstAttribute="centerY" secondItem="XBF-hw-RIk" secondAttribute="centerY" id="ymB-sn-PeU"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="ymB-sn-PeU"/>
                             <exclude reference="N7b-Q0-FQr"/>
                             <exclude reference="mK8-wS-jha"/>
                         </mask>
@@ -374,7 +378,7 @@
                 <constraint firstItem="XBF-hw-RIk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zHU-bK-JFp"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-            <point key="canvasLocation" x="-24.5" y="-9.5"/>
+            <point key="canvasLocation" x="-15" y="-8"/>
         </view>
     </objects>
     <resources>

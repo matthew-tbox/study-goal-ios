@@ -26,7 +26,8 @@ class CheckinVC: BaseViewController {
 	}
 	
     @IBAction func backButton(_ sender: Any) {
-        		navigationController?.popViewController(animated: true)
+        DELEGATE.menuView?.open()
+
     }
 	@IBAction func backspace(_ sender:UIButton?) {
 		if !currentPin.isEmpty {
