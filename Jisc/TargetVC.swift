@@ -20,6 +20,9 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		super.viewDidLoad()
 		targetsTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
 		targetsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=MainTargetsPage"
+        xAPIManager().checkMod(testUrl:urlString)
 	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -95,6 +98,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 			let target = dataManager.targets()[indexPath.row]
 			let vc = TargetDetailsVC(target: target, index: indexPath.row)
 			navigationController?.pushViewController(vc, animated: true)
+
 		}
 	}
 }

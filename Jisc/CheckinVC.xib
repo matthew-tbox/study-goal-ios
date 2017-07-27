@@ -37,7 +37,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLW-1h-Z1l" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="10" y="30.5" width="27.5" height="17"/>
+                            <rect key="frame" x="8" y="8" width="28" height="17"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -59,9 +59,17 @@
                                 <action selector="settings:" destination="-1" eventType="touchUpInside" id="JQs-Qs-kgo"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1H-Xm-1EH" userLabel="BackButton">
+                            <rect key="frame" x="17" y="28" width="10" height="17"/>
+                            <state key="normal" backgroundImage="backButton"/>
+                            <connections>
+                                <action selector="backButton:" destination="-1" eventType="touchUpInside" id="7rr-Rg-HHD"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="r1H-Xm-1EH" firstAttribute="top" secondItem="dLW-1h-Z1l" secondAttribute="bottom" constant="3" id="0iG-gM-8DT"/>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="8cy-i8-wZj"/>
                         <constraint firstAttribute="height" constant="60" id="BEW-6C-Wu7"/>
                         <constraint firstItem="vcp-kc-cRi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mio-T4-8pw" secondAttribute="trailing" constant="5" id="EZe-aQ-8a6"/>
@@ -69,10 +77,11 @@
                         <constraint firstAttribute="bottom" secondItem="cpC-He-mWx" secondAttribute="bottom" id="ONn-Yy-Zz7"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dLW-1h-Z1l" secondAttribute="trailing" constant="5" id="Q9B-ly-q1e"/>
                         <constraint firstAttribute="trailing" secondItem="cpC-He-mWx" secondAttribute="trailing" id="T4S-7c-rJS"/>
-                        <constraint firstItem="dLW-1h-Z1l" firstAttribute="centerY" secondItem="Mio-T4-8pw" secondAttribute="centerY" id="egI-oV-eDg"/>
-                        <constraint firstItem="dLW-1h-Z1l" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leading" constant="10" id="fiC-2h-QHz"/>
+                        <constraint firstItem="dLW-1h-Z1l" firstAttribute="centerY" secondItem="Mio-T4-8pw" secondAttribute="centerY" constant="-22.5" id="egI-oV-eDg"/>
+                        <constraint firstItem="dLW-1h-Z1l" firstAttribute="leading" secondItem="XBF-hw-RIk" secondAttribute="leading" constant="8" id="fiC-2h-QHz"/>
                         <constraint firstItem="cpC-He-mWx" firstAttribute="top" secondItem="XBF-hw-RIk" secondAttribute="top" id="fla-zf-P6a"/>
                         <constraint firstAttribute="bottom" secondItem="vcp-kc-cRi" secondAttribute="bottom" id="i8Z-d4-7L8"/>
+                        <constraint firstItem="r1H-Xm-1EH" firstAttribute="leading" secondItem="dLW-1h-Z1l" secondAttribute="leading" constant="9" id="j7P-wa-bxL"/>
                         <constraint firstAttribute="trailing" secondItem="vcp-kc-cRi" secondAttribute="trailing" id="m7h-y6-zIV"/>
                         <constraint firstAttribute="bottom" secondItem="Mio-T4-8pw" secondAttribute="bottom" constant="10" id="mK8-wS-jha"/>
                         <constraint firstItem="Mio-T4-8pw" firstAttribute="centerX" secondItem="XBF-hw-RIk" secondAttribute="centerX" id="r7R-Y3-tAD"/>
@@ -94,7 +103,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ii-If-HHd">
-                                    <rect key="frame" x="20" y="50.5" width="335" height="0.0"/>
+                                    <rect key="frame" x="20" y="50" width="335" height="0.0"/>
                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="40"/>
                                     <color key="textColor" red="0.98039215686274506" green="0.49411764705882355" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -369,6 +378,7 @@
         </view>
     </objects>
     <resources>
+        <image name="backButton" width="8" height="15"/>
         <image name="backspace" width="40" height="30"/>
         <image name="lightBlue" width="10" height="10"/>
         <image name="purple2" width="10" height="10"/>

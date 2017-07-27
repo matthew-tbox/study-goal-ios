@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
 		DA0F57791C3E972F00FF5B7A /* NewTrophyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F57781C3E972F00FF5B7A /* NewTrophyAlert.swift */; };
@@ -206,6 +207,7 @@
 		DAFBC44F1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */; };
 		DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */; };
 		DAFC711F1BDFE33700A06C9A /* AttainmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */; };
+		DDFE93D41F18611900A62400 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		E18AFD6288449EE9B270EF5D /* Pods_Jisc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +271,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_attendance_high_chart.html; sourceTree = "<group>"; };
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
@@ -502,6 +505,7 @@
 		DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StretchTarget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchTarget.swift; sourceTree = "<group>"; };
 		DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
+		DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_points_pi_chart.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -965,6 +969,8 @@
 		DAD1D7E91C50EF81005BA786 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */,
+				800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */,
 				DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */,
 				DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */,
 				DAB0C8091C4CE96400F7A3C6 /* AttainmentCell.xib */,
@@ -1251,9 +1257,9 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = R48Q33464V;
+						DevelopmentTeam = JG53BNN66L;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1371,10 +1377,12 @@
 				DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */,
 				DABB0CC51C59FED5001A291D /* SingleTargetDetailsView.xib in Resources */,
 				DAC32E151BCFE1A000C4FBF5 /* ItemTypeCell.xib in Resources */,
+				800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */,
 				DABF97881C46393A00C62108 /* ActivityTrophyCell.xib in Resources */,
 				DAD66C691C52222800074B79 /* TrophiesGoldBig.xcassets in Resources */,
 				DA819EA21BDA20D900810C14 /* Podfile in Resources */,
 				DAC32D941BCF8B9800C4FBF5 /* LaunchScreen.xib in Resources */,
+				DDFE93D41F18611900A62400 /* stats_points_pi_chart.html in Resources */,
 				DAD66C951C523A2900074B79 /* TrophiesSilver.xcassets in Resources */,
 				DAD644C81C6227C800AA62E8 /* Localizable.strings in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
@@ -2003,15 +2011,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Jisc/Jisc.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
-				DEVELOPMENT_TEAM = R48Q33464V;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6f53dcc2-b476-4a66-9617-f6edb0dd09b2";
-				PROVISIONING_PROFILE_SPECIFIER = XGRoup_Development;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2028,15 +2036,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Jisc/Jisc.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Therapy Box Limited (JG53BNN66L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = JG53BNN66L;
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.therapybox.studentapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3bab5311-a927-4353-b2e5-c97a4649990d";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: com.therapybox.studentapp";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

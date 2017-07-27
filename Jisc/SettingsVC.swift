@@ -54,10 +54,17 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"
+        xAPIManager().checkMod(testUrl:urlString)
+
 		myFriendsLabel.text = "\(dataManager.friends().count)"
 		trophiesLabel.text = "\(dataManager.myTrophies().count)"
 		nameLabel.text = "\(dataManager.currentStudent!.firstName) \(dataManager.currentStudent!.lastName)"
 		emailLabel.text = dataManager.currentStudent!.email
+        if (emailLabel.text=="not@know"){
+            emailLabel.isHidden = true
+        }
 		studentIDLabel.text = "\(localized("student_id")) : \(dataManager.currentStudent!.jisc_id)"
 		blurredProfileImage.alpha = 0.0
 		NotificationCenter.default.addObserver(self, selector: #selector(SettingsVC.anotherSettingsViewWillAppear(_:)), name: NSNotification.Name(rawValue: kSettingsWillAppearNotification), object: nil)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,11 +17,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StatsMenuButton" customModule="Jisc" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="193"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fineLineLightGrayDown" translatesAutoresizingMaskIntoConstraints="NO" id="y9h-Ky-AGF">
-                    <rect key="frame" x="0.0" y="56" width="375" height="137"/>
+                    <rect key="frame" x="0.0" y="56" width="375" height="484"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvn-Jy-HdG">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -83,21 +83,66 @@
                                 <action selector="points:" destination="iN0-l3-epB" eventType="touchUpInside" id="R3W-1c-5Kg"/>
                             </connections>
                         </button>
+                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KF6-Sf-Kqx" userLabel="Leaderboard">
+                            <rect key="frame" x="0.0" y="120" width="375" height="0.0"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Leaderboard">
+                                <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="leaderBoard:" destination="iN0-l3-epB" eventType="touchUpInside" id="BCx-zK-UxH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1j-2l-rYa" userLabel="Events Attended">
+                            <rect key="frame" x="0.0" y="120" width="375" height="40"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Events Attended">
+                                <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="eventsAttended:" destination="iN0-l3-epB" eventType="touchUpInside" id="Zvi-kf-g0w"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-iV-Pau" userLabel="Attendance">
+                            <rect key="frame" x="0.0" y="160" width="375" height="40"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Attendance Summary">
+                                <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="attendance:" destination="iN0-l3-epB" eventType="touchUpInside" id="dLl-O2-Hlz"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="dXk-FR-Zp5" firstAttribute="bottom" secondItem="KF6-Sf-Kqx" secondAttribute="top" id="1e2-an-64G"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="7Km-ZA-dh6"/>
                         <constraint firstItem="WHR-CA-m5x" firstAttribute="top" secondItem="9Vv-fx-jWr" secondAttribute="bottom" id="8RM-Zb-hwc"/>
+                        <constraint firstAttribute="trailing" secondItem="Xyz-iV-Pau" secondAttribute="trailing" id="A0S-Ze-Hiv"/>
                         <constraint firstAttribute="trailing" secondItem="WHR-CA-m5x" secondAttribute="trailing" id="BiI-ae-Eq8"/>
+                        <constraint firstItem="KF6-Sf-Kqx" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" constant="-40" id="CGn-ar-Ypv"/>
+                        <constraint firstItem="h1j-2l-rYa" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="DR3-IR-g9y"/>
                         <constraint firstItem="dXk-FR-Zp5" firstAttribute="top" secondItem="WHR-CA-m5x" secondAttribute="bottom" id="GxX-2f-U7e"/>
                         <constraint firstAttribute="trailing" secondItem="dXk-FR-Zp5" secondAttribute="trailing" id="JOO-sV-dco"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="height" secondItem="dXk-FR-Zp5" secondAttribute="height" id="OZH-M6-Nkz"/>
+                        <constraint firstAttribute="trailing" secondItem="KF6-Sf-Kqx" secondAttribute="trailing" id="P9b-83-o0z"/>
                         <constraint firstAttribute="height" id="Pot-1N-6eR"/>
                         <constraint firstItem="dXk-FR-Zp5" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="Ql4-It-RNU"/>
+                        <constraint firstItem="Xyz-iV-Pau" firstAttribute="top" secondItem="h1j-2l-rYa" secondAttribute="bottom" id="Urr-Hg-W5c"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="height" secondItem="WHR-CA-m5x" secondAttribute="height" id="XoQ-vf-RXO"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="top" secondItem="YG0-U7-Bi6" secondAttribute="top" id="Y8W-0D-XeH"/>
+                        <constraint firstAttribute="trailing" secondItem="h1j-2l-rYa" secondAttribute="trailing" id="ceg-A5-83i"/>
+                        <constraint firstItem="Xyz-iV-Pau" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="i8c-bY-JhU"/>
+                        <constraint firstItem="Xyz-iV-Pau" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" id="iDw-eL-GrJ"/>
+                        <constraint firstItem="h1j-2l-rYa" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" id="lKP-je-loV"/>
                         <constraint firstItem="WHR-CA-m5x" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="nXj-Hd-pDt"/>
+                        <constraint firstItem="h1j-2l-rYa" firstAttribute="top" secondItem="KF6-Sf-Kqx" secondAttribute="bottom" id="sxa-lb-VwS"/>
                         <constraint firstAttribute="trailing" secondItem="9Vv-fx-jWr" secondAttribute="trailing" id="u3P-fl-FUU"/>
+                        <constraint firstItem="KF6-Sf-Kqx" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="zg2-Mj-BPl"/>
                     </constraints>
                 </view>
             </subviews>
@@ -123,7 +168,7 @@
                 <outlet property="button" destination="qvn-Jy-HdG" id="Eyb-jq-48n"/>
                 <outlet property="buttonsHeight" destination="Pot-1N-6eR" id="taV-tA-GQh"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="-182.5"/>
+            <point key="canvasLocation" x="33.5" y="-9"/>
         </view>
     </objects>
     <resources>

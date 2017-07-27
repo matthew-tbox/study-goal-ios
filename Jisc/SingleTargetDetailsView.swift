@@ -289,8 +289,15 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 		
 		if (selectedRow == 0) {
 			DELEGATE.menuView?.logViewController.navigationController?.pushViewController(NewActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+            //London Developer July 24,2017
+            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(module)"
+            xAPIManager().checkMod(testUrl:urlString)
+
 		} else if (selectedRow == 1) {
 			DELEGATE.menuView?.logViewController.navigationController?.pushViewController(LogActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+                //London Developer July 24,2017
+                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-untimed&contentName=logReport&modid=\(module)"
+                xAPIManager().checkMod(testUrl:urlString)
 		}
 	}
 	

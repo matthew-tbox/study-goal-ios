@@ -472,7 +472,26 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 		}
 		startConnectionWithRequest(createGetRequest(path, withJWT: true))
 	}
-	
+    func checkMod(testUrl:String){
+        var request:URLRequest?
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                print("This is the token Ahmed",token)
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                print("This is the data from the request AHMED!!!",NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! Any)
+            }
+            //startConnectionWithRequest(request)
+        } else {
+            completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+    }
 	func checkIn(pin:String, location:String, timestamp:String, completion:@escaping xAPICompletionBlock) {
 		completionBlock = completion
 		var request:URLRequest?

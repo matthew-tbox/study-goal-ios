@@ -34,12 +34,20 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		let refreshControl = UIRefreshControl()
 		refreshControl.addTarget(self, action: #selector(FeedVC.manuallyRefreshFeeds(_:)), for: UIControlEvents.valueChanged)
 		feedsTableView.addSubview(refreshControl)
+        
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
+        xAPIManager().checkMod(testUrl:urlString)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		if (dataManager.friendRequests().count > 0) {
 			peopleButton.setImage(UIImage(named: "profileButtonHighlighted"), for: UIControlState())
+            //London Developer July 24,2017
+            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-friends&contentName=friends"
+            xAPIManager().checkMod(testUrl:urlString)
+
 		} else {
 			peopleButton.setImage(UIImage(named: "profileButton"), for: UIControlState())
 		}

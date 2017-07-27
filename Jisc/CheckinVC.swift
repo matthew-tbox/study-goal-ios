@@ -25,6 +25,9 @@ class CheckinVC: BaseViewController {
 		view.layoutIfNeeded()
 	}
 	
+    @IBAction func backButton(_ sender: Any) {
+        		navigationController?.popViewController(animated: true)
+    }
 	@IBAction func backspace(_ sender:UIButton?) {
 		if !currentPin.isEmpty {
 			currentPin = currentPin.substring(to: currentPin.characters.index(before: currentPin.characters.endIndex))

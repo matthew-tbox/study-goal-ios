@@ -12,6 +12,7 @@ enum MenuButtonType:String {
 	case Feed = "Activity Feed"
 	case Stats = "Stats"
 	case Log = "Log"
+    case Checkin = "Check-in" //Ahmed Checkin
 	case Target = "Target"
 	case Settings = "Settings"
 	case Logout = "Logout"
@@ -45,6 +46,10 @@ class MenuButton: UIView {
 			button.button.setImage(UIImage(named: "LogVCMenuIcon"), for: .normal)
 			button.button.setImage(UIImage(named: "LogVCMenuIconSelected"), for: .selected)
 			break
+        case .Checkin:
+            button.button.setImage(UIImage(named: "CheckinVCMenuIcon"), for: .normal)
+            button.button.setImage(UIImage(named: "CheckinVCMenuIconSelected"), for: .selected)
+            break
 		case .Target:
 			button.button.setImage(UIImage(named: "TargetVCMenuIcon"), for: .normal)
 			button.button.setImage(UIImage(named: "TargetVCMenuIconSelected"), for: .selected)
@@ -101,6 +106,9 @@ class MenuButton: UIView {
 		case .Log:
 			parent?.log()
 			break
+        case .Checkin:
+            parent?.checkin()
+            break
 		case .Target:
 			parent?.target()
 			break
@@ -137,7 +145,7 @@ class StatsMenuButton: MenuButton {
 		expanded = true
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-			self.buttonsHeight.constant = 120.0
+			self.buttonsHeight.constant = 40 * 6
 			self.parent?.layoutIfNeeded()
 		}
 	}
@@ -177,5 +185,32 @@ class StatsMenuButton: MenuButton {
 		}
 		retract()
 	}
+    
+//    @IBAction func leaderBoard(_ sender: UIButton) {
+//        parent?.close(nil)
+//        parent?.stats()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+//            self.parent?.statsViewController.goToLeaderBoard()
+//        }
+//        retract()
+//    }
+    
+    @IBAction func eventsAttended(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToEventsAttended()
+        }
+        retract()
+    }
+    
+    @IBAction func attendance(_ sender: UIButton) {
+        parent?.close(nil)
+        parent?.stats()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.parent?.statsViewController.goToAttendance()
+        }
+        retract()
+    }
 	
 }

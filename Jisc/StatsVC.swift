@@ -63,7 +63,7 @@ enum GraphType {
 class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, CustomPickerViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var contentCenterX:NSLayoutConstraint!
-	@IBOutlet weak var pageSegment:UISegmentedControl?
+//	@IBOutlet weak var pageSegment:UISegmentedControl?
 	@IBOutlet weak var titleLabel:UILabel!
 	@IBOutlet weak var blueDot:UIImageView!
 	@IBOutlet weak var comparisonStudentName:UILabel!
@@ -102,6 +102,19 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	
 	var staffAlert:UIAlertController? = UIAlertController(title: localized("staff_stats_alert"), message: "", preferredStyle: .alert)
 	
+    @IBOutlet weak var pieChartWebView: UIWebView!
+    
+    @IBOutlet weak var highChartWebView: UIWebView!
+    @IBOutlet weak var pieChartSwitch: UISwitch!
+    
+    @IBOutlet weak var lineViews: UIView!
+    @IBOutlet weak var rectangleView: UIView!
+    
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var leaderBoard: UIView!
+    @IBOutlet weak var eventAtteneded: UIView!
+    @IBOutlet weak var attendance: UIView!
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -167,6 +180,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 			
 		})
 		goToAttainment()
+        self.highChartWebView.isHidden = false
+        self.loadHighChart()
+        
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
+        xAPIManager().checkMod(testUrl:urlString)
+        
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -199,6 +219,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		DELEGATE.menuView?.open()
 	}
 	
+    @IBAction func tapPieChartSwitch(_ sender: UISwitch) {
+        pieChartWebView.isHidden = !sender.isOn
+        lineViews.isHidden = sender.isOn
+        rectangleView.isHidden = sender.isOn
+    }
+    
 	func refreshAttainmentData(_ sender:UIRefreshControl) {
 		getAttainmentData {
 			sender.endRefreshing()
@@ -255,7 +281,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 								if let points = object["points"] as? Int {
 									if let id = object["_id"] as? String {
 										if let activity = id.components(separatedBy: "/").last {
-											self.pointsArray.append(PointsObject(activity: activity.capitalized, count: count, points: points))
+                                            var activity = activity
+                                            if activity.isEmpty { activity = id.components(separatedBy: "/")[id.components(separatedBy: "/").count-2]}
+                                            self.pointsArray.append(PointsObject(activity: activity.capitalized, count: count, points: points))
 										}
 									}
 								}
@@ -264,6 +292,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 					}
 				}
 			}
+            
+            self.loadPieChart()
+            self.loadHighChart()
 			self.pointsTable.reloadData()
 			completion()
 		}
@@ -296,57 +327,98 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		navigationController?.pushViewController(vc, animated: true)
 	}
 	
-	@IBAction func changePage(_ sender:UISegmentedControl) {
-		switch sender.selectedSegmentIndex {
-		case 0:
-			goToGraph()
-			break
-		case 1:
-			goToAttainment()
-			break
-		case 2:
-			goToPoints()
-			break
-		default:
-			break
-		}
-	}
+//	@IBAction func changePage(_ sender:UISegmentedControl) {
+//		switch sender.selectedSegmentIndex {
+//		case 0:
+//			goToGraph()
+//			break
+//		case 1:
+//			goToAttainment()
+//			break
+//		case 2:
+//			goToPoints()
+//			break
+//		default:
+//			break
+//		}
+//	}
 	
-	func goToGraph() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 0 {
-				pageSegment.selectedSegmentIndex = 0
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = self.view.frame.size.width
-				self.view.layoutIfNeeded()
-			}
-		}
-	}
-	
-	func goToAttainment() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 1 {
-				pageSegment.selectedSegmentIndex = 1
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = 0.0
-				self.view.layoutIfNeeded()
-			}
-		}
-	}
-	
+    func goToGraph() {
+        
+        hideUpperViews()
+        container.isHidden = false
+
+        guard let center = contentCenterX else { return }
+        UIView.animate(withDuration: 0.25) {
+            center.constant = self.view.frame.size.width
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func goToAttainment() {
+        
+        hideUpperViews()
+        container.isHidden = false
+
+        guard let center = contentCenterX else { return }
+        UIView.animate(withDuration: 0.25) {
+            center.constant = 0.0
+            self.view.layoutIfNeeded()
+        }
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attainment&contentName=attainment"
+        xAPIManager().checkMod(testUrl:urlString)
+    }
+    
 	func goToPoints() {
-		if let pageSegment = pageSegment {
-			if pageSegment.selectedSegmentIndex != 2 {
-				pageSegment.selectedSegmentIndex = 2
-			}
-			UIView.animate(withDuration: 0.25) {
-				self.contentCenterX.constant = -self.view.frame.size.width
-				self.view.layoutIfNeeded()
-			}
-		}
+        
+        hideUpperViews()
+        container.isHidden = false
+
+        guard let center = contentCenterX else { return }
+        UIView.animate(withDuration: 0.25) {
+            center.constant = -self.view.frame.size.width
+            self.view.layoutIfNeeded()
+        }
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-points&contentName=points"
+        xAPIManager().checkMod(testUrl:urlString)
+
 	}
+    
+    
+    func goToLeaderBoard() {
+        hideUpperViews()
+        leaderBoard.isHidden = true
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard&contentName=leaderboard"
+        xAPIManager().checkMod(testUrl:urlString)
+
+    }
+    
+    func goToEventsAttended() {
+        hideUpperViews()
+        eventAtteneded.isHidden = false
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-events&contentName=eventsAttended"
+        xAPIManager().checkMod(testUrl:urlString)
+    }
+    
+    func goToAttendance() {
+        hideUpperViews()
+        attendance.isHidden = false
+        //container.isHidden = false
+        //London Developer July 24,2017
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
+        xAPIManager().checkMod(testUrl:urlString)
+    }
+    
+    private func hideUpperViews() {
+        container.isHidden = true
+        leaderBoard.isHidden = true
+        eventAtteneded.isHidden = true
+        attendance.isHidden = true
+    }
 	
 	@IBAction func changePeriod(_ sender:UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
@@ -470,6 +542,137 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		representValues(graphValues)
 	}
 	
+    private func loadPieChart() {
+        do {
+            guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
+                else {
+                    print ("File reading error")
+                    return
+            }
+            
+            pieChartWebView.setNeedsLayout()
+            pieChartWebView.layoutIfNeeded()
+            let w = pieChartWebView.frame.size.width - 20
+            let h = pieChartWebView.frame.size.height - 20
+            var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+            contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+            contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+            
+            /* {
+             name: 'Computer',
+             y: 56.33
+             }, {
+             name: 'English',
+             y: 24.03
+             } */
+            var data: String = ""
+            for point in pointsArray {
+                data += "{"
+                data += "name:'\(point.activity)',"
+                data += "y:\(point.points)"
+                data += "},"
+            }
+            contents = contents.replacingOccurrences(of: "REPLACE_DATA", with: data)
+
+            
+            let baseUrl = URL(fileURLWithPath: filePath)
+            pieChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+        } catch {
+            print ("File HTML error")
+        }
+    }
+    private func loadHighChart() {
+        //London Developer July 24,2017
+        //let completionBlock:downloadCompletionBlock?
+        var countArray:[Int] = []
+        var dateArray:[String] = []
+
+        let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=2017-06-28&enddate=2017-07-26"
+        var request:URLRequest?
+        if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                print("This is the data from the request AHMED!!!",NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! Any)
+                do {
+                    if let data = data,
+                        let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                        for item in json {
+                            let object = item as? [String:Any]
+                            print("Ahmed OMG this is each item in the high chart call!!",item)
+                            if let count = object?["count"] as? Int {
+                                print("OMG AHMED COUNT", count)
+                                countArray.append(count)
+                            }
+                            
+                            if let date = object?["date"] as? NSString {
+                                //Date DONE!! put in an array and pass to the graph same with count
+                                print("OMG AHMED THIS IS DATE!!!",date.substring(with: NSRange(location: 0, length: 10)))
+                                dateArray.append(date.substring(with: NSRange(location: 0, length: 10)))
+                            }
+                        }
+                        print("This is the count array ready to be put in the webview AHMED OMG COUNTARRAY", countArray)
+                        print("This is the date array ready to be put in the webview AHMED OMG DATEARRAY", dateArray)
+                        do {
+                            guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
+                                else {
+                                    print ("File reading error")
+                                    return
+                            }
+                            
+                            self.highChartWebView.setNeedsLayout()
+                            self.highChartWebView.layoutIfNeeded()
+                            let w = self.highChartWebView.frame.size.width - 20
+                            let h = self.highChartWebView.frame.size.height - 20
+                            var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+                            contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+                            contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+                            var countData:String = ""
+                            var dateData: String = ""
+                            for count in countArray {
+                                countData = countData + String(count) + ", "
+                            }
+                            var countDataFinal:String = ""
+                            let endIndex = countData.index(countData.endIndex, offsetBy: -2)
+                            countDataFinal = "[" + countData.substring(to: endIndex) + "]"
+                            for date in dateArray {
+                                dateData = dateData + "'\(date)'" + ", "
+                            }
+                            var dateDataFinal:String = ""
+                            let endIndexDate = dateData.index(dateData.endIndex, offsetBy: -2)
+
+                            dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
+                            
+                            print("countData string", countDataFinal)
+                            print("dateData string", dateDataFinal)
+                            
+                            contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
+                            contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
+
+                            
+                            let baseUrl = URL(fileURLWithPath: filePath)
+                            self.highChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+                        } catch {
+                            print ("File HTML error")
+                        }
+                    }
+                } catch {
+                    print("Error deserializing JSON: \(error)")
+                }
+            }
+            //startConnectionWithRequest(request)
+        } else {
+           // completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+
+    }
+    
 	func getEngagementData() {
 		//		let myID = dataManager.currentStudent!.id
 		let period = periods[selectedPeriod]
@@ -1239,7 +1442,43 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		moduleSelectorView = CustomPickerView.create(localized("filter"), delegate: self, contentArray: array, selectedItem: selectedModule)
 		moduleSelectorView.centerIndexes = centeredIndexes
 		view.addSubview(moduleSelectorView)
-	}
+        //London Developer July 24,2017
+        let period = periods[selectedPeriod]
+        var moduleID:String? = nil
+        var courseID:String? = nil
+        
+        if (selectedModule > 0) {
+            var theIndex = selectedModule - 1
+            if (theIndex < dataManager.courses().count) {
+                courseID = dataManager.courses()[theIndex].id
+            } else {
+                theIndex -= dataManager.courses().count
+                if (theIndex < dataManager.modules().count) {
+                    moduleID = dataManager.modules()[theIndex].id
+                }
+            }
+        }
+        //Getting called for FilteredStatModuleMain
+        // Add in a condition with all activity do not send the request.
+        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+        xAPIManager().checkMod(testUrl:urlString)
+        if leaderBoard.isHidden == false {
+            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard-module&contentName=leaderboardFilteredByModule&modid=\(String(describing: moduleID))"
+            xAPIManager().checkMod(testUrl:urlString)
+        }
+
+        if eventAtteneded.isHidden == false{
+            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            xAPIManager().checkMod(testUrl:urlString)
+        }
+
+        if (attendance.isHidden == false){
+            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            xAPIManager().checkMod(testUrl:urlString)
+        }
+
+
+    }
 	
 	@IBAction func showCompareToSelector(_ sender:UIButton) {
 		graphScroll.setContentOffset(graphScroll.contentOffset, animated: false)
