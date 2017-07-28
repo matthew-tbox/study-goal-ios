@@ -340,7 +340,7 @@
 "check_internet" = "Connection issue. Please check your internet connection and restart your app.";
 "friend_privacy_settings" = "Friend Privacy Settings";
 "graphs" = "Graphs";
-"consent" = "Consent";
+"consent" = "Privacy Statement";
 "consent_what_we_want" = "We want to ensure we're giving you the best experience with this app that we can, so we're collecting information on how you're using the app. We're looking at:";
 "consent_log" = "Log section: We want to know how much time you spend on activities, and what sort of activities you're doing.";
 "consent_targets" = "Targets section: We want to know how many targets you're setting yourself, how often you're meeting them and whether you're setting stretch goals.";
