@@ -44,6 +44,7 @@
                 <outlet property="lineViews" destination="yek-nX-bs8" id="5GS-XM-Kp5"/>
                 <outlet property="moduleButton" destination="JfG-Nq-9Ic" id="vci-Sq-oHh"/>
                 <outlet property="noDataLabel" destination="2fX-nu-xoC" id="yKW-zL-czB"/>
+                <outlet property="noPointsLabel" destination="y3R-x6-0Ek" id="x7Z-3D-zau"/>
                 <outlet property="periodSegment" destination="ORu-vw-vpL" id="oET-G9-YVV"/>
                 <outlet property="pieChartSwitch" destination="WE9-Rz-iv6" id="5dD-pF-43l"/>
                 <outlet property="pieChartWebView" destination="h4b-FE-HR6" id="C8j-zn-EZb"/>
@@ -79,13 +80,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnm-oz-jaN" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="40" y="31" width="27.5" height="17"/>
+                            <rect key="frame" x="40" y="30" width="31" height="20"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQB-HC-KCz">
-                            <rect key="frame" x="164.5" y="28" width="47.5" height="22"/>
+                            <rect key="frame" x="162" y="24" width="51" height="26"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -243,7 +244,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
                                                                                             <subviews>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gvv-Ba-CUW">
-                                                                                                    <rect key="frame" x="8" y="20" width="82" height="20"/>
+                                                                                                    <rect key="frame" x="8" y="18" width="91" height="24"/>
                                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                                                                                     <color key="textColor" red="0.2156862745" green="0.2784313725" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -430,7 +431,7 @@
                                                                                                             </constraints>
                                                                                                         </view>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fX-nu-xoC" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                                                            <rect key="frame" x="149" y="94" width="56" height="17"/>
+                                                                                                            <rect key="frame" x="147" y="93" width="61" height="20"/>
                                                                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                                                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                             <nil key="highlightedColor"/>
@@ -481,7 +482,7 @@
                                                                                                     <rect key="frame" x="25" y="14" width="17" height="17"/>
                                                                                                 </imageView>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pup-AG-4NH" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                                                    <rect key="frame" x="50" y="15" width="20" height="15"/>
+                                                                                                    <rect key="frame" x="50" y="14" width="22" height="18"/>
                                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                                                                     <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -490,10 +491,10 @@
                                                                                                     </userDefinedRuntimeAttributes>
                                                                                                 </label>
                                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueDotForGraph" translatesAutoresizingMaskIntoConstraints="NO" id="R3P-4d-DnL">
-                                                                                                    <rect key="frame" x="85" y="14" width="17" height="17"/>
+                                                                                                    <rect key="frame" x="87" y="14" width="17" height="17"/>
                                                                                                 </imageView>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter Parker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgh-hW-w2f">
-                                                                                                    <rect key="frame" x="110" y="15" width="75" height="15"/>
+                                                                                                    <rect key="frame" x="112" y="14" width="84" height="18"/>
                                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                                                                     <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -551,7 +552,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="DiP-Uz-1Ga" secondAttribute="trailing" id="2Xl-Ux-Wjo"/>
                                                                         <constraint firstItem="DiP-Uz-1Ga" firstAttribute="leading" secondItem="3xK-ak-ZBf" secondAttribute="leading" id="F2v-Ht-0gz"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="DiP-Uz-1Ga" secondAttribute="bottom" id="aos-YH-5HM"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="DiP-Uz-1Ga" secondAttribute="bottom" constant="58" id="aos-YH-5HM"/>
                                                                         <constraint firstItem="DiP-Uz-1Ga" firstAttribute="width" secondItem="3xK-ak-ZBf" secondAttribute="width" id="h4c-ZQ-UXN"/>
                                                                         <constraint firstItem="DiP-Uz-1Ga" firstAttribute="top" secondItem="3xK-ak-ZBf" secondAttribute="top" id="hpe-ZU-1Vj"/>
                                                                     </constraints>
@@ -610,6 +611,12 @@
                                                                         <action selector="tapPieChartSwitch:" destination="-1" eventType="valueChanged" id="pgF-vy-89X"/>
                                                                     </connections>
                                                                 </switch>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3R-x6-0Ek">
+                                                                    <rect key="frame" x="150.5" y="127" width="74" height="21"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yek-nX-bs8">
                                                                     <rect key="frame" x="78" y="28" width="220" height="220"/>
                                                                     <subviews>
@@ -754,16 +761,16 @@
                                                                     <rect key="frame" x="110" y="60" width="156" height="156"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwx-OQ-bMW">
-                                                                            <rect key="frame" x="27" y="54" width="102" height="49"/>
+                                                                            <rect key="frame" x="24" y="49" width="108" height="58"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUE-vi-6aj">
-                                                                                    <rect key="frame" x="34" y="0.0" width="33" height="32"/>
+                                                                                    <rect key="frame" x="36" y="0.0" width="36" height="38"/>
                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="32"/>
                                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Activity points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHA-wl-ueq">
-                                                                                    <rect key="frame" x="0.0" y="32" width="102" height="17"/>
+                                                                                    <rect key="frame" x="0.0" y="38" width="108" height="20"/>
                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     <nil key="highlightedColor"/>
@@ -802,8 +809,10 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
+                                                                <constraint firstItem="y3R-x6-0Ek" firstAttribute="centerY" secondItem="ied-9o-lQK" secondAttribute="centerY" id="AhA-fA-PDD"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Fp1-La-qDV" secondAttribute="bottom" constant="60" id="Hc8-uD-baX"/>
                                                                 <constraint firstItem="h4b-FE-HR6" firstAttribute="centerX" secondItem="ied-9o-lQK" secondAttribute="centerX" id="IwC-hO-mNk"/>
+                                                                <constraint firstItem="y3R-x6-0Ek" firstAttribute="centerX" secondItem="ied-9o-lQK" secondAttribute="centerX" id="KR8-QD-azi"/>
                                                                 <constraint firstItem="WE9-Rz-iv6" firstAttribute="top" secondItem="ied-9o-lQK" secondAttribute="top" constant="10" id="L2k-bn-dgU"/>
                                                                 <constraint firstItem="h4b-FE-HR6" firstAttribute="centerY" secondItem="ied-9o-lQK" secondAttribute="centerY" id="M5W-cn-GNS"/>
                                                                 <constraint firstItem="yek-nX-bs8" firstAttribute="centerX" secondItem="Fp1-La-qDV" secondAttribute="centerX" id="MgZ-hv-nLL"/>
@@ -825,7 +834,7 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="140" height="35"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajn-cG-EEx">
-                                                                                    <rect key="frame" x="47" y="10" width="47.5" height="15"/>
+                                                                                    <rect key="frame" x="46" y="9" width="49" height="18"/>
                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                                                     <color key="textColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -842,7 +851,7 @@
                                                                             <rect key="frame" x="143" y="0.0" width="109" height="35"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Obj-R7-jEr">
-                                                                                    <rect key="frame" x="36" y="10" width="38.5" height="15"/>
+                                                                                    <rect key="frame" x="34" y="9" width="41" height="18"/>
                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -858,7 +867,7 @@
                                                                             <rect key="frame" x="255" y="0.0" width="120" height="35"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points Awarded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqK-OR-Khj">
-                                                                                    <rect key="frame" x="11" y="10" width="98" height="15"/>
+                                                                                    <rect key="frame" x="7" y="9" width="106" height="18"/>
                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>

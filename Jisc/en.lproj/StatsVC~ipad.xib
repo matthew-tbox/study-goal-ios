@@ -43,6 +43,7 @@
                 <outlet property="lineViews" destination="9fh-pJ-HpZ" id="KOZ-i9-fsJ"/>
                 <outlet property="moduleButton" destination="Yhx-j7-vYN" id="oSy-Dn-lRs"/>
                 <outlet property="noDataLabel" destination="qgj-BN-tg1" id="ut6-MF-m8N"/>
+                <outlet property="noPointsLabel" destination="qVa-ZZ-QeI" id="UFH-hI-XVx"/>
                 <outlet property="periodSegment" destination="gnR-Vb-D3x" id="x0S-sn-AVI"/>
                 <outlet property="pieChartSwitch" destination="f0u-om-Lqk" id="4gS-Uo-iqj"/>
                 <outlet property="pieChartWebView" destination="N3K-tQ-ZJM" id="c2z-BZ-98Z"/>
@@ -481,7 +482,7 @@
                                                                                                         <constraint firstItem="kSM-na-QAA" firstAttribute="leading" secondItem="gCD-bE-Nmr" secondAttribute="leading" id="0MF-ej-EI0"/>
                                                                                                         <constraint firstItem="Ijd-eZ-H2l" firstAttribute="trailing" secondItem="MBA-FU-wRf" secondAttribute="trailing" id="FCf-4H-qbE"/>
                                                                                                         <constraint firstAttribute="bottom" secondItem="kSM-na-QAA" secondAttribute="bottom" id="XZD-7j-CJu"/>
-                                                                                                        <constraint firstAttribute="trailing" secondItem="MBA-FU-wRf" secondAttribute="trailing" id="ZuT-7m-PK6"/>
+                                                                                                        <constraint firstAttribute="trailing" secondItem="MBA-FU-wRf" secondAttribute="trailing" constant="-33.5" id="ZuT-7m-PK6"/>
                                                                                                         <constraint firstItem="Ijd-eZ-H2l" firstAttribute="top" secondItem="MBA-FU-wRf" secondAttribute="bottom" id="bYN-3t-CqF"/>
                                                                                                         <constraint firstAttribute="trailing" secondItem="kSM-na-QAA" secondAttribute="trailing" constant="37" id="d4O-46-Bnq"/>
                                                                                                         <constraint firstItem="MBA-FU-wRf" firstAttribute="leading" secondItem="gCD-bE-Nmr" secondAttribute="leading" id="d5l-lX-yCM"/>
@@ -591,7 +592,7 @@
                                                                                         <constraint firstItem="Ne7-AZ-fs9" firstAttribute="centerY" secondItem="CeX-g8-rfd" secondAttribute="centerY" id="buD-Ul-Nt1"/>
                                                                                         <constraint firstItem="Ne7-AZ-fs9" firstAttribute="leading" secondItem="C5h-tn-05M" secondAttribute="trailing" constant="8" id="fmZ-lj-QG6"/>
                                                                                         <constraint firstItem="W1p-eh-43G" firstAttribute="centerY" secondItem="CeX-g8-rfd" secondAttribute="centerY" id="gyA-rS-ECd"/>
-                                                                                        <constraint firstAttribute="width" secondItem="CeX-g8-rfd" secondAttribute="height" multiplier="71:9" id="jle-we-0Z4"/>
+                                                                                        <constraint firstAttribute="width" secondItem="CeX-g8-rfd" secondAttribute="height" multiplier="71:9" constant="-1.9444444444444571" id="jle-we-0Z4"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                             </subviews>
@@ -633,7 +634,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="fH5-62-SJ9" secondAttribute="trailing" id="5hZ-wY-jCv"/>
                                                                 <constraint firstItem="fH5-62-SJ9" firstAttribute="leading" secondItem="iaI-UP-jSb" secondAttribute="leading" id="PvH-vZ-OL9"/>
-                                                                <constraint firstAttribute="bottom" secondItem="fH5-62-SJ9" secondAttribute="bottom" id="Wpk-b6-Wyo"/>
+                                                                <constraint firstAttribute="bottom" secondItem="fH5-62-SJ9" secondAttribute="bottom" constant="140.5" id="Wpk-b6-Wyo"/>
                                                                 <constraint firstItem="fH5-62-SJ9" firstAttribute="width" secondItem="iaI-UP-jSb" secondAttribute="width" id="vE6-fZ-Xmf"/>
                                                                 <constraint firstItem="fH5-62-SJ9" firstAttribute="top" secondItem="iaI-UP-jSb" secondAttribute="top" id="xew-8b-IRi"/>
                                                             </constraints>
@@ -692,6 +693,12 @@
                                                                 <action selector="tapPieChartSwitch:" destination="-1" eventType="valueChanged" id="LTN-WA-o8V"/>
                                                             </connections>
                                                         </switch>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVa-ZZ-QeI">
+                                                            <rect key="frame" x="149.5" y="127" width="42" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fh-pJ-HpZ">
                                                             <rect key="frame" x="61" y="28" width="220" height="220"/>
                                                             <subviews>
@@ -885,7 +892,9 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="f0u-om-Lqk" firstAttribute="top" secondItem="rd7-Lj-KHx" secondAttribute="top" id="5aE-ff-gcL"/>
+                                                        <constraint firstItem="qVa-ZZ-QeI" firstAttribute="centerY" secondItem="rd7-Lj-KHx" secondAttribute="centerY" id="7yf-bu-gfe"/>
                                                         <constraint firstItem="N3K-tQ-ZJM" firstAttribute="centerX" secondItem="rd7-Lj-KHx" secondAttribute="centerX" id="8eP-L7-KNx"/>
+                                                        <constraint firstItem="qVa-ZZ-QeI" firstAttribute="centerX" secondItem="rd7-Lj-KHx" secondAttribute="centerX" id="Cm8-zn-AZe"/>
                                                         <constraint firstItem="UHS-Ry-SWA" firstAttribute="centerX" secondItem="rd7-Lj-KHx" secondAttribute="centerX" id="DMP-HN-mZR"/>
                                                         <constraint firstItem="N3K-tQ-ZJM" firstAttribute="centerY" secondItem="rd7-Lj-KHx" secondAttribute="centerY" id="DWK-st-9NB"/>
                                                         <constraint firstItem="9fh-pJ-HpZ" firstAttribute="centerX" secondItem="UHS-Ry-SWA" secondAttribute="centerX" id="FPd-8D-HOs"/>

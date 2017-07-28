@@ -102,6 +102,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	
 	var staffAlert:UIAlertController? = UIAlertController(title: localized("staff_stats_alert"), message: "", preferredStyle: .alert)
 	
+    @IBOutlet weak var noPointsLabel: UILabel!
     @IBOutlet weak var pieChartWebView: UIWebView!
     
     @IBOutlet weak var highChartWebView: UIWebView!
@@ -181,6 +182,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 		})
 		goToAttainment()
         self.highChartWebView.isHidden = false
+        self.noPointsLabel.isHidden = false
         self.loadHighChart()
         
         //London Developer July 24,2017
@@ -295,8 +297,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 			}
             
             self.loadPieChart()
-            self.loadHighChart()
-			self.pointsTable.reloadData()
+
+            self.pointsTable.reloadData()
 			completion()
 		}
 	}
@@ -545,7 +547,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	
     private func loadPieChart() {
         do {
-            guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
+            guard let filePath = Bundle.main.path(forResource: "stats_points_pi_chart", ofType: "html")
                 else {
                     print ("File reading error")
                     return
@@ -567,11 +569,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
              y: 24.03
              } */
             var data: String = ""
+            
             for point in pointsArray {
                 data += "{"
                 data += "name:'\(point.activity)',"
                 data += "y:\(point.points)"
                 data += "},"
+                if(point.points != 0){
+                    self.noPointsLabel.isHidden = true
+                }
             }
             contents = contents.replacingOccurrences(of: "REPLACE_DATA", with: data)
 
