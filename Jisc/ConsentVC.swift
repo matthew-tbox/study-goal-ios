@@ -31,7 +31,7 @@ class ConsentVC: BaseViewController {
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	@IBAction func toggleAnalytics(_ sender:UIButton) {

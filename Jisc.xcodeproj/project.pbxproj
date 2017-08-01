@@ -10,9 +10,14 @@
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
+		DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF21E850FFD00166E16 /* LoginVC.xib */; };
+		DA0BDBF51E8521E900166E16 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0BDBF41E8521E900166E16 /* LoginVC.swift */; };
+		DA0BDBF71E8557D700166E16 /* LoginVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF61E8557D700166E16 /* LoginVC~ipad.xib */; };
 		DA0F57791C3E972F00FF5B7A /* NewTrophyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F57781C3E972F00FF5B7A /* NewTrophyAlert.swift */; };
 		DA0F577F1C3EA2A700FF5B7A /* trophies.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA0F577E1C3EA2A700FF5B7A /* trophies.plist */; };
 		DA0F591D1C3EBDC200FF5B7A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0F591C1C3EBDC200FF5B7A /* MediaPlayer.framework */; };
+		DA1039FF1E9D05650000737F /* TargetGraphSimple in Resources */ = {isa = PBXBuildFile; fileRef = DA1039FE1E9D05650000737F /* TargetGraphSimple */; };
+		DA103A041E9D05730000737F /* TargetGraphStretch in Resources */ = {isa = PBXBuildFile; fileRef = DA103A031E9D05730000737F /* TargetGraphStretch */; };
 		DA109DE71BFF5B9500940CA1 /* Feed+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA109DE51BFF5B9500940CA1 /* Feed+CoreDataProperties.swift */; };
 		DA109DE81BFF5B9500940CA1 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA109DE61BFF5B9500940CA1 /* Feed.swift */; };
 		DA11B6AC1E7164E600F823B8 /* CheckinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA11B6AA1E7164E600F823B8 /* CheckinVC.swift */; };
@@ -46,7 +51,7 @@
 		DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */; };
 		DA425AAA1BD4E9D500C77D76 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AA91BD4E9D500C77D76 /* LoadingView.swift */; };
 		DA425AAC1BD4E9E800C77D76 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */; };
-		DA425AB51BD5116D00C77D76 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AB31BD5116D00C77D76 /* LoginVC.swift */; };
+		DA425AB51BD5116D00C77D76 /* LoginVC-OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AB31BD5116D00C77D76 /* LoginVC-OLD.swift */; };
 		DA425ABC1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425ABB1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift */; };
 		DA425AD31BD52E0B00C77D76 /* InstituteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA425AD11BD52E0B00C77D76 /* InstituteCell.swift */; };
 		DA425AD41BD52E0B00C77D76 /* InstituteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA425AD21BD52E0B00C77D76 /* InstituteCell.xib */; };
@@ -66,6 +71,11 @@
 		DA46D97D1BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA46D9761BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift */; };
 		DA593A661C479E9B00C68513 /* ActivityTypesIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA593A651C479E9B00C68513 /* ActivityTypesIcons.xcassets */; };
 		DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA593A671C47A03300C68513 /* ActivityTypesIconsBig.xcassets */; };
+		DA593EC11E97986C00B54909 /* BarChartHTMLCompare in Resources */ = {isa = PBXBuildFile; fileRef = DA593EC01E97986C00B54909 /* BarChartHTMLCompare */; };
+		DA593EC61E979B0B00B54909 /* ChartHTMLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA593EC51E979B0B00B54909 /* ChartHTMLManager.swift */; };
+		DA593EC81E97A29900B54909 /* BarChartHTMLSimple in Resources */ = {isa = PBXBuildFile; fileRef = DA593EC71E97A29900B54909 /* BarChartHTMLSimple */; };
+		DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */ = {isa = PBXBuildFile; fileRef = DA593EC91E97A2BD00B54909 /* LineChartHTMLCompare */; };
+		DA593ECC1E97A2BD00B54909 /* LineChartHTMLSimple in Resources */ = {isa = PBXBuildFile; fileRef = DA593ECA1E97A2BD00B54909 /* LineChartHTMLSimple */; };
 		DA6CFB041BE119EB004A5FB0 /* NewTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */; };
 		DA6CFB081BE11A85004A5FB0 /* TargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */; };
 		DA6CFB091BE11A85004A5FB0 /* TargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */; };
@@ -97,7 +107,7 @@
 		DAA2AEFE1BCE85E600ED796A /* TargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA2AEFC1BCE85E600ED796A /* TargetVC.swift */; };
 		DAA4BEAC1BF383DF0057AEF9 /* SingleTargetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4BEAB1BF383DF0057AEF9 /* SingleTargetDetailsView.swift */; };
 		DAAB37E71BDA63D800D56BDE /* GraphGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB37E61BDA63D800D56BDE /* GraphGenerator.swift */; };
-		DAB0C7BF1C4CE82500F7A3C6 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7C11C4CE82500F7A3C6 /* LoginVC.xib */; };
+		DAB0C7BF1C4CE82500F7A3C6 /* LoginVC-OLD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */; };
 		DAB0C7CB1C4CE88700F7A3C6 /* FeedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7CD1C4CE88700F7A3C6 /* FeedVC.xib */; };
 		DAB0C7D11C4CE8A000F7A3C6 /* FeedVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7D31C4CE8A000F7A3C6 /* FeedVC~ipad.xib */; };
 		DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7D91C4CE8BA00F7A3C6 /* OneFeedItemCell.xib */; };
@@ -181,7 +191,7 @@
 		DAD66C691C52222800074B79 /* TrophiesGoldBig.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C651C52222800074B79 /* TrophiesGoldBig.xcassets */; };
 		DAD66C6F1C52336400074B79 /* TrophiesSilverBig.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C6E1C52336400074B79 /* TrophiesSilverBig.xcassets */; };
 		DAD66C951C523A2900074B79 /* TrophiesSilver.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C941C523A2900074B79 /* TrophiesSilver.xcassets */; };
-		DAD66C9C1C52745500074B79 /* LoginVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C9A1C52745500074B79 /* LoginVC~ipad.xib */; };
+		DAD66C9C1C52745500074B79 /* LoginVC~ipad-OLD.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAD66C9A1C52745500074B79 /* LoginVC~ipad-OLD.xib */; };
 		DAD66CA41C5279FC00074B79 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD66CA31C5279FC00074B79 /* CustomPickerView.swift */; };
 		DAD66CA61C527A1200074B79 /* CustomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAD66CA51C527A1200074B79 /* CustomPickerView.xib */; };
 		DAD6AE251C57B0AB00BCBBDD /* TrophiesCelliPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD6AE231C57B0AB00BCBBDD /* TrophiesCelliPad.swift */; };
@@ -207,7 +217,8 @@
 		DAFBC44F1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */; };
 		DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */; };
 		DAFC711F1BDFE33700A06C9A /* AttainmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */; };
-		DDFE93D41F18611900A62400 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
+		DD6518411F22030A00003916 /* PrivacyWebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */; };
+		DD6518421F22030A00003916 /* PrivacyWebViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */; };
 		E18AFD6288449EE9B270EF5D /* Pods_Jisc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */; };
 /* End PBXBuildFile section */
 
@@ -280,9 +291,14 @@
 		DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = splash_screen_iPad.mp4; sourceTree = "<group>"; };
 		DA0B67AE1C72046A00695052 /* Jisc2.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.5.xcdatamodel; sourceTree = "<group>"; };
 		DA0B67AF1C720EAE00695052 /* Jisc2.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.6.xcdatamodel; sourceTree = "<group>"; };
+		DA0BDBF21E850FFD00166E16 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
+		DA0BDBF41E8521E900166E16 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		DA0BDBF61E8557D700166E16 /* LoginVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LoginVC~ipad.xib"; sourceTree = "<group>"; };
 		DA0F57781C3E972F00FF5B7A /* NewTrophyAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTrophyAlert.swift; sourceTree = "<group>"; };
 		DA0F577E1C3EA2A700FF5B7A /* trophies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = trophies.plist; sourceTree = "<group>"; };
 		DA0F591C1C3EBDC200FF5B7A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		DA1039FE1E9D05650000737F /* TargetGraphSimple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TargetGraphSimple; sourceTree = "<group>"; };
+		DA103A031E9D05730000737F /* TargetGraphStretch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TargetGraphStretch; sourceTree = "<group>"; };
 		DA109DE41BFF5A1800940CA1 /* Jisc1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.5.xcdatamodel; sourceTree = "<group>"; };
 		DA109DE51BFF5B9500940CA1 /* Feed+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Feed+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA109DE61BFF5B9500940CA1 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -321,7 +337,7 @@
 		DA425AA71BD4E77F00C77D76 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		DA425AA91BD4E9D500C77D76 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DA425AAB1BD4E9E800C77D76 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
-		DA425AB31BD5116D00C77D76 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		DA425AB31BD5116D00C77D76 /* LoginVC-OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginVC-OLD.swift"; sourceTree = "<group>"; };
 		DA425ABB1BD51ACE00C77D76 /* ViewWithRoundedCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWithRoundedCorners.swift; sourceTree = "<group>"; };
 		DA425AD11BD52E0B00C77D76 /* InstituteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstituteCell.swift; sourceTree = "<group>"; };
 		DA425AD21BD52E0B00C77D76 /* InstituteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstituteCell.xib; sourceTree = "<group>"; };
@@ -342,8 +358,14 @@
 		DA46D9761BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ActivityLog+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DA46D97E1BF24CC500AA1476 /* Jisc1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc1.2.xcdatamodel; sourceTree = "<group>"; };
 		DA4BF0561E8BFCE400DDE9F7 /* Jisc3.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc3.4.xcdatamodel; sourceTree = "<group>"; };
+		DA58746B1ECF363A007400D7 /* Jisc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jisc.entitlements; sourceTree = "<group>"; };
 		DA593A651C479E9B00C68513 /* ActivityTypesIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ActivityTypesIcons.xcassets; sourceTree = "<group>"; };
 		DA593A671C47A03300C68513 /* ActivityTypesIconsBig.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ActivityTypesIconsBig.xcassets; sourceTree = "<group>"; };
+		DA593EC01E97986C00B54909 /* BarChartHTMLCompare */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BarChartHTMLCompare; sourceTree = "<group>"; };
+		DA593EC51E979B0B00B54909 /* ChartHTMLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartHTMLManager.swift; sourceTree = "<group>"; };
+		DA593EC71E97A29900B54909 /* BarChartHTMLSimple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BarChartHTMLSimple; sourceTree = "<group>"; };
+		DA593EC91E97A2BD00B54909 /* LineChartHTMLCompare */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LineChartHTMLCompare; sourceTree = "<group>"; };
+		DA593ECA1E97A2BD00B54909 /* LineChartHTMLSimple */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LineChartHTMLSimple; sourceTree = "<group>"; };
 		DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTargetVC.swift; sourceTree = "<group>"; };
 		DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetCell.swift; sourceTree = "<group>"; };
 		DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TargetCell.xib; sourceTree = "<group>"; };
@@ -383,7 +405,7 @@
 		DAAB37E61BDA63D800D56BDE /* GraphGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphGenerator.swift; sourceTree = "<group>"; };
 		DAADB8CD1C48E3930000CAD4 /* Jisc2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.0.xcdatamodel; sourceTree = "<group>"; };
 		DAADB8CE1C4916620000CAD4 /* Jisc2.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.1.xcdatamodel; sourceTree = "<group>"; };
-		DAB0C7C01C4CE82500F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginVC.xib; sourceTree = "<group>"; };
+		DAB0C7C01C4CE82500F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/LoginVC-OLD.xib"; sourceTree = "<group>"; };
 		DAB0C7CC1C4CE88700F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FeedVC.xib; sourceTree = "<group>"; };
 		DAB0C7D21C4CE8A000F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/FeedVC~ipad.xib"; sourceTree = "<group>"; };
 		DAB0C7D81C4CE8BA00F7A3C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OneFeedItemCell.xib; sourceTree = "<group>"; };
@@ -476,7 +498,7 @@
 		DAD66C6E1C52336400074B79 /* TrophiesSilverBig.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TrophiesSilverBig.xcassets; sourceTree = "<group>"; };
 		DAD66C941C523A2900074B79 /* TrophiesSilver.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TrophiesSilver.xcassets; sourceTree = "<group>"; };
 		DAD66C961C523CAE00074B79 /* Jisc2.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Jisc2.2.xcdatamodel; sourceTree = "<group>"; };
-		DAD66C9B1C52745500074B79 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/LoginVC~ipad.xib"; sourceTree = "<group>"; };
+		DAD66C9B1C52745500074B79 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/LoginVC~ipad-OLD.xib"; sourceTree = "<group>"; };
 		DAD66CA31C5279FC00074B79 /* CustomPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		DAD66CA51C527A1200074B79 /* CustomPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPickerView.xib; sourceTree = "<group>"; };
 		DAD6AE231C57B0AB00BCBBDD /* TrophiesCelliPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrophiesCelliPad.swift; sourceTree = "<group>"; };
@@ -506,6 +528,8 @@
 		DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchTarget.swift; sourceTree = "<group>"; };
 		DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
 		DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_points_pi_chart.html; sourceTree = "<group>"; };
+		DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyWebViewVC.swift; sourceTree = "<group>"; };
+		DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyWebViewVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -719,7 +743,7 @@
 		DAA2AEA51BCE785900ED796A /* Jisc */ = {
 			isa = PBXGroup;
 			children = (
-				DA71051C1ECDED0200E559C6 /* Jisc.entitlements */,
+				DA58746B1ECF363A007400D7 /* Jisc.entitlements */,
 				DAA2AEAD1BCE785900ED796A /* Jisc.xcdatamodeld */,
 				DAA2AEBB1BCE79EA00ED796A /* Constants.swift */,
 				DAA2AEA61BCE785900ED796A /* AppDelegate.swift */,
@@ -888,7 +912,8 @@
 		DAD1D7E11C50EF13005BA786 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				DAD66C9A1C52745500074B79 /* LoginVC~ipad.xib */,
+				DA0BDBF61E8557D700166E16 /* LoginVC~ipad.xib */,
+				DAD66C9A1C52745500074B79 /* LoginVC~ipad-OLD.xib */,
 				DA2093FF1E69BDA3001D979A /* SocialLoginVC~ipad.xib */,
 			);
 			name = iPad;
@@ -897,7 +922,8 @@
 		DAD1D7E21C50EF16005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				DAB0C7C11C4CE82500F7A3C6 /* LoginVC.xib */,
+				DA0BDBF21E850FFD00166E16 /* LoginVC.xib */,
+				DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */,
 				DA2093FC1E69BD76001D979A /* SocialLoginVC.xib */,
 			);
 			name = iPhone;
@@ -906,7 +932,8 @@
 		DAD1D7E31C50EF18005BA786 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				DA425AB31BD5116D00C77D76 /* LoginVC.swift */,
+				DA0BDBF41E8521E900166E16 /* LoginVC.swift */,
+				DA425AB31BD5116D00C77D76 /* LoginVC-OLD.swift */,
 				DA425AD11BD52E0B00C77D76 /* InstituteCell.swift */,
 				DA425AD21BD52E0B00C77D76 /* InstituteCell.xib */,
 				DA162E241CAD39B100E0C3D0 /* xAPILoginVC.swift */,
@@ -977,6 +1004,13 @@
 				DA1996701EE818BF007524E1 /* PointsCell.swift */,
 				DA1996711EE818BF007524E1 /* PointsCell.xib */,
 				DA868B161BE79C0E00032225 /* EngagementGraphVC.swift */,
+				DA593EC51E979B0B00B54909 /* ChartHTMLManager.swift */,
+				DA593EC71E97A29900B54909 /* BarChartHTMLSimple */,
+				DA593EC01E97986C00B54909 /* BarChartHTMLCompare */,
+				DA593ECA1E97A2BD00B54909 /* LineChartHTMLSimple */,
+				DA593EC91E97A2BD00B54909 /* LineChartHTMLCompare */,
+				DA1039FE1E9D05650000737F /* TargetGraphSimple */,
+				DA103A031E9D05730000737F /* TargetGraphStretch */,
 				DAD8BD6E1DB8BC08004F21DE /* BarGraph */,
 			);
 			name = Common;
@@ -1109,6 +1143,8 @@
 		DAD1D7F71C50F0A8005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */,
+				DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */,
 				DA7F1D291BD8E1A3004EA957 /* MyFriendsVC.swift */,
 				DAB0C8931C4CEB3700F7A3C6 /* MyFriendsVC.xib */,
 				DA7F1D3D1BD8FBD9004EA957 /* SelectHomeScreenVC.swift */,
@@ -1257,9 +1293,10 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = JG53BNN66L;
+						DevelopmentTeam = R48Q33464V;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1329,6 +1366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA103A041E9D05730000737F /* TargetGraphStretch in Resources */,
 				DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */,
 				DA294C191EBB7BC5005CC2A1 /* GoogleService-Info.plist in Resources */,
 				DAB0C8431C4CEA2F00F7A3C6 /* LogActivityVC~ipad.xib in Resources */,
@@ -1349,14 +1387,17 @@
 				DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */,
 				DAC32DC91BCF9F5B00C4FBF5 /* MyriadPro-Regular.otf in Resources */,
 				DAB0C8071C4CE96400F7A3C6 /* AttainmentCell.xib in Resources */,
-				DAD66C9C1C52745500074B79 /* LoginVC~ipad.xib in Resources */,
+				DAD66C9C1C52745500074B79 /* LoginVC~ipad-OLD.xib in Resources */,
+				DD6518421F22030A00003916 /* PrivacyWebViewVC.xib in Resources */,
 				DAB0C8551C4CEA6600F7A3C6 /* ActivityDetailsVC.xib in Resources */,
 				DA593A661C479E9B00C68513 /* ActivityTypesIcons.xcassets in Resources */,
+				DA593ECC1E97A2BD00B54909 /* LineChartHTMLSimple in Resources */,
 				DAD66C6F1C52336400074B79 /* TrophiesSilverBig.xcassets in Resources */,
 				DA6CFB091BE11A85004A5FB0 /* TargetCell.xib in Resources */,
 				DAD8BD781DB8BD46004F21DE /* SingleBarView.xib in Resources */,
 				DAD66CA61C527A1200074B79 /* CustomPickerView.xib in Resources */,
 				DAB0C7E31C4CE8F700F7A3C6 /* SearchVC~ipad.xib in Resources */,
+				DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */,
 				DAD573941C3D46360080B49B /* TrophiesCell.xib in Resources */,
 				DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */,
 				DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */,
@@ -1371,8 +1412,11 @@
 				DAB0C8791C4CEAE700F7A3C6 /* TargetDetailsVC.xib in Resources */,
 				DAB0C82B1C4CE9DB00F7A3C6 /* LogVC~ipad.xib in Resources */,
 				DAB0C8371C4CE9FF00F7A3C6 /* NewActivityVC~ipad.xib in Resources */,
+				DA593EC11E97986C00B54909 /* BarChartHTMLCompare in Resources */,
 				DAB0C8011C4CE94F00F7A3C6 /* StatsVC~ipad.xib in Resources */,
+				DA593EC81E97A29900B54909 /* BarChartHTMLSimple in Resources */,
 				DA11B6AD1E7164E600F823B8 /* CheckinVC.xib in Resources */,
+				DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */,
 				DA3F7B871C996B9B00E15678 /* ConsentVC.xib in Resources */,
 				DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */,
 				DABB0CC51C59FED5001A291D /* SingleTargetDetailsView.xib in Resources */,
@@ -1387,7 +1431,7 @@
 				DAD644C81C6227C800AA62E8 /* Localizable.strings in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
 				DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */,
-				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC.xib in Resources */,
+				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC-OLD.xib in Resources */,
 				DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */,
 				DAB0C8671C4CEA9E00F7A3C6 /* TargetVC~ipad.xib in Resources */,
 				DA0F577F1C3EA2A700FF5B7A /* trophies.plist in Resources */,
@@ -1412,7 +1456,9 @@
 				DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
+				DA1039FF1E9D05650000737F /* TargetGraphSimple in Resources */,
 				DA76411B1BD7BE3300A7D5C1 /* AlertView.xib in Resources */,
+				DA0BDBF71E8557D700166E16 /* LoginVC~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1499,6 +1545,7 @@
 				DADBA8B81BD1340300BC9CE4 /* OneActivityCell.swift in Sources */,
 				DA4085AD1EE6A8C00012A561 /* MenuView.swift in Sources */,
 				DAFBC4501BFB2B6800E87023 /* StretchTarget.swift in Sources */,
+				DD6518411F22030A00003916 /* PrivacyWebViewVC.swift in Sources */,
 				DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */,
 				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
 				DAD573931C3D46360080B49B /* TrophiesCell.swift in Sources */,
@@ -1542,6 +1589,7 @@
 				DAAB37E71BDA63D800D56BDE /* GraphGenerator.swift in Sources */,
 				DA46D97A1BF2482400AA1476 /* Institution+CoreDataProperties.swift in Sources */,
 				DABB7C0F1C045E2900180749 /* SharingManager.swift in Sources */,
+				DA0BDBF51E8521E900166E16 /* LoginVC.swift in Sources */,
 				DADF81C11BD646C800332F00 /* ActivityDetailsVC.swift in Sources */,
 				DA366D311BDE6C7900EC555E /* FoundStudentCell.swift in Sources */,
 				DABB0CCA1C5A2553001A291D /* TargetGraphChart.swift in Sources */,
@@ -1572,8 +1620,9 @@
 				DA46D96A1BF1F9E900AA1476 /* Target.swift in Sources */,
 				DA46D97D1BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift in Sources */,
 				DAB0C8E91C4D20DF00F7A3C6 /* NSBundle+Localization.m in Sources */,
+				DA593EC61E979B0B00B54909 /* ChartHTMLManager.swift in Sources */,
 				DAD644E01C623FFD00AA62E8 /* LocalizableView.swift in Sources */,
-				DA425AB51BD5116D00C77D76 /* LoginVC.swift in Sources */,
+				DA425AB51BD5116D00C77D76 /* LoginVC-OLD.swift in Sources */,
 				DAD4C8241BF4E78E001C4435 /* Colleague.swift in Sources */,
 				DA26FB451C6CCD1500FB8CF5 /* MyFriendsView.swift in Sources */,
 				DA7641241BD7CC0800A7D5C1 /* SettingsVC.swift in Sources */,
@@ -1612,12 +1661,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DAB0C7C11C4CE82500F7A3C6 /* LoginVC.xib */ = {
+		DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DAB0C7C01C4CE82500F7A3C6 /* en */,
 			);
-			name = LoginVC.xib;
+			name = "LoginVC-OLD.xib";
 			sourceTree = "<group>";
 		};
 		DAB0C7CD1C4CE88700F7A3C6 /* FeedVC.xib */ = {
@@ -1901,12 +1950,12 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		DAD66C9A1C52745500074B79 /* LoginVC~ipad.xib */ = {
+		DAD66C9A1C52745500074B79 /* LoginVC~ipad-OLD.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DAD66C9B1C52745500074B79 /* en */,
 			);
-			name = "LoginVC~ipad.xib";
+			name = "LoginVC~ipad-OLD.xib";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2013,6 +2062,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = JG53BNN66L;
+
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2020,6 +2070,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

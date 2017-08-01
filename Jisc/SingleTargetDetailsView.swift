@@ -163,9 +163,8 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 	
 	func showPieChart() {
 		graphChart.removeFromSuperview()
-		pieChart.removeFromSuperview()
-		pieChart.loadTarget(theTarget)
 		middleSection.addSubview(pieChart)
+		pieChart.loadTarget(theTarget)
 		let top = makeConstraint(middleSection, attribute1: .top, relation: .equal, item2: pieChart, attribute2: .top, multiplier: 1.0, constant: 0.0)
 		let bottom = makeConstraint(middleSection, attribute1: .bottom, relation: .equal, item2: pieChart, attribute2: .bottom, multiplier: 1.0, constant: 0.0)
 		let centerX = makeConstraint(middleSection, attribute1: .centerX, relation: .equal, item2: pieChart, attribute2: .centerX, multiplier: 1.0, constant: 0.0)

@@ -22,7 +22,7 @@ class MyFriendsVC: BaseViewController, UITableViewDataSource, UITableViewDelegat
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	//MARK: UITableView Datasource

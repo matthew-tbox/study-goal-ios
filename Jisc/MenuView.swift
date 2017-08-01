@@ -86,7 +86,13 @@ class MenuView: UIView {
 			} else if index == 2 {
 				view.log()
             } else if index == 3 {
-                view.checkin()
+                if (result.range(of: "false") == nil){
+                    view.feed()
+
+                } else {
+                    view.checkin()
+
+                }
             } else if index == 4 {
 				view.target()
 			} else {
@@ -133,6 +139,7 @@ class MenuView: UIView {
 	}
 	
 	func checkin() {
+        print("checvkingin")
 		selectedIndex = 1
 		NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Checkin)
 		DELEGATE.mainNavigationController?.setViewControllers([checkinViewController], animated: false)

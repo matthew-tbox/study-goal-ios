@@ -403,3 +403,4 @@
 "demo_mode_change_picture" = "You can't update your profile image in demo mode.";
 "demo" = "Demo";
 "attainment_info" = "IMPORTANT: All marks / grades indicated with '**' are subject to moderation and confirmation by a Board of Examiners. These marks / grades are therefore provisional and subject to change.";
+"are_you_sure_you_want_to_delete_this_message" = "Are you sure you want to delete item this from feed?";

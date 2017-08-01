@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+var maxTargetHours = 40
+
 let timeSpans = [kTargetTimeSpan.Daily, kTargetTimeSpan.Weekly, kTargetTimeSpan.Monthly]
 let targetReasonPlaceholder = localized("add_a_reason_to_keep_this_target")
 
@@ -114,10 +116,13 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		var string = ""
 		switch (timeSpan) {
 		case .Daily:
+			maxTargetHours = 8
 			string = localized("day").capitalized
 		case .Weekly:
+			maxTargetHours = 40
 			string = localized("week").capitalized
 		case .Monthly:
+			maxTargetHours = 99
 			string = localized("month").capitalized
 		}
 		intervalButton.setTitle(string, for: UIControlState())
@@ -161,7 +166,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		if (changesWereMade()) {
 			UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 		} else {
-			navigationController?.popViewController(animated: true)
+			_ = navigationController?.popViewController(animated: true)
 		}
 	}
 	
@@ -343,7 +348,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	}
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if social() {
+		if currentUserType() == .social {
 			var array:[String] = [String]()
 			array.append(localized("any_module"))
 			for (_, item) in dataManager.modules().enumerated() {
@@ -384,19 +389,34 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		case intervalSelectorView:
 			selectedTimeSpan = selectedRow
 			timeSpan = timeSpans[selectedTimeSpan]
+			switch timeSpan {
+			case .Daily:
+				maxTargetHours = 8
+				break
+			case .Weekly:
+				maxTargetHours = 40
+				break
+			case .Monthly:
+				maxTargetHours = 99
+				break
+			}
 			let string = view.contentArray[selectedRow]
 			intervalButton.setTitle(string, for: UIControlState())
-			if (selectedHours >= 8 && timeSpan == .Daily) {
-				selectedHours = 8
-				hoursTextField.text = "08"
-				hoursPicker.selectRow(8, inComponent: 0, animated: true)
+			if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
+				selectedHours = maxTargetHours
+				if maxTargetHours < 10 {
+					hoursTextField.text = "0\(maxTargetHours)"
+				} else {
+					hoursTextField.text = "\(maxTargetHours)"
+				}
+				hoursPicker.selectRow(maxTargetHours, inComponent: 0, animated: true)
 				selectedMinutes = 0
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
 				minutesTextField.text = "00"
 			}
 			break
 		case moduleSelectorView:
-			if social() {
+			if currentUserType() == .social {
 				if selectedRow == dataManager.modules().count {
 					addModule()
 				} else {
@@ -489,7 +509,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		var nrRows = 0
 		switch (pickerView) {
 		case hoursPicker:
-			nrRows = 49
+			nrRows = maxTargetHours
 		case minutesPicker:
 			nrRows = 60
 		default:break
@@ -542,16 +562,20 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		case hoursPicker:
 			selectedHours = row
 			hoursTextField.text = title
-			if (selectedHours >= 8 && timeSpan == .Daily) {
-				selectedHours = 8
-				hoursTextField.text = "08"
-				hoursPicker.selectRow(8, inComponent: 0, animated: true)
+			if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
+				selectedHours = maxTargetHours
+				if maxTargetHours < 10 {
+					hoursTextField.text = "0\(maxTargetHours)"
+				} else {
+					hoursTextField.text = "\(maxTargetHours)"
+				}
+				hoursPicker.selectRow(maxTargetHours, inComponent: 0, animated: true)
 				selectedMinutes = 0
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
 				minutesTextField.text = "00"
 			}
 		case minutesPicker:
-			if (selectedHours >= 8 && timeSpan == .Daily) {
+			if (selectedHours >= maxTargetHours && timeSpan == .Daily) {
 				selectedMinutes = 0
 				minutesPicker.selectRow(0, inComponent: 0, animated: true)
 				minutesTextField.text = "00"
@@ -592,9 +616,9 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		toolbar.alpha = 0.0
 		var shouldBegin = true
-		if selectedHours == maxHours && textField == minutesTextField {
+		if selectedHours == maxTargetHours && textField == minutesTextField {
 			shouldBegin = false
-			AlertView.showAlert(false, message: localizedWith1Parameter("time_spent_max", parameter: "\(maxHours)"), completion: nil)
+			AlertView.showAlert(false, message: localizedWith1Parameter("time_spent_max", parameter: "\(maxTargetHours)"), completion: nil)
 		} else {
 			textField.text = ""
 		}
@@ -609,7 +633,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	}
 	
 	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-		if selectedHours == maxHours && textField == hoursTextField {
+		if selectedHours == maxTargetHours && textField == hoursTextField {
 			minutesTextField.text = "00"
 			selectedMinutes = 0
 		}
@@ -633,12 +657,30 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 				shouldChange = true
 				switch textField {
 				case hoursTextField:
-					if string == "9" {
-						shouldChange = false
-					} else {
-						textField.text = "0\(string)"
-						selectedHours = (string as NSString).integerValue
-						textField.resignFirstResponder()
+					switch timeSpan {
+					case .Daily:
+						if string == "9" {
+							shouldChange = false
+						} else {
+							textField.text = "0\(string)"
+							selectedHours = (string as NSString).integerValue
+							textField.resignFirstResponder()
+						}
+						break
+					case .Weekly, .Monthly:
+						if let text = textField.text {
+							if ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue > maxTargetHours {
+								shouldChange = false
+							} else {
+								shouldChange = false
+								textField.text = (text as NSString).replacingCharacters(in: range, with: string)
+								selectedHours = ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue
+								if ((text as NSString).replacingCharacters(in: range, with: string) as NSString).integerValue > 9 {
+									textField.resignFirstResponder()
+								}
+							}
+						}
+						break
 					}
 					break
 				case minutesTextField:

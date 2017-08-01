@@ -98,7 +98,7 @@ class ActivityDetailsVC: BaseViewController, UIAlertViewDelegate, UITextViewDele
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	@IBAction func settings(_ sender:UIButton) {

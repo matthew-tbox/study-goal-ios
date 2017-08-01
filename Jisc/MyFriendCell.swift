@@ -36,7 +36,7 @@ class MyFriendCell: BasicSearchCell, UIAlertViewDelegate {
 	}
 	
 	@IBAction func hideOrUnhideFriend(_ sender:UIButton) {
-		if demo() {
+		if currentUserType() == .demo {
 			sender.isSelected = !sender.isSelected
 		} else {
 			parent?.friendToTakeActionWith = theFriend

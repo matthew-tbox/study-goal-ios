@@ -61,7 +61,7 @@ class Student: NSManagedObject {
 		jisc_id = stringFromDictionary(dictionary, key: "jisc_student_id")
 		social = boolFromDictionary(userData, key: "is_social_login") as NSNumber
 		staff = boolFromDictionary(userData, key: "is_staff") as NSNumber
-		demo = false
+		demo = (jisc_id == "demouser") as NSNumber
 		
 		let name = stringFromDictionary(userData, key: "name")
 		if (!name.isEmpty) {

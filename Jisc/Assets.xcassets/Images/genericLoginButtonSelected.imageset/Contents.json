@@ -1,0 +1,88 @@
+{
+  "images" : [
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 19,
+          "left" : 19
+        }
+      },
+      "idiom" : "iphone",
+      "filename" : "genericLoginButtonSelected.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 50,
+          "left" : 49
+        }
+      },
+      "idiom" : "iphone",
+      "filename" : "genericLoginButtonSelected@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 75,
+          "left" : 74
+        }
+      },
+      "idiom" : "iphone",
+      "filename" : "genericLoginButtonSelected@3x.png",
+      "scale" : "3x"
+    },
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 30,
+          "left" : 29
+        }
+      },
+      "idiom" : "ipad",
+      "filename" : "genericLoginButtonSelectediPad.png",
+      "scale" : "1x"
+    },
+    {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1
+        },
+        "cap-insets" : {
+          "right" : 60,
+          "left" : 59
+        }
+      },
+      "idiom" : "ipad",
+      "filename" : "genericLoginButtonSelectediPad@2x.png",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

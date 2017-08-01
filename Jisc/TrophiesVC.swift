@@ -26,7 +26,7 @@ class TrophiesVC: BaseViewController, UITableViewDataSource, UITableViewDelegate
 	}
 	
 	@IBAction func goBack(_ sender:UIButton) {
-		navigationController?.popViewController(animated: true)
+		_ = navigationController?.popViewController(animated: true)
 	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle {

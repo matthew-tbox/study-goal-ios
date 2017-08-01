@@ -63,7 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 			}
 		}
 		
-		application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
 		NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 		
 		let sampleTextField = UITextField()
@@ -141,6 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+		application.applicationIconBadgeNumber = 0
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
@@ -150,7 +150,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 	}
 	
 	func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-		UIAlertView(title: "Time to take a break", message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show()
+		if let userInfo = notification.userInfo {
+			if let isPush = userInfo["push"] as? Bool {
+				if isPush {
+					if let title = userInfo["title"] as? String {
+						UIAlertView(title: title, message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show()
+					} else {
+						UIAlertView(title: "Notification", message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show()
+					}
+				} else {
+					UIAlertView(title: "Time to take a break", message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show()
+				}
+			} else {
+				UIAlertView(title: "Time to take a break", message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show()
+			}
+		} else {
+			UIAlertView(title: "Time to take a break", message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show()
+		}
+	}
+	
+	//MARK: - Remote Notifications
+	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		let dev = deviceToken as NSData
+		let characterSet: CharacterSet = CharacterSet( charactersIn: "<>" )
+		let deviceTokenString: String = (dev.description as NSString).trimmingCharacters(in: characterSet).replacingOccurrences(of: " ", with:"") as String
+		devicePushToken = deviceTokenString
+		if let user = dataManager.currentStudent {
+			DownloadManager().registerForRemoteNotifications(studentId: user.id, isActive: 1, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+				
+			})
+		}
+	}
+	
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+		if let aps = userInfo["aps"] as? [AnyHashable:Any] {
+			if let alert = aps["alert"] as? [AnyHashable:Any] {
+				if let message = alert["body"] as? String {
+					let notification = UILocalNotification()
+					notification.alertAction = "Ok"
+					notification.alertBody = message
+					notification.fireDate = Date().addingTimeInterval(1.0)
+					notification.userInfo = ["push":true, "title":"Notification"]
+					application.scheduleLocalNotification(notification)
+				}
+			} else if let alert = aps["alert"] as? String {
+				let notification = UILocalNotification()
+				notification.alertAction = "Ok"
+				notification.alertBody = alert
+				notification.fireDate = Date().addingTimeInterval(1.0)
+				notification.userInfo = ["push":true, "title":"Notification"]
+				application.scheduleLocalNotification(notification)
+			}
+		}
 	}
 
 	// MARK: - Core Data stack

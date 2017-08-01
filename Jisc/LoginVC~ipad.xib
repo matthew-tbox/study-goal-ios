@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="Jisc" customModuleProvider="target">
+            <connections>
+                <outlet property="instituteTextField" destination="6QK-c1-dWd" id="hPD-jJ-Lx7"/>
+                <outlet property="institutesTable" destination="BqS-BQ-N8Y" id="lEN-Mh-YfS"/>
+                <outlet property="institutesTableHeight" destination="NKA-Nj-8o9" id="nhY-O8-lpH"/>
+                <outlet property="loginStep2" destination="dTP-3E-y6Z" id="Z0f-Ni-cqE"/>
+                <outlet property="loginStep3" destination="oN4-gb-P6x" id="LvX-rV-vyv"/>
+                <outlet property="nextButton" destination="eyY-qN-7Na" id="I2P-i0-CFJ"/>
+                <outlet property="rememberButton" destination="8TZ-Ui-W2a" id="9Z9-tr-Z2o"/>
+                <outlet property="staffButton" destination="C8l-bE-dxe" id="AMW-7U-ey9"/>
+                <outlet property="studentButton" destination="bSR-SS-cTc" id="wmX-wx-v2r"/>
+                <outlet property="view" destination="0sw-2U-yWs" id="dpT-qd-O6h"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0sw-2U-yWs">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="hNi-BN-72s">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SM-jG-4Vg">
+                    <rect key="frame" x="354.5" y="100" width="315" height="333"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentHat" translatesAutoresizingMaskIntoConstraints="NO" id="6DF-vl-b1C">
+                            <rect key="frame" x="83" y="31" width="150" height="69"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Study Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFR-nx-2VF">
+                            <rect key="frame" x="0.0" y="120" width="315" height="53"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="53"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSR-SS-cTc">
+                            <rect key="frame" x="0.0" y="193" width="315" height="60"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                            <state key="normal" title="I'm a student" backgroundImage="genericLoginButton">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="genericLoginButtonSelected">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="genericLoginButtonSelected"/>
+                            <connections>
+                                <action selector="imAStudent:" destination="-1" eventType="touchUpInside" id="jTS-Bc-ETl"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8l-bE-dxe">
+                            <rect key="frame" x="0.0" y="273" width="315" height="60"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                            <state key="normal" title="I'm a member of staff" backgroundImage="genericLoginButton">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="genericLoginButtonSelected">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="genericLoginButtonSelected"/>
+                            <connections>
+                                <action selector="imAMemberOfStaff:" destination="-1" eventType="touchUpInside" id="KIX-KC-2hB"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="bSR-SS-cTc" firstAttribute="top" secondItem="eFR-nx-2VF" secondAttribute="bottom" constant="20" id="89M-x1-8GE"/>
+                        <constraint firstItem="bSR-SS-cTc" firstAttribute="leading" secondItem="9SM-jG-4Vg" secondAttribute="leading" id="CH3-IU-jex"/>
+                        <constraint firstItem="C8l-bE-dxe" firstAttribute="top" secondItem="bSR-SS-cTc" secondAttribute="bottom" constant="20" id="Edz-Sf-2na"/>
+                        <constraint firstItem="eFR-nx-2VF" firstAttribute="top" secondItem="6DF-vl-b1C" secondAttribute="bottom" constant="20" id="LhT-z8-KbS"/>
+                        <constraint firstAttribute="width" constant="315" id="PaS-uf-zhy"/>
+                        <constraint firstItem="6DF-vl-b1C" firstAttribute="top" secondItem="9SM-jG-4Vg" secondAttribute="top" constant="31" id="bg8-E7-EE3"/>
+                        <constraint firstAttribute="trailing" secondItem="C8l-bE-dxe" secondAttribute="trailing" id="fAZ-HY-jc2"/>
+                        <constraint firstItem="C8l-bE-dxe" firstAttribute="leading" secondItem="9SM-jG-4Vg" secondAttribute="leading" id="heG-DC-Zwr"/>
+                        <constraint firstAttribute="bottom" secondItem="C8l-bE-dxe" secondAttribute="bottom" id="jJ2-wi-pSx"/>
+                        <constraint firstItem="6DF-vl-b1C" firstAttribute="centerX" secondItem="9SM-jG-4Vg" secondAttribute="centerX" id="tZs-wh-1GE"/>
+                        <constraint firstAttribute="trailing" secondItem="eFR-nx-2VF" secondAttribute="trailing" id="tlg-FD-mcL"/>
+                        <constraint firstAttribute="trailing" secondItem="bSR-SS-cTc" secondAttribute="trailing" id="uxk-iS-WAN"/>
+                        <constraint firstItem="eFR-nx-2VF" firstAttribute="leading" secondItem="9SM-jG-4Vg" secondAttribute="leading" id="w92-EY-j9s"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TZ-Ui-W2a">
+                    <rect key="frame" x="422" y="453" width="180" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="XMo-5u-dXd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                    <inset key="titleEdgeInsets" minX="10" minY="2" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Keep me logged in" image="newcheckOff"/>
+                    <state key="selected" image="newcheck"/>
+                    <connections>
+                        <action selector="rememberMe:" destination="-1" eventType="touchUpInside" id="0lS-EO-wJU"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyY-qN-7Na">
+                    <rect key="frame" x="487" y="503" width="50" height="50"/>
+                    <state key="normal" backgroundImage="nextLoginStep"/>
+                    <connections>
+                        <action selector="next:" destination="-1" eventType="touchUpInside" id="5qV-PS-2Ht"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNL-jC-r5M">
+                    <rect key="frame" x="417" y="698" width="190" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="190" id="0O6-ox-sPJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                    <state key="normal" title="See demo account" backgroundImage="demoButtonBG"/>
+                    <connections>
+                        <action selector="demoMode:" destination="-1" eventType="touchUpInside" id="xra-jo-6wP"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="eyY-qN-7Na" firstAttribute="top" secondItem="8TZ-Ui-W2a" secondAttribute="bottom" constant="30" id="1Aw-Vv-6wN"/>
+                <constraint firstItem="9SM-jG-4Vg" firstAttribute="centerX" secondItem="0sw-2U-yWs" secondAttribute="centerX" id="Acl-De-Z8z"/>
+                <constraint firstItem="cNL-jC-r5M" firstAttribute="centerX" secondItem="0sw-2U-yWs" secondAttribute="centerX" id="Ad5-my-4V7"/>
+                <constraint firstAttribute="bottom" secondItem="cNL-jC-r5M" secondAttribute="bottom" constant="20" id="Gd6-5K-plf"/>
+                <constraint firstItem="eyY-qN-7Na" firstAttribute="centerX" secondItem="0sw-2U-yWs" secondAttribute="centerX" id="S9W-FI-PWj"/>
+                <constraint firstAttribute="trailing" secondItem="hNi-BN-72s" secondAttribute="trailing" id="Z8G-8m-bqH"/>
+                <constraint firstItem="8TZ-Ui-W2a" firstAttribute="top" secondItem="9SM-jG-4Vg" secondAttribute="bottom" constant="20" id="bp9-Hw-fpD"/>
+                <constraint firstItem="hNi-BN-72s" firstAttribute="top" secondItem="0sw-2U-yWs" secondAttribute="top" id="eW7-F6-0XN"/>
+                <constraint firstItem="8TZ-Ui-W2a" firstAttribute="centerX" secondItem="0sw-2U-yWs" secondAttribute="centerX" id="eZh-0F-iTu"/>
+                <constraint firstItem="hNi-BN-72s" firstAttribute="leading" secondItem="0sw-2U-yWs" secondAttribute="leading" id="q3g-Z6-yiJ"/>
+                <constraint firstAttribute="bottom" secondItem="hNi-BN-72s" secondAttribute="bottom" id="rhJ-tM-BZ5"/>
+                <constraint firstItem="9SM-jG-4Vg" firstAttribute="top" secondItem="0sw-2U-yWs" secondAttribute="top" constant="100" id="vJJ-mB-Ph0"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="dTP-3E-y6Z">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="rtx-uu-AI8">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPg-Ix-PpT">
+                    <rect key="frame" x="230" y="100" width="564" height="318"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentHat" translatesAutoresizingMaskIntoConstraints="NO" id="m1W-Ap-Xh0">
+                            <rect key="frame" x="207.5" y="31" width="150" height="69"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Study Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSa-oI-jIx">
+                            <rect key="frame" x="0.0" y="120" width="564" height="53"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="53"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrd-BV-akW">
+                            <rect key="frame" x="0.0" y="193" width="564" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="C1r-4B-BSA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                            <inset key="titleEdgeInsets" minX="10" minY="2" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Remember me and keep me logged in" image="rememberMeOption">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="rememberMeOptionSelected"/>
+                            <state key="highlighted" image="rememberMeOptionSelected"/>
+                            <connections>
+                                <action selector="rememberMe:" destination="-1" eventType="touchUpInside" id="bUo-QT-yVo"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="575-mI-94a">
+                            <rect key="frame" x="0.0" y="238" width="564" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="rMv-at-omD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                            <inset key="titleEdgeInsets" minX="10" minY="2" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="I'd like to login with my username and password every time" image="rememberMeOption">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="rememberMeOptionSelected"/>
+                            <state key="highlighted" image="rememberMeOptionSelected"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="self.titleLabel.numberOfLines">
+                                    <integer key="value" value="0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="dontRememberMe:" destination="-1" eventType="touchUpInside" id="PPs-ro-BaG"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="575-mI-94a" firstAttribute="leading" secondItem="dPg-Ix-PpT" secondAttribute="leading" id="5w5-TZ-r35"/>
+                        <constraint firstAttribute="trailing" secondItem="nSa-oI-jIx" secondAttribute="trailing" id="6jS-Wv-8ch"/>
+                        <constraint firstItem="575-mI-94a" firstAttribute="top" secondItem="wrd-BV-akW" secondAttribute="bottom" constant="5" id="Dpa-Op-WSJ"/>
+                        <constraint firstItem="nSa-oI-jIx" firstAttribute="top" secondItem="m1W-Ap-Xh0" secondAttribute="bottom" constant="20" id="GJi-V6-7fw"/>
+                        <constraint firstAttribute="trailing" secondItem="575-mI-94a" secondAttribute="trailing" id="HUb-UU-WW1"/>
+                        <constraint firstItem="wrd-BV-akW" firstAttribute="leading" secondItem="dPg-Ix-PpT" secondAttribute="leading" id="LrF-Zz-v5X"/>
+                        <constraint firstItem="wrd-BV-akW" firstAttribute="top" secondItem="nSa-oI-jIx" secondAttribute="bottom" constant="20" id="Mxh-fP-8ty"/>
+                        <constraint firstAttribute="bottom" secondItem="575-mI-94a" secondAttribute="bottom" id="NxR-Ha-gd2"/>
+                        <constraint firstAttribute="trailing" secondItem="wrd-BV-akW" secondAttribute="trailing" id="Yhb-W1-QqA"/>
+                        <constraint firstItem="m1W-Ap-Xh0" firstAttribute="centerX" secondItem="dPg-Ix-PpT" secondAttribute="centerX" id="eMb-hM-CM2"/>
+                        <constraint firstItem="m1W-Ap-Xh0" firstAttribute="top" secondItem="dPg-Ix-PpT" secondAttribute="top" constant="31" id="wbQ-EP-MgP"/>
+                        <constraint firstItem="nSa-oI-jIx" firstAttribute="leading" secondItem="dPg-Ix-PpT" secondAttribute="leading" id="xxI-P7-EWO"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dPg-Ix-PpT" secondAttribute="trailing" constant="230" id="0tt-bl-fOq"/>
+                <constraint firstItem="dPg-Ix-PpT" firstAttribute="top" secondItem="dTP-3E-y6Z" secondAttribute="top" constant="100" id="48O-f5-fdi"/>
+                <constraint firstItem="rtx-uu-AI8" firstAttribute="top" secondItem="dTP-3E-y6Z" secondAttribute="top" id="N6W-L9-7uQ"/>
+                <constraint firstItem="dPg-Ix-PpT" firstAttribute="leading" secondItem="dTP-3E-y6Z" secondAttribute="leading" constant="230" id="ZYD-FD-gvE"/>
+                <constraint firstAttribute="trailing" secondItem="rtx-uu-AI8" secondAttribute="trailing" id="eI4-xS-cLg"/>
+                <constraint firstItem="rtx-uu-AI8" firstAttribute="leading" secondItem="dTP-3E-y6Z" secondAttribute="leading" id="obu-8A-nma"/>
+                <constraint firstAttribute="bottom" secondItem="rtx-uu-AI8" secondAttribute="bottom" id="xuy-oX-MY7"/>
+            </constraints>
+            <point key="canvasLocation" x="33" y="874"/>
+        </view>
+        <view contentMode="scaleToFill" id="oN4-gb-P6x">
+            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="sXd-OM-UFj">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTr-uI-4BX">
+                    <rect key="frame" x="90" y="60" width="844" height="504"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHOOSE INSTITUTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-Gs-VPI">
+                            <rect key="frame" x="5" y="0.0" width="834" height="20"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-j2-8Fk">
+                            <rect key="frame" x="0.0" y="20" width="844" height="60"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" image="fieldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="g8h-mV-FdC">
+                                    <rect key="frame" x="0.0" y="0.0" width="844" height="60"/>
+                                </imageView>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6QK-c1-dWd">
+                                    <rect key="frame" x="30" y="5" width="754" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="D1i-53-YlX"/>
+                                    </constraints>
+                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="MqY-mb-kEA"/>
+                                    </connections>
+                                </textField>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchInstitutionIcon" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-aH-D4V">
+                                    <rect key="frame" x="789" y="18" width="25" height="25"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="l5o-aH-D4V" firstAttribute="leading" secondItem="6QK-c1-dWd" secondAttribute="trailing" constant="5" id="3wN-S1-E5f"/>
+                                <constraint firstItem="g8h-mV-FdC" firstAttribute="top" secondItem="gBz-j2-8Fk" secondAttribute="top" id="Sao-MA-9GX"/>
+                                <constraint firstAttribute="bottom" secondItem="6QK-c1-dWd" secondAttribute="bottom" constant="5" id="Xlm-nc-kl2"/>
+                                <constraint firstAttribute="trailing" secondItem="g8h-mV-FdC" secondAttribute="trailing" id="YoB-n6-0fq"/>
+                                <constraint firstAttribute="trailing" secondItem="l5o-aH-D4V" secondAttribute="trailing" constant="30" id="dRC-bV-X6L"/>
+                                <constraint firstItem="6QK-c1-dWd" firstAttribute="leading" secondItem="gBz-j2-8Fk" secondAttribute="leading" constant="30" id="hiZ-KJ-Fol"/>
+                                <constraint firstItem="l5o-aH-D4V" firstAttribute="centerY" secondItem="gBz-j2-8Fk" secondAttribute="centerY" id="ivc-61-NSu"/>
+                                <constraint firstItem="g8h-mV-FdC" firstAttribute="leading" secondItem="gBz-j2-8Fk" secondAttribute="leading" id="m28-iH-nZ9"/>
+                                <constraint firstAttribute="bottom" secondItem="g8h-mV-FdC" secondAttribute="bottom" id="oBG-vl-tkK"/>
+                                <constraint firstItem="6QK-c1-dWd" firstAttribute="top" secondItem="gBz-j2-8Fk" secondAttribute="top" constant="5" id="wSx-CB-xOs"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5T-tc-DBR">
+                            <rect key="frame" x="0.0" y="90" width="844" height="414"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fieldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="c0Y-15-3xR">
+                                    <rect key="frame" x="0.0" y="0.0" width="844" height="414"/>
+                                </imageView>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BqS-BQ-N8Y">
+                                    <rect key="frame" x="30" y="0.0" width="784" height="414"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="750" constant="500" id="NKA-Nj-8o9"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="PtF-mN-nwi"/>
+                                        <outlet property="delegate" destination="-1" id="3Zi-zX-c9S"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="BqS-BQ-N8Y" firstAttribute="leading" secondItem="f5T-tc-DBR" secondAttribute="leading" constant="30" id="DcS-4E-r4j"/>
+                                <constraint firstItem="c0Y-15-3xR" firstAttribute="leading" secondItem="f5T-tc-DBR" secondAttribute="leading" id="Hte-el-udN"/>
+                                <constraint firstAttribute="trailing" secondItem="c0Y-15-3xR" secondAttribute="trailing" id="IWI-YH-J5j"/>
+                                <constraint firstAttribute="trailing" secondItem="BqS-BQ-N8Y" secondAttribute="trailing" constant="30" id="K4j-rc-R7E"/>
+                                <constraint firstItem="BqS-BQ-N8Y" firstAttribute="top" secondItem="f5T-tc-DBR" secondAttribute="top" id="d70-Wl-Ni6"/>
+                                <constraint firstItem="c0Y-15-3xR" firstAttribute="top" secondItem="f5T-tc-DBR" secondAttribute="top" id="iE3-54-L2E"/>
+                                <constraint firstAttribute="bottom" secondItem="BqS-BQ-N8Y" secondAttribute="bottom" id="t1v-ES-WLU"/>
+                                <constraint firstAttribute="bottom" secondItem="c0Y-15-3xR" secondAttribute="bottom" id="vpm-YC-WYb"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="gBz-j2-8Fk" secondAttribute="trailing" id="9EH-wg-rHk"/>
+                        <constraint firstItem="gBz-j2-8Fk" firstAttribute="leading" secondItem="sTr-uI-4BX" secondAttribute="leading" id="BhG-zf-Qtx"/>
+                        <constraint firstItem="f5T-tc-DBR" firstAttribute="leading" secondItem="sTr-uI-4BX" secondAttribute="leading" id="H16-v6-Nw1"/>
+                        <constraint firstItem="f5T-tc-DBR" firstAttribute="top" secondItem="gBz-j2-8Fk" secondAttribute="bottom" constant="10" id="Iwe-HR-WrO"/>
+                        <constraint firstItem="6xh-Gs-VPI" firstAttribute="top" secondItem="sTr-uI-4BX" secondAttribute="top" id="R2b-5i-aMv"/>
+                        <constraint firstItem="gBz-j2-8Fk" firstAttribute="top" secondItem="6xh-Gs-VPI" secondAttribute="bottom" id="TuJ-5B-QOa"/>
+                        <constraint firstAttribute="trailing" secondItem="f5T-tc-DBR" secondAttribute="trailing" id="Yc1-8m-d8J"/>
+                        <constraint firstAttribute="bottom" secondItem="f5T-tc-DBR" secondAttribute="bottom" id="aPp-45-CMy"/>
+                        <constraint firstAttribute="trailing" secondItem="6xh-Gs-VPI" secondAttribute="trailing" constant="5" id="gnh-fP-EEp"/>
+                        <constraint firstItem="6xh-Gs-VPI" firstAttribute="leading" secondItem="sTr-uI-4BX" secondAttribute="leading" constant="5" id="jkq-oL-wLB"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJv-2B-j8T">
+                    <rect key="frame" x="265" y="584" width="494" height="134"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" image="fieldBackground" translatesAutoresizingMaskIntoConstraints="NO" id="75d-x2-aZy">
+                            <rect key="frame" x="0.0" y="0.0" width="494" height="144"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Institution not listed?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2V-bx-zHi">
+                            <rect key="frame" x="172" y="10" width="150.5" height="17"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJZ-yH-yrs">
+                            <rect key="frame" x="206" y="37" width="83.5" height="17"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8v-pW-iTJ">
+                            <rect key="frame" x="68.5" y="74" width="132" height="60"/>
+                            <state key="normal" backgroundImage="connectFacebookButton"/>
+                            <connections>
+                                <action selector="facebook:" destination="-1" eventType="touchUpInside" id="F6y-1t-d8K"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n27-gA-JD6">
+                            <rect key="frame" x="180.5" y="74" width="132" height="60"/>
+                            <state key="normal" backgroundImage="connectTwitterButton"/>
+                            <connections>
+                                <action selector="twitter:" destination="-1" eventType="touchUpInside" id="B0Y-cA-sMk"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWw-w5-xrj">
+                            <rect key="frame" x="292.5" y="74" width="132" height="60"/>
+                            <state key="normal" backgroundImage="connectGooglePlusButton"/>
+                            <connections>
+                                <action selector="goolgePlus:" destination="-1" eventType="touchUpInside" id="eQh-HS-miY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="QJZ-yH-yrs" firstAttribute="top" secondItem="P2V-bx-zHi" secondAttribute="bottom" constant="10" id="8Lt-2P-Hn5"/>
+                        <constraint firstItem="75d-x2-aZy" firstAttribute="top" secondItem="HJv-2B-j8T" secondAttribute="top" id="9Sb-4B-RZc"/>
+                        <constraint firstItem="n27-gA-JD6" firstAttribute="top" secondItem="QJZ-yH-yrs" secondAttribute="bottom" constant="20" id="A3x-KE-GHl"/>
+                        <constraint firstItem="c8v-pW-iTJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HJv-2B-j8T" secondAttribute="leading" constant="5" id="Bfk-LW-N4D"/>
+                        <constraint firstItem="P2V-bx-zHi" firstAttribute="centerX" secondItem="HJv-2B-j8T" secondAttribute="centerX" id="C92-SL-LIN"/>
+                        <constraint firstItem="n27-gA-JD6" firstAttribute="centerY" secondItem="c8v-pW-iTJ" secondAttribute="centerY" id="Cft-Lk-2Oq"/>
+                        <constraint firstItem="n27-gA-JD6" firstAttribute="centerY" secondItem="EWw-w5-xrj" secondAttribute="centerY" id="LYF-ej-U37"/>
+                        <constraint firstAttribute="bottom" secondItem="n27-gA-JD6" secondAttribute="bottom" id="Rlz-Yt-5ES"/>
+                        <constraint firstItem="75d-x2-aZy" firstAttribute="bottom" secondItem="n27-gA-JD6" secondAttribute="bottom" constant="10" id="SCS-Jy-zjv"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EWw-w5-xrj" secondAttribute="trailing" constant="5" id="WYD-Vm-gOn"/>
+                        <constraint firstItem="EWw-w5-xrj" firstAttribute="leading" secondItem="n27-gA-JD6" secondAttribute="trailing" priority="750" constant="-20" id="bf4-cH-JqV"/>
+                        <constraint firstItem="QJZ-yH-yrs" firstAttribute="centerX" secondItem="HJv-2B-j8T" secondAttribute="centerX" id="cLk-hh-ae2"/>
+                        <constraint firstItem="n27-gA-JD6" firstAttribute="centerX" secondItem="HJv-2B-j8T" secondAttribute="centerX" id="cf9-Cr-YJQ"/>
+                        <constraint firstAttribute="trailing" secondItem="75d-x2-aZy" secondAttribute="trailing" id="gaD-ID-1sc"/>
+                        <constraint firstItem="75d-x2-aZy" firstAttribute="leading" secondItem="HJv-2B-j8T" secondAttribute="leading" id="h88-QL-AdW"/>
+                        <constraint firstItem="P2V-bx-zHi" firstAttribute="top" secondItem="HJv-2B-j8T" secondAttribute="top" constant="10" id="pBd-eH-u3a"/>
+                        <constraint firstItem="n27-gA-JD6" firstAttribute="leading" secondItem="c8v-pW-iTJ" secondAttribute="trailing" priority="750" constant="-20" id="vbM-6G-KeJ"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGf-xP-4w3">
+                    <rect key="frame" x="451" y="728" width="122" height="29"/>
+                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                    <state key="normal" title="Back to first page">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="backToFirstPage:" destination="-1" eventType="touchUpInside" id="wIv-7E-xXt"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="sXd-OM-UFj" secondAttribute="trailing" id="2vT-Uw-fl6"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nGf-xP-4w3" secondAttribute="bottom" constant="10" id="BgK-fL-2X9"/>
+                <constraint firstItem="sXd-OM-UFj" firstAttribute="leading" secondItem="oN4-gb-P6x" secondAttribute="leading" id="Ch7-Ho-ssl"/>
+                <constraint firstAttribute="bottom" secondItem="sXd-OM-UFj" secondAttribute="bottom" id="DYb-1D-sBU"/>
+                <constraint firstItem="sTr-uI-4BX" firstAttribute="top" secondItem="oN4-gb-P6x" secondAttribute="top" constant="60" id="Jn4-CW-Wjv"/>
+                <constraint firstItem="nGf-xP-4w3" firstAttribute="centerX" secondItem="oN4-gb-P6x" secondAttribute="centerX" id="PXu-Fb-FWF"/>
+                <constraint firstItem="HJv-2B-j8T" firstAttribute="leading" secondItem="oN4-gb-P6x" secondAttribute="leading" constant="265" id="SIa-EV-QPp"/>
+                <constraint firstAttribute="trailing" secondItem="HJv-2B-j8T" secondAttribute="trailing" constant="265" id="bD7-m5-ksM"/>
+                <constraint firstAttribute="trailing" secondItem="sTr-uI-4BX" secondAttribute="trailing" constant="90" id="e3C-fr-b2h"/>
+                <constraint firstItem="nGf-xP-4w3" firstAttribute="top" secondItem="HJv-2B-j8T" secondAttribute="bottom" constant="10" id="ehi-uN-8lV"/>
+                <constraint firstItem="HJv-2B-j8T" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sTr-uI-4BX" secondAttribute="bottom" constant="20" id="ith-3I-JBz"/>
+                <constraint firstItem="sXd-OM-UFj" firstAttribute="top" secondItem="oN4-gb-P6x" secondAttribute="top" id="kjr-nN-o6a"/>
+                <constraint firstItem="sTr-uI-4BX" firstAttribute="leading" secondItem="oN4-gb-P6x" secondAttribute="leading" constant="90" id="n6F-AX-XVp"/>
+                <constraint firstAttribute="bottom" secondItem="HJv-2B-j8T" secondAttribute="bottom" constant="50" id="pYd-09-c0t"/>
+            </constraints>
+            <point key="canvasLocation" x="33" y="1688"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="connectFacebookButton" width="132" height="60"/>
+        <image name="connectGooglePlusButton" width="132" height="60"/>
+        <image name="connectTwitterButton" width="132" height="60"/>
+        <image name="demoButtonBG" width="50" height="50"/>
+        <image name="fieldBackground" width="60" height="60"/>
+        <image name="genericLoginButton" width="60" height="60"/>
+        <image name="genericLoginButtonSelected" width="60" height="60"/>
+        <image name="loginBackground" width="1024" height="768"/>
+        <image name="newcheck" width="20" height="20"/>
+        <image name="newcheckOff" width="20" height="20"/>
+        <image name="nextLoginStep" width="50" height="50"/>
+        <image name="rememberMeOption" width="40" height="39"/>
+        <image name="rememberMeOptionSelected" width="40" height="40"/>
+        <image name="searchInstitutionIcon" width="25" height="25"/>
+        <image name="studentHat" width="150" height="69"/>
+    </resources>
+</document>

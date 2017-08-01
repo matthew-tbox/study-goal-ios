@@ -190,35 +190,49 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 				alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in }))
 				self.navigationController?.present(alert, animated: true, completion: nil)
 			}
+		} else if feed.activityType == "temp_push_notification" {
+			if let studentId = dataManager.currentStudent?.id {
+				DownloadManager().markNotificationAsRead(studentdId: studentId, notificationId: feed.id, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+					dataManager.silentStudentFeedsRefresh(true) { (success, failureReason) -> Void in
+						self.feedsTableView.reloadData()
+					}
+				})
+			}
 		}
 	}
 	
-//	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-//		var style = UITableViewCellEditingStyle.none
-//		if dataManager.myFeeds()[indexPath.row].isMine() {
-//			style = .delete
-//		}
-//		return style
-//	}
-//	
-//	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//		if editingStyle == .delete {
-//			let feed = dataManager.myFeeds()[indexPath.row]
-//			DownloadManager().deleteFeed(feed.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
-//				if success {
-//					dataManager.getStudentFeeds({ (success, error) in
-//						tableView.reloadData()
-//					})
-//				} else {
-//					var failureReason = kDefaultFailureReason
-//					if (error != nil) {
-//						failureReason = error!
-//					}
-//					AlertView.showAlert(false, message: failureReason, completion: nil)
-//				}
-//			})
-//		}
-//	}
+
+	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+		var style = UITableViewCellEditingStyle.none
+		if dataManager.myFeeds()[indexPath.row].isMine() {
+			style = .delete
+		}
+		return style
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_message"), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: localized("yes"), style: .destructive, handler: { (action) in
+				let feed = dataManager.myFeeds()[indexPath.row]
+				DownloadManager().deleteFeed(feed.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
+					if success {
+						dataManager.getStudentFeeds({ (success, error) in
+							tableView.reloadData()
+						})
+					} else {
+						var failureReason = kDefaultFailureReason
+						if (error != nil) {
+							failureReason = error!
+						}
+						AlertView.showAlert(false, message: failureReason, completion: nil)
+					}
+				})
+			}))
+			alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
+			navigationController?.present(alert, animated: true, completion: nil)
+		}
+	}
 	
 	//MARK: UITextView Delegate
 	

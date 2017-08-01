@@ -38,7 +38,7 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 		urlString += idp
 		urlString += "&target=https://sp.data.alpha.jisc.ac.uk/secure/auth.php?u="
 		urlString += UUID!
-		if keepMeLoggedIn() {
+		if shouldRememberMe() {
 			urlString += "lt=true"
 		}
 		
@@ -78,7 +78,7 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 								}
 							}
 							if (loginSuccessful) {
-								if staff() {
+								if currentUserType() == .staff {
 									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STAFF_ID"] as? String)
 								} else {
 									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)

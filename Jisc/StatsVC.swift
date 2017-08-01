@@ -198,7 +198,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 			
 		}
 		
-		if staff() {
+		if currentUserType() == .staff {
 			if let studentId = dataManager.currentStudent?.id {
 				if NSKeyedUnarchiver.unarchiveObject(withFile: filePath("dont_show_staff_alert\(studentId)")) == nil {
 					if let alert = staffAlert {
@@ -231,6 +231,31 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 	func refreshAttainmentData(_ sender:UIRefreshControl) {
 		getAttainmentData {
 			sender.endRefreshing()
+    }
+    }
+	func getActivityPoints(_ completion:@escaping (() -> Void)) {
+		let xMGR = xAPIManager()
+		xMGR.silent = true
+		xMGR.getActivityPoints(kXAPIActivityPointsPeriod.Overall) { (success, result, results, error) in
+			if let student = dataManager.currentStudent {
+				if (result != nil) {
+					if let totalPoints = result!["totalPoints"] as? Int {
+						student.totalActivityPoints = totalPoints as NSNumber
+					//	self.overallActivityPoints.text = self.finelyFormatterNumber(student.totalActivityPoints)
+					}
+				}
+				let xMGR = xAPIManager()
+				xMGR.silent = true
+				xMGR.getActivityPoints(kXAPIActivityPointsPeriod.SevenDays) { (success, result, results, error) in
+					if (result != nil) {
+						if let totalPoints = result!["totalPoints"] as? Int {
+							student.lastWeekActivityPoints = totalPoints as NSNumber
+					//		self.thisWeekActivityPoints.text = self.finelyFormatterNumber(student.lastWeekActivityPoints)
+						}
+					}
+					self.getAttainmentData(completion)
+				}
+			}
 		}
 	}
 	

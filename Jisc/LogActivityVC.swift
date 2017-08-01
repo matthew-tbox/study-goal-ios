@@ -172,6 +172,14 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 			dayOrderString = "nd"
 		} else if (day == 3) {
 			dayOrderString = "rd"
+		} else if (day == 21) {
+			dayOrderString = "st"
+		} else if (day == 22) {
+			dayOrderString = "nd"
+		} else if (day == 23) {
+			dayOrderString = "rd"
+		} else if (day == 31) {
+			dayOrderString = "st"
 		}
 		dateFormatter.dateFormat = "EEEE d"
 		let dateSoFar = dateFormatter.string(from: date)
@@ -227,7 +235,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	//MARK: Show/Close Selectors
 	
 	@IBAction func showModuleSelector(_ sender:UIButton) {
-		if social() {
+		if currentUserType() == .social {
 			if dataManager.modules().count == 1 {
 				addModule()
 			} else {
@@ -287,7 +295,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 	func view(_ view: CustomPickerView, selectedRow: Int) {
 		switch (view) {
 		case moduleSelectorView:
-			if social() {
+			if currentUserType() == .social {
 				if selectedRow == dataManager.modules().count - 1 {
 					addModule()
 				} else {

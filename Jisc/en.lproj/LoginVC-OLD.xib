@@ -114,16 +114,16 @@
                             <rect key="frame" x="22" y="0.0" width="241" height="105"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="studentHat" translatesAutoresizingMaskIntoConstraints="NO" id="QOK-x7-1CN">
-                                    <rect key="frame" x="57" y="0.0" width="127" height="58"/>
+                                    <rect key="frame" x="50.5" y="0.0" width="140" height="64"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul0-4X-o05">
-                                    <rect key="frame" x="173" y="41" width="32" height="22"/>
+                                    <rect key="frame" x="179.5" y="47" width="32" height="22"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="22"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learning analytics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teU-jO-kbM">
-                                    <rect key="frame" x="0.0" y="58" width="241" height="47"/>
+                                    <rect key="frame" x="0.0" y="64" width="241" height="41"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="32"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -652,7 +652,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lDx-iI-Upj" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="30" y="105" width="315" height="458"/>
+                    <rect key="frame" x="30" y="104.5" width="315" height="458"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xV-1b-gSk">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
@@ -661,7 +661,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="40"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVE-JM-ebg" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="63" y="12" width="190" height="20"/>
+                                    <rect key="frame" x="62.5" y="11.5" width="190" height="20"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -801,7 +801,7 @@
                     <rect key="frame" x="45" y="181" width="285" height="205"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESET YOUR PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-6A-2dR" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="57" y="12" width="172" height="17"/>
+                            <rect key="frame" x="57.5" y="12" width="171.5" height="17"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -1125,7 +1125,7 @@ email address below and click on the ‘Request Password Reset’ button. We wil
         <image name="purple" width="10" height="10"/>
         <image name="purple2" width="10" height="10"/>
         <image name="selectInstituteArrow" width="10" height="5"/>
-        <image name="studentHat" width="127" height="58"/>
+        <image name="studentHat" width="140" height="64"/>
         <image name="universityIcon" width="16" height="19"/>
     </resources>
 </document>
