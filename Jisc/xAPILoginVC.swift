@@ -88,9 +88,12 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
                                 xAPIManager().checkMod(testUrl:urlString)
                                 let settingsAttendanceURL = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"
                                 let settingsCheckinURL = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"
+                                let settingsAttainmentURL = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attainmentData"
+                                
                                 
                                 xAPIManager().settingsCall(testUrl: settingsAttendanceURL)
                                 xAPIManager().settingsCall(testUrl: settingsCheckinURL)
+                                xAPIManager().settingsCall(testUrl: settingsAttainmentURL)
 
                                 
 								self.dismiss(animated: true, completion: {})

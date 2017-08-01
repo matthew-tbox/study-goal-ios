@@ -132,8 +132,12 @@ class StatsMenuButton: MenuButton {
 	
 	@IBOutlet weak var arrow:UIImageView!
 	@IBOutlet weak var buttonsHeight:NSLayoutConstraint!
-    @IBOutlet weak var leaderboardButton: UIButton!
-
+    
+    @IBOutlet weak var attendanceButton: UIButton!
+    @IBOutlet weak var eventsAttendedButton: UIButton!
+    @IBOutlet weak var leaderboardsButton: UIButton!
+    @IBOutlet weak var attainmentButton: UIButton!
+    
 	var expanded = false
 	
 	override func buttonAction(_ sender: UIButton?) {
@@ -153,12 +157,22 @@ class StatsMenuButton: MenuButton {
 		}
         let defaults = UserDefaults.standard
         let result = defaults.object(forKey: "SettingsReturnAttendance") as! String
+        let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
 
         if (result.range(of: "false") != nil){
             print("AHMED IT EXISTS")
-            leaderboardButton.alpha = 1.0
+            attendanceButton.alpha = 1.0
+            eventsAttendedButton.alpha = 1.0
+            //leaderboardsButton.alpha = 1.0
         } else {
-            leaderboardButton.alpha = 0.0
+            attendanceButton.alpha = 0.0
+            eventsAttendedButton.alpha = 0.0
+            //leaderboardsButton.alpha = 0.0
+        }
+        if (attainmentResult.range(of: "false") != nil){
+            attainmentButton.alpha = 1.0
+        } else {
+            attainmentButton.alpha = 0.0
         }
 	}
 	

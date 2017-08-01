@@ -508,12 +508,16 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String
                 print("This is the data from the request AHMED!!!",returnedString)
-                if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"){
+                if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"){
                     let defaults = UserDefaults.standard
                     defaults.set(returnedString, forKey: "SettingsReturn")
-                } else {
+                } else if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData") {
                     let defaults = UserDefaults.standard
                     defaults.set(returnedString, forKey: "SettingsReturnAttendance")
+                } else {
+                    let defaults = UserDefaults.standard
+                    defaults.set(returnedString, forKey: "SettingsReturnAttainment")
+
                 }
             }
             //startConnectionWithRequest(request)

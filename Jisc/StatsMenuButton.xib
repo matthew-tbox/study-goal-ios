@@ -165,9 +165,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="arrow" destination="9Uj-cA-21y" id="aLU-p9-tQO"/>
+                <outlet property="attainmentButton" destination="WHR-CA-m5x" id="9N7-qn-2OV"/>
+                <outlet property="attendanceButton" destination="Xyz-iV-Pau" id="MR8-b0-2PO"/>
                 <outlet property="button" destination="qvn-Jy-HdG" id="Eyb-jq-48n"/>
                 <outlet property="buttonsHeight" destination="Pot-1N-6eR" id="taV-tA-GQh"/>
-                <outlet property="leaderboardButton" destination="Xyz-iV-Pau" id="VJY-cj-ire"/>
+                <outlet property="eventsAttendedButton" destination="h1j-2l-rYa" id="y2c-c0-ipF"/>
+                <outlet property="leaderboardsButton" destination="KF6-Sf-Kqx" id="bpc-VR-WfI"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="-9"/>
         </view>

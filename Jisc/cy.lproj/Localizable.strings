@@ -379,7 +379,7 @@
 "dont_show_again" = "Don't show again";
 "institution_not_listed" = "My institution is not listed here";
 "checkin" = "Check-in";
-"send_pin" = "Send pin";
+"send_pin" = "Send PIN";
 "checkin_staff_message" = "Check-in section is for demonstration purposes, and your PIN was not validated. This section is active for student users.";
 "enter_pin" = "Please enter a pin code";
 "alert_invalid_pin" = "Oops. PIN wasn't recognised. Please try again.";
