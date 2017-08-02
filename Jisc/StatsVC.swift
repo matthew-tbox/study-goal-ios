@@ -113,6 +113,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var leaderBoard: UIView!
+    @IBOutlet weak var eventsAttendedTableView: UITableView!
+    
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
     
@@ -183,6 +185,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         goToAttainment()
         self.highChartWebView.isHidden = false
         self.noPointsLabel.isHidden = false
+        self.eventsAttendedTableView.isHidden = true
         self.loadHighChart()
         
         //London Developer July 24,2017

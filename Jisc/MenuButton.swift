@@ -164,7 +164,7 @@ class StatsMenuButton: MenuButton {
         if (result.range(of: "false") == nil){
             print("AHMED IT EXISTS")
             attendanceButton.alpha = 1.0
-            eventsAttendedButton.alpha = 1.0
+            eventsAttendedButton.alpha = 0.0
             //leaderboardsButton.alpha = 1.0
         } else {
             attendanceButton.alpha = 0.0
