@@ -157,9 +157,11 @@ class StatsMenuButton: MenuButton {
 		}
         let defaults = UserDefaults.standard
         let result = defaults.object(forKey: "SettingsReturnAttendance") as! String
-        let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
+        print("This is the saved result AHMED", result)
 
-        if (result.range(of: "false") != nil){
+        //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
+
+        if (result.range(of: "false") == nil){
             print("AHMED IT EXISTS")
             attendanceButton.alpha = 1.0
             eventsAttendedButton.alpha = 1.0
@@ -169,11 +171,11 @@ class StatsMenuButton: MenuButton {
             eventsAttendedButton.alpha = 0.0
             //leaderboardsButton.alpha = 0.0
         }
-        if (attainmentResult.range(of: "false") != nil){
-            attainmentButton.alpha = 1.0
-        } else {
-            attainmentButton.alpha = 0.0
-        }
+//        if (attainmentResult.range(of: "false") != nil){
+//            attainmentButton.alpha = 1.0
+//        } else {
+//            attainmentButton.alpha = 0.0
+//        }
 	}
 	
 	func retract() {

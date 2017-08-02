@@ -64,7 +64,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 		trophiesLabel.text = "\(dataManager.myTrophies().count)"
 		nameLabel.text = "\(dataManager.currentStudent!.firstName) \(dataManager.currentStudent!.lastName)"
 		emailLabel.text = dataManager.currentStudent!.email
-        if (emailLabel.text=="not@know"){
+        if (emailLabel.text=="not@known"){
             emailLabel.isHidden = true
         }
 		studentIDLabel.text = "\(localized("student_id")) : \(dataManager.currentStudent!.jisc_id)"
@@ -229,7 +229,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	
     @IBAction func privacyStatement(_ sender: UIButton) {
         if (iPad) {
-            titleLabel.text = localized("privacy_statement")
+            titleLabel.text = localized("consent")
             addCurrentView(privacyView)
             let url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")
             let requestObj = URLRequest(url: url!)

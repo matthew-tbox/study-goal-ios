@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
+		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
 		DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF21E850FFD00166E16 /* LoginVC.xib */; };
@@ -369,7 +370,6 @@
 		DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTargetVC.swift; sourceTree = "<group>"; };
 		DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetCell.swift; sourceTree = "<group>"; };
 		DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TargetCell.xib; sourceTree = "<group>"; };
-		DA71051C1ECDED0200E559C6 /* Jisc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jisc.entitlements; sourceTree = "<group>"; };
 		DA7641141BD7800700A7D5C1 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertView.xib; sourceTree = "<group>"; };
 		DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -527,9 +527,9 @@
 		DAFBC44D1BFB2B6800E87023 /* StretchTarget+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StretchTarget+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DAFBC44E1BFB2B6800E87023 /* StretchTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchTarget.swift; sourceTree = "<group>"; };
 		DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
-		DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_points_pi_chart.html; sourceTree = "<group>"; };
 		DD65183F1F22030A00003916 /* PrivacyWebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyWebViewVC.swift; sourceTree = "<group>"; };
 		DD6518401F22030A00003916 /* PrivacyWebViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivacyWebViewVC.xib; sourceTree = "<group>"; };
+		DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_points_pi_chart.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1293,10 +1293,9 @@
 				TargetAttributes = {
 					DAA2AEA21BCE785900ED796A = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = R48Q33464V;
+						DevelopmentTeam = JG53BNN66L;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
-
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1426,8 +1425,8 @@
 				DAD66C691C52222800074B79 /* TrophiesGoldBig.xcassets in Resources */,
 				DA819EA21BDA20D900810C14 /* Podfile in Resources */,
 				DAC32D941BCF8B9800C4FBF5 /* LaunchScreen.xib in Resources */,
-				DDFE93D41F18611900A62400 /* stats_points_pi_chart.html in Resources */,
 				DAD66C951C523A2900074B79 /* TrophiesSilver.xcassets in Resources */,
+				8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */,
 				DAD644C81C6227C800AA62E8 /* Localizable.strings in Resources */,
 				DAB0C8BB1C4CEC2300F7A3C6 /* NewTrophyAlert.xib in Resources */,
 				DAB0C8AF1C4CEBF500F7A3C6 /* TrophiesVC.xib in Resources */,
@@ -2062,7 +2061,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Marcel Chirila (8J95YKX7C3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = JG53BNN66L;
-
 				INFOPLIST_FILE = Jisc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2070,7 +2068,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-
 				SWIFT_OBJC_BRIDGING_HEADER = "Jisc/Jisc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
