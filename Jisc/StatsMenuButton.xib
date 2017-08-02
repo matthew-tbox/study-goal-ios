@@ -106,7 +106,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-iV-Pau" userLabel="Attendance">
-                            <rect key="frame" x="0.0" y="160" width="375" height="40"/>
+                            <rect key="frame" x="0.0" y="120" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Attendance Summary">
@@ -126,13 +126,13 @@
                         <constraint firstAttribute="trailing" secondItem="WHR-CA-m5x" secondAttribute="trailing" id="BiI-ae-Eq8"/>
                         <constraint firstItem="KF6-Sf-Kqx" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" constant="-40" id="CGn-ar-Ypv"/>
                         <constraint firstItem="h1j-2l-rYa" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="DR3-IR-g9y"/>
+                        <constraint firstItem="Xyz-iV-Pau" firstAttribute="bottom" secondItem="h1j-2l-rYa" secondAttribute="bottom" id="E0N-wY-YJE"/>
                         <constraint firstItem="dXk-FR-Zp5" firstAttribute="top" secondItem="WHR-CA-m5x" secondAttribute="bottom" id="GxX-2f-U7e"/>
                         <constraint firstAttribute="trailing" secondItem="dXk-FR-Zp5" secondAttribute="trailing" id="JOO-sV-dco"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="height" secondItem="dXk-FR-Zp5" secondAttribute="height" id="OZH-M6-Nkz"/>
                         <constraint firstAttribute="trailing" secondItem="KF6-Sf-Kqx" secondAttribute="trailing" id="P9b-83-o0z"/>
                         <constraint firstAttribute="height" id="Pot-1N-6eR"/>
                         <constraint firstItem="dXk-FR-Zp5" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="Ql4-It-RNU"/>
-                        <constraint firstItem="Xyz-iV-Pau" firstAttribute="top" secondItem="h1j-2l-rYa" secondAttribute="bottom" id="Urr-Hg-W5c"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="height" secondItem="WHR-CA-m5x" secondAttribute="height" id="XoQ-vf-RXO"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="top" secondItem="YG0-U7-Bi6" secondAttribute="top" id="Y8W-0D-XeH"/>
                         <constraint firstAttribute="trailing" secondItem="h1j-2l-rYa" secondAttribute="trailing" id="ceg-A5-83i"/>
