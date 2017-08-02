@@ -13,6 +13,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 	
 	@IBOutlet weak var entryField:UILabel!
 	var currentPin = ""
+
 	let locationManager = CLLocationManager()
 	var didChangeLocationPermissions = false
 	var checkingIn = false
@@ -21,7 +22,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
 		entryField.adjustsFontSizeToFitWidth = true
 		entryField.text = currentPin
-		locationManager.delegate = self
+
     }
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -52,15 +53,20 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 		view.layoutIfNeeded()
 	}
 	
+    @IBAction func backButton(_ sender: Any) {
+        DELEGATE.menuView?.open()
+
+    }
 	@IBAction func backspace(_ sender:UIButton?) {
-		if !currentPin.isEmpty {
-			currentPin = currentPin.substring(to: currentPin.characters.index(before: currentPin.characters.endIndex))
-			entryField.text = currentPin
-			view.layoutIfNeeded()
-		}
+        if !currentPin.isEmpty {
+            currentPin = currentPin.substring(to: currentPin.characters.index(before: currentPin.characters.endIndex))
+            entryField.text = currentPin
+            view.layoutIfNeeded()
+        }
 	}
 	
 	@IBAction func sendPin(_ sender:UIButton?) {
+
 		if currentUserType() == .staff {
 			let alert = UIAlertController(title: "", message: localized("checkin_staff_message"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -100,6 +106,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 		let vc = SettingsVC()
 		navigationController?.pushViewController(vc, animated: true)
 	}
+
 	
 	//MARK: - Location
 	

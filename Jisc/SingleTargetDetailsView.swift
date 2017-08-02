@@ -115,7 +115,7 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 			self.alpha = 1.0
 			let progress = theTarget!.calculateProgress(false)
 			titleLabel.text = theTarget!.textForDisplay()
-			let imageName = theTarget!.activity.iconName(true)
+			let imageName = theTarget!.activity.iconName(big: true)
 			targetTypeIcon.image = UIImage(named: imageName)
 			
 			if (progress.completionPercentage >= 1.0) {
@@ -273,7 +273,7 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 	}
 	
 	func view(_ view: CustomPickerView, selectedRow: Int) {
-		DELEGATE.mainController?.selectedIndex = kHomeScreenTab.log.rawValue
+		DELEGATE.menuView?.log()
 		
 		var module:Int = 0
 		var activityType:Int = 0
@@ -287,9 +287,16 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 		}
 		
 		if (selectedRow == 0) {
-			DELEGATE.mainController?.logViewController.navigationController?.pushViewController(NewActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+			DELEGATE.menuView?.logViewController.navigationController?.pushViewController(NewActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+            //London Developer July 24,2017
+            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(module)"
+            xAPIManager().checkMod(testUrl:urlString)
+
 		} else if (selectedRow == 1) {
-			DELEGATE.mainController?.logViewController.navigationController?.pushViewController(LogActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+			DELEGATE.menuView?.logViewController.navigationController?.pushViewController(LogActivityVC(module:module, activityType: activityType, activity: activity), animated: true)
+                //London Developer July 24,2017
+                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-untimed&contentName=logReport&modid=\(module)"
+                xAPIManager().checkMod(testUrl:urlString)
 		}
 	}
 	

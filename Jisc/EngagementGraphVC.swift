@@ -8,15 +8,6 @@
 
 import UIKit
 
-let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
-let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
-let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)
-
-enum GraphType {
-	case Line
-	case Bar
-}
-
 class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollViewDelegate {
 	
 	@IBOutlet weak var titleLabel:UILabel!
@@ -56,10 +47,8 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		scrollIndicator.alpha = 0.0
-//		if staff() {
-			graphType = GraphType.Bar
-			graphToggleButton.isSelected = true
-//		}
+		graphType = GraphType.Bar
+		graphToggleButton.isSelected = true
 		compareToView.alpha = 0.5
 		compareToView.isUserInteractionEnabled = false
 		let today = todayNumber()

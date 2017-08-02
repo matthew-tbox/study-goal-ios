@@ -198,6 +198,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 				
 				if (code == .unauthorized) {
 					completionBlock = nil
+
 					dataManager.logout()
 					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
 				}
