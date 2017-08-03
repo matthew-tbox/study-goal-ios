@@ -101,6 +101,13 @@ class MenuView: UIView {
 		}
 		lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Settings, previousButton: lastButton, isLastButton: false, parent: view)
 		lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Logout, previousButton: lastButton, isLastButton: true, parent: view)
+        if let user = dataManager.currentStudent {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+            DownloadManager().registerForRemoteNotifications(studentId: user.id, isActive: 1, alertAboutInternet: false, completion: { (success, dictionary, array, error) in
+                
+            })
+        }
 		if let nvcView = DELEGATE.mainNavigationController?.view {
 			nvcView.addSubview(view)
 			let leading = NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: nvcView, attribute: .leading, multiplier: 1.0, constant: 0.0)
