@@ -596,8 +596,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         //let completionBlock:downloadCompletionBlock?
         var countArray:[Int] = []
         var dateArray:[String] = []
-        
-        let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=2017-06-28&enddate=2017-07-26"
+        let todaysDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let result = dateFormatter.string(from: todaysDate)
+        let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -28, to: Date())
+        let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
+        print("OH MY GOD AHMED FORMATTED TODAYS DATE\(result)")
+        print("OH MY GOD AHMED FORMATTED 28 days ago\(daysAgoResult)")
+
+        let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
@@ -623,8 +631,18 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             
                             if let date = object?["date"] as? NSString {
                                 //Date DONE!! put in an array and pass to the graph same with count
-                                print("OMG AHMED THIS IS DATE!!!",date.substring(with: NSRange(location: 0, length: 10)))
-                                dateArray.append(date.substring(with: NSRange(location: 0, length: 10)))
+                                let dateString = date.substring(with: NSRange(location: 0, length: 10)) as String
+                                
+                                let desiredDateFormatter = DateFormatter()
+                                desiredDateFormatter.dateFormat = "dd-MM-yyyy"
+                                
+                                let makeDateFormatter = DateFormatter()
+                                makeDateFormatter.dateFormat = "yyyy-MM-dd"
+                                let makeDateFromDate = makeDateFormatter.date(from: dateString)
+                                
+                                let newDateFormatted = desiredDateFormatter.string(from: makeDateFromDate!)
+                                print("OMG AHMED SUPPOSE TO BE FORMATTED STRING WHEN CALLING", newDateFormatted)
+                                dateArray.append(newDateFormatted)
                             }
                         }
                         print("This is the count array ready to be put in the webview AHMED OMG COUNTARRAY", countArray)
@@ -652,6 +670,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             let endIndex = countData.index(countData.endIndex, offsetBy: -2)
                             countDataFinal = "[" + countData.substring(to: endIndex) + "]"
                             for date in dateArray {
+                                //Here is where I think I should add the formattinfg code.
+
                                 dateData = dateData + "'\(date)'" + ", "
                             }
                             var dateDataFinal:String = ""
