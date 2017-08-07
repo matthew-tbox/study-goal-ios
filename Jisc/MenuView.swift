@@ -43,7 +43,6 @@ class MenuView: UIView {
         
         let defaults = UserDefaults.standard
         let result = defaults.object(forKey: "SettingsReturn") as! String
-        print("AHMED LOGIN RESULT RETURNED ATTENDANCE at", result)
         
 		var lastButton:MenuButton?
 		let index = getHomeScreenTab().rawValue
@@ -72,7 +71,7 @@ class MenuView: UIView {
 			}
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
             if (result.range(of: "false") != nil){
-                print("AHMED IT EXISTS")
+                //EXISTS
             } else {
                 lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
             }

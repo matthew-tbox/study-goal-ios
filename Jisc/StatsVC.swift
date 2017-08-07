@@ -126,6 +126,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 NSKeyedArchiver.archiveRootObject(true, toFile: filePath("dont_show_staff_alert\(studentId)"))
             }
         }))
+        self.periodSegment.selectedSegmentIndex = 1
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshAttainmentData(_:)), for: UIControlEvents.valueChanged)
         attainmentTableView.addSubview(refreshControl)
@@ -617,15 +618,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
-                print("This is the data from the request AHMED!!!",NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! Any)
+
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
                         for item in json {
                             let object = item as? [String:Any]
-                            print("Ahmed OMG this is each item in the high chart call!!",item)
                             if let count = object?["count"] as? Int {
-                                print("OMG AHMED COUNT", count)
                                 countArray.append(count)
                             }
                             
@@ -641,12 +640,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                 let makeDateFromDate = makeDateFormatter.date(from: dateString)
                                 
                                 let newDateFormatted = desiredDateFormatter.string(from: makeDateFromDate!)
-                                print("OMG AHMED SUPPOSE TO BE FORMATTED STRING WHEN CALLING", newDateFormatted)
+
                                 dateArray.append(newDateFormatted)
                             }
                         }
-                        print("This is the count array ready to be put in the webview AHMED OMG COUNTARRAY", countArray)
-                        print("This is the date array ready to be put in the webview AHMED OMG DATEARRAY", dateArray)
+
                         do {
                             guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
                                 else {
@@ -679,8 +677,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             
                             dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
                             
-                            print("countData string", countDataFinal)
-                            print("dateData string", dateDataFinal)
                             
                             contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
                             contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
