@@ -384,6 +384,10 @@
 "enter_pin" = "Please enter a pin code";
 "alert_invalid_pin" = "Invalid code - please check with your tutor that you have the correct code and are enrolled in the module.";
 "alert_valid_pin" = "Thanks. You've just successfully checked in.";
+"turn_location_on" = "Please turn your location on";
+"not_now" = "Not now";
+"take_me_to_settings" = "Take me to Settings";
+"turn_location_off" = "Your location is turned off";
 "social_login_error" = "This email is already registered in our system. Please try again with a different social platform!";
 "demo_mode_post_message" = "Login to start posting messages.";
 "demo_mode_send_friend_request" = "Login to start adding friends.";

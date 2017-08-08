@@ -126,6 +126,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 NSKeyedArchiver.archiveRootObject(true, toFile: filePath("dont_show_staff_alert\(studentId)"))
             }
         }))
+        self.periodSegment.selectedSegmentIndex = 1
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshAttainmentData(_:)), for: UIControlEvents.valueChanged)
         attainmentTableView.addSubview(refreshControl)
@@ -596,8 +597,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         //let completionBlock:downloadCompletionBlock?
         var countArray:[Int] = []
         var dateArray:[String] = []
-        
-        let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=2017-06-28&enddate=2017-07-26"
+        let todaysDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let result = dateFormatter.string(from: todaysDate)
+        let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -28, to: Date())
+        let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
+        print("OH MY GOD AHMED FORMATTED TODAYS DATE\(result)")
+        print("OH MY GOD AHMED FORMATTED 28 days ago\(daysAgoResult)")
+
+        let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
@@ -609,26 +618,33 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
-                print("This is the data from the request AHMED!!!",NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as! Any)
+
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
                         for item in json {
                             let object = item as? [String:Any]
-                            print("Ahmed OMG this is each item in the high chart call!!",item)
                             if let count = object?["count"] as? Int {
-                                print("OMG AHMED COUNT", count)
                                 countArray.append(count)
                             }
                             
                             if let date = object?["date"] as? NSString {
                                 //Date DONE!! put in an array and pass to the graph same with count
-                                print("OMG AHMED THIS IS DATE!!!",date.substring(with: NSRange(location: 0, length: 10)))
-                                dateArray.append(date.substring(with: NSRange(location: 0, length: 10)))
+                                let dateString = date.substring(with: NSRange(location: 0, length: 10)) as String
+                                
+                                let desiredDateFormatter = DateFormatter()
+                                desiredDateFormatter.dateFormat = "dd-MM-yyyy"
+                                
+                                let makeDateFormatter = DateFormatter()
+                                makeDateFormatter.dateFormat = "yyyy-MM-dd"
+                                let makeDateFromDate = makeDateFormatter.date(from: dateString)
+                                
+                                let newDateFormatted = desiredDateFormatter.string(from: makeDateFromDate!)
+
+                                dateArray.append(newDateFormatted)
                             }
                         }
-                        print("This is the count array ready to be put in the webview AHMED OMG COUNTARRAY", countArray)
-                        print("This is the date array ready to be put in the webview AHMED OMG DATEARRAY", dateArray)
+
                         do {
                             guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
                                 else {
@@ -652,6 +668,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             let endIndex = countData.index(countData.endIndex, offsetBy: -2)
                             countDataFinal = "[" + countData.substring(to: endIndex) + "]"
                             for date in dateArray {
+                                //Here is where I think I should add the formattinfg code.
+
                                 dateData = dateData + "'\(date)'" + ", "
                             }
                             var dateDataFinal:String = ""
@@ -659,8 +677,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             
                             dateDataFinal = "[" + dateData.substring(to: endIndexDate) + "]"
                             
-                            print("countData string", countDataFinal)
-                            print("dateData string", dateDataFinal)
                             
                             contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
                             contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)

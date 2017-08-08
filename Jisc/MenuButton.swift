@@ -12,7 +12,7 @@ enum MenuButtonType:String {
 	case Feed = "Activity Feed"
 	case Stats = "Stats"
 	case Log = "Log"
-    case Checkin = "Check-in" //Ahmed Checkin
+    case Checkin = "Check-in"
 	case Target = "Target"
 	case Settings = "Settings"
 	case Logout = "Logout"
@@ -157,12 +157,10 @@ class StatsMenuButton: MenuButton {
 		}
         let defaults = UserDefaults.standard
         let result = defaults.object(forKey: "SettingsReturnAttendance") as! String
-        print("This is the saved result AHMED", result)
 
         //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
 
         if (result.range(of: "false") == nil){
-            print("AHMED IT EXISTS")
             attendanceButton.alpha = 1.0
             eventsAttendedButton.alpha = 0.0
             //leaderboardsButton.alpha = 1.0

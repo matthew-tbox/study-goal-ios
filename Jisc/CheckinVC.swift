@@ -125,6 +125,23 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
             let part2 = dateFormatter.string(from: date)
             let timestamp = "\(part1)T\(part2)Z"
             xAPIManager().checkIn(pin: currentPin, location: "\(location.coordinate.latitude),\(location.coordinate.longitude)", timestamp: timestamp, completion: { (success, dictionary, array, error) in
+                if error != nil {
+                    //Need to Localize the following
+                    let alert = UIAlertController(title: "Server Error", message: "Our servers our currently experiencing difficulties", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default){
+                        UIAlertAction in
+                        NSLog("Ok Pressed")
+                    }
+                    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel){
+                        UIAlertAction in
+                        NSLog("Cancel Pressed")
+                    }
+                    alert.addAction(okAction)
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true, completion: nil)
+
+                }
+                
                 if array != nil {
                     let alert = UIAlertController(title: "", message: localized("alert_valid_pin"), preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: { (action) in

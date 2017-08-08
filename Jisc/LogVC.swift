@@ -190,14 +190,12 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Ahmed code YAY!")
         
         /*let url = URL(string: "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats&contentName=Stats%20Overview&modid=mod101")
         
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue) as Any)
             print(response as Any)
-            print("This is Ahmed again hopefully it worked!!!")
         }*/
         
         //task.resume()
