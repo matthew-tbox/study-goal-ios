@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
+		804FD3001F3B68E4002FEDDB /* RecurringTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */; };
 		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
@@ -284,6 +285,7 @@
 
 /* Begin PBXFileReference section */
 		800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_attendance_high_chart.html; sourceTree = "<group>"; };
+		804FD2FF1F3B68E4002FEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RecurringTargetVC.xib; sourceTree = "<group>"; };
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1086,6 +1088,7 @@
 		DAD1D7F11C50F040005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */,
 				DAB0C8631C4CEA8900F7A3C6 /* TargetVC.xib */,
 				DAB0C86F1C4CEAAF00F7A3C6 /* NewTargetVC.xib */,
 			);
@@ -1418,6 +1421,7 @@
 				DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */,
 				DA3F7B871C996B9B00E15678 /* ConsentVC.xib in Resources */,
 				DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */,
+				804FD3001F3B68E4002FEDDB /* RecurringTargetVC.xib in Resources */,
 				DABB0CC51C59FED5001A291D /* SingleTargetDetailsView.xib in Resources */,
 				DAC32E151BCFE1A000C4FBF5 /* ItemTypeCell.xib in Resources */,
 				800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */,
@@ -1660,6 +1664,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				804FD2FF1F3B68E4002FEDDB /* en */,
+			);
+			name = RecurringTargetVC.xib;
+			sourceTree = "<group>";
+		};
 		DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

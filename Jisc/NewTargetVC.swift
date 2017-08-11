@@ -16,6 +16,7 @@ let targetReasonPlaceholder = localized("add_a_reason_to_keep_this_target")
 
 class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate {
 	
+    @IBOutlet weak var occurenceSegmentControl: UISegmentedControl!
 	@IBOutlet weak var activityTypeButton:UIButton!
 	@IBOutlet weak var chooseActivityButton:UIButton!
 	@IBOutlet weak var intervalButton:UIButton!
@@ -161,6 +162,14 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	override var preferredStatusBarStyle : UIStatusBarStyle {
 		return UIStatusBarStyle.lightContent
 	}
+    @IBAction func occurenceSegmentAction(_ sender: Any) {
+        if(occurenceSegmentControl.selectedSegmentIndex == 1){
+            Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
+        } else {
+            Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
+
+        }
+    }
 	
 	@IBAction func goBack(_ sender:UIButton) {
 		if (changesWereMade()) {
