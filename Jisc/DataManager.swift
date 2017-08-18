@@ -1465,6 +1465,20 @@ class DataManager: NSObject {
 			}
 		}
 	}
+    
+    func addTodoTask(_ target:Target, completion:@escaping dataManagerCompletionBlock) {
+        DownloadManager().addTarget(currentStudent!.id, target: target, alertAboutInternet: true) { (success, result, results, error) -> Void in
+            if success {
+                self.refreshStudentTargets(success, error: error, completion: completion)
+            } else {
+                var failureReason = kDefaultFailureReason
+                if error != nil {
+                    failureReason = error!
+                }
+                AlertView.showAlert(false, message: failureReason, completion: nil)
+            }
+        }
+    }
 	
 	func editTarget(_ target:Target, completion:@escaping dataManagerCompletionBlock) {
 		DownloadManager().editTarget(target, alertAboutInternet: true) { (success, result, results, error) -> Void in

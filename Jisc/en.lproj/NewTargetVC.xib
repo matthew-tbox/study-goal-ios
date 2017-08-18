@@ -36,11 +36,11 @@
                 <outlet property="minutesTextField" destination="JnV-U7-dEN" id="Bda-aG-hqq"/>
                 <outlet property="moduleButton" destination="2Qg-FF-bv2" id="syk-vS-Bs4"/>
                 <outlet property="noteTextView" destination="7BT-8L-1Bp" id="Yoa-CA-Oof"/>
-                <outlet property="occurenceSegmentControl" destination="kfl-tF-emp" id="gAI-o9-DAY"/>
                 <outlet property="scrollBottomSpace" destination="oWD-ZW-mXi" id="Rpk-kc-P1o"/>
                 <outlet property="timePickerBottomSpace" destination="UAo-dz-n2B" id="lBc-hG-hEQ"/>
                 <outlet property="titleLabel" destination="njC-uF-fjE" id="haa-wh-u8Z"/>
                 <outlet property="toolbar" destination="evN-6k-6Sr" id="tXW-Pl-fE0"/>
+                <outlet property="topSegmentControl" destination="Tbu-kc-F1i" id="s8N-Kl-Ehp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="viewsWithShadow" destination="Duq-dx-gUl" collectionClass="NSMutableArray" id="m3P-jQ-3lQ"/>
                 <outletCollection property="viewsWithShadow" destination="eao-Q1-ZBL" collectionClass="NSMutableArray" id="ETt-dw-JI3"/>
@@ -152,16 +152,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHI-dd-wyc">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
                             <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kfl-tF-emp">
-                                    <rect key="frame" x="7" y="14" width="361" height="29"/>
-                                    <segments>
-                                        <segment title="Single"/>
-                                        <segment title="Recurring"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="occurenceSegmentAction:" destination="-1" eventType="valueChanged" id="G7f-A3-T5G"/>
-                                    </connections>
-                                </segmentedControl>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaK-QA-UkK">
                                     <rect key="frame" x="8" y="63" width="359" height="128"/>
                                     <subviews>
@@ -445,7 +435,7 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clp-R9-Rwt" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                    <rect key="frame" x="128.5" y="14" width="45.5" height="20"/>
+                                                                    <rect key="frame" x="128.5" y="15" width="45.5" height="20"/>
                                                                     <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                                                                     <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -474,7 +464,7 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEC-x4-wNe" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                    <rect key="frame" x="224" y="14" width="65.5" height="20"/>
+                                                                    <rect key="frame" x="224" y="15" width="65.5" height="20"/>
                                                                     <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                                                                     <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -849,6 +839,16 @@
                                         <constraint firstItem="1AX-Ra-U6c" firstAttribute="top" secondItem="suz-R5-226" secondAttribute="top" id="w7C-Ww-3vB"/>
                                     </constraints>
                                 </view>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-kc-F1i">
+                                    <rect key="frame" x="8" y="18" width="359" height="29"/>
+                                    <segments>
+                                        <segment title="Single"/>
+                                        <segment title="Recurring"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="topSegmentControlAction:" destination="-1" eventType="valueChanged" id="Vjc-mQ-BXl"/>
+                                    </connections>
+                                </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -862,10 +862,10 @@
                                 <constraint firstItem="SnM-nz-gFZ" firstAttribute="top" secondItem="mth-BM-zBN" secondAttribute="bottom" constant="3" id="MVy-jO-J13"/>
                                 <constraint firstAttribute="bottom" secondItem="suz-R5-226" secondAttribute="bottom" constant="-31" id="SvV-0O-hEg"/>
                                 <constraint firstItem="IL6-au-hzo" firstAttribute="top" secondItem="SnM-nz-gFZ" secondAttribute="bottom" constant="3" id="TZV-TR-FYL"/>
-                                <constraint firstItem="kfl-tF-emp" firstAttribute="centerX" secondItem="MaK-QA-UkK" secondAttribute="centerX" id="Tas-2j-viA"/>
                                 <constraint firstAttribute="trailing" secondItem="SnM-nz-gFZ" secondAttribute="trailing" constant="8" id="Vak-9n-kX5"/>
                                 <constraint firstItem="mth-BM-zBN" firstAttribute="top" secondItem="kbM-tZ-wYw" secondAttribute="bottom" constant="8" id="WbJ-gE-IYx"/>
                                 <constraint firstItem="mth-BM-zBN" firstAttribute="leading" secondItem="YHI-dd-wyc" secondAttribute="leading" constant="8" id="Wd4-4K-YDi"/>
+                                <constraint firstItem="MaK-QA-UkK" firstAttribute="top" secondItem="Tbu-kc-F1i" secondAttribute="bottom" constant="17" id="YRg-Bb-EIh"/>
                                 <constraint firstItem="SnM-nz-gFZ" firstAttribute="width" secondItem="SnM-nz-gFZ" secondAttribute="height" multiplier="359:45" id="dz7-A0-Ro5"/>
                                 <constraint firstAttribute="trailing" secondItem="IL6-au-hzo" secondAttribute="trailing" constant="8" id="mXq-OM-nuz"/>
                                 <constraint firstAttribute="trailing" secondItem="kbM-tZ-wYw" secondAttribute="trailing" constant="8" id="nyu-EF-uVm"/>
@@ -873,8 +873,6 @@
                                 <constraint firstAttribute="trailing" secondItem="mth-BM-zBN" secondAttribute="trailing" constant="8" id="qvA-P7-Rar"/>
                                 <constraint firstItem="kbM-tZ-wYw" firstAttribute="top" secondItem="MaK-QA-UkK" secondAttribute="bottom" constant="8" id="s8H-Ug-5QH"/>
                                 <constraint firstItem="suz-R5-226" firstAttribute="centerX" secondItem="YHI-dd-wyc" secondAttribute="centerX" id="tXT-mm-ibh"/>
-                                <constraint firstItem="MaK-QA-UkK" firstAttribute="top" secondItem="kfl-tF-emp" secondAttribute="bottom" constant="21" id="ty6-Hj-ufD"/>
-                                <constraint firstItem="kfl-tF-emp" firstAttribute="leading" secondItem="YHI-dd-wyc" secondAttribute="leading" constant="7" id="xO7-mR-hdP"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -924,7 +922,7 @@
                             </connections>
                         </pickerView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrk-32-ik2">
-                            <rect key="frame" x="137.5" y="147" width="45.5" height="20"/>
+                            <rect key="frame" x="137.5" y="148" width="45.5" height="20"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                             <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -947,7 +945,7 @@
                             </connections>
                         </pickerView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYj-u8-nUe">
-                            <rect key="frame" x="237" y="147" width="65.5" height="20"/>
+                            <rect key="frame" x="237" y="148" width="65.5" height="20"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                             <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -1038,6 +1036,8 @@
                 <constraint firstAttribute="trailing" secondItem="evN-6k-6Sr" secondAttribute="trailing" id="GME-mz-AeM"/>
                 <constraint firstAttribute="trailing" secondItem="YfD-qd-e4L" secondAttribute="trailing" id="GYG-mF-1yk"/>
                 <constraint firstItem="evN-6k-6Sr" firstAttribute="top" secondItem="8LJ-iO-58R" secondAttribute="bottom" id="IK3-bP-ncc"/>
+                <constraint firstAttribute="trailing" secondItem="Tbu-kc-F1i" secondAttribute="trailing" constant="8" id="Jef-FY-tYM"/>
+                <constraint firstItem="Tbu-kc-F1i" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" constant="18" id="NY6-Qz-ito"/>
                 <constraint firstItem="8LJ-iO-58R" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" id="PAq-FE-Yym"/>
                 <constraint firstAttribute="trailing" secondItem="qMu-la-jmx" secondAttribute="trailing" id="SZY-SN-Dxx"/>
                 <constraint firstItem="ivo-zm-lYc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T0d-0E-KT8"/>
@@ -1045,6 +1045,7 @@
                 <constraint firstAttribute="trailing" secondItem="B3x-Tz-icq" secondAttribute="trailing" id="Vyc-1V-LE9"/>
                 <constraint firstItem="B3x-Tz-icq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WgQ-CQ-CEq"/>
                 <constraint firstItem="qMu-la-jmx" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" id="aMQ-b0-aeU"/>
+                <constraint firstItem="Tbu-kc-F1i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="avj-G4-GtR"/>
                 <constraint firstItem="qMu-la-jmx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bWa-2k-DUg"/>
                 <constraint firstItem="evN-6k-6Sr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="doO-TO-6gU"/>
                 <constraint firstItem="8LJ-iO-58R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dq8-lN-pva"/>

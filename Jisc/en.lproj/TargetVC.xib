@@ -21,6 +21,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TargetVC" customModule="Jisc" customModuleProvider="target">
             <connections>
                 <outlet property="emptyScreenMessage" destination="7vf-Jw-phV" id="aiV-cl-08Q"/>
+                <outlet property="recurringTargetSegmentControl" destination="0XW-eD-NZN" id="aJl-AF-CbV"/>
                 <outlet property="targetsTableView" destination="Jdf-Z3-vHU" id="Hqf-qD-MBk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="viewsWithShadow" destination="Jdf-Z3-vHU" collectionClass="NSMutableArray" id="6nJ-IC-ANd"/>
@@ -49,13 +50,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hR8-as-z5R" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="40" y="31" width="27.5" height="17"/>
+                            <rect key="frame" x="40" y="30" width="30.5" height="20"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLR-IC-iLf" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="157.5" y="28" width="61.5" height="22"/>
+                            <rect key="frame" x="157" y="24" width="61" height="26"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -95,8 +96,18 @@
                         <constraint firstAttribute="trailing" secondItem="caa-b9-ZcT" secondAttribute="trailing" id="xzV-dq-IaO"/>
                     </constraints>
                 </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="0XW-eD-NZN">
+                    <rect key="frame" x="8" y="64" width="358" height="29"/>
+                    <segments>
+                        <segment title="Single"/>
+                        <segment title="Recurring"/>
+                    </segments>
+                    <connections>
+                        <action selector="recurringTargetSegmentAction:" destination="-1" eventType="valueChanged" id="iyd-Fi-xSc"/>
+                    </connections>
+                </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="108" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-Z3-vHU">
-                    <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                    <rect key="frame" x="0.0" y="100" width="375" height="607"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="cUh-0J-Znf"/>
@@ -104,10 +115,10 @@
                     </connections>
                 </tableView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vf-Jw-phV" customClass="LocalizableView" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="165.5" y="323.5" width="45.5" height="20"/>
+                    <rect key="frame" x="163.5" y="322.5" width="49" height="23.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INf-uO-2Xa" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="45.5" height="20"/>
+                            <rect key="frame" x="0.0" y="0.0" width="49" height="23.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="280" id="dlw-u1-Ao1"/>
                             </constraints>
@@ -133,13 +144,16 @@
             </subviews>
             <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="0XW-eD-NZN" firstAttribute="top" secondItem="Te2-ao-IqD" secondAttribute="bottom" constant="4" id="1fm-qJ-h77"/>
                 <constraint firstItem="7vf-Jw-phV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1sQ-8M-fUG"/>
-                <constraint firstItem="Jdf-Z3-vHU" firstAttribute="top" secondItem="Te2-ao-IqD" secondAttribute="bottom" id="41E-kq-YIv"/>
+                <constraint firstItem="Jdf-Z3-vHU" firstAttribute="top" secondItem="Te2-ao-IqD" secondAttribute="bottom" constant="40" id="41E-kq-YIv"/>
                 <constraint firstAttribute="trailing" secondItem="Te2-ao-IqD" secondAttribute="trailing" id="7L3-vg-U1C"/>
-                <constraint firstAttribute="bottom" secondItem="Jdf-Z3-vHU" secondAttribute="bottom" id="AWf-O1-9ul"/>
+                <constraint firstItem="0XW-eD-NZN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="AIK-Su-jpn"/>
+                <constraint firstAttribute="bottom" secondItem="Jdf-Z3-vHU" secondAttribute="bottom" constant="-40" id="AWf-O1-9ul"/>
                 <constraint firstAttribute="trailing" secondItem="Jdf-Z3-vHU" secondAttribute="trailing" id="MSS-k7-E8Y"/>
                 <constraint firstItem="Te2-ao-IqD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="R0j-Rr-vki"/>
                 <constraint firstItem="Te2-ao-IqD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hG4-PN-l0T"/>
+                <constraint firstItem="0XW-eD-NZN" firstAttribute="centerX" secondItem="Te2-ao-IqD" secondAttribute="centerX" id="lJP-6V-gfH"/>
                 <constraint firstItem="7vf-Jw-phV" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="yhe-Wp-cSk"/>
                 <constraint firstItem="Jdf-Z3-vHU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zw2-iZ-IvP"/>
             </constraints>

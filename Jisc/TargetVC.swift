@@ -16,6 +16,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	var aCellIsOpen:Bool = false
 	@IBOutlet weak var emptyScreenMessage:UIView!
 	
+    @IBOutlet weak var recurringTargetSegmentControl: UISegmentedControl!
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		targetsTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
@@ -53,6 +54,18 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 			navigationController?.pushViewController(vc, animated: true)
 		}
 	}
+    
+    @IBAction func recurringTargetSegmentAction(_ sender: Any) {
+        if (recurringTargetSegmentControl.selectedSegmentIndex == 0){
+            let vc = SingleTargetVC()
+            navigationController?.pushViewController(vc, animated: false)
+
+        } else {
+            let vc = TargetVC()
+            navigationController?.pushViewController(vc, animated: false)
+        }
+        
+    }
 	
 	//MARK: UITableView Datasource
 	
