@@ -472,13 +472,53 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
-
+                print("OMG AHMED THIS IS THE TEST URL I USED", testUrl)
+                print("OMG AHMED RESPONSE", response!)
             }
             //startConnectionWithRequest(request)
         } else {
             completionBlock?(false, nil, nil, "Error creating the url request")
         }
     }
+    func postRequest(testUrl:String, body:String) -> Bool{
+        var request:URLRequest?
+        var somethingWentWrong = false
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                print("Ahmed this is the token", token)
+                request.addValue("\(token)", forHTTPHeaderField: "Authorization")
+                request.httpMethod = "POST"
+                
+                request.httpBody = body.data(using: .utf8)
+            }
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                    print("error=\(error!)")
+                    somethingWentWrong = true
+                    return 
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response!)")
+                    somethingWentWrong = true
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(responseString!)")
+                somethingWentWrong = false
+            }
+        
+            task.resume()
+        }
+        return somethingWentWrong
+    }
+    
     func settingsCall(testUrl:String){
         var request:URLRequest?
         var returnedString:String = ""

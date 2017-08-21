@@ -14,8 +14,16 @@ class PrivacyWebViewVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")
-        let requestObj = URLRequest(url: url!)
+        let language = getAppLanguage()
+        var url:URL
+        
+        if (language.rawValue==0){ //This checks if the language is English
+            url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")!
+        } else { //This checks if the language is Welsh
+             url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")!
+        }
+
+        let requestObj = URLRequest(url: url)
         webView.loadRequest(requestObj)
     }
 

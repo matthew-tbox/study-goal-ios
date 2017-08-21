@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800B167C1F46F39C0000D633 /* SingleTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B167A1F46F39C0000D633 /* SingleTargetVC.swift */; };
+		800B167D1F46F39C0000D633 /* SingleTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800B167B1F46F39C0000D633 /* SingleTargetVC.xib */; };
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
+		8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */; };
+		8014B5F11F44BCD6001BF4E4 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */; };
+		804FD3001F3B68E4002FEDDB /* RecurringTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */; };
 		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
@@ -283,7 +288,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		800B167A1F46F39C0000D633 /* SingleTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTargetVC.swift; sourceTree = "<group>"; };
+		800B167B1F46F39C0000D633 /* SingleTargetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleTargetVC.xib; sourceTree = "<group>"; };
 		800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_attendance_high_chart.html; sourceTree = "<group>"; };
+		8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
+		804FD2FF1F3B68E4002FEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RecurringTargetVC.xib; sourceTree = "<group>"; };
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
@@ -756,6 +766,8 @@
 				DA4085B91EE6EAA10012A561 /* StatsMenuButton.xib */,
 				DA76411C1BD7BE4000A7D5C1 /* AlertView.swift */,
 				DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */,
+				8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */,
+				8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */,
 				DAD644CA1C6227C800AA62E8 /* Localizable.strings */,
 				DA425AAF1BD4F5C400C77D76 /* AppObjects */,
 				DA7F1D271BD8CFB5004EA957 /* Utilities */,
@@ -1086,6 +1098,8 @@
 		DAD1D7F11C50F040005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
+				804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */,
+				800B167B1F46F39C0000D633 /* SingleTargetVC.xib */,
 				DAB0C8631C4CEA8900F7A3C6 /* TargetVC.xib */,
 				DAB0C86F1C4CEAAF00F7A3C6 /* NewTargetVC.xib */,
 			);
@@ -1096,6 +1110,7 @@
 			isa = PBXGroup;
 			children = (
 				DAA2AEFC1BCE85E600ED796A /* TargetVC.swift */,
+				800B167A1F46F39C0000D633 /* SingleTargetVC.swift */,
 				DA6CFB061BE11A85004A5FB0 /* TargetCell.swift */,
 				DA6CFB071BE11A85004A5FB0 /* TargetCell.xib */,
 				DA6CFB021BE119EA004A5FB0 /* NewTargetVC.swift */,
@@ -1389,6 +1404,7 @@
 				DAD66C9C1C52745500074B79 /* LoginVC~ipad-OLD.xib in Resources */,
 				DD6518421F22030A00003916 /* PrivacyWebViewVC.xib in Resources */,
 				DAB0C8551C4CEA6600F7A3C6 /* ActivityDetailsVC.xib in Resources */,
+				8014B5F11F44BCD6001BF4E4 /* TermsViewController.xib in Resources */,
 				DA593A661C479E9B00C68513 /* ActivityTypesIcons.xcassets in Resources */,
 				DA593ECC1E97A2BD00B54909 /* LineChartHTMLSimple in Resources */,
 				DAD66C6F1C52336400074B79 /* TrophiesSilverBig.xcassets in Resources */,
@@ -1401,6 +1417,7 @@
 				DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */,
 				DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */,
 				DAB0C83D1C4CEA1600F7A3C6 /* LogActivityVC.xib in Resources */,
+				800B167D1F46F39C0000D633 /* SingleTargetVC.xib in Resources */,
 				DA1996731EE818BF007524E1 /* PointsCell.xib in Resources */,
 				DAB0C85B1C4CEA7700F7A3C6 /* ActivityDetailsVC~ipad.xib in Resources */,
 				DAB0C86D1C4CEAAF00F7A3C6 /* NewTargetVC.xib in Resources */,
@@ -1418,6 +1435,7 @@
 				DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */,
 				DA3F7B871C996B9B00E15678 /* ConsentVC.xib in Resources */,
 				DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */,
+				804FD3001F3B68E4002FEDDB /* RecurringTargetVC.xib in Resources */,
 				DABB0CC51C59FED5001A291D /* SingleTargetDetailsView.xib in Resources */,
 				DAC32E151BCFE1A000C4FBF5 /* ItemTypeCell.xib in Resources */,
 				800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */,
@@ -1588,6 +1606,7 @@
 				DAAB37E71BDA63D800D56BDE /* GraphGenerator.swift in Sources */,
 				DA46D97A1BF2482400AA1476 /* Institution+CoreDataProperties.swift in Sources */,
 				DABB7C0F1C045E2900180749 /* SharingManager.swift in Sources */,
+				800B167C1F46F39C0000D633 /* SingleTargetVC.swift in Sources */,
 				DA0BDBF51E8521E900166E16 /* LoginVC.swift in Sources */,
 				DADF81C11BD646C800332F00 /* ActivityDetailsVC.swift in Sources */,
 				DA366D311BDE6C7900EC555E /* FoundStudentCell.swift in Sources */,
@@ -1620,6 +1639,7 @@
 				DA46D97D1BF2482400AA1476 /* ActivityLog+CoreDataProperties.swift in Sources */,
 				DAB0C8E91C4D20DF00F7A3C6 /* NSBundle+Localization.m in Sources */,
 				DA593EC61E979B0B00B54909 /* ChartHTMLManager.swift in Sources */,
+				8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */,
 				DAD644E01C623FFD00AA62E8 /* LocalizableView.swift in Sources */,
 				DA425AB51BD5116D00C77D76 /* LoginVC-OLD.swift in Sources */,
 				DAD4C8241BF4E78E001C4435 /* Colleague.swift in Sources */,
@@ -1660,6 +1680,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				804FD2FF1F3B68E4002FEDDB /* en */,
+			);
+			name = RecurringTargetVC.xib;
+			sourceTree = "<group>";
+		};
 		DAB0C7C11C4CE82500F7A3C6 /* LoginVC-OLD.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

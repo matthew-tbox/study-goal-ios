@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="StagSans-Book-App.ttf">
+            <string>StagSansApp-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingleTargetVC" customModule="Jisc" customModuleProvider="target">
+            <connections>
+                <outlet property="singleTargetSegmentControl" destination="GoO-xb-MW1" id="lBP-96-tTd"/>
+                <outlet property="singleTargetTableView" destination="WFI-v4-wOs" id="fHA-N3-bX8"/>
+                <outlet property="view" destination="VWH-Gg-51O" id="RgE-jo-nU1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="VWH-Gg-51O">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwk-RC-SQ9">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="SNa-Cn-IsF">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLr-1f-SHw">
+                            <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Tj0-nU-4Et"/>
+                            </constraints>
+                            <state key="normal" image="openMenuButton"/>
+                            <connections>
+                                <action selector="openMenuAction:" destination="-1" eventType="touchUpInside" id="qtb-CX-y0e"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1P-li-ilk" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="40" y="31.5" width="27.5" height="17"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdQ-rp-css" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="157" y="28" width="61" height="22"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="target"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mrl-cl-mJ2">
+                            <rect key="frame" x="335" y="20" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="pvt-T9-LdE"/>
+                                <constraint firstAttribute="height" constant="40" id="upE-8s-ppR"/>
+                            </constraints>
+                            <state key="normal" image="addButton"/>
+                            <connections>
+                                <action selector="newTargetAction:" destination="-1" eventType="touchUpInside" id="rtl-uV-cXC"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="jLr-1f-SHw" firstAttribute="width" secondItem="jLr-1f-SHw" secondAttribute="height" multiplier="1:1" id="AbN-zN-dYc"/>
+                        <constraint firstItem="SNa-Cn-IsF" firstAttribute="top" secondItem="vwk-RC-SQ9" secondAttribute="top" id="HjM-Ar-xCs"/>
+                        <constraint firstItem="SNa-Cn-IsF" firstAttribute="leading" secondItem="vwk-RC-SQ9" secondAttribute="leading" id="JIL-ca-zc0"/>
+                        <constraint firstAttribute="trailing" secondItem="SNa-Cn-IsF" secondAttribute="trailing" id="KdR-n9-S99"/>
+                        <constraint firstItem="jLr-1f-SHw" firstAttribute="top" secondItem="vwk-RC-SQ9" secondAttribute="top" constant="20" id="LvG-PJ-iku"/>
+                        <constraint firstItem="jLr-1f-SHw" firstAttribute="centerY" secondItem="c1P-li-ilk" secondAttribute="centerY" id="MLR-ix-lIy"/>
+                        <constraint firstItem="c1P-li-ilk" firstAttribute="leading" secondItem="jLr-1f-SHw" secondAttribute="trailing" id="NO0-D2-K4Z"/>
+                        <constraint firstItem="mrl-cl-mJ2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZdQ-rp-css" secondAttribute="trailing" constant="5" id="SQi-Ue-CoR"/>
+                        <constraint firstAttribute="trailing" secondItem="mrl-cl-mJ2" secondAttribute="trailing" id="Tu4-N8-6lQ"/>
+                        <constraint firstItem="ZdQ-rp-css" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c1P-li-ilk" secondAttribute="trailing" constant="5" id="bHM-vr-27I"/>
+                        <constraint firstAttribute="bottom" secondItem="mrl-cl-mJ2" secondAttribute="bottom" id="bJG-U3-jIv"/>
+                        <constraint firstAttribute="height" constant="60" id="ccB-Re-1mq"/>
+                        <constraint firstAttribute="bottom" secondItem="SNa-Cn-IsF" secondAttribute="bottom" id="dGK-cj-Uo5"/>
+                        <constraint firstItem="ZdQ-rp-css" firstAttribute="centerX" secondItem="vwk-RC-SQ9" secondAttribute="centerX" id="dNQ-SH-FVh"/>
+                        <constraint firstAttribute="bottom" secondItem="ZdQ-rp-css" secondAttribute="bottom" constant="10" id="f5Q-y2-XsF"/>
+                        <constraint firstItem="jLr-1f-SHw" firstAttribute="leading" secondItem="vwk-RC-SQ9" secondAttribute="leading" id="oo8-dw-tLh"/>
+                    </constraints>
+                </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GoO-xb-MW1">
+                    <rect key="frame" x="8" y="64" width="358" height="29"/>
+                    <segments>
+                        <segment title="Single"/>
+                        <segment title="Recurring"/>
+                    </segments>
+                    <connections>
+                        <action selector="singelTargetSegmentAction:" destination="-1" eventType="valueChanged" id="raY-Gk-mit"/>
+                    </connections>
+                </segmentedControl>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="108" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WFI-v4-wOs">
+                    <rect key="frame" x="0.0" y="100" width="375" height="607"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Udy-Gj-VmL"/>
+                        <outlet property="delegate" destination="-1" id="5Ud-Bi-xNL"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="WFI-v4-wOs" firstAttribute="leading" secondItem="VWH-Gg-51O" secondAttribute="leading" id="0z0-zc-xUb"/>
+                <constraint firstItem="GoO-xb-MW1" firstAttribute="leading" secondItem="VWH-Gg-51O" secondAttribute="leading" constant="8" id="6PQ-Td-NQK"/>
+                <constraint firstItem="vwk-RC-SQ9" firstAttribute="leading" secondItem="VWH-Gg-51O" secondAttribute="leading" id="9WB-V2-dbc"/>
+                <constraint firstItem="vwk-RC-SQ9" firstAttribute="top" secondItem="VWH-Gg-51O" secondAttribute="top" id="FLl-dG-s3V"/>
+                <constraint firstItem="GoO-xb-MW1" firstAttribute="centerX" secondItem="vwk-RC-SQ9" secondAttribute="centerX" id="FNZ-W3-8Ec"/>
+                <constraint firstItem="GoO-xb-MW1" firstAttribute="top" secondItem="vwk-RC-SQ9" secondAttribute="bottom" constant="4" id="Lez-Mz-08V"/>
+                <constraint firstAttribute="trailing" secondItem="vwk-RC-SQ9" secondAttribute="trailing" id="QOW-gx-3EY"/>
+                <constraint firstItem="WFI-v4-wOs" firstAttribute="top" secondItem="vwk-RC-SQ9" secondAttribute="bottom" constant="40" id="eHY-Y7-9hM"/>
+                <constraint firstAttribute="trailing" secondItem="WFI-v4-wOs" secondAttribute="trailing" id="jVQ-w9-jwr"/>
+                <constraint firstAttribute="bottom" secondItem="WFI-v4-wOs" secondAttribute="bottom" constant="-40" id="oVS-zQ-fbg"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <point key="canvasLocation" x="361" y="115"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="addButton" width="23" height="23"/>
+        <image name="lightBlue" width="10" height="10"/>
+        <image name="openMenuButton" width="22" height="22"/>
+    </resources>
+</document>

@@ -351,7 +351,9 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 						dataManager.currentStudent?.institution = institution
 					}
 					RunLoop.current.add(runningActivititesTimer, forMode: RunLoopMode.commonModes)
-					DELEGATE.menuView = MenuView.createView()
+                    let vc = TermsViewController()
+                    self.present(vc, animated: true, completion: nil)
+					//DELEGATE.menuView = MenuView.createView()
 				} else {
 					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 				}

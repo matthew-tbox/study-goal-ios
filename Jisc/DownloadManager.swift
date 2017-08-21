@@ -40,6 +40,7 @@ let viewActivityLogPath = "fn_view_activity_log"
 let deleteActivityLogPath = "fn_delete_activity_log"
 let getTargetsPath = "fn_get_targets"
 let addTargetPath = "fn_add_target"
+let addTodoTask = "fn_add_todo_task"
 let editTargetPath = "fn_edit_target"
 let viewTargetDetailsPath = "fn_view_target"
 let deleteTargetPath = "fn_delete_target"
@@ -481,7 +482,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 	}
 	
 	func startConnectionWithRequest(_ request:NSURLRequest?) {
-		if let request = request as? URLRequest {
+		if let request = request as URLRequest? {
 			startConnectionWithURLRequest(request)
 		} else {
 			completionBlock?(false, nil, nil, "Error creating the url request")
@@ -1001,7 +1002,26 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			startConnectionWithRequest(createPostRequest(addTargetPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
 	}
-	
+    func addTodoTask(_ myID:String, target:Target, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
+        if currentUserType() == .demo {
+            completion(false, nil, nil, localized("demo_mode_add_target"))
+        } else {
+            shouldNotifyAboutInternetConnection = alertAboutInternet
+            completionBlock = completion
+            var dictionary = target.dictionaryRepresentation()
+            dictionary["student_id"] = myID
+            var language = "en"
+            if let newLanguage = BundleLocalization.sharedInstance().language {
+                language = newLanguage
+            }
+            dictionary["language"] = language
+            if currentUserType() == .social {
+                dictionary["is_social"] = "yes"
+            }
+            startConnectionWithRequest(createPostRequest("fn_add_todo_task", bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
+        }
+    }
+
 	func editTarget(_ target:Target, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
 		if currentUserType() == .demo {
 			completion(false, nil, nil, localized("demo_mode_edit_target"))
