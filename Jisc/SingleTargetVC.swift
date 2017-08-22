@@ -19,7 +19,8 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        singleTargetTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
+        singleTargetTableView.register(UINib(nibName: kSingleTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kSingleTargetCellIdentifier)
+        singleTargetSegmentControl.selectedSegmentIndex = 0
         singleTargetTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
         singleTargetTableView.delegate = self
         singleTargetTableView.dataSource = self
@@ -84,8 +85,6 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
                             for item in json {
                                 let object = item as? [String:Any]
                                 self.arrayOfResponses.append(object!)
-                                print("OMG AHMED OBJECT RETURNED!!!", object!)
-                                print("OMG AHMED END_DATE WHOOO!!", object!["end_date"]!)
                             }
                         self.singleTargetTableView.reloadData()
                     }
@@ -114,31 +113,70 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
+        let theCell = tableView.dequeueReusableCell(withIdentifier: kSingleTargetCellIdentifier) as! SingleTargetCell
         let singleDictionary = arrayOfResponses[indexPath.row] 
         let describe = singleDictionary["description"] as! String
         let endDate = singleDictionary["end_date"] as! String
         let module = singleDictionary["module"] as! String
         let reason = singleDictionary["reason"] as! String
         
+        let todaysDateObject = Date()
+        
+        //The date formatter of the incoming JSON date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "y-MM-dd"
         dateFormatter.locale = Locale.init(identifier: "en_GB")
-        
+        //Formatting the date to something like Monday August 21, 2017
         let dateObj = dateFormatter.date(from: endDate)
         dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
         let finalDate = dateFormatter.string(from: dateObj!)
-        //print("Dateobj: \(dateFormatter.string(from: dateObj!))")
+        
+        //Setting up some variables to compare today's date with the date incoming from the JSON and
+        //how long ago it was
+        let calendar = Calendar.current
+        // Replace the hour (time) of both dates with 00:00 for a fair full day comparision.
+        let date1 = calendar.startOfDay(for: todaysDateObject)
+        let date2 = calendar.startOfDay(for: dateObj!)
+        
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        let numberOfDaysAgo = components.day
         
         var finalText = ""
+        //Checks to see if the module, reason sections are empty and returning the appropriate date.
         if (module.isEmpty){
-            finalText = "\(describe) by \(finalDate) because \(reason)"
+            if (Calendar.current.isDateInTomorrow(dateObj!)){
+                finalText = "\(describe) by tomorrow because \(reason)"
+            } else if (Calendar.current.isDateInToday(dateObj!)){
+                finalText = "\(describe) by end of today because \(reason)"
+            } else if (numberOfDaysAgo! < 0){
+                finalText = "\(numberOfDaysAgo! * -1) days OVERDUE \(describe) because \(reason)"
+                
+            } else {
+                finalText = "\(describe) by \(finalDate) because \(reason)"
+            }
         } else if (reason.isEmpty){
-            finalText = "\(describe) for \(module) by \(finalDate)"
+            if (Calendar.current.isDateInTomorrow(dateObj!)){
+                finalText = "\(describe) for \(module) by tomorrow"
+            } else if (Calendar.current.isDateInToday(dateObj!)){
+                finalText = "\(describe) for \(module) by end of today because"
+            } else if (numberOfDaysAgo! < 0 ){
+                finalText = "\(numberOfDaysAgo! * -1) days OVERDUE \(describe) for \(module)"
+            } else {
+                finalText = "\(describe) for \(module) by \(finalDate)"
+            }
         } else {
-            finalText = "\(describe) by \(finalDate) because \(reason)"
+            if (Calendar.current.isDateInTomorrow(dateObj!)){
+                finalText = "\(describe) by tomorrow because \(reason)"
+            } else if (Calendar.current.isDateInToday(dateObj!)){
+                finalText = "\(describe) by end of today because \(reason)"
+            } else if (numberOfDaysAgo! < 0){
+                finalText = "\(numberOfDaysAgo! * -1) days OVERDUE \(describe) because \(reason)"
+            } else {
+                finalText = "\(describe) by \(finalDate) because \(reason)"
+            }
         }
-        
+
+
         //theCell.textLabel?.adjustsFontSizeToFitWidth = true
         theCell.textLabel?.numberOfLines = 6
         theCell.completionColorView.isHidden = true
