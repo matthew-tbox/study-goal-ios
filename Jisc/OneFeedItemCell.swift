@@ -15,7 +15,10 @@ class OneFeedItemCell: LocalizableCell {
     
     weak var navigationController:UINavigationController?
     weak var tableView:UITableView?
-    
+    var panStartPoint:CGPoint = CGPoint.zero
+    var optionsState:kOptionsState = .closed
+    @IBOutlet weak var contentTrailingConstraint:NSLayoutConstraint!
+    @IBOutlet weak var optionsButtonsView:UIView!
     @IBOutlet weak var userImage:UIImageDownload!
     @IBOutlet weak var contentText:UILabel!
     @IBOutlet weak var timeStamp:UILabel!
@@ -28,11 +31,19 @@ class OneFeedItemCell: LocalizableCell {
     @IBOutlet weak var hideFriendButton:UIButton!
     @IBOutlet weak var deleteFriendButton:UIButton!
     var theFeed:Feed?
+    weak var parent:FeedVC?
+
     @IBOutlet var buttonsWithLargeTitles:[BigTitleButton] = []
     @IBOutlet weak var cellBG:UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(OneFeedItemCell.panAction(_:)))
+        panGesture.delegate = self
+        self.addGestureRecognizer(panGesture)
+        NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(OneFeedItemCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
         if (screenWidth == .small) {
             hidePostButton.titleLabel?.font = myriadProRegular(13)
             hideFriendButton.titleLabel?.font = myriadProRegular(13)
@@ -49,6 +60,23 @@ class OneFeedItemCell: LocalizableCell {
             }
         }
     }
+    func anotherCellOpenedOptions(_ notification:Notification) {
+        let senderCell = notification.object as? OneFeedItemCell
+        if (senderCell != nil) {
+            if (self != senderCell!) {
+                closeCellOptions()
+            }
+        }
+    }
+    
+    func changeSelectedStyleOn() {
+        selectionStyle = .gray
+    }
+    
+    func changeSelectedStyleOff() {
+        selectionStyle = .none
+    }
+
     
     func changeFontSizeToFit(_ button:BigTitleButton) {
         if (button.titleLabel != nil) {
@@ -88,9 +116,9 @@ class OneFeedItemCell: LocalizableCell {
     func loadFeedPost(_ feed:Feed) {
         theFeed = feed
         if feed.activityType == "temp_push_notification" {
-            cellBG.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            self.contentView.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         } else {
-            cellBG.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
+            self.contentView.backgroundColor = UIColor(red: 251.0/255.0, green: 251.0/255.0, blue: 251.0/255.0, alpha: 1.0)
         }
         if (feed.isMine()) {
             shareButton.alpha = 1.0
@@ -110,15 +138,17 @@ class OneFeedItemCell: LocalizableCell {
             }
         }
         let attributedText = NSMutableAttributedString(string: feed.message)
-        attributedText.addAttribute(NSFontAttributeName, value: myriadProRegular(14)!, range: NSMakeRange(0, feed.message.characters.count))
+        attributedText.addAttribute(NSFontAttributeName, value: myriadProRegular(18
+            )!, range: NSMakeRange(0, feed.message.characters.count))
         if (feed.isMine()) {
-            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGray, range: NSMakeRange(0, feed.message.characters.count))
+            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 136.0/255.0, green: 99.0/255.0, blue: 199.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
         } else {
             //			attributedText.addAttribute(NSForegroundColorAttributeName, value: lilacColor, range: NSMakeRange(0, 8))
             //			attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGrayColor(), range: NSMakeRange(8, text.characters.count - 8))
-            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGray, range: NSMakeRange(0, feed.message.characters.count))
+            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 136.0/255.0, green: 99.0/255.0, blue: 199.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
         }
         contentText.attributedText = attributedText
+        
         let seconds = abs(feed.createdDate.timeIntervalSinceNow)
         var timeStampText = ""
         if (seconds < 60) {
@@ -140,7 +170,15 @@ class OneFeedItemCell: LocalizableCell {
     }
     
     @IBAction func share(_ sender:UIButton) {
-        showShareButtons()
+        let activityViewController = UIActivityViewController(activityItems: [theFeed!.shareText() as NSString], applicationActivities: nil)
+        
+        activityViewController.popoverPresentationController?.sourceView = sender
+        activityViewController.popoverPresentationController?.sourceRect = sender.frame
+        
+
+        navigationController?.present(activityViewController, animated: true, completion: nil)
+        
+
     }
     
     func showShareButtons() {
@@ -251,7 +289,40 @@ class OneFeedItemCell: LocalizableCell {
             AlertView.showAlert(false, message: kDefaultFailureReason, completion: nil)
         }
     }
-    
+    @IBAction func deleteTarget(_ sender:UIButton) {
+        let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_message"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: localized("yes"), style: .destructive, handler: { (action) in
+            DownloadManager().deleteFeed((self.theFeed?.id)!, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
+                if success {
+                    dataManager.getStudentFeeds({ (success, error) in
+                        self.tableView?.reloadData()
+                        NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
+                        self.parent?.aCellIsOpen = false
+                        self.optionsState = .closed
+                        self.closeCellOptions()
+
+                    })
+                } else {
+                    var failureReason = kDefaultFailureReason
+                    if (error != nil) {
+                        failureReason = error!
+                    }
+                    self.tableView?.reloadData()
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
+                    self.parent?.aCellIsOpen = false
+                    self.optionsState = .closed
+                    AlertView.showAlert(false, message: failureReason, completion: nil)
+                    self.closeCellOptions()
+
+                }
+            })
+        }))
+        alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+        
+        
+   }
+
     @IBAction func deleteFriend(_ sender:UIButton) {
         hideOptions()
         if (theFeed != nil) {
@@ -276,4 +347,71 @@ class OneFeedItemCell: LocalizableCell {
             AlertView.showAlert(false, message: kDefaultFailureReason, completion: nil)
         }
     }
+    
+    
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        var shouldBegin = true
+        let panGesture = gestureRecognizer as? UIPanGestureRecognizer
+        if (panGesture != nil) {
+            let horizontalVelocity = abs(panGesture!.velocity(in: self).x)
+            let verticalVelocity = abs(panGesture!.velocity(in: self).y)
+            if (verticalVelocity > horizontalVelocity) {
+                shouldBegin = false
+            }
+        }
+        return shouldBegin
+    }
+    
+    func panAction(_ sender:UIPanGestureRecognizer) {
+        switch (sender.state) {
+        case .began:
+            panStartPoint = sender.location(in: self)
+            optionsButtonsView.alpha = 1.0
+        case .ended:
+            let velocity = sender.velocity(in: self).x
+            if (velocity < 0) {
+                openCellOptions()
+            } else {
+                closeCellOptions()
+            }
+        case .changed:
+            let currentPoint = sender.location(in: self)
+            var difference = panStartPoint.x - currentPoint.x
+            if (optionsState == .open) {
+                difference += kButtonsWidth
+            }
+            if (difference < 0.0) {
+                difference = 0.0
+            } else if (difference > kButtonsWidth) {
+                difference = kButtonsWidth
+            }
+            contentTrailingConstraint.constant = difference
+            layoutIfNeeded()
+        default:break
+        }
+    }
+    
+    func openCellOptions() {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherActivityCellOpenedOptions), object: self)
+        optionsState = .open
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+            self.contentTrailingConstraint.constant = kButtonsWidth
+            self.layoutIfNeeded()
+        }, completion: { (done) -> Void in
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOff), object: nil)
+            self.parent?.aCellIsOpen = true
+        })
+    }
+    
+    func closeCellOptions() {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeActivityCellSelectedStyleOn), object: nil)
+        parent?.aCellIsOpen = false
+        optionsState = .closed
+        UIView.animate(withDuration: 0.25, animations: { () -> Void in
+            self.contentTrailingConstraint.constant = 0.0
+            self.layoutIfNeeded()
+            self.optionsButtonsView.alpha = 0.0
+        }) 
+    }
+
 }

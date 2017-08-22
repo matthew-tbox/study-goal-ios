@@ -168,7 +168,6 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mPy-3c-uNU" firstAttribute="leading" secondItem="uhI-SJ-IaT" secondAttribute="leading" id="7q7-K5-zEi"/>
                             <constraint firstAttribute="bottom" secondItem="mPy-3c-uNU" secondAttribute="bottom" id="YgO-Nh-nwc"/>

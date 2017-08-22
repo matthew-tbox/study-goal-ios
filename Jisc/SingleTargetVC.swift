@@ -15,6 +15,8 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var singleTargetTableView: UITableView!
     var aSingleCellIsOpen:Bool = false
     var arrayOfResponses: [[String:Any]] = []
+    var arrayOfResponses2: [[String:Any]] = []
+
     @IBOutlet weak var singleTargetSegmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
@@ -82,10 +84,26 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                        print("sams json \(json)");
+                        
                             for item in json {
                                 let object = item as? [String:Any]
-                                self.arrayOfResponses.append(object!)
+                                let singleDictionary = object
+                                let status = singleDictionary?["from_tutor"] as! String
+                                let status2 = singleDictionary?["is_accepted"] as! String
+                                if(status == "yes" && status2 == "0"){
+                                    self.arrayOfResponses2.append(object!)
+                                } else {
+                                    self.arrayOfResponses.append(object!)
+                                }
+                                print("it works \(status)");
+                                
+
                             }
+                        for item in self.arrayOfResponses2{
+                            self.arrayOfResponses.insert(item, at: 0)
+                        }
+                        
                         self.singleTargetTableView.reloadData()
                     }
                 } catch {
@@ -119,7 +137,14 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
         let endDate = singleDictionary["end_date"] as! String
         let module = singleDictionary["module"] as! String
         let reason = singleDictionary["reason"] as! String
-        
+        let status = singleDictionary["from_tutor"] as! String
+        let status2 = singleDictionary["is_accepted"] as! String
+        if(status == "yes" && status2 == "0"){
+            theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            
+        } else {
+            
+        }
         let todaysDateObject = Date()
         
         //The date formatter of the incoming JSON date
@@ -192,7 +217,16 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 108.0
+        let singleDictionary = arrayOfResponses[indexPath.row]
+        let status = singleDictionary["status"] as! String
+        if (status == "0"){
+            return 108.0
+
+        } else {
+            return 0.0
+            
+        }
+
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -215,6 +249,30 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
 //            navigationController?.pushViewController(vc, animated: true)
 //            
 //        }
+        let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
+          
+        }))
+        alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in
+            let alert2 = UIAlertController(title: "", message: "Please give a reason for rejecting this target", preferredStyle: .alert)
+            alert2.addTextField { (textField) in
+                textField.placeholder = "Description"
+            }
+            alert2.addAction(UIAlertAction(title: localized("ok"), style: .default, handler: { (action) in
+                if let field = alert2.textFields?[0] {
+                    // store your data
+                  print("\(field.text)")
+                    
+                } else {
+                    
+                    // user did not fill field
+                }
+            }))
+            self.navigationController?.present(alert2, animated: true, completion: nil)
+        
+        }))
+        self.navigationController?.present(alert, animated: true, completion: nil)
+
     }
 
 }

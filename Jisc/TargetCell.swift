@@ -108,7 +108,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			}
 		}
 	}
-	
 	@IBAction func deleteTarget(_ sender:UIButton) {
 		if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_deletetarget"), preferredStyle: .alert)
@@ -175,6 +174,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			}, completion: { (done) -> Void in
 				NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeTargetCellSelectedStyleOff), object: nil)
 				self.parent?.aCellIsOpen = true
+                print("opening cell here")
 		}) 
 	}
 	

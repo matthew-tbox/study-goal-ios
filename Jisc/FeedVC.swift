@@ -22,6 +22,8 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	@IBOutlet weak var newPostTextView:UITextView!
 	@IBOutlet weak var toolbarBottomSpace:NSLayoutConstraint!
 	var refreshTimer:Timer?
+    var aCellIsOpen:Bool = false
+
 	@IBOutlet weak var emptyScreenMessage:UIView!
 	@IBOutlet weak var peopleButton:UIButton!
 
@@ -164,7 +166,7 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	//MARK: UITableView Delegate
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 126.0
+		return 108.0
 	}
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -199,10 +201,36 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 				})
 			}
 		}
+        if (aCellIsOpen) {
+            tableView.reloadData()
+        } else {
+          
+        }
 	}
 	
-
-	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func deleteThis(indexPath: IndexPath){
+        print("attempting delete");
+        let alert = UIAlertController(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_message"), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: localized("yes"), style: .destructive, handler: { (action) in
+            let feed = dataManager.myFeeds()[indexPath.row]
+            DownloadManager().deleteFeed(feed.id, myID: dataManager.currentStudent!.id, alertAboutInternet: true, completion: { (success, dictionary, array, error) in
+                if success {
+                    dataManager.getStudentFeeds({ (success, error) in
+                        self.feedsTableView.reloadData()
+                    })
+                } else {
+                    var failureReason = kDefaultFailureReason
+                    if (error != nil) {
+                        failureReason = error!
+                    }
+                    AlertView.showAlert(false, message: failureReason, completion: nil)
+                }
+            })
+        }))
+        alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+    }
+/*	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
 		var style = UITableViewCellEditingStyle.none
 		if dataManager.myFeeds()[indexPath.row].isMine() {
 			style = .delete
@@ -232,7 +260,7 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 			alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
 		}
-	}
+	}*/
 	
 	//MARK: UITextView Delegate
 	
