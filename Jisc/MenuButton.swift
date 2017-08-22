@@ -152,7 +152,7 @@ class StatsMenuButton: MenuButton {
 		expanded = true
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-			self.buttonsHeight.constant = 40 * 4 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
+			self.buttonsHeight.constant = 40 * 6//This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
 			self.parent?.layoutIfNeeded()
 		}
         let defaults = UserDefaults.standard
@@ -161,8 +161,8 @@ class StatsMenuButton: MenuButton {
         //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
 
         if (result.range(of: "false") == nil){
-            attendanceButton.alpha = 1.0
-            eventsAttendedButton.alpha = 0.0
+            attendanceButton.alpha = 0.0
+            eventsAttendedButton.alpha = 1.0
             //leaderboardsButton.alpha = 1.0
         } else {
             attendanceButton.alpha = 0.0

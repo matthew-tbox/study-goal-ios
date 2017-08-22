@@ -18,6 +18,7 @@ let xAPIGetEngagementDataPath = "v2/engagement"
 let xAPIGetModulesPath = "v2/filter"
 let xAPIGetAttainmentPath = "v2/attainment"
 let xAPIGetComparisonToTop10PercentPath = "v2/engagement"
+let xAPIGetEventsAttendedPath = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/attendance?"
 
 typealias xAPICompletionBlock = ((_ success:Bool, _ result:NSDictionary?, _ results:NSArray?, _ error:String?) -> Void)
 
@@ -65,7 +66,19 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 	func connection(_ connection: NSURLConnection, didReceive data: Data) {
 		rawData.append(data)
 	}
-	
+    func getEventsAttended(skip:Int, limit:Int, completion:@escaping xAPICompletionBlock) {
+        completionBlock = completion
+        var request:URLRequest?
+        if let url = urlWithHost(xAPIGetEventsAttendedPath, path: "skip=\(skip)&limit=\(limit)") {
+            request = URLRequest(url: url)
+        }
+        if let token = xAPIToken() {
+            request?.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            print("\(token)")
+        }
+        startConnectionWithRequest(request)
+        print()
+    }
 	func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
 		let httpResponse = response as? HTTPURLResponse;
 		if (httpResponse != nil) {

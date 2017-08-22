@@ -190,7 +190,7 @@ class SingleTargetDetailsView: LocalizableView, UIGestureRecognizerDelegate, UIP
 		super.awakeFromNib()
 		let panGesture = UIPanGestureRecognizer(target: self, action: #selector(SingleTargetDetailsView.panAction(_:)))
 		panGesture.delegate = self
-		titleView.addGestureRecognizer(panGesture)
+        self.addGestureRecognizer(panGesture)
 		contentScroll.contentInset = UIEdgeInsets.zero
 		layoutIfNeeded()
 	}

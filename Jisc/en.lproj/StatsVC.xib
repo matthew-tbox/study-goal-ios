@@ -1069,15 +1069,19 @@
                         </imageView>
                         <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dpe-sO-R6p">
                             <rect key="frame" x="15" y="62" width="345" height="535"/>
-                            <color key="backgroundColor" red="0.88338899609999999" green="0.9457687736" blue="0.99981099370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.25542534480000001" green="0.54629915449999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventAttendanceHeader" id="gcv-Dl-3hs">
                                 <rect key="frame" x="0.0" y="0.0" width="345" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="qgh-kD-Shu"/>
+                                <outlet property="delegate" destination="-1" id="YGo-0h-r9d"/>
+                            </connections>
                         </tableView>
                     </subviews>
-                    <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="CA4-CF-pH7" firstAttribute="top" secondItem="yRe-Z3-KLo" secondAttribute="top" constant="10" id="0bv-sc-qf6"/>
                         <constraint firstItem="dpe-sO-R6p" firstAttribute="top" secondItem="CA4-CF-pH7" secondAttribute="bottom" constant="10" id="8Nf-RE-9Un"/>
