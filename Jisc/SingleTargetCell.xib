@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -66,7 +66,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66z-oH-Cbh">
-                                        <rect key="frame" x="95" y="8" width="265" height="91"/>
+                                        <rect key="frame" x="95" y="8" width="383" height="91"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="edit"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="editTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YFn-jt-cLc"/>
+                                                    <action selector="editTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ro8-67-fSR"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editTargetButton" translatesAutoresizingMaskIntoConstraints="NO" id="udt-vc-YFE">
@@ -108,12 +108,14 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deleteTargetButton" translatesAutoresizingMaskIntoConstraints="NO" id="Duf-Sh-EUN">
-                                                <rect key="frame" x="-50" y="25" width="23" height="29"/>
+                                                <rect key="frame" x="-51" y="25" width="23" height="29"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJE-d5-KRz" userLabel="Mark as done">
-                                                <rect key="frame" x="2" y="3" width="99" height="104"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJE-d5-KRz" userLabel="Mark as done">
+                                                <rect key="frame" x="2" y="3" width="78" height="104"/>
                                                 <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="78" id="c1A-zU-kbj"/>
+                                                </constraints>
                                                 <state key="normal" title="Mark as done">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -125,10 +127,13 @@
                                             <constraint firstItem="bUl-HJ-azG" firstAttribute="top" secondItem="Wlu-HI-5eE" secondAttribute="top" id="MxB-vK-SAb"/>
                                             <constraint firstItem="udt-vc-YFE" firstAttribute="centerY" secondItem="Duf-Sh-EUN" secondAttribute="centerY" id="Pcv-Bb-hmz"/>
                                             <constraint firstItem="Oz1-Ny-zXz" firstAttribute="leading" secondItem="bUl-HJ-azG" secondAttribute="trailing" constant="1" id="Yui-tS-5zN"/>
+                                            <constraint firstItem="kJE-d5-KRz" firstAttribute="top" secondItem="Wlu-HI-5eE" secondAttribute="top" constant="3" id="c22-h8-IBf"/>
                                             <constraint firstAttribute="width" id="erx-DQ-smt"/>
+                                            <constraint firstItem="kJE-d5-KRz" firstAttribute="bottom" secondItem="Oz1-Ny-zXz" secondAttribute="bottom" id="gci-SN-Iw8"/>
                                             <constraint firstItem="bUl-HJ-azG" firstAttribute="leading" secondItem="Wlu-HI-5eE" secondAttribute="leading" id="jqg-Vu-Spg"/>
                                             <constraint firstAttribute="bottom" secondItem="Oz1-Ny-zXz" secondAttribute="bottom" id="koz-dJ-dkj"/>
                                             <constraint firstAttribute="bottom" secondItem="bUl-HJ-azG" secondAttribute="bottom" id="q2l-0A-b2c"/>
+                                            <constraint firstItem="kJE-d5-KRz" firstAttribute="leading" secondItem="Oz1-Ny-zXz" secondAttribute="trailing" constant="2" id="s4y-6q-Dlr"/>
                                             <constraint firstItem="Oz1-Ny-zXz" firstAttribute="top" secondItem="Wlu-HI-5eE" secondAttribute="top" id="uPg-51-sEP"/>
                                             <constraint firstItem="udt-vc-YFE" firstAttribute="centerX" secondItem="bUl-HJ-azG" secondAttribute="centerX" id="vbR-D1-6jH"/>
                                             <constraint firstItem="Duf-Sh-EUN" firstAttribute="centerX" secondItem="Oz1-Ny-zXz" secondAttribute="centerX" id="x9A-uh-Hge"/>
@@ -155,7 +160,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Wlu-HI-5eE" secondAttribute="trailing" id="JSP-dp-bX0"/>
                                     <constraint firstItem="dOL-mF-Nex" firstAttribute="leading" secondItem="mPy-3c-uNU" secondAttribute="leading" id="To0-yB-QfF"/>
                                     <constraint firstItem="Wlu-HI-5eE" firstAttribute="leading" secondItem="66z-oH-Cbh" secondAttribute="trailing" priority="750" constant="18" id="U22-aN-AhH"/>
-                                    <constraint firstItem="Wlu-HI-5eE" firstAttribute="leading" secondItem="66z-oH-Cbh" secondAttribute="trailing" constant="15" id="gjb-s1-vj0"/>
+                                    <constraint firstItem="Wlu-HI-5eE" firstAttribute="leading" secondItem="66z-oH-Cbh" secondAttribute="trailing" constant="-103" id="gjb-s1-vj0"/>
                                     <constraint firstItem="dOL-mF-Nex" firstAttribute="top" secondItem="mPy-3c-uNU" secondAttribute="top" id="qfu-5U-ZEo"/>
                                     <constraint firstAttribute="bottom" secondItem="Wlu-HI-5eE" secondAttribute="bottom" id="rpc-1p-yW3"/>
                                     <constraint firstItem="Wlu-HI-5eE" firstAttribute="top" secondItem="mPy-3c-uNU" secondAttribute="top" id="vMa-fx-wQh"/>

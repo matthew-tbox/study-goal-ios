@@ -161,8 +161,8 @@ class StatsMenuButton: MenuButton {
         //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
 
         if (result.range(of: "false") == nil){
-            attendanceButton.alpha = 1.0
-            eventsAttendedButton.alpha = 0.0
+            attendanceButton.alpha = 0.0
+            eventsAttendedButton.alpha = 1.0
             //leaderboardsButton.alpha = 1.0
         } else {
             attendanceButton.alpha = 0.0

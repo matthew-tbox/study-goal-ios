@@ -19,12 +19,12 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
     
-    @IBOutlet weak var myGoalTextField: UITextView!
-    @IBOutlet weak var recurringDatePicker: UIDatePicker!
+    @IBOutlet weak var myGoalTextField: UITextView! //H
+    @IBOutlet weak var recurringDatePicker: UIDatePicker!//H
     @IBOutlet weak var recurringBecauseTextField: UITextView!
     
-    @IBOutlet weak var moduleLabel: LocalizableLabel!
-    @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
+    @IBOutlet weak var moduleLabel: LocalizableLabel! //H
+    @IBOutlet weak var recurringSegmentControl: UISegmentedControl! // H
 	@IBOutlet weak var activityTypeButton:UIButton!
 	@IBOutlet weak var chooseActivityButton:UIButton!
 	@IBOutlet weak var intervalButton:UIButton!
@@ -32,10 +32,10 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	@IBOutlet weak var minutesPicker:UIPickerView!
 	@IBOutlet weak var closeTimePickerButton:UIButton!
 	@IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
-	@IBOutlet weak var moduleButton:UIButton!
+	@IBOutlet weak var moduleButton:UIButton! //H
 	@IBOutlet weak var contentScroll:UIScrollView!
 	@IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
-	@IBOutlet weak var noteTextView:UITextView!
+	@IBOutlet weak var noteTextView:UITextView! //H
 	@IBOutlet weak var hoursTextField:UITextField!
 	@IBOutlet weak var minutesTextField:UITextField!
 	@IBOutlet weak var toolbar:UIView!
@@ -48,7 +48,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	var selectedTimeSpan:Int = 0
 	var selectedModule:Int = 0
 	var theTarget:Target?
-	@IBOutlet weak var titleLabel:UILabel!
+	@IBOutlet weak var titleLabel:UILabel! //H
 	var isEditingTarget:Bool = false
 	@IBOutlet weak var addModuleView:UIView!
 	@IBOutlet weak var addModuleTextField:UITextField!
@@ -185,25 +185,31 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		if (changesWereMade()) {
 			UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 		} else {
-			_ = navigationController?.popViewController(animated: true)
+            _ = navigationController?.popViewController(animated: true)
+            let vc = TargetVC()
+            navigationController?.present(vc, animated: false, completion: nil)
 		}
 	}
     
     @IBAction func topSegmentControlAction(_ sender: Any) {
         if (topSegmentControl.selectedSegmentIndex == 1){
+            
             Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         } else {
+//            let vc = RecurringTargetVC()
+//            navigationController?.pushViewController(vc, animated: true)
             Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
         }
         
     }
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
-            
-            Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
+            let vc = RecurringTargetVC()
+            navigationController?.pushViewController(vc, animated: true)
+            //Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
 
         } else {
-            Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
+           // Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         }
     }
 	

@@ -10,7 +10,7 @@ import UIKit
 
 let emptySingleTargetPageMessage = localized("empty_target_page_message")
 
-class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var singleTargetTableView: UITableView!
     var aSingleCellIsOpen:Bool = false
@@ -125,7 +125,6 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
 //        } else {
 //            emptyScreenMessageView.alpha = 0.0
 //        }
-        print("OMG AHMED ARRAY COUNT IN THE HOUSE", arrayOfResponses.count)
         return arrayOfResponses.count
     }
     
@@ -200,12 +199,30 @@ class SingleTargetVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 finalText = "\(describe) by \(finalDate) because \(reason)"
             }
         }
-
+        /*
+         1. Cool is for if there are more than 7 days remaining
+         2. watch_time is for fewer than 7 days but more than 2 days before end date.
+         3. watch_time_sweet is for 1 day before (rename files btw, they’re hideously misspelt)
+         4. watch_time_panik for same day
+         5. watch_time_break for overdue
+        */
+        //Setting in the appropriate images
+        if (numberOfDaysAgo! >= 7) {
+            theCell.targetTypeIcon.image = UIImage(named: "cool")
+        } else if (numberOfDaysAgo! < 7 && numberOfDaysAgo! > 2){
+            theCell.targetTypeIcon.image = UIImage(named: "watch_time")
+        } else if (numberOfDaysAgo! == 1){
+            theCell.targetTypeIcon.image = UIImage(named: "watch_time_sweet")
+        } else if (numberOfDaysAgo! == 0){
+            theCell.targetTypeIcon.image = UIImage(named: "watch_time_panic")
+        } else {
+            theCell.targetTypeIcon.image = UIImage(named: "watch_time_break")
+        }
 
         //theCell.textLabel?.adjustsFontSizeToFitWidth = true
         theCell.textLabel?.numberOfLines = 6
         theCell.completionColorView.isHidden = true
-        theCell.targetTypeIcon.image = UIImage(named: "activity_icon_\(arc4random_uniform(17)+1)")
+        //theCell.targetTypeIcon.image = UIImage(named: "activity_icon_\(arc4random_uniform(17)+1)")
         theCell.titleLabel.text = finalText
         
 //        if (theCell == nil) {

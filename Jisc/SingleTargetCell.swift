@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kSingleButtonsWidth:CGFloat = 157.0
+let kSingleButtonsWidth:CGFloat = 236.0
 let kSingleTargetCellNibName = "SingleTargetCell"
 let kSingleTargetCellIdentifier = "SingleTargetCellIdentifier"
 let kAnotherSingleTargetCellOpenedOptions = "kAnotherSingleTargetCellOpenedOptions"
@@ -39,8 +39,8 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         panGesture.delegate = self
         addGestureRecognizer(panGesture)
         NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,7 +51,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     }
     
     func anotherCellOpenedOptions(_ notification:Notification) {
-        let senderCell = notification.object as? TargetCell
+        let senderCell = notification.object as? SingleTargetCell
         if (senderCell != nil) {
             if (self != senderCell!) {
                 closeCellOptions()
@@ -95,17 +95,27 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     }
     
     @IBAction func editTarget(_ sender:UIButton) {
+        print("Ahmed suppose to be editing now")
+        let vc = RecurringTargetVC()
+        navigationController?.pushViewController(vc, animated: true)
+        //DELEGATE.menuView?.open()
+        print("Should have pushed to newtarget Ahmed")
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
-            closeCellOptions()
-            if (indexPath != nil) {
-                let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
-                let vc = NewTargetVC(target: target)
-                navigationController?.pushViewController(vc, animated: true)
-            }
+//            print("Ahmed suppose to be editing now")
+//            let vc = SettingsVC()
+//            navigationController?.pushViewController(vc, animated: true)
+//            print("Should have pushed to newtarget Ahmed")
+           // closeCellOptions()
+//            if (indexPath != nil) {
+//            print("Ahmed suppose to be editing now")
+//////                let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
+//                let vc = TermsViewController()
+//                navigationController?.pushViewController(vc, animated: true)
+//            }
         }
     }
     
@@ -115,9 +125,9 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
-            if (indexPath != nil) {
+           // if (indexPath != nil) {
                 UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
-            }
+            //}
         }
     }
     

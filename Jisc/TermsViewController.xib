@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -70,48 +70,57 @@
                         </mask>
                     </variation>
                 </view>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTc-0Q-Oad">
-                    <rect key="frame" x="0.0" y="54" width="375" height="524"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </webView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cI-o1-t8p">
-                    <rect key="frame" x="235" y="620" width="140" height="30"/>
-                    <state key="normal" title="I don't Agree"/>
-                    <connections>
-                        <action selector="disagreeAction:" destination="-1" eventType="touchUpInside" id="29o-1D-JsU"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNE-NK-IGQ">
-                    <rect key="frame" x="23" y="620" width="140" height="30"/>
+                    <rect key="frame" x="219" y="614" width="140" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="140" id="UlI-Lw-onz"/>
                     </constraints>
-                    <state key="normal" title="I Agree"/>
+                    <state key="normal" title="I Agree" backgroundImage="purple2">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="agreeAction:" destination="-1" eventType="touchUpInside" id="kGn-kD-3Yo"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cI-o1-t8p">
+                    <rect key="frame" x="24" y="614" width="140" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="tiv-Yg-QUL"/>
+                    </constraints>
+                    <state key="normal" title="I don't Agree" backgroundImage="purple2">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="disagreeAction:" destination="-1" eventType="touchUpInside" id="29o-1D-JsU"/>
+                    </connections>
+                </button>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTc-0Q-Oad">
+                    <rect key="frame" x="0.0" y="65" width="375" height="541"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </webView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Xea-pW-b4L" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-3" id="Ahf-wh-W7c"/>
                 <constraint firstItem="Xea-pW-b4L" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="J4D-ig-dsb"/>
-                <constraint firstItem="5cI-o1-t8p" firstAttribute="leading" secondItem="VNE-NK-IGQ" secondAttribute="trailing" constant="72" id="Ndb-y0-8T6"/>
                 <constraint firstItem="KTc-0Q-Oad" firstAttribute="leading" secondItem="Xea-pW-b4L" secondAttribute="leading" id="Sge-N2-6Pa"/>
-                <constraint firstItem="VNE-NK-IGQ" firstAttribute="top" secondItem="KTc-0Q-Oad" secondAttribute="bottom" constant="42" id="Ygs-n5-eMy"/>
-                <constraint firstItem="VNE-NK-IGQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="23" id="bHE-xs-Ped"/>
+                <constraint firstItem="VNE-NK-IGQ" firstAttribute="top" secondItem="KTc-0Q-Oad" secondAttribute="bottom" constant="8" id="Ygs-n5-eMy"/>
+                <constraint firstItem="5cI-o1-t8p" firstAttribute="centerY" secondItem="VNE-NK-IGQ" secondAttribute="centerY" id="aNE-AW-bFH"/>
+                <constraint firstItem="VNE-NK-IGQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="219" id="bHE-xs-Ped"/>
                 <constraint firstAttribute="bottom" secondItem="VNE-NK-IGQ" secondAttribute="bottom" constant="17" id="hXX-Sd-na6"/>
-                <constraint firstItem="5cI-o1-t8p" firstAttribute="baseline" secondItem="VNE-NK-IGQ" secondAttribute="baseline" id="hiN-tw-kJX"/>
-                <constraint firstItem="KTc-0Q-Oad" firstAttribute="trailing" secondItem="5cI-o1-t8p" secondAttribute="trailing" id="oYA-Gh-9RF"/>
                 <constraint firstAttribute="trailing" secondItem="Xea-pW-b4L" secondAttribute="trailing" id="rLz-BW-Jiv"/>
                 <constraint firstItem="KTc-0Q-Oad" firstAttribute="trailing" secondItem="Xea-pW-b4L" secondAttribute="trailing" id="t8u-mb-2MR"/>
-                <constraint firstItem="KTc-0Q-Oad" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="54" id="zNk-PU-vle"/>
+                <constraint firstItem="5cI-o1-t8p" firstAttribute="leading" secondItem="VNE-NK-IGQ" secondAttribute="trailing" constant="-335" id="vbt-sN-FLE"/>
+                <constraint firstItem="KTc-0Q-Oad" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="zNk-PU-vle"/>
+                <constraint firstItem="5cI-o1-t8p" firstAttribute="top" secondItem="VNE-NK-IGQ" secondAttribute="top" id="zVk-8E-tbB"/>
+                <constraint firstAttribute="trailing" secondItem="5cI-o1-t8p" secondAttribute="trailing" constant="211" id="zfL-GJ-u6t"/>
             </constraints>
             <point key="canvasLocation" x="35.5" y="132.5"/>
         </view>
     </objects>
     <resources>
         <image name="lightBlue" width="10" height="10"/>
+        <image name="purple2" width="10" height="10"/>
         <image name="settingsButton" width="23" height="22"/>
     </resources>
 </document>

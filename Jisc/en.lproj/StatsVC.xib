@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,7 +33,7 @@
                 <outlet property="container" destination="HEN-Tt-5jU" id="Zm3-NK-ThV"/>
                 <outlet property="contentCenterX" destination="OR4-Qd-3Ib" id="fx5-c6-Abc"/>
                 <outlet property="eventAtteneded" destination="yRe-Z3-KLo" id="p4A-IW-R6h"/>
-                <outlet property="eventsAttendedTableView" destination="dpe-sO-R6p" id="ZH8-jW-bEz"/>
+                <outlet property="eventsAttendedTableView" destination="dpe-sO-R6p" id="4Ck-MG-LmE"/>
                 <outlet property="graphContainer" destination="Wwf-VR-cpz" id="iV3-2j-ZE4"/>
                 <outlet property="graphContainerWidth" destination="DCc-VH-6pL" id="dpS-fc-IIS"/>
                 <outlet property="graphScroll" destination="fWj-xN-Y0G" id="vU0-gT-IhQ"/>

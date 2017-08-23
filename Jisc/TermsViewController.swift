@@ -29,15 +29,13 @@ class TermsViewController: UIViewController {
 
 
     @IBAction func agreeAction(_ sender: Any) {
-//        let vc = LoginVC()
-//        self.navigationController?.present(vc, animated: true, completion: nil)
         self.dismiss(animated: true, completion: nil)
           DELEGATE.menuView = MenuView.createView()
 
     }
     
     @IBAction func disagreeAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
         let vc = LoginVC()
         self.navigationController?.present(vc, animated: true, completion: nil)
     }
