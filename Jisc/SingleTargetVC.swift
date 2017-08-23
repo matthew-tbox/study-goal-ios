@@ -266,9 +266,27 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //            navigationController?.pushViewController(vc, animated: true)
 //            
 //        }
+        let singleDictionary = arrayOfResponses[indexPath.row]
         let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
-          
+            var dictionaryfordis = [String:String]()
+            dictionaryfordis.updateValue("1", forKey: "is_accepted")
+            dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+            dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+            dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+            dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+            dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+            dictionaryfordis.updateValue("en", forKey: "language")
+            if currentUserType() == .social {
+                dictionaryfordis.updateValue("yes", forKey: "is_social")
+
+            } else {
+                dictionaryfordis.updateValue("no", forKey: "is_social")
+
+            }
+
+            DownloadManager().editToDo(dictionary:dictionaryfordis)
+            
         }))
         alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in
             let alert2 = UIAlertController(title: "", message: "Please give a reason for rejecting this target", preferredStyle: .alert)
@@ -278,10 +296,45 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             alert2.addAction(UIAlertAction(title: localized("ok"), style: .default, handler: { (action) in
                 if let field = alert2.textFields?[0] {
                     // store your data
-                  print("\(field.text)")
+                  print("\(field.text!)")
+                    var dictionaryfordis = [String:String]()
+                    dictionaryfordis.updateValue("2", forKey: "is_accepted")
+                    dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+                    dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                    dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                    dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+                    dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+                    dictionaryfordis.updateValue(field.text!, forKey: "reason_for_ignoring")
+
+                    dictionaryfordis.updateValue("en", forKey: "language")
+                    if currentUserType() == .social {
+                        dictionaryfordis.updateValue("yes", forKey: "is_social")
+                        
+                    } else {
+                        dictionaryfordis.updateValue("no", forKey: "is_social")
+                        
+                    }
                     
+                    DownloadManager().editToDo(dictionary:dictionaryfordis)
                 } else {
+                    var dictionaryfordis = [String:String]()
+                    dictionaryfordis.updateValue("2", forKey: "is_accepted")
+                    dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+                    dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                    dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                    dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+                    dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
                     
+                    dictionaryfordis.updateValue("en", forKey: "language")
+                    if currentUserType() == .social {
+                        dictionaryfordis.updateValue("yes", forKey: "is_social")
+                        
+                    } else {
+                        dictionaryfordis.updateValue("no", forKey: "is_social")
+                        
+                    }
+                    
+                    DownloadManager().editToDo(dictionary:dictionaryfordis)
                     // user did not fill field
                 }
             }))

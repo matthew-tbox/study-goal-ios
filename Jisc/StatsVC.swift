@@ -342,6 +342,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let xMGR = xAPIManager()
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: 20) { (success, result, results, error) in
+
             if (results != nil){
                 print("receiving data")
                 // handle data
@@ -1757,3 +1758,4 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
     }
 }
+

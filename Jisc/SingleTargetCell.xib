@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,59 +20,121 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="KGk-i7-Jjw" customClass="SingleTargetCell" customModule="Jisc" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="476" height="105"/>
+            <rect key="frame" x="0.0" y="0.0" width="538" height="105"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="476" height="104.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="538" height="105"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhI-SJ-IaT">
-                        <rect key="frame" x="1" y="-2" width="375" height="107"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wlu-HI-5eE">
+                        <rect key="frame" x="300" y="0.0" width="238" height="107"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNn-88-PEW">
-                                <rect key="frame" x="0.0" y="106" width="375" height="1"/>
-                                <color key="backgroundColor" red="0.84509491920000002" green="0.84509491920000002" blue="0.84509491920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWk-fE-zWS" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                <rect key="frame" x="80" y="0.0" width="78" height="107"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="hFn-H5-iIm"/>
+                                    <constraint firstAttribute="width" constant="78" id="7Uz-gs-Jq8"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Delete" backgroundImage="red"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="delete"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="saJ-if-b3k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B73-3z-Y3P" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="78" height="107"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="m6M-yZ-oe7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Delete" backgroundImage="red"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="delete"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7eO-hF-Sc2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gR-Ex-mZK" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                <rect key="frame" x="160" y="0.0" width="78" height="107"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="4mB-ny-KrF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Delete" backgroundImage="red"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="delete"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tDF-5z-lFN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="B73-3z-Y3P" firstAttribute="top" secondItem="Wlu-HI-5eE" secondAttribute="top" id="9Pb-60-hKi"/>
+                            <constraint firstItem="1gR-Ex-mZK" firstAttribute="leading" secondItem="kWk-fE-zWS" secondAttribute="trailing" constant="2" id="9df-aQ-BHo"/>
+                            <constraint firstAttribute="trailing" secondItem="1gR-Ex-mZK" secondAttribute="trailing" id="9o5-ig-pAw"/>
+                            <constraint firstItem="1gR-Ex-mZK" firstAttribute="firstBaseline" secondItem="kWk-fE-zWS" secondAttribute="baseline" id="IGD-yS-CRW"/>
+                            <constraint firstItem="1gR-Ex-mZK" firstAttribute="baseline" secondItem="kWk-fE-zWS" secondAttribute="baseline" id="OOR-Fp-wbC"/>
+                            <constraint firstItem="kWk-fE-zWS" firstAttribute="top" secondItem="B73-3z-Y3P" secondAttribute="top" id="WLi-3g-WTA"/>
+                            <constraint firstAttribute="bottom" secondItem="B73-3z-Y3P" secondAttribute="bottom" id="beY-Te-2Tn"/>
+                            <constraint firstItem="1gR-Ex-mZK" firstAttribute="top" secondItem="kWk-fE-zWS" secondAttribute="top" id="dNt-co-efZ"/>
+                            <constraint firstItem="kWk-fE-zWS" firstAttribute="firstBaseline" secondItem="B73-3z-Y3P" secondAttribute="baseline" id="l7L-ub-mIB"/>
+                            <constraint firstItem="kWk-fE-zWS" firstAttribute="centerX" secondItem="Wlu-HI-5eE" secondAttribute="centerX" id="lcq-qq-N8j"/>
+                            <constraint firstItem="B73-3z-Y3P" firstAttribute="leading" secondItem="Wlu-HI-5eE" secondAttribute="leading" id="mOr-R5-uNT"/>
+                            <constraint firstAttribute="width" constant="238" id="mbY-Cd-goz"/>
+                            <constraint firstItem="kWk-fE-zWS" firstAttribute="leading" secondItem="B73-3z-Y3P" secondAttribute="trailing" constant="2" id="t5E-N3-33S"/>
+                            <constraint firstItem="kWk-fE-zWS" firstAttribute="baseline" secondItem="B73-3z-Y3P" secondAttribute="firstBaseline" id="tNh-dq-VSv"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="self.layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhI-SJ-IaT">
+                        <rect key="frame" x="0.0" y="0.0" width="538" height="107"/>
+                        <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPy-3c-uNU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
+                                <rect key="frame" x="0.0" y="0.0" width="538" height="107"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOL-mF-Nex">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="107"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaO-z0-1gl">
-                                                <rect key="frame" x="15" y="90" width="50" height="2"/>
+                                                <rect key="frame" x="15" y="90" width="50" height="4"/>
                                                 <color key="backgroundColor" red="0.51372549020000002" green="0.87450980389999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="c2A-d0-aJT"/>
-                                                </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_icon_big_1" translatesAutoresizingMaskIntoConstraints="NO" id="gFm-rH-REE">
                                                 <rect key="frame" x="20" y="32" width="40" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="CsP-Ao-LaB"/>
-                                                    <constraint firstAttribute="width" constant="40" id="pyz-79-kIR"/>
+                                                    <constraint firstAttribute="height" constant="40" id="q0H-Dc-smH"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="qaO-z0-1gl" secondAttribute="bottom" constant="15" id="Iij-v8-e3K"/>
-                                            <constraint firstItem="qaO-z0-1gl" firstAttribute="top" secondItem="gFm-rH-REE" secondAttribute="bottom" constant="18" id="TZN-TM-Lq1"/>
-                                            <constraint firstItem="gFm-rH-REE" firstAttribute="centerX" secondItem="dOL-mF-Nex" secondAttribute="centerX" id="XnL-55-PY8"/>
-                                            <constraint firstAttribute="width" constant="80" id="ekG-4L-fag"/>
-                                            <constraint firstAttribute="trailing" secondItem="qaO-z0-1gl" secondAttribute="trailing" constant="15" id="j5m-85-4qI"/>
-                                            <constraint firstItem="qaO-z0-1gl" firstAttribute="leading" secondItem="dOL-mF-Nex" secondAttribute="leading" constant="15" id="lQW-Vi-k3c"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="centerX" secondItem="qaO-z0-1gl" secondAttribute="centerX" id="5Rk-3e-lQg"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="top" secondItem="dOL-mF-Nex" secondAttribute="top" constant="32" id="IDJ-mE-QgS"/>
+                                            <constraint firstItem="qaO-z0-1gl" firstAttribute="top" secondItem="gFm-rH-REE" secondAttribute="bottom" constant="18" id="KKA-TV-mIZ"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="centerX" secondItem="dOL-mF-Nex" secondAttribute="centerX" id="Yto-xk-ohH"/>
+                                            <constraint firstItem="qaO-z0-1gl" firstAttribute="leading" secondItem="dOL-mF-Nex" secondAttribute="leading" constant="15" id="dJy-JT-Vx3"/>
+                                            <constraint firstItem="gFm-rH-REE" firstAttribute="leading" secondItem="dOL-mF-Nex" secondAttribute="leading" constant="20" id="qAA-cC-mzp"/>
+                                            <constraint firstAttribute="bottom" secondItem="qaO-z0-1gl" secondAttribute="bottom" constant="13" id="rUD-pW-yIc"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66z-oH-Cbh">
                                         <rect key="frame" x="95" y="8" width="383" height="91"/>
+
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                         <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+<<<<<<< HEAD
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wlu-HI-5eE">
                                         <rect key="frame" x="375" y="0.0" width="0.0" height="107"/>
                                         <subviews>
@@ -164,49 +228,41 @@
                                     <constraint firstItem="dOL-mF-Nex" firstAttribute="top" secondItem="mPy-3c-uNU" secondAttribute="top" id="qfu-5U-ZEo"/>
                                     <constraint firstAttribute="bottom" secondItem="Wlu-HI-5eE" secondAttribute="bottom" id="rpc-1p-yW3"/>
                                     <constraint firstItem="Wlu-HI-5eE" firstAttribute="top" secondItem="mPy-3c-uNU" secondAttribute="top" id="vMa-fx-wQh"/>
+
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="CR5-Ce-LAh"/>
-                                        <exclude reference="U22-aN-AhH"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mPy-3c-uNU" firstAttribute="leading" secondItem="uhI-SJ-IaT" secondAttribute="leading" id="7q7-K5-zEi"/>
-                            <constraint firstAttribute="bottom" secondItem="mPy-3c-uNU" secondAttribute="bottom" id="YgO-Nh-nwc"/>
-                            <constraint firstAttribute="bottom" secondItem="NNn-88-PEW" secondAttribute="bottom" id="Ysg-bo-i5r"/>
-                            <constraint firstItem="NNn-88-PEW" firstAttribute="leading" secondItem="uhI-SJ-IaT" secondAttribute="leading" id="gZC-m0-PV1"/>
-                            <constraint firstItem="mPy-3c-uNU" firstAttribute="top" secondItem="uhI-SJ-IaT" secondAttribute="top" id="kPa-cq-oFL"/>
-                            <constraint firstAttribute="trailing" secondItem="NNn-88-PEW" secondAttribute="trailing" id="lFM-Ty-IbG"/>
-                            <constraint firstAttribute="trailing" secondItem="mPy-3c-uNU" secondAttribute="trailing" id="lcB-nQ-qL3"/>
+                            <constraint firstAttribute="trailing" secondItem="mPy-3c-uNU" secondAttribute="trailing" id="10f-pf-xey"/>
+                            <constraint firstAttribute="bottom" secondItem="mPy-3c-uNU" secondAttribute="bottom" id="FLf-V0-pDo"/>
+                            <constraint firstItem="mPy-3c-uNU" firstAttribute="top" secondItem="uhI-SJ-IaT" secondAttribute="top" id="WCV-oC-h2u"/>
+                            <constraint firstItem="mPy-3c-uNU" firstAttribute="leading" secondItem="uhI-SJ-IaT" secondAttribute="leading" id="jIR-Jm-dzN"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-10" id="8RO-xO-8FH"/>
-                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-7" id="SkO-3p-8J3"/>
-                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XPn-3i-SOg"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="uhI-SJ-IaT" secondAttribute="trailing" constant="92" id="qef-Fe-Olk"/>
+                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="top" secondItem="Wlu-HI-5eE" secondAttribute="top" id="9Dm-rL-fJT"/>
+                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="bottom" secondItem="Wlu-HI-5eE" secondAttribute="bottom" id="LIx-PM-T8x"/>
+                    <constraint firstAttribute="trailing" secondItem="uhI-SJ-IaT" secondAttribute="trailing" id="MQu-qE-IJz"/>
+                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="S1F-Nf-Wfx"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="uhI-SJ-IaT" secondAttribute="bottom" constant="-10.5" id="Syr-mu-213"/>
+                    <constraint firstItem="uhI-SJ-IaT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ooD-Ul-1mB"/>
+                    <constraint firstItem="Wlu-HI-5eE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="300" id="yC7-1L-cQn"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="completionColorView" destination="qaO-z0-1gl" id="a98-ce-aGS"/>
+                <outlet property="contentTrailingConstraint" destination="MQu-qE-IJz" id="WbJ-q0-bUd"/>
                 <outlet property="optionsButtonsView" destination="Wlu-HI-5eE" id="Tey-5c-fto"/>
-                <outlet property="optionsButtonsWidth" destination="erx-DQ-smt" id="G6R-1l-jTu"/>
-                <outlet property="separator" destination="NNn-88-PEW" id="68l-06-7E4"/>
                 <outlet property="targetTypeIcon" destination="gFm-rH-REE" id="sKK-kg-2eu"/>
                 <outlet property="titleLabel" destination="66z-oH-Cbh" id="yHR-ry-4zt"/>
             </connections>
-            <point key="canvasLocation" x="114" y="163.5"/>
+            <point key="canvasLocation" x="259" y="166.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="activity_icon_big_1" width="40" height="34"/>
-        <image name="deleteTargetButton" width="23" height="28"/>
-        <image name="editTargetButton" width="28" height="28"/>
-        <image name="lightBlue" width="10" height="10"/>
         <image name="red" width="10" height="10"/>
     </resources>
 </document>

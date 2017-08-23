@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 let kSingleButtonsWidth:CGFloat = 236.0
 let kSingleTargetCellNibName = "SingleTargetCell"
 let kSingleTargetCellIdentifier = "SingleTargetCellIdentifier"
@@ -26,7 +27,8 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     var indexPath:IndexPath?
     weak var tableView:UITableView?
     weak var navigationController:UINavigationController?
-    @IBOutlet weak var optionsButtonsWidth:NSLayoutConstraint!
+    @IBOutlet weak var contentTrailingConstraint:NSLayoutConstraint!
+
     @IBOutlet weak var optionsButtonsView:UIView!
     var optionsState:kOptionsState = .closed
     var panStartPoint:CGPoint = CGPoint.zero
@@ -168,7 +170,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             } else if (difference > kSingleButtonsWidth) {
                 difference = kSingleButtonsWidth
             }
-            optionsButtonsWidth.constant = difference
+            contentTrailingConstraint.constant = difference
             optionsButtonsView.setNeedsLayout()
             layoutIfNeeded()
         default:break
@@ -179,7 +181,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: self)
         optionsState = .open
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.optionsButtonsWidth.constant = kSingleButtonsWidth
+            self.contentTrailingConstraint.constant = kSingleButtonsWidth
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
         }, completion: { (done) -> Void in
@@ -193,7 +195,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         parent?.aCellIsOpen = false
         optionsState = .closed
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.optionsButtonsWidth.constant = 0.0
+            self.contentTrailingConstraint.constant = 0.0
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
         }) 
