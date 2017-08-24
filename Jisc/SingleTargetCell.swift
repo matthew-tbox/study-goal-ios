@@ -195,7 +195,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         parent?.aCellIsOpen = false
         optionsState = .closed
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.contentTrailingConstraint.constant = 0.0
+            //self.contentTrailingConstraint.constant = 0.0
             self.optionsButtonsView.setNeedsLayout()
             self.layoutIfNeeded()
         }) 

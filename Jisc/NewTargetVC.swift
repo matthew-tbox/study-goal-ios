@@ -204,12 +204,12 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     }
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
-            let vc = RecurringTargetVC()
-            navigationController?.pushViewController(vc, animated: true)
-            //Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
+            //let vc = RecurringTargetVC()
+            //navigationController?.pushViewController(vc, animated: true)
+            Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
 
         } else {
-           // Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
+            Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         }
     }
 	

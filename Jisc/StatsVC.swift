@@ -589,7 +589,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             break
         case eventsAttendedTableView:
-            cell = tableView.dequeueReusableCell(withIdentifier: kEventsAttendedCellIdentifier, for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: kEventsAttendedCellIdentifier, for: indexPath) 
             /*dateFormatter.dateFormat = "dd/MM/yy"
              var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
              dateFormatter.dateFormat = "hh:mm"

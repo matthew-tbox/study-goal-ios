@@ -66,19 +66,19 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 	func connection(_ connection: NSURLConnection, didReceive data: Data) {
 		rawData.append(data)
 	}
-    func getEventsAttended(skip:Int, limit:Int, completion:@escaping xAPICompletionBlock) {
-        completionBlock = completion
-        var request:URLRequest?
-        if let url = urlWithHost(xAPIGetEventsAttendedPath, path: "skip=\(skip)&limit=\(limit)") {
-            request = URLRequest(url: url)
-        }
-        if let token = xAPIToken() {
-            request?.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            print("\(token)")
-        }
-        startConnectionWithRequest(request)
-        print()
-    }
+//    func getEventsAttended(skip:Int, limit:Int, completion:@escaping xAPICompletionBlock) {
+//        completionBlock = completion
+//        var request:URLRequest?
+//        if let url = urlWithHost(xAPIGetEventsAttendedPath, path: "skip=\(skip)&limit=\(limit)") {
+//            request = URLRequest(url: url)
+//        }
+//        if let token = xAPIToken() {
+//            request?.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//            print("\(token)")
+//        }
+//        startConnectionWithRequest(request)
+//        print()
+//    }
 	func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
 		let httpResponse = response as? HTTPURLResponse;
 		if (httpResponse != nil) {
