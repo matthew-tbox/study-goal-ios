@@ -32,7 +32,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     @IBOutlet weak var optionsButtonsView:UIView!
     var optionsState:kOptionsState = .closed
     var panStartPoint:CGPoint = CGPoint.zero
-    @IBOutlet weak var separator:UIView!
+  //  @IBOutlet weak var separator:UIView!
     weak var parent:TargetVC?
     
     override func awakeFromNib() {
@@ -72,7 +72,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     override func prepareForReuse() {
         titleLabel.text = ""
         closeCellOptions()
-        separator.alpha = 1.0
+     //   separator.alpha = 1.0
         targetTypeIcon.image = nil
         completionColorView.backgroundColor = redSingleTargetColor
         indexPath = nil
@@ -82,7 +82,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     func loadTarget(_ target:Target, isLast:Bool) {
         titleLabel.text = target.textForDisplay()
         if (isLast) {
-            separator.alpha = 0.0
+     //       separator.alpha = 0.0
         }
         let imageName = target.activity.iconName(big: true)
         targetTypeIcon.image = UIImage(named: imageName)

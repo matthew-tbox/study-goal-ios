@@ -21,7 +21,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        singleTargetTableView.register(UINib(nibName: kSingleTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kSingleTargetCellIdentifier)
+        singleTargetTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
         singleTargetSegmentControl.selectedSegmentIndex = 0
         singleTargetTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
         singleTargetTableView.delegate = self
@@ -33,6 +33,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        kButtonsWidth = 240
         getTodoListData()
     }
     
@@ -69,6 +70,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     private func getTodoListData(){
+        self.arrayOfResponses.removeAll()
+        self.arrayOfResponses2.removeAll()
+
         let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=13&language=en&is_social=no"
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -102,9 +106,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                             }
                         for item in self.arrayOfResponses2{
                             self.arrayOfResponses.insert(item, at: 0)
+
                         }
-                        
                         self.singleTargetTableView.reloadData()
+
                     }
                 } catch {
                     print("Error deserializing JSON: \(error)")
@@ -130,7 +135,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let theCell = tableView.dequeueReusableCell(withIdentifier: kSingleTargetCellIdentifier) as! SingleTargetCell
+        let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
         let singleDictionary = arrayOfResponses[indexPath.row] 
         let describe = singleDictionary["description"] as! String
         let endDate = singleDictionary["end_date"] as! String
@@ -141,8 +146,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if(status == "yes" && status2 == "0"){
             theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
             
+        } else if (status == "yes" && status2 == "2"){
+            theCell.backgroundColor = UIColor.red
         } else {
-            
+            theCell.backgroundColor = UIColor.clear
+
         }
         let todaysDateObject = Date()
         
@@ -267,6 +275,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //            
 //        }
         let singleDictionary = arrayOfResponses[indexPath.row]
+        let status = singleDictionary["from_tutor"] as! String
+        let status2 = singleDictionary["is_accepted"] as! String
+        if(status == "yes" && status2 == "0"){
         let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
             var dictionaryfordis = [String:String]()
@@ -274,6 +285,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
             dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
             dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+            dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+
             dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
             dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
             dictionaryfordis.updateValue("en", forKey: "language")
@@ -286,7 +299,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             }
 
             DownloadManager().editToDo(dictionary:dictionaryfordis)
-            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                // your code here
+                self.getTodoListData()
+            }
         }))
         alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in
             let alert2 = UIAlertController(title: "", message: "Please give a reason for rejecting this target", preferredStyle: .alert)
@@ -302,6 +318,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
                     dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
                     dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                    dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+
                     dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
                     dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
                     dictionaryfordis.updateValue(field.text!, forKey: "reason_for_ignoring")
@@ -316,11 +334,17 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     }
                     
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        // your code here
+                        self.getTodoListData()
+                    }
                 } else {
                     var dictionaryfordis = [String:String]()
                     dictionaryfordis.updateValue("2", forKey: "is_accepted")
                     dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
                     dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                    dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+
                     dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
                     dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
                     dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
@@ -335,6 +359,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     }
                     
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        // your code here
+                        self.getTodoListData()
+                    }
                     // user did not fill field
                 }
             }))
@@ -342,7 +370,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         
         }))
         self.navigationController?.present(alert, animated: true, completion: nil)
-
+        }
     }
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kButtonsWidth:CGFloat = 157.0
+var kButtonsWidth:CGFloat = 240.0
 let kTargetCellNibName = "TargetCell"
 let kTargetCellIdentifier = "TargetCellIdentifier"
 let kAnotherTargetCellOpenedOptions = "kAnotherTargetCellOpenedOptions"
