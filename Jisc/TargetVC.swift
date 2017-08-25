@@ -19,6 +19,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var recurringTargetSegmentControl: UISegmentedControl!
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        recurringTargetSegmentControl.selectedSegmentIndex = 1
 		targetsTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
 		targetsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
         //London Developer July 24,2017
@@ -32,6 +33,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+        kButtonsWidth = 157.0
 		targetsTableView.reloadData()
 	}
 	

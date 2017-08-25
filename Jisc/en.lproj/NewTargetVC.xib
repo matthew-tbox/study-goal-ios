@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -826,7 +827,7 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="save"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="saveTarget:" destination="-1" eventType="touchUpInside" id="fia-Yd-bbK"/>
+                                                <action selector="saveTarget:" destination="-1" eventType="touchUpInside" id="HNa-iL-5NH"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -839,16 +840,6 @@
                                         <constraint firstItem="1AX-Ra-U6c" firstAttribute="top" secondItem="suz-R5-226" secondAttribute="top" id="w7C-Ww-3vB"/>
                                     </constraints>
                                 </view>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-kc-F1i">
-                                    <rect key="frame" x="8" y="18" width="359" height="29"/>
-                                    <segments>
-                                        <segment title="Single"/>
-                                        <segment title="Recurring"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="topSegmentControlAction:" destination="-1" eventType="valueChanged" id="Vjc-mQ-BXl"/>
-                                    </connections>
-                                </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -865,7 +856,6 @@
                                 <constraint firstAttribute="trailing" secondItem="SnM-nz-gFZ" secondAttribute="trailing" constant="8" id="Vak-9n-kX5"/>
                                 <constraint firstItem="mth-BM-zBN" firstAttribute="top" secondItem="kbM-tZ-wYw" secondAttribute="bottom" constant="8" id="WbJ-gE-IYx"/>
                                 <constraint firstItem="mth-BM-zBN" firstAttribute="leading" secondItem="YHI-dd-wyc" secondAttribute="leading" constant="8" id="Wd4-4K-YDi"/>
-                                <constraint firstItem="MaK-QA-UkK" firstAttribute="top" secondItem="Tbu-kc-F1i" secondAttribute="bottom" constant="17" id="YRg-Bb-EIh"/>
                                 <constraint firstItem="SnM-nz-gFZ" firstAttribute="width" secondItem="SnM-nz-gFZ" secondAttribute="height" multiplier="359:45" id="dz7-A0-Ro5"/>
                                 <constraint firstAttribute="trailing" secondItem="IL6-au-hzo" secondAttribute="trailing" constant="8" id="mXq-OM-nuz"/>
                                 <constraint firstAttribute="trailing" secondItem="kbM-tZ-wYw" secondAttribute="trailing" constant="8" id="nyu-EF-uVm"/>
@@ -1030,14 +1020,23 @@
                         <constraint firstAttribute="bottom" secondItem="sQy-F5-suo" secondAttribute="bottom" id="jbP-G0-Jeh"/>
                     </constraints>
                 </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-kc-F1i">
+                    <rect key="frame" x="8" y="74" width="359" height="29"/>
+                    <segments>
+                        <segment title="Single"/>
+                        <segment title="Recurring"/>
+                    </segments>
+                    <connections>
+                        <action selector="topSegmentControlAction:" destination="-1" eventType="valueChanged" id="Vjc-mQ-BXl"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="evN-6k-6Sr" secondAttribute="trailing" id="GME-mz-AeM"/>
                 <constraint firstAttribute="trailing" secondItem="YfD-qd-e4L" secondAttribute="trailing" id="GYG-mF-1yk"/>
+                <constraint firstItem="Tbu-kc-F1i" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" constant="14" id="H8s-O1-mNe"/>
                 <constraint firstItem="evN-6k-6Sr" firstAttribute="top" secondItem="8LJ-iO-58R" secondAttribute="bottom" id="IK3-bP-ncc"/>
-                <constraint firstAttribute="trailing" secondItem="Tbu-kc-F1i" secondAttribute="trailing" constant="8" id="Jef-FY-tYM"/>
-                <constraint firstItem="Tbu-kc-F1i" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" constant="18" id="NY6-Qz-ito"/>
                 <constraint firstItem="8LJ-iO-58R" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" id="PAq-FE-Yym"/>
                 <constraint firstAttribute="trailing" secondItem="qMu-la-jmx" secondAttribute="trailing" id="SZY-SN-Dxx"/>
                 <constraint firstItem="ivo-zm-lYc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T0d-0E-KT8"/>
@@ -1045,13 +1044,14 @@
                 <constraint firstAttribute="trailing" secondItem="B3x-Tz-icq" secondAttribute="trailing" id="Vyc-1V-LE9"/>
                 <constraint firstItem="B3x-Tz-icq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WgQ-CQ-CEq"/>
                 <constraint firstItem="qMu-la-jmx" firstAttribute="top" secondItem="ivo-zm-lYc" secondAttribute="bottom" id="aMQ-b0-aeU"/>
-                <constraint firstItem="Tbu-kc-F1i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="avj-G4-GtR"/>
                 <constraint firstItem="qMu-la-jmx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bWa-2k-DUg"/>
                 <constraint firstItem="evN-6k-6Sr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="doO-TO-6gU"/>
                 <constraint firstItem="8LJ-iO-58R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dq8-lN-pva"/>
                 <constraint firstItem="B3x-Tz-icq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gYD-O2-bqc"/>
+                <constraint firstItem="Tbu-kc-F1i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="hCO-jr-vjI"/>
                 <constraint firstAttribute="trailing" secondItem="8LJ-iO-58R" secondAttribute="trailing" id="jEc-JY-CK7"/>
                 <constraint firstItem="ivo-zm-lYc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kgX-to-gZp"/>
+                <constraint firstItem="Tbu-kc-F1i" firstAttribute="centerX" secondItem="ivo-zm-lYc" secondAttribute="centerX" id="lUc-eH-rF0"/>
                 <constraint firstAttribute="trailing" secondItem="ivo-zm-lYc" secondAttribute="trailing" id="n3Z-1J-sRZ"/>
                 <constraint firstAttribute="bottom" secondItem="B3x-Tz-icq" secondAttribute="bottom" id="nX4-xL-wrq"/>
                 <constraint firstAttribute="bottom" secondItem="8LJ-iO-58R" secondAttribute="bottom" id="oWD-ZW-mXi"/>

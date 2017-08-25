@@ -10,9 +10,13 @@
 		800B167C1F46F39C0000D633 /* SingleTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B167A1F46F39C0000D633 /* SingleTargetVC.swift */; };
 		800B167D1F46F39C0000D633 /* SingleTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800B167B1F46F39C0000D633 /* SingleTargetVC.xib */; };
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
+		80110A621F4B4E7F00FBF51D /* SingleTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80110A601F4B4E7F00FBF51D /* SingleTargetCell.swift */; };
+		80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */; };
 		8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */; };
 		8014B5F11F44BCD6001BF4E4 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */; };
 		804FD3001F3B68E4002FEDDB /* RecurringTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */; };
+		80587B661F4C96A3006E4AEE /* RecurringTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */; };
+		80847D7D1F4DE52B00052B11 /* EventsAttendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */; };
 		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
@@ -291,9 +295,14 @@
 		800B167A1F46F39C0000D633 /* SingleTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTargetVC.swift; sourceTree = "<group>"; };
 		800B167B1F46F39C0000D633 /* SingleTargetVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleTargetVC.xib; sourceTree = "<group>"; };
 		800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = stats_attendance_high_chart.html; sourceTree = "<group>"; };
+		80110A601F4B4E7F00FBF51D /* SingleTargetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTargetCell.swift; sourceTree = "<group>"; };
+		80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleTargetCell.xib; sourceTree = "<group>"; };
 		8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		804FD2FF1F3B68E4002FEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RecurringTargetVC.xib; sourceTree = "<group>"; };
+		80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurringTargetVC.swift; sourceTree = "<group>"; };
+		80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAttendedCell.swift; sourceTree = "<group>"; };
+		80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsAttendedCell.xib; sourceTree = "<group>"; };
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1008,6 +1017,8 @@
 		DAD1D7E91C50EF81005BA786 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */,
+				80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */,
 				DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */,
 				800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */,
 				DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */,
@@ -1117,6 +1128,9 @@
 				DAB148EB1BE2336B0092FF17 /* TargetDetailsVC.swift */,
 				DAB0C87B1C4CEAE700F7A3C6 /* TargetDetailsVC.xib */,
 				DABB0CC61C5A1248001A291D /* SingleTargetDetails */,
+				80110A601F4B4E7F00FBF51D /* SingleTargetCell.swift */,
+				80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */,
+				80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1471,6 +1485,7 @@
 				DAC634F51C807DFE0084E314 /* StagSans-Book-App.ttf in Resources */,
 				DA2093FE1E69BD76001D979A /* SocialLoginVC.xib in Resources */,
 				DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */,
+				80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
 				DA1039FF1E9D05650000737F /* TargetGraphSimple in Resources */,
@@ -1537,7 +1552,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1565,6 +1580,7 @@
 				DD6518411F22030A00003916 /* PrivacyWebViewVC.swift in Sources */,
 				DA3F7B861C996B9B00E15678 /* ConsentVC.swift in Sources */,
 				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
+				80110A621F4B4E7F00FBF51D /* SingleTargetCell.swift in Sources */,
 				DAD573931C3D46360080B49B /* TrophiesCell.swift in Sources */,
 				DAB0C8E81C4D20DF00F7A3C6 /* BundleLocalization.m in Sources */,
 				DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */,
@@ -1641,6 +1657,7 @@
 				DA593EC61E979B0B00B54909 /* ChartHTMLManager.swift in Sources */,
 				8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */,
 				DAD644E01C623FFD00AA62E8 /* LocalizableView.swift in Sources */,
+				80847D7D1F4DE52B00052B11 /* EventsAttendedCell.swift in Sources */,
 				DA425AB51BD5116D00C77D76 /* LoginVC-OLD.swift in Sources */,
 				DAD4C8241BF4E78E001C4435 /* Colleague.swift in Sources */,
 				DA26FB451C6CCD1500FB8CF5 /* MyFriendsView.swift in Sources */,
@@ -1657,6 +1674,7 @@
 				DAC2AA101BEA44E70064D0AE /* BasicSearchCell.swift in Sources */,
 				DA46D95A1BF1EA3200AA1476 /* Module.swift in Sources */,
 				DABB0CC81C5A13D5001A291D /* TargetPieChart.swift in Sources */,
+				80587B661F4C96A3006E4AEE /* RecurringTargetVC.swift in Sources */,
 				DA11B6AC1E7164E600F823B8 /* CheckinVC.swift in Sources */,
 				DAEA56691BF0E52A007A3C86 /* Student.swift in Sources */,
 				DAD644DC1C623B5500AA62E8 /* LocalizableTextField.swift in Sources */,

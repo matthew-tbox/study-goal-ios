@@ -36,6 +36,8 @@ let getStudentActivityLogsPath = "fn_get_activity_logs"
 let getStudentModulesPath = "fn_get_student_modules"
 let addActivityLogPath = "fn_add_activity_log"
 let editActivityLogPath = "fn_edit_activity_log"
+let editToDoPath = "fn_edit_todo_task"
+
 let viewActivityLogPath = "fn_view_activity_log"
 let deleteActivityLogPath = "fn_delete_activity_log"
 let getTargetsPath = "fn_get_targets"
@@ -354,7 +356,51 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 		
 		return string
 	}
-	
+
+    func bodyStringFromDictionary2(_ dictionary:[String:Any]) -> String {
+        var string:String = ""
+        let elements:NSMutableArray = NSMutableArray()
+        let newDictionary:NSMutableDictionary = NSMutableDictionary(dictionary: dictionary)
+        
+        for key in newDictionary.allKeys
+        {
+            let argumentString:String? = key as? String
+            let objectString:String? = newDictionary.object(forKey: key) as? String
+            
+            if (argumentString == nil) {
+                print("key is nil")
+                continue
+            }
+            
+            if (objectString == nil) {
+                print("object is nil")
+                continue
+            }
+            
+            elements.add("\(argumentString!)=\(objectString!)")
+        }
+        
+        string = elements.componentsJoined(by: "&")
+        
+        let escapedString:String? = string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        
+        if (escapedString != nil) {
+            string = escapedString!
+        }
+        
+        if (LOG_ACTIVITY) {
+            print("body string:\n\(string)")
+        }
+        
+        if (LOG_ACTIVITY) {
+            let separator = "&"
+            let array:[String] = string.components(separatedBy: separator)
+            print("\(array)")
+        }
+        
+        return string
+    }
+
 	func addAuthorizationHeader(_ request:NSMutableURLRequest?) {
 		if let token = xAPIToken() {
 //			request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -936,7 +982,21 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
 			startConnectionWithRequest(createPutRequest(editActivityLogPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
 		}
 	}
-	
+
+    
+    
+    ///sam to do edit
+    
+    func editToDo(dictionary: [String:String]) {
+        if currentUserType() == .demo {
+        } else {
+            
+startConnectionWithRequest(createPostRequest(editToDoPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
+        }
+    }
+
+    
+    ///
 	func viewActivityLog(_ logID:String, alertAboutInternet:Bool, completion:@escaping downloadCompletionBlock) {
 		shouldNotifyAboutInternetConnection = alertAboutInternet
 		completionBlock = completion

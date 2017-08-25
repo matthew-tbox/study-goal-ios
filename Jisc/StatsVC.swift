@@ -51,6 +51,18 @@ class PointsObject {
     }
 }
 
+class EventsAttendedObject {
+    var date:Date
+    var activity:String
+    var module:String
+    
+    init(date:Date,activity:String,module:String){
+        self.date = date
+        self.activity = activity
+        self.module = module
+    }
+}
+
 let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
 let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
 let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)
@@ -113,10 +125,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var leaderBoard: UIView!
-    @IBOutlet weak var eventsAttendedTableView: UITableView!
     
+    @IBOutlet weak var eventsAttendedTableView: UITableView!
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
+    var eventsAttendedArray = [EventsAttendedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,6 +151,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         pointsTable.estimatedRowHeight = 36.0
         pointsTable.rowHeight = UITableViewAutomaticDimension
         pointsTable.register(UINib(nibName: kPointsCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kPointsCellIdentifier)
+        
+        eventsAttendedTableView.estimatedRowHeight = 36.0
+        eventsAttendedTableView.rowHeight = UITableViewAutomaticDimension
+        eventsAttendedTableView.dataSource = self
+        eventsAttendedTableView.delegate = self
+        eventsAttendedTableView.reloadData()
+        eventsAttendedTableView.register(EventsAttendedCell.self, forCellReuseIdentifier: kEventsAttendedCellIdentifier)
+        eventsAttendedTableView.register(UINib(nibName: kEventsAttendedCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kEventsAttendedCellIdentifier)
         
         scrollIndicator.alpha = 0.0
         graphType = GraphType.Bar
@@ -183,23 +204,29 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         getActivityPoints(period: .SevenDays, completion: {
             
         })
+        getEventsAttended {
+            print("requested events attended")
+        }
         goToAttainment()
         self.highChartWebView.isHidden = false
         self.noPointsLabel.isHidden = false
-        self.eventsAttendedTableView.isHidden = true
+        self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
         
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         xAPIManager().checkMod(testUrl:urlString)
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getAttainmentData {
             
+        }
+        
+        getEventsAttended {
+            print("requested events attended")
+            self.eventsAttendedTableView.reloadData()
         }
         
         if staff() {
@@ -277,6 +304,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         xMGR.getActivityPoints(period) { (success, result, results, error) in
             if (result != nil) {
                 if let totalPoints = result!["totalPoints"] as? Int {
+                    print(dataManager.currentStudent!)
+                    print(totalPoints)
+                    print(totalPoints as NSNumber)
                     dataManager.currentStudent!.totalActivityPoints = totalPoints as NSNumber
                     self.pointsLabel.text = "\(totalPoints)"
                 }
@@ -303,6 +333,55 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             self.loadPieChart()
             
             self.pointsTable.reloadData()
+            completion()
+        }
+    }
+    
+    func getEventsAttended(completion:@escaping (() -> Void)){
+        eventsAttendedArray.removeAll()
+        let xMGR = xAPIManager()
+        xMGR.silent = true
+        xMGR.getEventsAttended(skip: 0, limit: 20) { (success, result, results, error) in
+
+            if (results != nil){
+                print("receiving data")
+                // handle data
+                for event in results! {
+                    var date:Date
+                    var activity:String
+                    var module:String
+                    
+                    if let object = event as? [String:Any] {
+                        if let statement = object["statement"] as? [String:Any]{
+                            if let context = statement["context"] as? [String:Any] {
+                                if let extensions = context["extensions"] as? [String:Any] {
+                                    activity = extensions["http://xapi.jisc.ac.uk/activity_type_id"] as! String
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                    var dateString = extensions["http://xapi.jisc.ac.uk/starttime"] as! String
+                                    dateString = dateString.components(separatedBy: ".").first!
+                                    dateString = dateString.replacingOccurrences(of: "T", with: " ")
+                                    date = dateFormatter.date(from: dateString)!
+                                    
+                                    if let courseArea = extensions["http://xapi.jisc.ac.uk/courseArea"] as? [String:Any]{
+                                        module = courseArea["http://xapi.jisc.ac.uk/uddModInstanceID"] as! String
+                                        print("\(date) \(activity) \(module)")
+                                        self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
+                                        print(self.eventsAttendedArray.count)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                print("results is nil")
+            }
+            print("events array")
+            print(self.eventsAttendedArray)
+            print(self.eventsAttendedArray.count)
+            self.eventsAttendedTableView.reloadData()
+            print("events reloaded")
             completion()
         }
     }
@@ -480,6 +559,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         case pointsTable:
             nrRows = pointsArray.count
             break
+        case eventsAttendedTableView:
+            nrRows = eventsAttendedArray.count
+            break
         default:
             break
         }
@@ -506,6 +588,20 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 theCell.loadPoints(points: pointsArray[indexPath.row])
             }
             break
+        case eventsAttendedTableView:
+            cell = tableView.dequeueReusableCell(withIdentifier: kEventsAttendedCellIdentifier, for: indexPath) 
+            /*dateFormatter.dateFormat = "dd/MM/yy"
+             var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
+             dateFormatter.dateFormat = "hh:mm"
+             dateTimeString.append(" \(dateFormatter.string(from: eventsAttendedArray[indexPath.row].date))")
+             cell.textLabel!.text = "\(dateTimeString) \(eventsAttendedArray[indexPath.row].activity) \(eventsAttendedArray[indexPath.row].module)"*/
+            //print("events cell asked")
+            
+            if let theCell = cell as? EventsAttendedCell {
+                print("events attended data loading for cell \(indexPath.row)")
+                theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+            }
+            break
         default:
             cell = UITableViewCell()
             break
@@ -530,6 +626,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         case pointsTable:
             if let theCell = cell as? PointsCell {
                 theCell.loadPoints(points: pointsArray[indexPath.row])
+            }
+            break
+        case eventsAttendedTableView:
+            if let theCell = cell as? EventsAttendedCell {
+                print("displaying data loading for cell \(indexPath.row)")
+                theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
             }
             break
         default:
@@ -605,7 +707,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
         print("OH MY GOD AHMED FORMATTED TODAYS DATE\(result)")
         print("OH MY GOD AHMED FORMATTED 28 days ago\(daysAgoResult)")
-
+        
         let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -618,7 +720,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
-
+                
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
@@ -640,11 +742,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                 let makeDateFromDate = makeDateFormatter.date(from: dateString)
                                 
                                 let newDateFormatted = desiredDateFormatter.string(from: makeDateFromDate!)
-
+                                
                                 dateArray.append(newDateFormatted)
                             }
                         }
-
+                        
                         do {
                             guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
                                 else {
@@ -669,7 +771,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             countDataFinal = "[" + countData.substring(to: endIndex) + "]"
                             for date in dateArray {
                                 //Here is where I think I should add the formattinfg code.
-
+                                
                                 dateData = dateData + "'\(date)'" + ", "
                             }
                             var dateDataFinal:String = ""
@@ -1656,3 +1758,4 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
     }
 }
+

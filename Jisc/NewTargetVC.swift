@@ -19,11 +19,12 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
     
-    @IBOutlet weak var myGoalTextField: UITextView!
-    @IBOutlet weak var recurringDatePicker: UIDatePicker!
+    @IBOutlet weak var myGoalTextField: UITextView! //H
+    @IBOutlet weak var recurringDatePicker: UIDatePicker!//H
     @IBOutlet weak var recurringBecauseTextField: UITextView!
     
-    @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
+    @IBOutlet weak var moduleLabel: LocalizableLabel! //H
+    @IBOutlet weak var recurringSegmentControl: UISegmentedControl! // H
 	@IBOutlet weak var activityTypeButton:UIButton!
 	@IBOutlet weak var chooseActivityButton:UIButton!
 	@IBOutlet weak var intervalButton:UIButton!
@@ -31,10 +32,10 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	@IBOutlet weak var minutesPicker:UIPickerView!
 	@IBOutlet weak var closeTimePickerButton:UIButton!
 	@IBOutlet weak var timePickerBottomSpace:NSLayoutConstraint!
-	@IBOutlet weak var moduleButton:UIButton!
+	@IBOutlet weak var moduleButton:UIButton! //H
 	@IBOutlet weak var contentScroll:UIScrollView!
 	@IBOutlet weak var scrollBottomSpace:NSLayoutConstraint!
-	@IBOutlet weak var noteTextView:UITextView!
+	@IBOutlet weak var noteTextView:UITextView! //H
 	@IBOutlet weak var hoursTextField:UITextField!
 	@IBOutlet weak var minutesTextField:UITextField!
 	@IBOutlet weak var toolbar:UIView!
@@ -47,7 +48,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	var selectedTimeSpan:Int = 0
 	var selectedModule:Int = 0
 	var theTarget:Target?
-	@IBOutlet weak var titleLabel:UILabel!
+	@IBOutlet weak var titleLabel:UILabel! //H
 	var isEditingTarget:Bool = false
 	@IBOutlet weak var addModuleView:UIView!
 	@IBOutlet weak var addModuleTextField:UITextField!
@@ -160,8 +161,16 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		initialSpan = timeSpan
 		initialSelectedModule = selectedModule
 		initialReason = because
+        
+        
 	}
 	
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //moduleLabel.text = "Module"
+       // recurringDatePicker.minimumDate = Date()
+    }
+    
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 	}
@@ -176,22 +185,29 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 		if (changesWereMade()) {
 			UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
 		} else {
-			_ = navigationController?.popViewController(animated: true)
+            _ = navigationController?.popViewController(animated: true)
+            let vc = TargetVC()
+            navigationController?.present(vc, animated: false, completion: nil)
 		}
 	}
     
     @IBAction func topSegmentControlAction(_ sender: Any) {
         if (topSegmentControl.selectedSegmentIndex == 1){
+            
             Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         } else {
+//            let vc = RecurringTargetVC()
+//            navigationController?.pushViewController(vc, animated: true)
             Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
         }
         
     }
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
-            
+            //let vc = RecurringTargetVC()
+            //navigationController?.pushViewController(vc, animated: true)
             Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
+
         } else {
             Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         }
@@ -337,80 +353,32 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         } else {
             module = dataManager.moduleNameAtIndex(selectedModule - 1)!
         }
+        if (myGoalTextField.text.isEmpty){
+            //Make sure to localize the following message
+            
+            AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
+                //self.dismiss(animated: true, completion: nil)
+            }
+        }
         let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
 
         let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
+        
         if (somethingWentWrong){
-            print("Somthing went wrong ya Ahmed")
             AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
                 _ = self.navigationController?.popViewController(animated: true)
             }
-        } else if (!somethingWentWrong){
-            print("OMG AHMED NOTHING WENT WRONG WHOOOOOO!!!")
+        } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
             AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
-        //
-//        if (checkForTargetConflicts()) {
-//            UIAlertView(title: localized("error"), message: localized("you_already_have_a_target_with_the_same_parameters_set"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
-//        } else {
-//            var target = Target.insertInManagedObjectContext(managedContext, dictionary: NSDictionary())
-//            if (theTarget != nil) {
-//                dataManager.deleteObject(target)
-//                target = theTarget!
-//            }
-//            
-//            target.activityType = dataManager.activityTypes()[selectedActivityType]
-//            target.activity = dataManager.activityAtIndex(selectedActivity, type: target.activityType)!
-//            target.totalTime = ((selectedHours * 60) + selectedMinutes) as NSNumber
-//            let dateFormatter = DateFormatter()
-//            //end to date put below
-//            target.timeSpan = somedateString
-//            if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
-//                target.module = dataManager.modules()[selectedModule - 1]
-//                //London Developer July 24,2017
-//                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
-//                xAPIManager().checkMod(testUrl:urlString)
-//            } else {
-//                
-//                target.module = nil
-//                //London Developer July 24,2017
-//                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
-//                xAPIManager().checkMod(testUrl:urlString)
-//            }
-//            target.because = because
-//            if (theTarget != nil) {
-//                dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
-//                    if (success) {
-//                        for (_, item) in target.stretchTargets.enumerated() {
-//                            dataManager.deleteObject(item as! NSManagedObject)
-//                        }
-//                        dataManager.deleteObject(target)
-//                        AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-//                            _ = self.navigationController?.popViewController(animated: true)
-//                        }
-//                    } else {
-//                        AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-//                            _ = self.navigationController?.popViewController(animated: true)
-//                        }
-//                    }
-//                })
-//            } else {
-//                dataManager.addTodoTask(target, completion: { (success, failureReason) -> Void in
-//                    if (success) {
-//                        dataManager.deleteObject(target)
-//                        AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-//                            _ = self.navigationController?.popViewController(animated: true)
-//                        }
-//                    } else {
-//                        AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-//                            _ = self.navigationController?.popViewController(animated: true)
-//                        }
-//                    }
-//                })
-//            }
-//        }
+
+
+    }
+    
+    @IBAction func datePickerAction(_ sender: Any) {
+        recurringDatePicker.minimumDate = Date()
 
     }
 	//MARK: UIAlertView Delegate
