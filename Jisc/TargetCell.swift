@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kButtonsWidth:CGFloat = 157.0
+var kButtonsWidth:CGFloat = 240.0
 let kTargetCellNibName = "TargetCell"
 let kTargetCellIdentifier = "TargetCellIdentifier"
 let kAnotherTargetCellOpenedOptions = "kAnotherTargetCellOpenedOptions"
@@ -99,13 +99,40 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
-		} else {
+        } else {
+            if(kButtonsWidth > 200){
+                if (indexPath != nil) {
+                    print("indy\(String(describing: indexPath?.row))")
+                    let defaults = UserDefaults.standard
+
+                    var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
+                    
+                    let singleDictionary = samTest[(indexPath?.row)!]
+
+                    let id = singleDictionary["id"] as! Int
+                    let describe = singleDictionary["description"] as! String
+                    let endDate = singleDictionary["end_date"] as! String
+                    let module = singleDictionary["module"] as! String
+                    let reason = singleDictionary["reason"] as! String
+                    
+                    defaults.set(id, forKey: "EditedID") //Setting ID
+                    defaults.set(reason, forKey: "EditedReason") //My goal text
+                    defaults.set(describe, forKey: "EditedDescribe") //Because
+                    defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
+                    defaults.set(module, forKey: "EditedModule") //Module
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
+
+                } else {
+                    print("waffles")
+                }
+            }else{
 			closeCellOptions()
-			if (indexPath != nil) {
-				let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
-				let vc = NewTargetVC(target: target)
-				navigationController?.pushViewController(vc, animated: true)
-			}
+                if (indexPath != nil) {
+                    let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
+                    let vc = NewTargetVC(target: target)
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+            }
 		}
 	}
 	@IBAction func deleteTarget(_ sender:UIButton) {
@@ -114,9 +141,42 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
 		} else {
-			if (indexPath != nil) {
-				UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
-			}
+            if(kButtonsWidth > 200){
+                if (indexPath != nil) {
+                    let defaults = UserDefaults.standard
+                    
+                    var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
+                    
+                    let singleDictionary = samTest[(indexPath?.row)!]
+                    
+                    let id = singleDictionary["id"] as! Int
+                    let describe = singleDictionary["description"] as! String
+                    let endDate = singleDictionary["end_date"] as! String
+                    let module = singleDictionary["module"] as! String
+                    let reason = singleDictionary["reason"] as! String
+                    
+                    defaults.set(id, forKey: "EditedID") //Setting ID
+                    defaults.set(reason, forKey: "EditedReason") //My goal text
+                    defaults.set(describe, forKey: "EditedDescribe") //Because
+                    defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
+                    defaults.set(module, forKey: "EditedModule") //Module
+
+                    UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+                    print("indy\(String(describing: indexPath?.row))")
+                    
+                } else {
+                    print("waffles")
+                }
+            }else{
+                closeCellOptions()
+                if (indexPath != nil) {
+                    UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+                }
+            }
+
+//			if (indexPath != nil) {
+//				UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
+//			}
 		}
 	}
 	
@@ -193,7 +253,48 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 	
 	func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
 		closeCellOptions()
-		if (buttonIndex > 0) {
+        if(kButtonsWidth > 200 && buttonIndex > 0){
+            //Get the record Id for the selected target from the user defaults.
+            let defaults = UserDefaults.standard
+            let id = defaults.object(forKey: "EditedID") as! Int
+            
+            let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_delete_todo_task?student_id=13&language=en&is_social=no&record_id=\(id)"
+            //let bodyString = "student_id=13&language=en&is_social=no&record_id=24"
+            var request:URLRequest?
+            if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                if let url = URL(string: urlString) {
+                    request = URLRequest(url: url)
+                }
+            }
+            if var request = request {
+                if let token = xAPIToken() {
+                    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    request.httpMethod = "DELETE"
+                    //request.httpBody = bodyString.data(using: .utf8)
+                }
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                        print("error=\(error!)")
+                        return
+                    }
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                        print("response = \(response!)")
+                    }
+                    
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("Should have successfully deleted the object")
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
+                    print("responseString = \(responseString!)")
+                }
+                task.resume()
+            }
+            //self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
+            self.tableView?.reloadData()
+
+            
+        } else if (buttonIndex > 0) {
 			let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
 			dataManager.deleteTarget(target) { (success, failureReason) -> Void in
 				if success {
@@ -205,6 +306,8 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 					AlertView.showAlert(false, message: failureReason, completion: nil)
 				}
 			}
-		}
+
+        }
+
 	}
 }

@@ -32,8 +32,9 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     @IBOutlet weak var optionsButtonsView:UIView!
     var optionsState:kOptionsState = .closed
     var panStartPoint:CGPoint = CGPoint.zero
-    @IBOutlet weak var separator:UIView!
-    weak var parent:SingleTargetVC?
+
+  //  @IBOutlet weak var separator:UIView!
+    weak var parent:TargetVC?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -72,7 +73,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     override func prepareForReuse() {
         titleLabel.text = ""
         closeCellOptions()
-        separator.alpha = 1.0
+     //   separator.alpha = 1.0
         targetTypeIcon.image = nil
         completionColorView.backgroundColor = redSingleTargetColor
         indexPath = nil
@@ -82,7 +83,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     func loadTarget(_ target:Target, isLast:Bool) {
         titleLabel.text = target.textForDisplay()
         if (isLast) {
-            separator.alpha = 0.0
+     //       separator.alpha = 0.0
         }
         let imageName = target.activity.iconName(big: true)
         targetTypeIcon.image = UIImage(named: imageName)
@@ -191,13 +192,13 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             self.layoutIfNeeded()
         }, completion: { (done) -> Void in
             NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
-            self.parent?.aSingleCellIsOpen = true
+           // self.parent?.aSingleCellIsOpen = true
         })
     }
     
     func closeCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
-        parent?.aSingleCellIsOpen = false
+        //parent?.aSingleCellIsOpen = false
         optionsState = .closed
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             //self.contentTrailingConstraint.constant = 0.0

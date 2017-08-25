@@ -173,10 +173,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             
             //self.recurringDatePicker.date = editedDateObject
             if !editedReason.isEmpty{
-                myGoalTextField?.text = editedReason
+                myGoalTextField?.text = editedDescribe
             }
             if !editedDescribe.isEmpty{
-                noteTextView?.text = editedDescribe
+                noteTextView?.textColor = UIColor.black
+                noteTextView?.text = editedReason
             }
             if !editedModule.isEmpty{
                moduleButton.setTitle(editedModule, for: UIControlState())

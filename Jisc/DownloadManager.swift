@@ -991,7 +991,7 @@ class DownloadManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDel
         if currentUserType() == .demo {
         } else {
             
-startConnectionWithRequest(createPutRequest(editToDoPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
+startConnectionWithRequest(createPostRequest(editToDoPath, bodyString: bodyStringFromDictionary(dictionary), withAuthorizationHeader: true))
         }
     }
 

@@ -538,7 +538,6 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 print("responseString = \(responseString!)")
                 somethingWentWrong = false
             }
-        
             task.resume()
         }
         return somethingWentWrong

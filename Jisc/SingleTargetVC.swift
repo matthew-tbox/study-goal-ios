@@ -22,7 +22,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        singleTargetTableView.register(UINib(nibName: kSingleTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kSingleTargetCellIdentifier)
+        singleTargetTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
         singleTargetSegmentControl.selectedSegmentIndex = 0
         singleTargetTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
         singleTargetTableView.delegate = self
@@ -35,6 +35,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                                                selector: #selector(doThisWhenNotify),
                                                name: NSNotification.Name(rawValue: myNotificationKey),
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(callGetToDoList),
+                                               name: NSNotification.Name(rawValue: "getToDoList"),
+                                               object: nil)
+
     }
     
     func doThisWhenNotify(){
@@ -43,8 +48,13 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func callGetToDoList(){
+        getTodoListData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        kButtonsWidth = 240
         getTodoListData()
     }
     
@@ -81,6 +91,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     private func getTodoListData(){
+        self.arrayOfResponses.removeAll()
+        self.arrayOfResponses2.removeAll()
+
         let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=13&language=en&is_social=no"
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -114,9 +127,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                             }
                         for item in self.arrayOfResponses2{
                             self.arrayOfResponses.insert(item, at: 0)
+
                         }
-                        
+                        let defaults = UserDefaults.standard
+
+                        defaults.set(self.arrayOfResponses, forKey: "AllTheSingleTargets") //My goal text
+
                         self.singleTargetTableView.reloadData()
+
                     }
                 } catch {
                     print("Error deserializing JSON: \(error)")
@@ -142,7 +160,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let theCell = tableView.dequeueReusableCell(withIdentifier: kSingleTargetCellIdentifier) as! SingleTargetCell
+        let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
         let singleDictionary = arrayOfResponses[indexPath.row] 
         let describe = singleDictionary["description"] as! String
         let endDate = singleDictionary["end_date"] as! String
@@ -153,8 +171,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if(status == "yes" && status2 == "0"){
             theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
             
+        } else if (status == "yes" && status2 == "2"){
+            theCell.backgroundColor = UIColor.red
         } else {
-            
+            theCell.backgroundColor = UIColor.clear
+
         }
         let todaysDateObject = Date()
         
@@ -213,11 +234,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         }
         
         //Below the two lines of code are for writing TO the UserDefaults, where returnedString is the variable to pass
-        let defaults = UserDefaults.standard
-        defaults.set(reason, forKey: "EditedReason") //My goal text
-        defaults.set(describe, forKey: "EditedDescribe") //Because
-        defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
-        defaults.set(module, forKey: "EditedModule") //Module
         /*
          1. Cool is for if there are more than 7 days remaining
          2. watch_time is for fewer than 7 days but more than 2 days before end date.
@@ -265,14 +281,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //let theCell:TargetCell? = cell as? TargetCell
-//        if (theCell != nil) {
-//            theCell!.parent = self
+        
+        let theCell:TargetCell? = cell as? TargetCell
+  if (theCell != nil) {
 //            theCell!.loadTarget(dataManager.targets()[indexPath.row], isLast:(indexPath.row == (dataManager.targets().count - 1)))
-//            theCell!.indexPath = indexPath
-//            theCell!.tableView = tableView
-//            theCell!.navigationController = navigationController
-//        }
+            theCell!.indexPath = indexPath
+            theCell!.tableView = tableView
+            theCell!.navigationController = navigationController
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -286,6 +302,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //        }
 
         let singleDictionary = arrayOfResponses[indexPath.row]
+        let status = singleDictionary["from_tutor"] as! String
+        let status2 = singleDictionary["is_accepted"] as! String
+        if(status == "yes" && status2 == "0"){
         let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
             var dictionaryfordis = [String:String]()
@@ -293,6 +312,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
             dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
             dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+            dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+
             dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
             dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
             dictionaryfordis.updateValue("en", forKey: "language")
@@ -305,7 +326,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             }
 
             DownloadManager().editToDo(dictionary:dictionaryfordis)
-            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                // your code here
+                self.getTodoListData()
+            }
         }))
         alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in
             let alert2 = UIAlertController(title: "", message: "Please give a reason for rejecting this target", preferredStyle: .alert)
@@ -321,6 +345,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
                     dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
                     dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                    dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+
                     dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
                     dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
                     dictionaryfordis.updateValue(field.text!, forKey: "reason_for_ignoring")
@@ -335,11 +361,17 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     }
                     
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        // your code here
+                        self.getTodoListData()
+                    }
                 } else {
                     var dictionaryfordis = [String:String]()
                     dictionaryfordis.updateValue("2", forKey: "is_accepted")
                     dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
                     dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                    dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+
                     dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
                     dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
                     dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
@@ -354,6 +386,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     }
                     
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        // your code here
+                        self.getTodoListData()
+                    }
                     // user did not fill field
                 }
             }))
@@ -361,7 +397,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         
         }))
         self.navigationController?.present(alert, animated: true, completion: nil)
-
+        }
     }
 
 }

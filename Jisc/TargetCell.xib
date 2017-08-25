@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -64,7 +66,7 @@
                                             <constraint firstItem="uxd-SV-ytA" firstAttribute="centerX" secondItem="ur7-pP-ueK" secondAttribute="centerX" id="wig-g1-whn"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdJ-po-F4a">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BdJ-po-F4a">
                                         <rect key="frame" x="95" y="8" width="265" height="91"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                         <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,6 +75,24 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtY-OR-tTz">
                                         <rect key="frame" x="375" y="0.0" width="0.0" height="107"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v80-zI-T31" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
+                                                <rect key="frame" x="-236" y="0.0" width="78" height="107"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="78" id="qAZ-6g-kMa"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Mark Done" backgroundImage="lightPurple"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="done"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="editTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dfj-Ox-2Z2"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkBoxSmall" translatesAutoresizingMaskIntoConstraints="NO" id="fsa-Sq-bGT">
+                                                <rect key="frame" x="-211" y="25" width="28" height="28"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ff-Uz-4rT" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                                 <rect key="frame" x="-157" y="0.0" width="78" height="107"/>
                                                 <constraints>
@@ -106,23 +126,32 @@
                                                     <action selector="deleteTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jiA-pR-3so"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="deleteTargetButton" translatesAutoresizingMaskIntoConstraints="NO" id="t4r-r1-l7W">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deleteTargetButton" translatesAutoresizingMaskIntoConstraints="NO" id="t4r-r1-l7W">
                                                 <rect key="frame" x="-50" y="25" width="23" height="29"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="v80-zI-T31" firstAttribute="baseline" secondItem="2Ff-Uz-4rT" secondAttribute="firstBaseline" id="5aQ-1h-Nty"/>
                                             <constraint firstItem="I7l-E4-erF" firstAttribute="centerX" secondItem="2Ff-Uz-4rT" secondAttribute="centerX" id="A4j-w1-adf"/>
                                             <constraint firstAttribute="width" id="CCi-Yq-FVi"/>
                                             <constraint firstItem="Czc-ry-Cuh" firstAttribute="top" secondItem="ZtY-OR-tTz" secondAttribute="top" id="GaH-iU-mmr"/>
+                                            <constraint firstItem="v80-zI-T31" firstAttribute="firstBaseline" secondItem="2Ff-Uz-4rT" secondAttribute="baseline" id="Hg4-kU-km5"/>
+                                            <constraint firstItem="fsa-Sq-bGT" firstAttribute="centerX" secondItem="v80-zI-T31" secondAttribute="centerX" id="IL7-sU-6AW"/>
+                                            <constraint firstItem="fsa-Sq-bGT" firstAttribute="centerY" secondItem="t4r-r1-l7W" secondAttribute="centerY" id="K4r-14-iUw"/>
+                                            <constraint firstItem="2Ff-Uz-4rT" firstAttribute="leading" secondItem="fsa-Sq-bGT" secondAttribute="trailing" constant="26" id="Kc9-cF-Sv9"/>
                                             <constraint firstItem="I7l-E4-erF" firstAttribute="top" secondItem="2Ff-Uz-4rT" secondAttribute="top" constant="25" id="LKC-Sq-KZX"/>
                                             <constraint firstAttribute="bottom" secondItem="Czc-ry-Cuh" secondAttribute="bottom" id="Mc8-Qi-Abf"/>
                                             <constraint firstItem="2Ff-Uz-4rT" firstAttribute="leading" secondItem="ZtY-OR-tTz" secondAttribute="leading" id="S5M-fi-Pl4"/>
                                             <constraint firstItem="t4r-r1-l7W" firstAttribute="top" secondItem="Czc-ry-Cuh" secondAttribute="top" constant="25" id="Vtx-Ny-jRf"/>
+                                            <constraint firstItem="fsa-Sq-bGT" firstAttribute="bottom" secondItem="I7l-E4-erF" secondAttribute="bottom" id="cXd-3Q-fpM"/>
                                             <constraint firstItem="Czc-ry-Cuh" firstAttribute="leading" secondItem="2Ff-Uz-4rT" secondAttribute="trailing" constant="1" id="dAc-DL-DWp"/>
                                             <constraint firstAttribute="bottom" secondItem="2Ff-Uz-4rT" secondAttribute="bottom" id="e9X-ws-y0e"/>
+                                            <constraint firstItem="v80-zI-T31" firstAttribute="top" secondItem="2Ff-Uz-4rT" secondAttribute="top" id="fTy-nm-74h"/>
                                             <constraint firstItem="2Ff-Uz-4rT" firstAttribute="top" secondItem="ZtY-OR-tTz" secondAttribute="top" id="gUN-i3-a5U"/>
+                                            <constraint firstItem="2Ff-Uz-4rT" firstAttribute="leading" secondItem="v80-zI-T31" secondAttribute="trailing" constant="1" id="gae-A4-m0j"/>
                                             <constraint firstAttribute="trailing" secondItem="Czc-ry-Cuh" secondAttribute="trailing" id="jkX-D0-Aze"/>
+                                            <constraint firstItem="fsa-Sq-bGT" firstAttribute="top" secondItem="I7l-E4-erF" secondAttribute="top" id="v6c-Do-3Xc"/>
                                             <constraint firstItem="t4r-r1-l7W" firstAttribute="centerX" secondItem="Czc-ry-Cuh" secondAttribute="centerX" id="w0P-Fh-3d0"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -191,9 +220,11 @@
     </objects>
     <resources>
         <image name="activity_icon_big_1" width="40" height="34"/>
+        <image name="checkBoxSmall" width="16" height="16"/>
         <image name="deleteTargetButton" width="23" height="28"/>
         <image name="editTargetButton" width="28" height="28"/>
         <image name="lightBlue" width="10" height="10"/>
+        <image name="lightPurple" width="10" height="10"/>
         <image name="red" width="10" height="10"/>
     </resources>
 </document>
