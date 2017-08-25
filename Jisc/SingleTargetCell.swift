@@ -33,14 +33,14 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     var optionsState:kOptionsState = .closed
     var panStartPoint:CGPoint = CGPoint.zero
     @IBOutlet weak var separator:UIView!
-    weak var parent:TargetVC?
+    weak var parent:SingleTargetVC?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(TargetCell.panAction(_:)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(SingleTargetCell.panAction(_:)))
         panGesture.delegate = self
         addGestureRecognizer(panGesture)
-        NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
     }
@@ -95,8 +95,13 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             completionColorView.backgroundColor = redSingleTargetColor
         }
     }
-    
+    @IBAction func editSingleTarget(_ sender: Any) {
+        print("posting the notification")
+        NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
+    }
+
     @IBAction func editTarget(_ sender:UIButton) {
+
         print("Ahmed suppose to be editing now")
         let vc = RecurringTargetVC()
         navigationController?.pushViewController(vc, animated: true)
@@ -186,13 +191,13 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
             self.layoutIfNeeded()
         }, completion: { (done) -> Void in
             NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOff), object: nil)
-            self.parent?.aCellIsOpen = true
+            self.parent?.aSingleCellIsOpen = true
         })
     }
     
     func closeCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
-        parent?.aCellIsOpen = false
+        parent?.aSingleCellIsOpen = false
         optionsState = .closed
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             //self.contentTrailingConstraint.constant = 0.0

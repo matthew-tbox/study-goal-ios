@@ -9,6 +9,7 @@
 import UIKit
 
 let emptySingleTargetPageMessage = localized("empty_target_page_message")
+let myNotificationKey = "goToSingleTarget"
 
 class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -30,7 +31,18 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-main&contentName=MainTargetsPage"
         xAPIManager().checkMod(testUrl:urlString)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(doThisWhenNotify),
+                                               name: NSNotification.Name(rawValue: myNotificationKey),
+                                               object: nil)
     }
+    
+    func doThisWhenNotify(){
+        let vc = RecurringTargetVC()
+        vc.cameFromEditing()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getTodoListData()
@@ -51,7 +63,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
-            let vc = NewTargetVC()
+            let vc = RecurringTargetVC()
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -173,7 +185,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             } else if (Calendar.current.isDateInToday(dateObj!)){
                 finalText = "\(describe) by end of today because \(reason)"
             } else if (numberOfDaysAgo! < 0){
-                finalText = "\(numberOfDaysAgo! * -1) days OVERDUE \(describe) because \(reason)"
+                finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
                 
             } else {
                 finalText = "\(describe) by \(finalDate) because \(reason)"
@@ -184,7 +196,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             } else if (Calendar.current.isDateInToday(dateObj!)){
                 finalText = "\(describe) for \(module) by end of today because"
             } else if (numberOfDaysAgo! < 0 ){
-                finalText = "\(numberOfDaysAgo! * -1) days OVERDUE \(describe) for \(module)"
+                finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) for \(module)"
             } else {
                 finalText = "\(describe) for \(module) by \(finalDate)"
             }
@@ -194,15 +206,22 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             } else if (Calendar.current.isDateInToday(dateObj!)){
                 finalText = "\(describe) by end of today because \(reason)"
             } else if (numberOfDaysAgo! < 0){
-                finalText = "\(numberOfDaysAgo! * -1) days OVERDUE \(describe) because \(reason)"
+                finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
             } else {
                 finalText = "\(describe) by \(finalDate) because \(reason)"
             }
         }
+        
+        //Below the two lines of code are for writing TO the UserDefaults, where returnedString is the variable to pass
+        let defaults = UserDefaults.standard
+        defaults.set(reason, forKey: "EditedReason") //My goal text
+        defaults.set(describe, forKey: "EditedDescribe") //Because
+        defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
+        defaults.set(module, forKey: "EditedModule") //Module
         /*
          1. Cool is for if there are more than 7 days remaining
          2. watch_time is for fewer than 7 days but more than 2 days before end date.
-         3. watch_time_sweet is for 1 day before (rename files btw, they’re hideously misspelt)
+         3. watch_time_sweet is for 1 day before
          4. watch_time_panik for same day
          5. watch_time_break for overdue
         */
@@ -222,7 +241,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         //theCell.textLabel?.adjustsFontSizeToFitWidth = true
         theCell.textLabel?.numberOfLines = 6
         theCell.completionColorView.isHidden = true
-        //theCell.targetTypeIcon.image = UIImage(named: "activity_icon_\(arc4random_uniform(17)+1)")
         theCell.titleLabel.text = finalText
         
 //        if (theCell == nil) {
@@ -266,6 +284,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //            navigationController?.pushViewController(vc, animated: true)
 //            
 //        }
+
         let singleDictionary = arrayOfResponses[indexPath.row]
         let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class RecurringTargetVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate  {
+class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIAlertViewDelegate, CustomPickerViewDelegate, UITextFieldDelegate  {
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
     
     @IBOutlet weak var myGoalTextField: UITextView! //H
@@ -59,6 +59,8 @@ class RecurringTargetVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
     var intervalSelectorView:CustomPickerView = CustomPickerView()
     var moduleSelectorView:CustomPickerView = CustomPickerView()
     
+    var isInEditingMode:Bool = false
+    
     init(target:Target) {
         theTarget = target
         super.init(nibName: nil, bundle: nil)
@@ -71,10 +73,12 @@ class RecurringTargetVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    func cameFromEditing(){
+        print("This is Ahmed from RecurringTarget")
+        isInEditingMode = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Ahmed coming from my own RecurringTargetVC!! WHOOO!")
         //		if iPad {
         //			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
         //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
@@ -82,6 +86,8 @@ class RecurringTargetVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         //			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
         //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
         //		}
+        
+        
         if (theTarget != nil) {
             isEditingTarget = true
             selectedHours = Int(theTarget!.totalTime) / 60
@@ -156,6 +162,28 @@ class RecurringTargetVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         initialSpan = timeSpan
         initialSelectedModule = selectedModule
         initialReason = because
+        
+        if (isInEditingMode){
+            //Below two lines of code to read from the userDefaults
+            let defaults = UserDefaults.standard
+            let editedReason = defaults.object(forKey: "EditedReason") as! String
+            let editedDescribe = defaults.object(forKey: "EditedDescribe") as! String
+            // let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+            let editedModule = defaults.object(forKey: "EditedModule") as! String
+            
+            //self.recurringDatePicker.date = editedDateObject
+            if !editedReason.isEmpty{
+                myGoalTextField?.text = editedReason
+            }
+            if !editedDescribe.isEmpty{
+                noteTextView?.text = editedDescribe
+            }
+            if !editedModule.isEmpty{
+               moduleButton.setTitle(editedModule, for: UIControlState())
+            }
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale.init(identifier: "en_GB")
+        }
         
         
     }
@@ -372,7 +400,16 @@ class RecurringTargetVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     @IBAction func datePickerAction(_ sender: Any) {
-        recurringDatePicker.minimumDate = Date()
+//        if (isInEditingMode){
+//            let defaults = UserDefaults.standard
+//            let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+//            recurringDatePicker.date = editedDateObject
+//        } else {
+//            recurringDatePicker.minimumDate = Date()
+//        }
+        let defaults = UserDefaults.standard
+        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+        recurringDatePicker.date = editedDateObject
         
     }
     //MARK: UIAlertView Delegate
