@@ -97,29 +97,23 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     @IBAction func editSingleTarget(_ sender: Any) {
-        print("posting the notification")
         NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
     }
 
     @IBAction func editTarget(_ sender:UIButton) {
 
-        print("Ahmed suppose to be editing now")
         let vc = RecurringTargetVC()
         navigationController?.pushViewController(vc, animated: true)
         //DELEGATE.menuView?.open()
-        print("Should have pushed to newtarget Ahmed")
         if demo() {
             let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
-//            print("Ahmed suppose to be editing now")
 //            let vc = SettingsVC()
 //            navigationController?.pushViewController(vc, animated: true)
-//            print("Should have pushed to newtarget Ahmed")
            // closeCellOptions()
 //            if (indexPath != nil) {
-//            print("Ahmed suppose to be editing now")
 //////                let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
 //                let vc = TermsViewController()
 //                navigationController?.pushViewController(vc, animated: true)

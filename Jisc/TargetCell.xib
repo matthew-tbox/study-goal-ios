@@ -87,7 +87,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="done"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="editTarget:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dfj-Ox-2Z2"/>
+                                                    <action selector="markAsDoneAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3x4-A8-fO4"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkBoxSmall" translatesAutoresizingMaskIntoConstraints="NO" id="fsa-Sq-bGT">

@@ -74,7 +74,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         fatalError("init(coder:) has not been implemented")
     }
     func cameFromEditing(){
-        print("This is Ahmed from RecurringTarget")
         isInEditingMode = true
     }
     override func viewDidLoad() {
@@ -365,8 +364,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func recurringSaveAction(_ sender: Any) {
-        print("recurring button pressed, PLEASE FOR THE LOVE OF GOD WORK BAA!!!!")
-        //print("Ahmed this is suppose to be the module name",dataManager.moduleNameAtIndex(selectedModule - 1)!)
         dateFormatter.dateFormat = "y-MM-dd"
         let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
         let urlString = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
@@ -401,16 +398,18 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func datePickerAction(_ sender: Any) {
-//        if (isInEditingMode){
-//            let defaults = UserDefaults.standard
-//            let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
-//            recurringDatePicker.date = editedDateObject
-//        } else {
-//            recurringDatePicker.minimumDate = Date()
-//        }
-        let defaults = UserDefaults.standard
-        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
-        recurringDatePicker.date = editedDateObject
+        if (isInEditingMode){
+            let defaults = UserDefaults.standard
+            let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+            if (editedDateObject != nil){
+                recurringDatePicker.date = editedDateObject
+            }
+        } else {
+            recurringDatePicker.minimumDate = Date()
+        }
+//        let defaults = UserDefaults.standard
+//        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+//        recurringDatePicker.date = editedDateObject
         
     }
     //MARK: UIAlertView Delegate

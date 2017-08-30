@@ -34,7 +34,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCB-gp-RXY">
-                            <rect key="frame" x="83.5" y="28" width="208.5" height="22"/>
+                            <rect key="frame" x="84" y="28" width="208.5" height="22"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNE-NK-IGQ">
-                    <rect key="frame" x="219" y="614" width="140" height="36"/>
+                    <rect key="frame" x="219" y="613" width="140" height="37"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="140" id="UlI-Lw-onz"/>
                     </constraints>
@@ -83,7 +83,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cI-o1-t8p">
-                    <rect key="frame" x="24" y="614" width="140" height="37"/>
+                    <rect key="frame" x="24" y="613" width="140" height="37"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="tiv-Yg-QUL"/>
                     </constraints>
@@ -95,7 +95,7 @@
                     </connections>
                 </button>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTc-0Q-Oad">
-                    <rect key="frame" x="0.0" y="65" width="375" height="541"/>
+                    <rect key="frame" x="0.0" y="65" width="375" height="540"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </webView>
             </subviews>
@@ -108,11 +108,12 @@
                 <constraint firstItem="5cI-o1-t8p" firstAttribute="centerY" secondItem="VNE-NK-IGQ" secondAttribute="centerY" id="aNE-AW-bFH"/>
                 <constraint firstItem="VNE-NK-IGQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="219" id="bHE-xs-Ped"/>
                 <constraint firstAttribute="bottom" secondItem="VNE-NK-IGQ" secondAttribute="bottom" constant="17" id="hXX-Sd-na6"/>
+                <constraint firstItem="VNE-NK-IGQ" firstAttribute="height" secondItem="5cI-o1-t8p" secondAttribute="height" id="i7v-LV-GDm"/>
+                <constraint firstItem="VNE-NK-IGQ" firstAttribute="width" secondItem="5cI-o1-t8p" secondAttribute="width" id="kIK-Xb-6ac"/>
                 <constraint firstAttribute="trailing" secondItem="Xea-pW-b4L" secondAttribute="trailing" id="rLz-BW-Jiv"/>
                 <constraint firstItem="KTc-0Q-Oad" firstAttribute="trailing" secondItem="Xea-pW-b4L" secondAttribute="trailing" id="t8u-mb-2MR"/>
                 <constraint firstItem="5cI-o1-t8p" firstAttribute="leading" secondItem="VNE-NK-IGQ" secondAttribute="trailing" constant="-335" id="vbt-sN-FLE"/>
                 <constraint firstItem="KTc-0Q-Oad" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="zNk-PU-vle"/>
-                <constraint firstItem="5cI-o1-t8p" firstAttribute="top" secondItem="VNE-NK-IGQ" secondAttribute="top" id="zVk-8E-tbB"/>
                 <constraint firstAttribute="trailing" secondItem="5cI-o1-t8p" secondAttribute="trailing" constant="211" id="zfL-GJ-u6t"/>
             </constraints>
             <point key="canvasLocation" x="35.5" y="132.5"/>

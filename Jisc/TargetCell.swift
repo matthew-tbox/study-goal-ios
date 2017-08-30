@@ -93,6 +93,46 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 			completionColorView.backgroundColor = redTargetColor
 		}
 	}
+    @IBAction func markAsDoneAction(_ sender: Any) {
+//        let alert = UIAlertController(title: "", message: "Marking this Target as done", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+//        navigationController?.present(alert, animated: true, completion: nil)
+        let defaults = UserDefaults.standard
+        
+        var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
+        
+        let singleDictionary = samTest[(indexPath?.row)!]
+        
+        var dictionaryfordis = [String:String]()
+        dictionaryfordis.updateValue("1", forKey: "is_accepted")
+        dictionaryfordis.updateValue("1", forKey: "is_completed")
+        dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+        dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+        dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+        dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+        
+        dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+        dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+        dictionaryfordis.updateValue("en", forKey: "language")
+        if currentUserType() == .social {
+            dictionaryfordis.updateValue("yes", forKey: "is_social")
+            
+        } else {
+            dictionaryfordis.updateValue("no", forKey: "is_social")
+            
+        }
+        
+        DownloadManager().editToDo(dictionary:dictionaryfordis)
+        
+        let alert = UIAlertController(title: "", message: "Congratulations on completeing your task!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+        navigationController?.present(alert, animated: true, completion: nil)
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
+        self.tableView?.reloadData()
+
+        
+    }
 	
 	@IBAction func editTarget(_ sender:UIButton) {
 		if demo() {
@@ -165,7 +205,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                     print("indy\(String(describing: indexPath?.row))")
                     
                 } else {
-                    print("waffles")
+                    print("no indexPath")
                 }
             }else{
                 closeCellOptions()
@@ -289,7 +329,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 }
                 task.resume()
             }
-            //self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
+           // self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
             NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
             self.tableView?.reloadData()
 
