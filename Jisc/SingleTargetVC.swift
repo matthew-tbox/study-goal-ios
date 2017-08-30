@@ -258,7 +258,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         //Setting in the appropriate images
         if (numberOfDaysAgo! >= 7) {
             theCell.targetTypeIcon.image = UIImage(named: "cool")
-        } else if (numberOfDaysAgo! < 7 && numberOfDaysAgo! > 2){
+        } else if (numberOfDaysAgo! < 7 && numberOfDaysAgo! >= 2){
             theCell.targetTypeIcon.image = UIImage(named: "watch_time")
         } else if (numberOfDaysAgo! == 1){
             theCell.targetTypeIcon.image = UIImage(named: "watch_time_sweet")
