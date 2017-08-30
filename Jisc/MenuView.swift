@@ -42,7 +42,7 @@ class MenuView: UIView {
 		}
         
         let defaults = UserDefaults.standard
-        let result = defaults.object(forKey: "SettingsReturn") as! String
+        let result = defaults.object(forKey: "SettingsReturn") as! String //Crash happening here
         
 		var lastButton:MenuButton?
 		let index = getHomeScreenTab().rawValue

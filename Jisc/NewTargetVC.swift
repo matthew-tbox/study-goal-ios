@@ -342,8 +342,6 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
 	}
 	
     @IBAction func recurringSaveAction(_ sender: Any) {
-        print("recurring button pressed, PLEASE FOR THE LOVE OF GOD WORK BAA!!!!")
-        //print("Ahmed this is suppose to be the module name",dataManager.moduleNameAtIndex(selectedModule - 1)!)
         dateFormatter.dateFormat = "y-MM-dd"
         let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
         let urlString = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"

@@ -93,8 +93,20 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     private func getTodoListData(){
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
+        var isSocial = ""
+        if currentUserType() == .social {
+            isSocial = "yes"
+        } else {
+            isSocial = "no"
+        }
+        
+        var language = "en"
+        if let newLanguage = BundleLocalization.sharedInstance().language {
+            language = newLanguage
+        }
 
-        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=13&language=en&is_social=no"
+        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=\(language)&is_social=\(isSocial)"
+        
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
@@ -161,6 +173,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
+        print(indexPath.row)
+        print("This is the array of responses in SingleTargetVC", arrayOfResponses)
         let singleDictionary = arrayOfResponses[indexPath.row] 
         let describe = singleDictionary["description"] as! String
         let endDate = singleDictionary["end_date"] as! String
@@ -300,7 +314,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //            navigationController?.pushViewController(vc, animated: true)
 //            
 //        }
-
+        print("Should be runnning did select row at indexpath")
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
