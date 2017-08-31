@@ -209,7 +209,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         } else {
              _ = navigationController?.popViewController(animated: true)
-            let vc = TargetVC()
+            let vc = SingleTargetVC()
             navigationController?.present(vc, animated: false, completion: nil)
         }
     }
@@ -369,7 +369,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         let urlString = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
         var module = ""
         if (selectedModule - 1 < 0){
-            module = ""
+            module = "No Module"
         } else {
             module = dataManager.moduleNameAtIndex(selectedModule - 1)!
         }
@@ -380,7 +380,15 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 //self.dismiss(animated: true, completion: nil)
             }
         }
+        
         let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
+        
+        if (noteTextView.text! == "Add a reason to keep this target"){
+            let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+        }
+
+        
+
         
         let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
         

@@ -91,12 +91,12 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 					connectionSuccessfull = true
 				}
 				
-				if (code == .unauthorized) {
-					completionBlock = nil
-
-					dataManager.logout()
-					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
-				}
+//				if (code == .unauthorized) {
+//					completionBlock = nil
+//
+//					dataManager.logout()
+//					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
+//				}
 			}
 		}
 	}
@@ -494,6 +494,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         if var request = request {
             if let token = xAPIToken() {
+                print("beth token Ahmed", token)
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in

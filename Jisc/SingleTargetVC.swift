@@ -93,19 +93,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     private func getTodoListData(){
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
-        var isSocial = ""
-        if currentUserType() == .social {
-            isSocial = "yes"
-        } else {
-            isSocial = "no"
-        }
-        
-        var language = "en"
-        if let newLanguage = BundleLocalization.sharedInstance().language {
-            language = newLanguage
-        }
 
-        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=\(language)&is_social=\(isSocial)"
+        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=13&language=en&is_social=no"
+        print("This is the URL strring from the getTodoListData ", urlStringCall)
         
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -182,6 +172,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let reason = singleDictionary["reason"] as! String
         let status = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
+         if (status == "0"){
+            theCell.isHidden = true
+            
+        }
         if(status == "yes" && status2 == "0"){
             theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
             
@@ -229,7 +223,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             if (Calendar.current.isDateInTomorrow(dateObj!)){
                 finalText = "\(describe) for \(module) by tomorrow"
             } else if (Calendar.current.isDateInToday(dateObj!)){
-                finalText = "\(describe) for \(module) by end of today because"
+                finalText = "\(describe) for \(module) by end of today"
             } else if (numberOfDaysAgo! < 0 ){
                 finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) for \(module)"
             } else {
@@ -247,7 +241,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             }
         }
         
-        //Below the two lines of code are for writing TO the UserDefaults, where returnedString is the variable to pass
         /*
          1. Cool is for if there are more than 7 days remaining
          2. watch_time is for fewer than 7 days but more than 2 days before end date.
@@ -282,6 +275,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("This is the indexPath.row",indexPath.row)
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["status"] as! String
         if (status == "0"){
@@ -314,12 +308,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //            navigationController?.pushViewController(vc, animated: true)
 //            
 //        }
-        print("Should be runnning did select row at indexpath")
+        print("Should be runnning did select row at indexpath", indexPath.row)
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
         if(status == "yes" && status2 == "0"){
         let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
+        //alert.addAction(UIAlertAction(title: "Cancel please", style: .cancel, handler: nil))
+
         alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
             var dictionaryfordis = [String:String]()
             dictionaryfordis.updateValue("1", forKey: "is_accepted")
@@ -410,6 +406,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             self.navigationController?.present(alert2, animated: true, completion: nil)
         
         }))
+
         self.navigationController?.present(alert, animated: true, completion: nil)
         }
     }

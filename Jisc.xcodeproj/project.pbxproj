@@ -18,6 +18,7 @@
 		80587B661F4C96A3006E4AEE /* RecurringTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */; };
 		80847D7D1F4DE52B00052B11 /* EventsAttendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */; };
 		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
+		809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
 		DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF21E850FFD00166E16 /* LoginVC.xib */; };
@@ -777,6 +778,8 @@
 				DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */,
 				8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */,
 				8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */,
+				80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */,
+				80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */,
 				DAD644CA1C6227C800AA62E8 /* Localizable.strings */,
 				DA425AAF1BD4F5C400C77D76 /* AppObjects */,
 				DA7F1D271BD8CFB5004EA957 /* Utilities */,
@@ -1017,8 +1020,6 @@
 		DAD1D7E91C50EF81005BA786 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */,
-				80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */,
 				DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */,
 				800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */,
 				DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */,
@@ -1465,6 +1466,7 @@
 				DAB0C7BF1C4CE82500F7A3C6 /* LoginVC-OLD.xib in Resources */,
 				DAB0C8251C4CE9C700F7A3C6 /* LogVC.xib in Resources */,
 				DAB0C8671C4CEA9E00F7A3C6 /* TargetVC~ipad.xib in Resources */,
+				809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */,
 				DA0F577F1C3EA2A700FF5B7A /* trophies.plist in Resources */,
 				DA43DA3F1C58C1FC0092701F /* EngagementIcons.xcassets in Resources */,
 				DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */,
