@@ -186,9 +186,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         }
         if(status == "yes" && status2 == "0"){
             theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
-            
         } else if (status == "yes" && status2 == "2"){
             theCell.backgroundColor = UIColor.red
+            theCell.isHidden = true
         } else {
             theCell.backgroundColor = UIColor.clear
 
@@ -319,7 +319,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let status2 = singleDictionary["is_accepted"] as! String
         if(status == "yes" && status2 == "0"){
         let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
-            
+
         alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
             var dictionaryfordis = [String:String]()
             dictionaryfordis.updateValue("1", forKey: "is_accepted")
@@ -347,7 +347,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 self.getTodoListData()
             }
         }))
-        alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: { (action) in
+        alert.addAction(UIAlertAction(title: localized("no"), style: .default, handler: { (action) in
             let alert2 = UIAlertController(title: "", message: "Please give a reason for rejecting this target", preferredStyle: .alert)
             alert2.addTextField { (textField) in
                 textField.placeholder = "Description"
@@ -406,10 +406,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             self.navigationController?.present(alert2, animated: true, completion: nil)
         
         }))
-//        alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
-
-        self.navigationController?.present(alert, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.navigationController?.present(alert, animated: true, completion: nil)
         }
+
     }
 
 }

@@ -40,10 +40,12 @@ class MenuView: UIView {
 		view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in
 			
 		}
-        
-        let defaults = UserDefaults.standard
-        let result = defaults.object(forKey: "SettingsReturn") as! String //Crash happening here
-        
+        var result = ""
+        if !demo(){
+            let defaults = UserDefaults.standard
+            result = defaults.object(forKey: "SettingsReturn") as! String //Crash happening here
+            
+        }
 		var lastButton:MenuButton?
 		let index = getHomeScreenTab().rawValue
 		if social() {
@@ -70,10 +72,13 @@ class MenuView: UIView {
 				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
 			}
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
-            if (result.range(of: "false") != nil){
-                //EXISTS
-            } else {
-                lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
+            if !demo(){
+                if (result.range(of: "false") != nil){
+                    //EXISTS
+                } else {
+                    lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
+                }
+
             }
 
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Target, previousButton: lastButton, isLastButton: false, parent: view)
@@ -85,13 +90,16 @@ class MenuView: UIView {
 			} else if index == 2 {
 				view.log()
             } else if index == 3 {
-                if (result.range(of: "false") == nil){
-                    view.feed()
-
-                } else {
-                    view.checkin()
-
+                if !demo(){
+                    if (result.range(of: "false") == nil){
+                        view.feed()
+                        
+                    } else {
+                        view.checkin()
+                        
+                    }
                 }
+
             } else if index == 4 {
 				view.target()
 			} else {

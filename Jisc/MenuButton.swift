@@ -155,25 +155,32 @@ class StatsMenuButton: MenuButton {
 			self.buttonsHeight.constant = 40 * 5 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
 			self.parent?.layoutIfNeeded()
 		}
-        let defaults = UserDefaults.standard
-        let result = defaults.object(forKey: "SettingsReturnAttendance") as! String
+        var result = ""
+
+        if !demo(){
+            let defaults = UserDefaults.standard
+            result = defaults.object(forKey: "SettingsReturnAttendance") as! String
+        }
 
         //let attainmentResult = defaults.object(forKey: "SettingsReturnAttainment") as! String
-
-        if (result.range(of: "false") == nil){
-            attendanceButton.alpha = 1.0
-            eventsAttendedButton.alpha = 1.0
-            //leaderboardsButton.alpha = 1.0
-        } else {
-            attendanceButton.alpha = 0.0
-            eventsAttendedButton.alpha = 0.0
-            //leaderboardsButton.alpha = 0.0
+        if !demo(){
+            if (result.range(of: "false") == nil){
+                attendanceButton.alpha = 1.0
+                eventsAttendedButton.alpha = 1.0
+                //leaderboardsButton.alpha = 1.0
+            } else {
+                attendanceButton.alpha = 0.0
+                eventsAttendedButton.alpha = 0.0
+                //leaderboardsButton.alpha = 0.0
+            }
+            //        if (attainmentResult.range(of: "false") != nil){
+            //            attainmentButton.alpha = 1.0
+            //        } else {
+            //            attainmentButton.alpha = 0.0
+            //        }
+        
         }
-//        if (attainmentResult.range(of: "false") != nil){
-//            attainmentButton.alpha = 1.0
-//        } else {
-//            attainmentButton.alpha = 0.0
-//        }
+
 	}
 	
 	func retract() {
