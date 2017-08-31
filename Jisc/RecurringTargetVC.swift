@@ -208,7 +208,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         } else {
-             _ = navigationController?.popViewController(animated: true)
+           //  _ = navigationController?.popViewController(animated: true)
             let vc = SingleTargetVC()
             navigationController?.present(vc, animated: false, completion: nil)
         }

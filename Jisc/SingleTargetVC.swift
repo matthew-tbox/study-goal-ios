@@ -118,7 +118,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                                 let singleDictionary = object
                                 let status = singleDictionary?["from_tutor"] as! String
                                 let status2 = singleDictionary?["is_accepted"] as! String
-                                if(status == "yes" && status2 == "0"){
+                                let status3 = singleDictionary?["status"] as! String
+                                
+                                if (status3 == "1" ){
+                                    print("complete task")
+                                } else if(status == "yes" && status2 == "0"){
                                     self.arrayOfResponses2.append(object!)
                                 } else {
                                     self.arrayOfResponses.append(object!)
@@ -164,6 +168,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         
         let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
         print(indexPath.row)
+//        if (theCell == nil) {
+//            theCell = UITableViewCell()
+//        }
+
         print("This is the array of responses in SingleTargetVC", arrayOfResponses)
         let singleDictionary = arrayOfResponses[indexPath.row] 
         let describe = singleDictionary["description"] as! String
@@ -266,9 +274,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         theCell.completionColorView.isHidden = true
         theCell.titleLabel.text = finalText
         
-//        if (theCell == nil) {
-//            theCell = UITableViewCell()
-//        }
         return theCell
     }
     
@@ -282,7 +287,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             return 108.0
 
         } else {
-            return 0.0
+            return 108.0
             
         }
 
