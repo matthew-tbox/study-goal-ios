@@ -494,6 +494,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         if var request = request {
             if let token = xAPIToken() {
+                print("beth token Ahmed", token)
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in

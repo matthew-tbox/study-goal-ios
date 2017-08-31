@@ -34,6 +34,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
         kButtonsWidth = 157.0
+        recurringTargetSegmentControl.selectedSegmentIndex = 1
 		targetsTableView.reloadData()
 	}
 	

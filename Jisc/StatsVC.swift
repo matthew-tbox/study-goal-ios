@@ -589,19 +589,20 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             break
         case eventsAttendedTableView:
-            cell = tableView.dequeueReusableCell(withIdentifier: kEventsAttendedCellIdentifier, for: indexPath) 
-            /*dateFormatter.dateFormat = "dd/MM/yy"
-             var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
-             dateFormatter.dateFormat = "hh:mm"
-             dateTimeString.append(" \(dateFormatter.string(from: eventsAttendedArray[indexPath.row].date))")
-             cell.textLabel!.text = "\(dateTimeString) \(eventsAttendedArray[indexPath.row].activity) \(eventsAttendedArray[indexPath.row].module)"*/
-            //print("events cell asked")
+            cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
+//            dateFormatter.dateFormat = "dd/MM/yy"
+//             var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
+//             dateFormatter.dateFormat = "hh:mm"
+//             dateTimeString.append(" \(dateFormatter.string(from: eventsAttendedArray[indexPath.row].date))")
+//             cell.textLabel!.text = "\(dateTimeString) \(eventsAttendedArray[indexPath.row].activity) \(eventsAttendedArray[indexPath.row].module)"
+//            print("events cell asked")
             
             if let theCell = cell as? EventsAttendedCell {
                 print("events attended data loading for cell \(indexPath.row)")
                 theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
             }
             break
+
         default:
             cell = UITableViewCell()
             break
@@ -703,10 +704,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let result = dateFormatter.string(from: todaysDate)
-        let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -28, to: Date())
+        let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -34, to: Date())
         let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
-        print("OH MY GOD AHMED FORMATTED TODAYS DATE\(result)")
-        print("OH MY GOD AHMED FORMATTED 28 days ago\(daysAgoResult)")
+
         
         let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
         var request:URLRequest?

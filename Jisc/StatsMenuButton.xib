@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -54,7 +54,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Graphs: VLE Activity">
+                            <state key="normal" title="VLE Activity">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -76,7 +76,7 @@
                             <rect key="frame" x="0.0" y="80" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Points">
+                            <state key="normal" title="Activity Points">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -87,7 +87,7 @@
                             <rect key="frame" x="0.0" y="120" width="375" height="0.0"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Leaderboard">
+                            <state key="normal" title="Events Leaderboard">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -106,7 +106,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-iV-Pau" userLabel="Attendance">
-                            <rect key="frame" x="0.0" y="120" width="375" height="40"/>
+                            <rect key="frame" x="0.0" y="160" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Attendance Summary">
@@ -126,7 +126,7 @@
                         <constraint firstAttribute="trailing" secondItem="WHR-CA-m5x" secondAttribute="trailing" id="BiI-ae-Eq8"/>
                         <constraint firstItem="KF6-Sf-Kqx" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" constant="-40" id="CGn-ar-Ypv"/>
                         <constraint firstItem="h1j-2l-rYa" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="DR3-IR-g9y"/>
-                        <constraint firstItem="Xyz-iV-Pau" firstAttribute="bottom" secondItem="h1j-2l-rYa" secondAttribute="bottom" id="E0N-wY-YJE"/>
+                        <constraint firstItem="Xyz-iV-Pau" firstAttribute="bottom" secondItem="h1j-2l-rYa" secondAttribute="bottom" constant="40" id="E0N-wY-YJE"/>
                         <constraint firstItem="dXk-FR-Zp5" firstAttribute="top" secondItem="WHR-CA-m5x" secondAttribute="bottom" id="GxX-2f-U7e"/>
                         <constraint firstAttribute="trailing" secondItem="dXk-FR-Zp5" secondAttribute="trailing" id="JOO-sV-dco"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="height" secondItem="dXk-FR-Zp5" secondAttribute="height" id="OZH-M6-Nkz"/>
