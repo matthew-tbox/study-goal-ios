@@ -194,6 +194,16 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                     let endDate = singleDictionary["end_date"] as! String
                     let module = singleDictionary["module"] as! String
                     let reason = singleDictionary["reason"] as! String
+                    if (singleDictionary["from_tutor"] != nil){
+                        let fromTutor = singleDictionary["from_tutor"] as! String
+                        if (fromTutor == "yes"){
+                            let alert = UIAlertController(title: "Tutor Target", message: "You can’t remove this task as it was set by your teacher", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                            self.navigationController?.present(alert, animated: true, completion: nil)
+
+
+                        }
+                    }
                     
                     defaults.set(id, forKey: "EditedID") //Setting ID
                     defaults.set(reason, forKey: "EditedReason") //My goal text
@@ -329,8 +339,8 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 task.resume()
             }
            // self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
-            self.tableView?.reloadData()
+//            NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
+//            self.tableView?.reloadData()
 
             
         } else if (buttonIndex > 0) {
