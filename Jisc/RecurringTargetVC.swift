@@ -388,7 +388,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
 
         
-
+        print("")
         
         let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
         

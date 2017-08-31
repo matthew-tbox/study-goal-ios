@@ -94,7 +94,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
 
-        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=13&language=en&is_social=no"
+        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
         print("This is the URL strring from the getTodoListData ", urlStringCall)
         
         var request:URLRequest?
@@ -314,8 +314,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let status2 = singleDictionary["is_accepted"] as! String
         if(status == "yes" && status2 == "0"){
         let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
-        //alert.addAction(UIAlertAction(title: "Cancel please", style: .cancel, handler: nil))
-
+            
         alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
             var dictionaryfordis = [String:String]()
             dictionaryfordis.updateValue("1", forKey: "is_accepted")
@@ -334,7 +333,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 dictionaryfordis.updateValue("no", forKey: "is_social")
 
             }
-
+//            let url = ""
+//            let body = ""
+//            xAPIManager().postRequest(testUrl: <#T##String#>, body: <#T##String#>)
             DownloadManager().editToDo(dictionary:dictionaryfordis)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 // your code here
@@ -364,12 +365,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     dictionaryfordis.updateValue("en", forKey: "language")
                     if currentUserType() == .social {
                         dictionaryfordis.updateValue("yes", forKey: "is_social")
-                        
                     } else {
                         dictionaryfordis.updateValue("no", forKey: "is_social")
-                        
                     }
-                    
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         // your code here
@@ -389,12 +387,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                     dictionaryfordis.updateValue("en", forKey: "language")
                     if currentUserType() == .social {
                         dictionaryfordis.updateValue("yes", forKey: "is_social")
-                        
                     } else {
                         dictionaryfordis.updateValue("no", forKey: "is_social")
-                        
                     }
-                    
                     DownloadManager().editToDo(dictionary:dictionaryfordis)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         // your code here
@@ -406,6 +401,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             self.navigationController?.present(alert2, animated: true, completion: nil)
         
         }))
+//        alert.addAction(UIAlertAction(title: localized("no"), style: .cancel, handler: nil))
 
         self.navigationController?.present(alert, animated: true, completion: nil)
         }
