@@ -97,87 +97,94 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 //        let alert = UIAlertController(title: "", message: "Marking this Target as done", preferredStyle: .alert)
 //        alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 //        navigationController?.present(alert, animated: true, completion: nil)
-        let defaults = UserDefaults.standard
-        
-        var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
-        
-        let singleDictionary = samTest[(indexPath?.row)!]
-        
-        var dictionaryfordis = [String:String]()
-        dictionaryfordis.updateValue("1", forKey: "is_accepted")
-        dictionaryfordis.updateValue("1", forKey: "is_completed")
-        dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
-        dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
-        dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
-        dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
-        
-        dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
-        dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
-        dictionaryfordis.updateValue("en", forKey: "language")
-        if currentUserType() == .social {
-            dictionaryfordis.updateValue("yes", forKey: "is_social")
-            
+        if demo(){
+            let alert = UIAlertController(title: "", message: localized("demo_mode_mark_as_done_target"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+            navigationController?.present(alert, animated: true, completion: nil)
         } else {
-            dictionaryfordis.updateValue("no", forKey: "is_social")
+            let defaults = UserDefaults.standard
             
+            var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
+            
+            let singleDictionary = samTest[(indexPath?.row)!]
+            
+            var dictionaryfordis = [String:String]()
+            dictionaryfordis.updateValue("1", forKey: "is_accepted")
+            dictionaryfordis.updateValue("1", forKey: "is_completed")
+            dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+            dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+            dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+            dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+            
+            dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+            dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+            dictionaryfordis.updateValue("en", forKey: "language")
+            if currentUserType() == .social {
+                dictionaryfordis.updateValue("yes", forKey: "is_social")
+                
+            } else {
+                dictionaryfordis.updateValue("no", forKey: "is_social")
+                
+            }
+            
+            DownloadManager().editToDo(dictionary:dictionaryfordis)
+            
+            let alert = UIAlertController(title: "", message: "Congratulations on completeing your task!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+            navigationController?.present(alert, animated: true, completion: nil)
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
+            self.tableView?.reloadData()
         }
-        
-        DownloadManager().editToDo(dictionary:dictionaryfordis)
-        
-        let alert = UIAlertController(title: "", message: "Congratulations on completeing your task!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-        navigationController?.present(alert, animated: true, completion: nil)
-        
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
-        self.tableView?.reloadData()
+
 
         
     }
 	
 	@IBAction func editTarget(_ sender:UIButton) {
-		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_edittarget"), preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-			navigationController?.present(alert, animated: true, completion: nil)
-        } else {
-            if(kButtonsWidth > 200){
-                if (indexPath != nil) {
-                    print("indy\(String(describing: indexPath?.row))")
-                    let defaults = UserDefaults.standard
+//		if demo() {
+//			let alert = UIAlertController(title: "", message: localized("demo_mode_edit_target"), preferredStyle: .alert)
+//			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+//			navigationController?.present(alert, animated: true, completion: nil)
+//        } else {
+        if(kButtonsWidth > 200){
+            if (indexPath != nil) {
+                print("indy\(String(describing: indexPath?.row))")
+                let defaults = UserDefaults.standard
 
-                    var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
-                    
-                    let singleDictionary = samTest[(indexPath?.row)!]
+                var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
+                
+                let singleDictionary = samTest[(indexPath?.row)!]
 
-                    let id = singleDictionary["id"] as! Int
-                    let describe = singleDictionary["description"] as! String
-                    let endDate = singleDictionary["end_date"] as! String
-                    let module = singleDictionary["module"] as! String
-                    let reason = singleDictionary["reason"] as! String
-                    
-                    defaults.set(id, forKey: "EditedID") //Setting ID
-                    defaults.set(reason, forKey: "EditedReason") //My goal text
-                    defaults.set(describe, forKey: "EditedDescribe") //Because
-                    defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
-                    defaults.set(module, forKey: "EditedModule") //Module
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
+                let id = singleDictionary["id"] as! Int
+                let describe = singleDictionary["description"] as! String
+                let endDate = singleDictionary["end_date"] as! String
+                let module = singleDictionary["module"] as! String
+                let reason = singleDictionary["reason"] as! String
+                
+                defaults.set(id, forKey: "EditedID") //Setting ID
+                defaults.set(reason, forKey: "EditedReason") //My goal text
+                defaults.set(describe, forKey: "EditedDescribe") //Because
+                defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
+                defaults.set(module, forKey: "EditedModule") //Module
+                NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
 
-                } else {
-                    print("waffles")
-                }
-            }else{
-			closeCellOptions()
-                if (indexPath != nil) {
-                    let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
-                    let vc = NewTargetVC(target: target)
-                    navigationController?.pushViewController(vc, animated: true)
-                }
+            } else {
+                print("waffles")
             }
-		}
+        }else{
+        closeCellOptions()
+            if (indexPath != nil) {
+                let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
+                let vc = NewTargetVC(target: target)
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+		//}
 	}
 	@IBAction func deleteTarget(_ sender:UIButton) {
 		if demo() {
-			let alert = UIAlertController(title: "", message: localized("demo_mode_deletetarget"), preferredStyle: .alert)
+			let alert = UIAlertController(title: "", message: localized("demo_mode_delete_target"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
 		} else {

@@ -80,7 +80,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var blueDot:UIImageView!
     @IBOutlet weak var comparisonStudentName:UILabel!
     var selectedModule:Int = 0
-    var selectedPeriod:Int = 1 // 30 days
+    var selectedPeriod:Int = 0 // 30 days
     var selectedStudent:Int = 0
     @IBOutlet weak var graphView:UIView!
     @IBOutlet weak var graphContainer:UIView!
@@ -139,7 +139,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 NSKeyedArchiver.archiveRootObject(true, toFile: filePath("dont_show_staff_alert\(studentId)"))
             }
         }))
-        self.periodSegment.selectedSegmentIndex = 1
+        self.periodSegment.selectedSegmentIndex = 0 //Vle changed here
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshAttainmentData(_:)), for: UIControlEvents.valueChanged)
         attainmentTableView.addSubview(refreshControl)
@@ -634,6 +634,19 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 print("displaying data loading for cell \(indexPath.row)")
                 theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
             }
+            let lastSectionIndex = tableView.numberOfSections - 1
+            let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+            if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+                // print("this is the last cell")
+                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                spinner.startAnimating()
+                spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+                
+                self.eventsAttendedTableView.tableFooterView = spinner
+                self.eventsAttendedTableView.tableFooterView?.isHidden = false
+                spinner.stopAnimating()
+            }
+            
             break
         default:
             break

@@ -401,6 +401,8 @@
 "demo_mode_delete_activity_log" = "Logs can’t be deleted in demo mode.";
 "demo_mode_add_target" = "To start saving targets, create an account.";
 "demo_mode_edit_target" = "You can't edit targets in demo mode";
+"demo_mode_mark_as_done_target" = "Target is for demo purposes only and can’t be marked as done";
+"demo_mode_save_target" = "Target is for demo purposes only. Log into an account to create your own targets";
 "demo_mode_delete_target" = "Targets can't be deleted in demo mode.";
 "demo_mode_change_app_settings" = "Demo mode only. You can't change the settings.";
 "demo_mode_delete_feed" = "Demo mode only. You can't delete posts.";

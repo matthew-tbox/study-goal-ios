@@ -141,11 +141,11 @@ class OneFeedItemCell: LocalizableCell {
         attributedText.addAttribute(NSFontAttributeName, value: myriadProRegular(18
             )!, range: NSMakeRange(0, feed.message.characters.count))
         if (feed.isMine()) {
-            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 136.0/255.0, green: 99.0/255.0, blue: 199.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
+            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
         } else {
             //			attributedText.addAttribute(NSForegroundColorAttributeName, value: lilacColor, range: NSMakeRange(0, 8))
             //			attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.darkGrayColor(), range: NSMakeRange(8, text.characters.count - 8))
-            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 136.0/255.0, green: 99.0/255.0, blue: 199.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
+            attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0), range: NSMakeRange(0, feed.message.characters.count))
         }
         contentText.attributedText = attributedText
         

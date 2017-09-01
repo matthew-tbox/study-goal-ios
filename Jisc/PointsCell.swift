@@ -33,7 +33,12 @@ class PointsCell: UITableViewCell {
     }
 	
 	func loadPoints(points:PointsObject) {
-		activityLabel.text = points.activity
+        if (points.activity == "Loggedin"){
+            activityLabel.text = "Logged in"
+        } else {
+            activityLabel.text = points.activity
+
+        }
 		countLabel.text = "\(points.count)"
 		pointsLabel.text = "\(points.points)"
 	}
