@@ -111,7 +111,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
 
-        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
+        let urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
         print("This is the URL strring from the getTodoListData ", urlStringCall)
         
         var request:URLRequest?
