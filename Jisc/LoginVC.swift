@@ -354,10 +354,16 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
                     if demo(){
                         DELEGATE.menuView = MenuView.createView()
                     } else {
-                        let vc = TermsViewController()
-                        self.present(vc, animated: true, completion: nil)
+                        let defaults = UserDefaults.standard
+                        let result = defaults.object(forKey: "FirstTime") as! String
+                        if (result == "yes"){
+                            let vc = TermsViewController()
+                            self.present(vc, animated: true, completion: nil)
+                        } else {
+                            DELEGATE.menuView = MenuView.createView()
+                        }
+
                     }
-					//DELEGATE.menuView = MenuView.createView()
 				} else {
 					UIAlertView(title: localized("error"), message: failureReason, delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
 				}

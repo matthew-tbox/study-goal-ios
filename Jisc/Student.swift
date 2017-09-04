@@ -33,8 +33,12 @@ class Student: NSManagedObject {
 		if let data = dictionary["user_data"] as? NSDictionary {
 			userData = data
 		}
-		
-		accommodationCode = stringFromDictionary(userData, key: "accommodation_code")
+        let myFirstTime = stringFromDictionary(userData, key: "first_time")//Adding in the first_time parameter?
+        print("printing the first time key value", myFirstTime)
+        let defaults = UserDefaults.standard
+        defaults.set(myFirstTime, forKey: "FirstTime")
+
+        accommodationCode = stringFromDictionary(userData, key: "accommodation_code")
 		addressLine1 = stringFromDictionary(userData, key: "address_line_1")
 		addressLine2 = stringFromDictionary(userData, key: "address_line_2")
 		addressLine3 = stringFromDictionary(userData, key: "address_line_3")

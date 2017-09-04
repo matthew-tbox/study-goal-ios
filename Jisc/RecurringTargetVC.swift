@@ -364,42 +364,50 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func recurringSaveAction(_ sender: Any) {
-        dateFormatter.dateFormat = "y-MM-dd"
-        let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
-        let urlString = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
-        var module = ""
-        if (selectedModule - 1 < 0){
-            module = "No Module"
-        } else {
-            module = dataManager.moduleNameAtIndex(selectedModule - 1)!
-        }
-        if (myGoalTextField.text.isEmpty){
-            //Make sure to localize the following message
-            
-            AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
-                //self.dismiss(animated: true, completion: nil)
-            }
-        }
-        
-        let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
-        
-        if (noteTextView.text! == "Add a reason to keep this target"){
-            let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
-        }
+        if demo(){
+            let alert = UIAlertController(title: "", message: localized("demo_mode_save_target"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+            navigationController?.present(alert, animated: true, completion: nil)
 
-        
-        print("")
-        
-        let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
-        
-        if (somethingWentWrong){
-            AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
-                _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            dateFormatter.dateFormat = "y-MM-dd"
+            let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
+            let urlString = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
+            var module = ""
+            if (selectedModule - 1 < 0){
+                module = "No Module"
+            } else {
+                module = dataManager.moduleNameAtIndex(selectedModule - 1)!
             }
-        } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
-            AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                _ = self.navigationController?.popViewController(animated: true)
+            if (myGoalTextField.text.isEmpty){
+                //Make sure to localize the following message
+                
+                AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
+                    //self.dismiss(animated: true, completion: nil)
+                }
             }
+            
+            let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
+            
+            if (noteTextView.text! == "Add a reason to keep this target"){
+                let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+            }
+            
+            
+            print("")
+            
+            let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
+            
+            if (somethingWentWrong){
+                AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
+                AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            }
+
         }
         
         

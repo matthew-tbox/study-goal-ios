@@ -17,6 +17,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     var aSingleCellIsOpen:Bool = false
     var arrayOfResponses: [[String:Any]] = []
     var arrayOfResponses2: [[String:Any]] = []
+    var refreshTimer:Timer?
+
 
     @IBOutlet weak var singleTargetSegmentControl: UISegmentedControl!
     
@@ -25,6 +27,12 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         singleTargetTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
         singleTargetSegmentControl.selectedSegmentIndex = 0
         singleTargetTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
+        //refreshTimer = Timer(timeInterval: 30, target: self, selector: #selector(FeedVC.refreshFeeds(_:)), userInfo:nil, repeats: true)
+        //RunLoop.current.add(refreshTimer!, forMode: RunLoopMode.commonModes)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(SingleTargetVC.manuallyRefreshFeeds(_:)), for: UIControlEvents.valueChanged)
+        singleTargetTableView.addSubview(refreshControl)
+
         singleTargetTableView.delegate = self
         singleTargetTableView.dataSource = self
         singleTargetTableView.reloadData()
@@ -41,6 +49,15 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                                                object: nil)
 
     }
+    
+    
+    func manuallyRefreshFeeds(_ sender:UIRefreshControl) {
+        getTodoListData()
+        self.singleTargetTableView.reloadData()
+        sender.endRefreshing()
+        
+    }
+
     
     func doThisWhenNotify(){
         let vc = RecurringTargetVC()
@@ -94,7 +111,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
 
-        let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
+        let urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
         print("This is the URL strring from the getTodoListData ", urlStringCall)
         
         var request:URLRequest?
@@ -283,9 +300,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         print("This is the indexPath.row",indexPath.row)
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["status"] as! String
+        let fromTutor = singleDictionary["from_tutor"] as! String
+        let isAccepted = singleDictionary["is_accepted"] as! String
         if (status == "0"){
             return 108.0
 
+        } else if (fromTutor == "yes" && isAccepted == "2"){
+            return 0.0
+            
         } else {
             return 108.0
             
