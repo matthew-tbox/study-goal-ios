@@ -198,14 +198,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         let status = singleDictionary["from_tutor"] as! String
         let status2 = singleDictionary["is_accepted"] as! String
          if (status == "0"){
-            theCell.isHidden = true
+            //theCell.isHidden = true
             
         }
         if(status == "yes" && status2 == "0"){
             theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         } else if (status == "yes" && status2 == "2"){
             theCell.backgroundColor = UIColor.red
-            theCell.isHidden = true
+       //     theCell.isHidden = true
         } else {
             theCell.backgroundColor = UIColor.clear
 
