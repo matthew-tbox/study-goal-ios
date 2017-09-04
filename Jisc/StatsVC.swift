@@ -130,6 +130,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
     var eventsAttendedArray = [EventsAttendedObject]()
+    var orderedEventsAttendedArray = [EventsAttendedObject]()
+    var eventsAttendedLimit:Int = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,6 +154,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         pointsTable.rowHeight = UITableViewAutomaticDimension
         pointsTable.register(UINib(nibName: kPointsCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kPointsCellIdentifier)
         
+        let eventsRefreshControl = UIRefreshControl()
+        eventsRefreshControl.addTarget(self, action: #selector(eventsRefreshAttainmentData(_:)), for: UIControlEvents.valueChanged)
+        eventsAttendedTableView.addSubview(eventsRefreshControl)
         eventsAttendedTableView.estimatedRowHeight = 36.0
         eventsAttendedTableView.rowHeight = UITableViewAutomaticDimension
         eventsAttendedTableView.dataSource = self
@@ -265,6 +270,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
     }
     
+    func eventsRefreshAttainmentData(_ sender:UIRefreshControl) {
+        self.eventsAttendedLimit = 20
+        getEventsAttended {
+            sender.endRefreshing()
+        }
+    }
+    
     func getAttainmentData(_ completion:@escaping (() -> Void)) {
         attainmentArray.removeAll()
         attainmentTableView.reloadData()
@@ -341,7 +353,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         eventsAttendedArray.removeAll()
         let xMGR = xAPIManager()
         xMGR.silent = true
-        xMGR.getEventsAttended(skip: 0, limit: 20) { (success, result, results, error) in
+        xMGR.getEventsAttended(skip: 0, limit: self.eventsAttendedLimit) { (success, result, results, error) in
 
             if (results != nil){
                 print("receiving data")
@@ -379,6 +391,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             print("events array")
             print(self.eventsAttendedArray)
+           
+
+            print("here is the sorted array ", self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
+
             print(self.eventsAttendedArray.count)
             self.eventsAttendedTableView.reloadData()
             print("events reloaded")
@@ -599,7 +615,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             
             if let theCell = cell as? EventsAttendedCell {
                 print("events attended data loading for cell \(indexPath.row)")
-                theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                if indexPath.row < attainmentArray.count {
+                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                } else {
+                    //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                }
             }
             break
 
@@ -632,7 +653,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         case eventsAttendedTableView:
             if let theCell = cell as? EventsAttendedCell {
                 print("displaying data loading for cell \(indexPath.row)")
-                theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                if indexPath.row < eventsAttendedArray.count {
+                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+
+                } else {
+                    //theCell.loadAttainmentObject(nil)
+                }
             }
             let lastSectionIndex = tableView.numberOfSections - 1
             let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
@@ -644,6 +671,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 
                 self.eventsAttendedTableView.tableFooterView = spinner
                 self.eventsAttendedTableView.tableFooterView?.isHidden = false
+                self.eventsAttendedLimit = self.eventsAttendedLimit + 10
+                getEventsAttended {
+                    print("requested events attended")
+                    self.eventsAttendedTableView.reloadData()
+                }
                 spinner.stopAnimating()
             }
             
