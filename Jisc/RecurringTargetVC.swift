@@ -416,9 +416,12 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     @IBAction func datePickerAction(_ sender: Any) {
         if (isInEditingMode){
             let defaults = UserDefaults.standard
+             if demo(){
+             } else {
             let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
             if (editedDateObject != nil){
                 recurringDatePicker.date = editedDateObject
+            }
             }
         } else {
             recurringDatePicker.minimumDate = Date()

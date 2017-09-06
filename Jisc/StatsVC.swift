@@ -80,8 +80,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var blueDot:UIImageView!
     @IBOutlet weak var comparisonStudentName:UILabel!
     var selectedModule:Int = 0
-    var selectedPeriod:Int = 0 // 30 days
+    var selectedPeriod:Int = 1 // 30 days
     var selectedStudent:Int = 0
+
     @IBOutlet weak var graphView:UIView!
     @IBOutlet weak var graphContainer:UIView!
     @IBOutlet weak var graphContainerWidth:NSLayoutConstraint!
@@ -141,7 +142,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 NSKeyedArchiver.archiveRootObject(true, toFile: filePath("dont_show_staff_alert\(studentId)"))
             }
         }))
-        self.periodSegment.selectedSegmentIndex = 0 //Vle changed here
+        self.periodSegment.selectedSegmentIndex = 1 //Vle changed here
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshAttainmentData(_:)), for: UIControlEvents.valueChanged)
         attainmentTableView.addSubview(refreshControl)
@@ -225,13 +226,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+
         getAttainmentData {
             
         }
         
         getEventsAttended {
             print("requested events attended")
-            self.eventsAttendedTableView.reloadData()
+         //   self.eventsAttendedTableView.reloadData()
         }
         
         if staff() {
@@ -373,11 +376,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                     var dateString = extensions["http://xapi.jisc.ac.uk/starttime"] as! String
                                     dateString = dateString.components(separatedBy: ".").first!
                                     dateString = dateString.replacingOccurrences(of: "T", with: " ")
+                                    print("pesky string \(dateString)");
                                     date = dateFormatter.date(from: dateString)!
                                     
                                     if let courseArea = extensions["http://xapi.jisc.ac.uk/courseArea"] as? [String:Any]{
                                         module = courseArea["http://xapi.jisc.ac.uk/uddModInstanceID"] as! String
-                                        print("\(date) \(activity) \(module)")
+                                        print("eventlog \(date) \(activity) \(module)")
                                         self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
                                         print(self.eventsAttendedArray.count)
                                     }
@@ -386,6 +390,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                     }
                 }
+                
             } else {
                 print("results is nil")
             }
@@ -509,6 +514,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     func goToAttendance() {
         hideUpperViews()
         attendance.isHidden = false
+        attendance.isUserInteractionEnabled = false;
         //container.isHidden = false
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
@@ -539,6 +545,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         default:
             break
         }
+        print("changing segment here");
         getEngagementData()
     }
     
@@ -674,7 +681,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 self.eventsAttendedLimit = self.eventsAttendedLimit + 10
                 getEventsAttended {
                     print("requested events attended")
-                    self.eventsAttendedTableView.reloadData()
+                   // self.eventsAttendedTableView.reloadData()
                 }
                 spinner.stopAnimating()
             }
