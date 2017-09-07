@@ -208,9 +208,9 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         } else {
-           //  _ = navigationController?.popViewController(animated: true)
-            let vc = SingleTargetVC()
-            navigationController?.present(vc, animated: false, completion: nil)
+             _ = navigationController?.popViewController(animated: true)
+            //let vc = SingleTargetVC()
+        //    navigationController?.present(vc, animated: false, completion: nil)
         }
     }
     
@@ -418,10 +418,31 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             let defaults = UserDefaults.standard
              if demo(){
              } else {
-            let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+                let editedTutor = defaults.object(forKey: "EditedTutor") as! String //as! Date
+                if (editedTutor == "yes"){
+                    let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
+                    if (editedDateObject != nil){
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd"
+                        let TestDateTime = formatter.date(from:editedDateObject as! String)
+                        
+                        recurringDatePicker.date = TestDateTime!
+                        
+                         UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+                        
+                    }
+
+                } else {
+            let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
             if (editedDateObject != nil){
-                recurringDatePicker.date = editedDateObject
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                let TestDateTime = formatter.string(from: recurringDatePicker.date)
+              //  recurringDatePicker.date = TestDateTime!
+                defaults.set(TestDateTime, forKey: "EditedDate")
+                
             }
+                }
             }
         } else {
             recurringDatePicker.minimumDate = Date()
