@@ -149,7 +149,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 //        } else {
         if(kButtonsWidth > 200){
             if (indexPath != nil) {
-                print("indy\(String(describing: indexPath?.row))")
+                print("indy2\(String(describing: indexPath?.row))")
                 let defaults = UserDefaults.standard
 
                 var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
@@ -161,12 +161,15 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 let endDate = singleDictionary["end_date"] as! String
                 let module = singleDictionary["module"] as! String
                 let reason = singleDictionary["reason"] as! String
-                
+                let tutor = singleDictionary["from_tutor"] as! String
+
                 defaults.set(id, forKey: "EditedID") //Setting ID
                 defaults.set(reason, forKey: "EditedReason") //My goal text
                 defaults.set(describe, forKey: "EditedDescribe") //Because
-                defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
+                defaults.set(endDate, forKey: "EditedDate") // end_date as Date
                 defaults.set(module, forKey: "EditedModule") //Module
+                defaults.set(tutor, forKey: "EditedTutor") //Module
+
                 NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
 
             } else {
@@ -215,7 +218,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                     defaults.set(id, forKey: "EditedID") //Setting ID
                     defaults.set(reason, forKey: "EditedReason") //My goal text
                     defaults.set(describe, forKey: "EditedDescribe") //Because
-                    defaults.set(endDate, forKey: "EditedDateObject") // end_date as Date
+                    defaults.set(endDate, forKey: "EditedDate") // end_date as Date
                     defaults.set(module, forKey: "EditedModule") //Module
 
                     UIAlertView(title: localized("confirmation"), message: localized("are_you_sure_you_want_to_delete_this_target"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
