@@ -215,6 +215,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         goToAttainment()
         self.highChartWebView.isHidden = false
+        if(demo()){
+            self.highChartWebView.isHidden = true;
+        }
         self.noPointsLabel.isHidden = false
         self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
@@ -525,7 +528,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
         xAPIManager().checkMod(testUrl:urlString)
-        self.view.addSubview(attendance)
+        //   self.view.addSubview(attendance)
         
     }
     
@@ -910,6 +913,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             
                             let baseUrl = URL(fileURLWithPath: filePath)
                             self.highChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+                            
                         } catch {
                             print ("File HTML error")
                         }
