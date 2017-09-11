@@ -265,7 +265,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
         
-        //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         xAPIManager().checkMod(testUrl:urlString)
     }

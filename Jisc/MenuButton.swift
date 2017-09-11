@@ -153,7 +153,7 @@ class StatsMenuButton: MenuButton {
 		expanded = true
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-			self.buttonsHeight.constant = 40 * 6 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
+			self.buttonsHeight.constant = 40 * 5 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
 			self.parent?.layoutIfNeeded()
 		}
         var result = ""
