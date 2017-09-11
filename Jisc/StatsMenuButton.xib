@@ -87,8 +87,6 @@
                             <rect key="frame" x="0.0" y="120" width="375" height="0.0"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
-
-
                             <state key="normal" title="Engagement Leaderboard">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -116,6 +114,18 @@
                             </state>
                             <connections>
                                 <action selector="attendance:" destination="iN0-l3-epB" eventType="touchUpInside" id="dLl-O2-Hlz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1s-Rf-iVw">
+                            <rect key="frame" x="0.0" y="205" width="375" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="App Usage">
+                                <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="appUsageAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="LgX-47-Egz"/>
                             </connections>
                         </button>
                     </subviews>
@@ -166,6 +176,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="appUsageButton" destination="w1s-Rf-iVw" id="hLJ-wJ-Huv"/>
                 <outlet property="arrow" destination="9Uj-cA-21y" id="aLU-p9-tQO"/>
                 <outlet property="attainmentButton" destination="WHR-CA-m5x" id="9N7-qn-2OV"/>
                 <outlet property="attendanceButton" destination="Xyz-iV-Pau" id="MR8-b0-2PO"/>

@@ -137,6 +137,7 @@ class StatsMenuButton: MenuButton {
     @IBOutlet weak var eventsAttendedButton: UIButton!
     @IBOutlet weak var leaderboardsButton: UIButton!
     @IBOutlet weak var attainmentButton: UIButton!
+    @IBOutlet weak var appUsageButton: UIButton!
     
 	var expanded = false
 	
@@ -152,7 +153,7 @@ class StatsMenuButton: MenuButton {
 		expanded = true
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
-			self.buttonsHeight.constant = 40 * 5 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
+			self.buttonsHeight.constant = 40 * 6 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
 			self.parent?.layoutIfNeeded()
 		}
         var result = ""
@@ -246,4 +247,14 @@ class StatsMenuButton: MenuButton {
         retract()
     }
 	
+    @IBAction func appUsageAction(_ sender: Any) {
+        parent?.close(nil)
+        parent?.appUsage()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            //Put code here to go to the view controller
+            //self.parent?.appUsageViewController
+        }
+        retract()
+
+    }
 }

@@ -37,6 +37,20 @@ class AttainmentObject {
         self.moduleName = moduleName
         self.grade = grade
     }
+//    //MARK: - NSCoding -
+//    required convenience init(coder aDecoder: NSCoder) {
+//        let date = aDecoder.decodeObject(forKey: "date") as! Date
+//        let moduleName = aDecoder.decodeObject(forKey: "moduleName") as! String
+//        let grade = aDecoder.decodeObject(forKey: "grade") as! String
+//        self.init(date: date, moduleName: moduleName, grade: grade)
+//    }
+//    
+//    func encode(with aCoder: NSCoder) {
+//        aCoder.encode(date, forKey: "date")
+//        aCoder.encode(moduleName, forKey: "moduleName")
+//        aCoder.encode(grade, forKey: "grade")
+//        
+//    }
 }
 
 class PointsObject {
@@ -49,9 +63,26 @@ class PointsObject {
         self.count = count
         self.points = points
     }
+//    //MARK: - NSCoding -
+//    required convenience init(coder aDecoder: NSCoder) {
+//        let activity = aDecoder.decodeObject(forKey: "activity") as! String
+//        let count1 = aDecoder.decodeObject(forKey: "count") as! String
+//        let points1 = aDecoder.decodeObject(forKey: "points") as! String
+//        let count:Int =  Int(count1)!
+//        let points:Int = Int(points1)!
+//        self.init(activity: activity, count: count, points: points)
+//    }
+//    
+//    func encode(with aCoder: NSCoder) {
+//        aCoder.encode(activity, forKey: "activity")
+//        aCoder.encode(count, forKey: "count")
+//        aCoder.encode(points, forKey: "points")
+//        
+//    }
+
 }
 
-class EventsAttendedObject {
+class EventsAttendedObject:NSObject,NSCoding {
     var date:Date
     var activity:String
     var module:String
@@ -60,6 +91,20 @@ class EventsAttendedObject {
         self.date = date
         self.activity = activity
         self.module = module
+    }
+    //MARK: - NSCoding -
+    required convenience init(coder aDecoder: NSCoder) {
+        let date = aDecoder.decodeObject(forKey: "date") as! Date
+        let activity = aDecoder.decodeObject(forKey: "activity") as! String
+        let module = aDecoder.decodeObject(forKey: "module") as! String
+        self.init(date: date, activity: activity, module: module)
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(date, forKey: "date")
+        aCoder.encode(activity, forKey: "activity")
+        aCoder.encode(module, forKey: "module")
+
     }
 }
 
@@ -130,7 +175,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
     var eventsAttendedArray = [EventsAttendedObject]()
-    var orderedEventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
     
     override func viewDidLoad() {
@@ -196,7 +240,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         weekDays = tempDays
         
-        titleLabel.text = "\(localized("last_30_days")) \(localized("engagement"))"
+        titleLabel.text = "\(localized("last_7_days")) \(localized("engagement"))"
         moduleButton.setTitle(localized("all_activity"), for: UIControlState())
         compareToButton.setTitle(localized("no_one"), for: UIControlState())
         
@@ -209,6 +253,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         getActivityPoints(period: .SevenDays, completion: {
             
         })
+        getAttainmentData {
+            print("Getting Attainment data")
+        }
         getEventsAttended {
             print("requested events attended")
         }
@@ -226,9 +273,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getAttainmentData {
-            
+            self.attainmentTableView.reloadData()
         }
-        
+
         getEventsAttended {
             print("requested events attended")
             self.eventsAttendedTableView.reloadData()
@@ -300,10 +347,18 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                     }
                 }
+
+            } else {
+                print("No results")
             }
             self.attainmentArray.sort(by: { (obj1:AttainmentObject, obj2:AttainmentObject) -> Bool in
                 return (obj2.date.compare(obj1.date) != .orderedDescending)
             })
+            
+//            let defaults = UserDefaults.standard
+//            let encodedDataAttainment: Data = NSKeyedArchiver.archivedData(withRootObject: self.attainmentArray)
+//            defaults.set(encodedDataAttainment, forKey: "AttainmentArray")
+            
             self.attainmentTableView.reloadData()
             completion()
         }
@@ -340,8 +395,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                     }
                 }
+                //Saving to UserDefaults for offline use.
+//                let defaults = UserDefaults.standard
+//                defaults.set(result, forKey: "pointsArrayOffline");
+                
+                //let encodedPoints: Data = NSKeyedArchiver.archivedData(withRootObject: self.pointsArray)
+                //defaults.set(encodedPoints, forKey: "PointsArray")
+
+            } else {
+                print("result is nil")
             }
-            
             self.loadPieChart()
             
             self.pointsTable.reloadData()
@@ -371,6 +434,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                     let dateFormatter = DateFormatter()
                                     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                                     var dateString = extensions["http://xapi.jisc.ac.uk/starttime"] as! String
+//                                    let firstTenCharIndex = dateString.index(dateString.startIndex, offsetBy: 10)
+//                                    let firstTenChar = dateString.substring(to: firstTenCharIndex)
                                     dateString = dateString.components(separatedBy: ".").first!
                                     dateString = dateString.replacingOccurrences(of: "T", with: " ")
                                     date = dateFormatter.date(from: dateString)!
@@ -379,25 +444,26 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                                         module = courseArea["http://xapi.jisc.ac.uk/uddModInstanceID"] as! String
                                         print("\(date) \(activity) \(module)")
                                         self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
-                                        print(self.eventsAttendedArray.count)
                                     }
                                 }
                             }
                         }
                     }
                 }
+                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+                //Saving to UserDefaults for offline use.
+                let defaults = UserDefaults.standard
+                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
+                defaults.set(encodedData, forKey: "EventsAttendedArray")
+
             } else {
                 print("results is nil")
             }
-            print("events array")
-            print(self.eventsAttendedArray)
+
            
-
-            print("here is the sorted array ", self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
-
-            print(self.eventsAttendedArray.count)
+           // print("here is the sorted array ", self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
+            
             self.eventsAttendedTableView.reloadData()
-            print("events reloaded")
             completion()
         }
     }
@@ -565,18 +631,38 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         var nrRows = 0
         switch tableView {
         case attainmentTableView:
-            nrRows = attainmentArray.count
-            if let student = dataManager.currentStudent {
-                if student.affiliation.contains("glos.ac.uk") {
-                    nrRows += 1
+            if (internetAvailability == ReachabilityStatus.notReachable) {
+                let defaults = UserDefaults.standard
+                if   let decodedAttainment  = defaults.object(forKey: "AttainmentArray") as! Data? {
+                            let decodedAttainmentArray = NSKeyedUnarchiver.unarchiveObject(with: decodedAttainment) as! [AttainmentObject]
+                
+                nrRows = decodedAttainmentArray.count
+                
+                }
+            } else {
+                nrRows = attainmentArray.count
+                if let student = dataManager.currentStudent {
+                    if student.affiliation.contains("glos.ac.uk") {
+                        nrRows += 1
+                    }
                 }
             }
-            break
+//            let defaults = UserDefaults.standard
+//            let decodedAttainment  = defaults.object(forKey: "AttainmentArray") as! Data
+//            let decodedAttainmentArray = NSKeyedUnarchiver.unarchiveObject(with: decodedAttainment) as! [AttainmentObject]
+                      break
         case pointsTable:
+           // let defaults = UserDefaults.standard
+            //let decoded  = defaults.object(forKey: "PointsArray") as! Data
+            //let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
             nrRows = pointsArray.count
             break
         case eventsAttendedTableView:
-            nrRows = eventsAttendedArray.count
+            let defaults = UserDefaults.standard
+            let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
+            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
+
+            nrRows = decodedArray.count
             break
         default:
             break
@@ -589,6 +675,36 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         switch tableView {
         case attainmentTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier, for: indexPath)
+//            let defaults = UserDefaults.standard
+//            
+//            let decoded  = defaults.object(forKey: "AttainmentArray") as! Data
+//            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
+            //            if let theCell = cell as? AttainmentCell {
+            let defaults = UserDefaults.standard
+            
+            if (internetAvailability == ReachabilityStatus.notReachable) {
+                if let decoded  = defaults.object(forKey: "AttainmentArray") as! Data?{
+                    let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
+
+                    if let theCell = cell as? AttainmentCell {
+                        if indexPath.row < decodedArray.count {
+                            let attObject = decodedArray[indexPath.row]
+                            theCell.loadAttainmentObject(attObject)
+                        } else {
+                            theCell.loadAttainmentObject(nil)
+                        }
+                    
+                    
+                    if indexPath.row < decodedArray.count {
+                        let attObject = decodedArray[indexPath.row]
+                        theCell.loadAttainmentObject(attObject)
+                    } else {
+                        theCell.loadAttainmentObject(nil)
+                    }
+                    }
+                }
+            } else {
+
             if let theCell = cell as? AttainmentCell {
                 if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
@@ -597,10 +713,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     theCell.loadAttainmentObject(nil)
                 }
             }
+        }
             break
         case pointsTable:
             cell = tableView.dequeueReusableCell(withIdentifier: kPointsCellIdentifier, for: indexPath)
             if let theCell = cell as? PointsCell {
+//                let defaults = UserDefaults.standard
+//                let decoded  = defaults.object(forKey: "PointsArray") as! Data
+//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
+
                 theCell.loadPoints(points: pointsArray[indexPath.row])
             }
             break
@@ -616,8 +737,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             if let theCell = cell as? EventsAttendedCell {
                 print("events attended data loading for cell \(indexPath.row)")
                 //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-                if indexPath.row < attainmentArray.count {
-                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                
+                let defaults = UserDefaults.standard
+                
+                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
+                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
+                
+                if indexPath.row < decodedArray.count {
+                    theCell.loadEvents(events: decodedArray[indexPath.row])
                 } else {
                     //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
@@ -637,6 +764,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         switch tableView {
         case attainmentTableView:
             if let theCell = cell as? AttainmentCell {
+//                let defaults = UserDefaults.standard
+//                
+//                let decoded  = defaults.object(forKey: "AttainmentArray") as! Data
+//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
+
                 if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
                     theCell.loadAttainmentObject(attObject)
@@ -647,6 +779,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case pointsTable:
             if let theCell = cell as? PointsCell {
+//                let defaults = UserDefaults.standard
+//                let decoded  = defaults.object(forKey: "PointsArray") as! Data
+//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
+
                 theCell.loadPoints(points: pointsArray[indexPath.row])
             }
             break
@@ -654,8 +790,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             if let theCell = cell as? EventsAttendedCell {
                 print("displaying data loading for cell \(indexPath.row)")
                 //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-                if indexPath.row < eventsAttendedArray.count {
-                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                let defaults = UserDefaults.standard
+                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
+                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
+                if indexPath.row < decodedArray.count {
+                    theCell.loadEvents(events: decodedArray[indexPath.row])
 
                 } else {
                     //theCell.loadAttainmentObject(nil)
@@ -722,9 +861,19 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
              } */
             var data: String = ""
             
+//            let defaults = UserDefaults.standard
+//            let decoded  = defaults.object(forKey: "PointsArray") as! Data
+//            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
+
+            
             for point in pointsArray {
                 data += "{"
-                data += "name:'\(point.activity)',"
+                if (point.activity == "Loggedin"){
+                    data += "name:'Logged in',"
+                } else {
+                    data += "name:'\(point.activity)',"
+                }
+                
                 data += "y:\(point.points)"
                 data += "},"
                 if(point.points != 0){
@@ -741,7 +890,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
     }
     private func loadHighChart() {
-        //London Developer July 24,2017
         //let completionBlock:downloadCompletionBlock?
         var countArray:[Int] = []
         var dateArray:[String] = []

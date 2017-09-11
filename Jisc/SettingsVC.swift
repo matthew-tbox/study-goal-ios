@@ -242,6 +242,10 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
     
     }
 	
+    @IBAction func termsAndConditions(_ sender: Any) {
+        let vc = TermsViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func toggleAnalytics(_ sender:UIButton) {
 		sender.isSelected = !sender.isSelected
 		changeConsentSettings()

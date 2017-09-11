@@ -459,6 +459,14 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 		completionBlock = completion
 		startConnectionWithRequest(createGetRequest(xAPIGetAttainmentPath, withJWT: true))
 	}
+    
+    func callEventsAttended(){
+        print("This is from XAPI Manager Events attended")
+//        let statsClass = StatsVC() 
+//        statsClass.getEventsAttended {
+//            print("requested events attended")
+//        }
+    }
 	
 	func getEngagementData(_ options:EngagementGraphOptions, completion:@escaping xAPICompletionBlock) {
 		completionBlock = completion
@@ -494,12 +502,10 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         if var request = request {
             if let token = xAPIToken() {
-                print("beth token Ahmed", token)
                 request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 print("the url used in making the call", testUrl)
-                print("the returned response", response!)
             }
             //startConnectionWithRequest(request)
         } else {
@@ -553,7 +559,7 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         }
         if var request = request {
             if let token = xAPIToken() {
-                request.addValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MDE2NzE5NjYsImp0aSI6Ill0Vk5uYUk2a3lPbW0xQXAyeWMwNitYRTBGaHRVQUc1M3U1eXk4OUxJWVk9IiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0XC9leGFtcGxlIiwibmJmIjoxNTAxNjcxOTU2LCJleHAiOjE1MDU4MTkxNTYsImRhdGEiOnsiZXBwbiI6ImFsaWNlQHRlc3QudWtmZWRlcmF0aW9uLm9yZy51ayIsInBpZCI6ImFsaWNlQHRlc3QudWtmZWRlcmF0aW9uLm9yZy51ayIsImFmZmlsaWF0aW9uIjoiYWZmaWxpYXRlQHRlc3QudWtmZWRlcmF0aW9uLm9yZy51ayJ9fQ.A99AszSnbL5b4frXXmcoejaTgrVMck7PNBJxtPLIuAgsz4GQmTpk8uWgBeNP8uO2OX9o1WlVvsx0op_45r-8MQ", forHTTPHeaderField: "Authorization")
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String

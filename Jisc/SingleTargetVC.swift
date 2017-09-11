@@ -17,6 +17,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     var aSingleCellIsOpen:Bool = false
     var arrayOfResponses: [[String:Any]] = []
     var arrayOfResponses2: [[String:Any]] = []
+    var noHeight = 0.0
+    var demoData:[String] = ["These Single Targets are for demo purposes only, login to use the full functionality","3 DAYS OVERDUE! Read 2 chapters for history class ","Do maths assignment by tomorrow because it is due", "Swipe to the left to to edit, delete and mark as done", "You can accept or deny certain tutor set targert", "Switch between single or recurring targets that you want to post", "The icons indicate the urgency of the due date for that specific target"]
     var refreshTimer:Timer?
 
 
@@ -128,7 +130,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
-                        print("sams json \(json)");
                         
                             for item in json {
                                 let object = item as? [String:Any]
@@ -178,7 +179,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //        } else {
 //            emptyScreenMessageView.alpha = 0.0
 //        }
-        return arrayOfResponses.count
+        if demo(){
+            return demoData.count
+        } else {
+            return arrayOfResponses.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -188,108 +193,113 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //        if (theCell == nil) {
 //            theCell = UITableViewCell()
 //        }
-
-        print("This is the array of responses in SingleTargetVC", arrayOfResponses)
-        let singleDictionary = arrayOfResponses[indexPath.row] 
-        let describe = singleDictionary["description"] as! String
-        let endDate = singleDictionary["end_date"] as! String
-        let module = singleDictionary["module"] as! String
-        let reason = singleDictionary["reason"] as! String
-        let status = singleDictionary["from_tutor"] as! String
-        let status2 = singleDictionary["is_accepted"] as! String
-         if (status == "0"){
-            //theCell.isHidden = true
-            
-        }
-        if(status == "yes" && status2 == "0"){
-            theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
-        } else if (status == "yes" && status2 == "2"){
-            theCell.backgroundColor = UIColor.red
-       //     theCell.isHidden = true
-        } else {
-            theCell.backgroundColor = UIColor.clear
-
-        }
-        let todaysDateObject = Date()
-        
-        //The date formatter of the incoming JSON date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "y-MM-dd"
-        dateFormatter.locale = Locale.init(identifier: "en_GB")
-        //Formatting the date to something like Monday August 21, 2017
-        let dateObj = dateFormatter.date(from: endDate)
-        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
-        let finalDate = dateFormatter.string(from: dateObj!)
-        
-        //Setting up some variables to compare today's date with the date incoming from the JSON and
-        //how long ago it was
-        let calendar = Calendar.current
-        // Replace the hour (time) of both dates with 00:00 for a fair full day comparision.
-        let date1 = calendar.startOfDay(for: todaysDateObject)
-        let date2 = calendar.startOfDay(for: dateObj!)
-        
-        let components = calendar.dateComponents([.day], from: date1, to: date2)
-        let numberOfDaysAgo = components.day
-        
-        var finalText = ""
-        //Checks to see if the module, reason sections are empty and returning the appropriate date.
-        if (module.isEmpty){
-            if (Calendar.current.isDateInTomorrow(dateObj!)){
-                finalText = "\(describe) by tomorrow because \(reason)"
-            } else if (Calendar.current.isDateInToday(dateObj!)){
-                finalText = "\(describe) by end of today because \(reason)"
-            } else if (numberOfDaysAgo! < 0){
-                finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
-                
-            } else {
-                finalText = "\(describe) by \(finalDate) because \(reason)"
-            }
-        } else if (reason.isEmpty){
-            if (Calendar.current.isDateInTomorrow(dateObj!)){
-                finalText = "\(describe) for \(module) by tomorrow"
-            } else if (Calendar.current.isDateInToday(dateObj!)){
-                finalText = "\(describe) for \(module) by end of today"
-            } else if (numberOfDaysAgo! < 0 ){
-                finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) for \(module)"
-            } else {
-                finalText = "\(describe) for \(module) by \(finalDate)"
-            }
-        } else {
-            if (Calendar.current.isDateInTomorrow(dateObj!)){
-                finalText = "\(describe) by tomorrow because \(reason)"
-            } else if (Calendar.current.isDateInToday(dateObj!)){
-                finalText = "\(describe) by end of today because \(reason)"
-            } else if (numberOfDaysAgo! < 0){
-                finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
-            } else {
-                finalText = "\(describe) by \(finalDate) because \(reason)"
-            }
-        }
-        
-        /*
-         1. Cool is for if there are more than 7 days remaining
-         2. watch_time is for fewer than 7 days but more than 2 days before end date.
-         3. watch_time_sweet is for 1 day before
-         4. watch_time_panik for same day
-         5. watch_time_break for overdue
-        */
-        //Setting in the appropriate images
-        if (numberOfDaysAgo! >= 7) {
-            theCell.targetTypeIcon.image = UIImage(named: "cool")
-        } else if (numberOfDaysAgo! < 7 && numberOfDaysAgo! >= 2){
-            theCell.targetTypeIcon.image = UIImage(named: "watch_time")
-        } else if (numberOfDaysAgo! == 1){
+        if demo(){
+            theCell.titleLabel.text = demoData[indexPath.row]
             theCell.targetTypeIcon.image = UIImage(named: "watch_time_sweet")
-        } else if (numberOfDaysAgo! == 0){
-            theCell.targetTypeIcon.image = UIImage(named: "watch_time_panic")
+            theCell.completionColorView.isHidden = true
         } else {
-            theCell.targetTypeIcon.image = UIImage(named: "watch_time_break")
+            print("This is the array of responses in SingleTargetVC", arrayOfResponses)
+            let singleDictionary = arrayOfResponses[indexPath.row]
+            let describe = singleDictionary["description"] as! String
+            let endDate = singleDictionary["end_date"] as! String
+            let module = singleDictionary["module"] as! String
+            let reason = singleDictionary["reason"] as! String
+            let status = singleDictionary["from_tutor"] as! String
+            let status2 = singleDictionary["is_accepted"] as! String
+            if (status == "0"){
+                //theCell.isHidden = true
+                
+            }
+            if(status == "yes" && status2 == "0"){
+                theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            } else if (status == "yes" && status2 == "2"){
+                theCell.backgroundColor = UIColor.red
+            } else {
+                theCell.backgroundColor = UIColor.clear
+                
+            }
+            let todaysDateObject = Date()
+            
+            //The date formatter of the incoming JSON date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "y-MM-dd"
+            dateFormatter.locale = Locale.init(identifier: "en_GB")
+            //Formatting the date to something like Monday August 21, 2017
+            let dateObj = dateFormatter.date(from: endDate)
+            dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+            let finalDate = dateFormatter.string(from: dateObj!)
+            
+            //Setting up some variables to compare today's date with the date incoming from the JSON and
+            //how long ago it was
+            let calendar = Calendar.current
+            // Replace the hour (time) of both dates with 00:00 for a fair full day comparision.
+            let date1 = calendar.startOfDay(for: todaysDateObject)
+            let date2 = calendar.startOfDay(for: dateObj!)
+            
+            let components = calendar.dateComponents([.day], from: date1, to: date2)
+            let numberOfDaysAgo = components.day
+            
+            var finalText = ""
+            //Checks to see if the module, reason sections are empty and returning the appropriate date.
+            if (module.isEmpty){
+                if (Calendar.current.isDateInTomorrow(dateObj!)){
+                    finalText = "\(describe) by tomorrow because \(reason)"
+                } else if (Calendar.current.isDateInToday(dateObj!)){
+                    finalText = "\(describe) by end of today because \(reason)"
+                } else if (numberOfDaysAgo! < 0){
+                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
+                    
+                } else {
+                    finalText = "\(describe) by \(finalDate) because \(reason)"
+                }
+            } else if (reason.isEmpty){
+                if (Calendar.current.isDateInTomorrow(dateObj!)){
+                    finalText = "\(describe) for \(module) by tomorrow"
+                } else if (Calendar.current.isDateInToday(dateObj!)){
+                    finalText = "\(describe) for \(module) by end of today"
+                } else if (numberOfDaysAgo! < 0 ){
+                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) for \(module)"
+                } else {
+                    finalText = "\(describe) for \(module) by \(finalDate)"
+                }
+            } else {
+                if (Calendar.current.isDateInTomorrow(dateObj!)){
+                    finalText = "\(describe) by tomorrow because \(reason)"
+                } else if (Calendar.current.isDateInToday(dateObj!)){
+                    finalText = "\(describe) by end of today because \(reason)"
+                } else if (numberOfDaysAgo! < 0){
+                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
+                } else {
+                    finalText = "\(describe) by \(finalDate) because \(reason)"
+                }
+            }
+            
+            /*
+             1. Cool is for if there are more than 7 days remaining
+             2. watch_time is for fewer than 7 days but more than 2 days before end date.
+             3. watch_time_sweet is for 1 day before
+             4. watch_time_panik for same day
+             5. watch_time_break for overdue
+             */
+            //Setting in the appropriate images
+            if (numberOfDaysAgo! >= 7) {
+                theCell.targetTypeIcon.image = UIImage(named: "cool")
+            } else if (numberOfDaysAgo! < 7 && numberOfDaysAgo! >= 2){
+                theCell.targetTypeIcon.image = UIImage(named: "watch_time")
+            } else if (numberOfDaysAgo! == 1){
+                theCell.targetTypeIcon.image = UIImage(named: "watch_time_sweet")
+            } else if (numberOfDaysAgo! == 0){
+                theCell.targetTypeIcon.image = UIImage(named: "watch_time_panic")
+            } else {
+                theCell.targetTypeIcon.image = UIImage(named: "watch_time_break")
+            }
+            
+            //theCell.textLabel?.adjustsFontSizeToFitWidth = true
+            theCell.textLabel?.numberOfLines = 6
+            theCell.completionColorView.isHidden = true
+            theCell.titleLabel.text = finalText
         }
 
-        //theCell.textLabel?.adjustsFontSizeToFitWidth = true
-        theCell.textLabel?.numberOfLines = 6
-        theCell.completionColorView.isHidden = true
-        theCell.titleLabel.text = finalText
         
         return theCell
     }
@@ -297,22 +307,30 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("This is the indexPath.row",indexPath.row)
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["status"] as! String
-        let fromTutor = singleDictionary["from_tutor"] as! String
-        let isAccepted = singleDictionary["is_accepted"] as! String
+        let status1 = singleDictionary["from_tutor"] as! String
+        let status2 = singleDictionary["is_accepted"] as! String
         if (status == "0"){
-            return 108.0
-
-        } else if (fromTutor == "yes" && isAccepted == "2"){
-            return 0.0
-            
-        } else {
-            return 108.0
+            //theCell.isHidden = true
             
         }
+        if(status1 == "yes" && status2 == "0"){
+            return 108.0
+        } else if (status1 == "yes" && status2 == "2"){
+            return 0.0
+            //theCell.isHidden = true
+        } else {
+            return 108.0
+        }
+        if demo(){
+            return 108.0
+        }
+        if (status == "0"){
+            return 108.0
+        }
 
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

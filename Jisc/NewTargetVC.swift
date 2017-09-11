@@ -344,7 +344,7 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     @IBAction func recurringSaveAction(_ sender: Any) {
         dateFormatter.dateFormat = "y-MM-dd"
         let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
-        let urlString = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
+        let urlString = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
         var module = ""
         if (selectedModule - 1 < 0){
             module = ""

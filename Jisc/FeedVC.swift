@@ -40,6 +40,13 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
         xAPIManager().checkMod(testUrl:urlString)
+        
+        let statsClass = StatsVC()
+//        statsClass.getEventsAttended {
+//            print("requested events attended from feed")
+//        }
+        //statsClass.viewDidLoad()
+        
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {

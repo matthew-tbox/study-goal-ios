@@ -15,7 +15,11 @@
 		8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */; };
 		8014B5F11F44BCD6001BF4E4 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */; };
 		804FD3001F3B68E4002FEDDB /* RecurringTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */; };
+		8056FCF81F5EFD06003FBD17 /* AppUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */; };
+		8056FCF91F5EFD06003FBD17 /* AppUsageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */; };
 		80587B661F4C96A3006E4AEE /* RecurringTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */; };
+		80620A821F5FFBDC00B7C182 /* AppUsageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */; };
+		80620A831F5FFBDC00B7C182 /* AppUsageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */; };
 		80847D7D1F4DE52B00052B11 /* EventsAttendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */; };
 		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */; };
@@ -301,7 +305,11 @@
 		8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		804FD2FF1F3B68E4002FEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RecurringTargetVC.xib; sourceTree = "<group>"; };
+		8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUsageViewController.swift; sourceTree = "<group>"; };
+		8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppUsageViewController.xib; sourceTree = "<group>"; };
 		80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurringTargetVC.swift; sourceTree = "<group>"; };
+		80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUsageCell.swift; sourceTree = "<group>"; };
+		80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppUsageCell.xib; sourceTree = "<group>"; };
 		80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAttendedCell.swift; sourceTree = "<group>"; };
 		80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsAttendedCell.xib; sourceTree = "<group>"; };
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1036,6 +1044,10 @@
 				DA1039FE1E9D05650000737F /* TargetGraphSimple */,
 				DA103A031E9D05730000737F /* TargetGraphStretch */,
 				DAD8BD6E1DB8BC08004F21DE /* BarGraph */,
+				8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */,
+				8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */,
+				80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */,
+				80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1409,6 +1421,7 @@
 				DAB0C7D11C4CE8A000F7A3C6 /* FeedVC~ipad.xib in Resources */,
 				DAC32DC81BCF9F5B00C4FBF5 /* MyriadPro-Light.otf in Resources */,
 				DAD66C681C52222800074B79 /* TrophiesGold.xcassets in Resources */,
+				8056FCF91F5EFD06003FBD17 /* AppUsageViewController.xib in Resources */,
 				DADB0D051C8F00FE00EC692E /* loadingLoginScreen.png in Resources */,
 				DAB0C7F51C4CE92700F7A3C6 /* MyFriendCell.xib in Resources */,
 				DAB0C8611C4CEA8900F7A3C6 /* TargetVC.xib in Resources */,
@@ -1489,6 +1502,7 @@
 				DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */,
 				80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
+				80620A831F5FFBDC00B7C182 /* AppUsageCell.xib in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
 				DA1039FF1E9D05650000737F /* TargetGraphSimple in Resources */,
 				DA76411B1BD7BE3300A7D5C1 /* AlertView.xib in Resources */,
@@ -1584,6 +1598,7 @@
 				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
 				80110A621F4B4E7F00FBF51D /* SingleTargetCell.swift in Sources */,
 				DAD573931C3D46360080B49B /* TrophiesCell.swift in Sources */,
+				80620A821F5FFBDC00B7C182 /* AppUsageCell.swift in Sources */,
 				DAB0C8E81C4D20DF00F7A3C6 /* BundleLocalization.m in Sources */,
 				DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */,
 				DA46D9661BF1F9E900AA1476 /* Activity.swift in Sources */,
@@ -1636,6 +1651,7 @@
 				DA0F57791C3E972F00FF5B7A /* NewTrophyAlert.swift in Sources */,
 				DA7F1D2B1BD8E1A3004EA957 /* MyFriendsVC.swift in Sources */,
 				DA7F1D2F1BD8E463004EA957 /* OneFriendCell.swift in Sources */,
+				8056FCF81F5EFD06003FBD17 /* AppUsageViewController.swift in Sources */,
 				DA7F1D431BD9035B004EA957 /* TrophiesVC.swift in Sources */,
 				DA4085B61EE6AFD70012A561 /* MenuButton.swift in Sources */,
 				DAFB88C31C1083B9000CCD65 /* MarkValue.swift in Sources */,

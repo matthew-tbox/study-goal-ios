@@ -372,7 +372,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         } else {
             dateFormatter.dateFormat = "y-MM-dd"
             let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
-            let urlString = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
+            let urlString = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
             var module = ""
             if (selectedModule - 1 < 0){
                 module = "No Module"

@@ -14,8 +14,6 @@ import CoreData
 
 extension Student {
 	
-   // @NSManaged var firstTime: String //Ahmed adding in firstTime
-    
 	@NSManaged var accommodationCode: String
 	@NSManaged var addressLine1: String
 	@NSManaged var addressLine2: String

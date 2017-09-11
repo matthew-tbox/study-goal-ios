@@ -315,7 +315,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
             let defaults = UserDefaults.standard
             let id = defaults.object(forKey: "EditedID") as! Int
             
-            let urlStringCall = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_delete_todo_task?student_id=\(dataManager.currentStudent!.id))&language=en&is_social=no&record_id=\(id)"
+            let urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_delete_todo_task?student_id=\(dataManager.currentStudent!.id))&language=en&is_social=no&record_id=\(id)"
             var request:URLRequest?
             if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 if let url = URL(string: urlString) {
