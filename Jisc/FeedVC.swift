@@ -63,8 +63,10 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	}
 	
 	@IBAction func openMenu(_ sender:UIButton?) {
-		DELEGATE.menuView?.open()
-		print("open menu: \(DELEGATE.menuView)")
+        DELEGATE.menuView = MenuView.createView()
+        DELEGATE.menuView?.open()
+
+		//print("open menu: \(DELEGATE.menuView)")
 	}
 	
 	func refreshFeeds(_ sender:Timer) {

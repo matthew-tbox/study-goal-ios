@@ -44,7 +44,7 @@ class MenuView: UIView {
         var result = ""
         if !demo(){
             let defaults = UserDefaults.standard
-            result = defaults.object(forKey: "SettingsReturn") as! String //Crash happening here
+            result = defaults.object(forKey: "SettingsReturn") as! String
             
         }
 		var lastButton:MenuButton?
@@ -80,6 +80,8 @@ class MenuView: UIView {
                     lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
                 }
 
+            } else {
+                    lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
             }
 
             lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Target, previousButton: lastButton, isLastButton: false, parent: view)
@@ -128,6 +130,10 @@ class MenuView: UIView {
 	}
 	
 	func open() {
+        let view = Bundle.main.loadNibNamed("MenuView", owner: nil, options: nil)!.first as! MenuView
+        view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in
+            
+        }
 		isUserInteractionEnabled = true
 		superview?.bringSubview(toFront: self)
 		UIView.animate(withDuration: 0.25) { 

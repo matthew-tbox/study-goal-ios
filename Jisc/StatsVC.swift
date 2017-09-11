@@ -175,6 +175,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
     var eventsAttendedArray = [EventsAttendedObject]()
+    var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
     
     override func viewDidLoad() {
@@ -413,6 +414,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     func getEventsAttended(completion:@escaping (() -> Void)){
         eventsAttendedArray.removeAll()
+        eventsAttendedUniqueArray.removeAll()
         let xMGR = xAPIManager()
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: self.eventsAttendedLimit) { (success, result, results, error) in
@@ -450,6 +452,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     }
                 }
                 self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
+                //self.eventsAttendedUniqueArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
                 //Saving to UserDefaults for offline use.
 //                let defaults = UserDefaults.standard
 //                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
@@ -466,7 +470,17 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             completion()
         }
     }
-    
+    func uniq<S : Sequence, T : Hashable>(source: S) -> [T] where S.Iterator.Element == T {
+        var buffer = [T]()
+        var added = Set<T>()
+        for elem in source {
+            if !added.contains(elem) {
+                buffer.append(elem)
+                added.insert(elem)
+            }
+        }
+        return buffer
+    }
     func finelyFormatterNumber(_ number:NSNumber) -> String {
         var digits:[Int] = [Int]()
         var text = "\(number)"
@@ -661,7 +675,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //            let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
 //            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
 
-            nrRows = eventsAttendedArray.count
+            nrRows = eventsAttendedUniqueArray.count
             break
         default:
             break
@@ -679,7 +693,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //            let decoded  = defaults.object(forKey: "AttainmentArray") as! Data
 //            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
             //            if let theCell = cell as? AttainmentCell {
-            let defaults = UserDefaults.standard
+            //let defaults = UserDefaults.standard
             
             if (internetAvailability == ReachabilityStatus.notReachable) {
 //                if let decoded  = defaults.object(forKey: "AttainmentArray") as! Data?{
@@ -734,7 +748,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //            print("events cell asked")
             
             if let theCell = cell as? EventsAttendedCell {
-                print("events attended data loading for cell \(indexPath.row)")
                 //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 
 //                let defaults = UserDefaults.standard
@@ -742,8 +755,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
 //                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
 //                
-                if indexPath.row < eventsAttendedArray.count {
-                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                if indexPath.row < eventsAttendedUniqueArray.count {
+                    theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
                 } else {
                     //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
@@ -792,8 +805,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //                let defaults = UserDefaults.standard
 //                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
 //                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
-                if indexPath.row < eventsAttendedArray.count {
-                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                
+                if indexPath.row < eventsAttendedUniqueArray.count {
+                    theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
 
                 } else {
                     //theCell.loadAttainmentObject(nil)
@@ -802,7 +816,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             let lastSectionIndex = tableView.numberOfSections - 1
             let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
             if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
-                // print("this is the last cell")
                 let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
                 spinner.startAnimating()
                 spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
@@ -811,7 +824,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 self.eventsAttendedTableView.tableFooterView?.isHidden = false
                 self.eventsAttendedLimit = self.eventsAttendedLimit + 10
                 getEventsAttended {
-                    print("requested events attended")
                     self.eventsAttendedTableView.reloadData()
                 }
                 spinner.stopAnimating()
@@ -1951,3 +1963,21 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
 }
 
+
+extension Array {
+    
+    func filterDuplicates( includeElement: @noescape (_ lhs:Element, _ rhs:Element) -> Bool) -> [Element]{
+        var results = [Element]()
+        
+        forEach { (element) in
+            let existingElements = results.filter {
+                return includeElement(element, $0)
+            }
+            if existingElements.count == 0 {
+                results.append(element)
+            }
+        }
+        
+        return results
+    }
+}
