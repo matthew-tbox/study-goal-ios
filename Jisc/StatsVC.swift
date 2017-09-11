@@ -451,9 +451,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 }
                 self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
                 //Saving to UserDefaults for offline use.
-                let defaults = UserDefaults.standard
-                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
-                defaults.set(encodedData, forKey: "EventsAttendedArray")
+//                let defaults = UserDefaults.standard
+//                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
+//                defaults.set(encodedData, forKey: "EventsAttendedArray")
 
             } else {
                 print("results is nil")
@@ -631,13 +631,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         switch tableView {
         case attainmentTableView:
             if (internetAvailability == ReachabilityStatus.notReachable) {
-                let defaults = UserDefaults.standard
-                if   let decodedAttainment  = defaults.object(forKey: "AttainmentArray") as! Data? {
-                            let decodedAttainmentArray = NSKeyedUnarchiver.unarchiveObject(with: decodedAttainment) as! [AttainmentObject]
-                
-                nrRows = decodedAttainmentArray.count
-                
-                }
+//                let defaults = UserDefaults.standard
+//                if   let decodedAttainment  = defaults.object(forKey: "AttainmentArray") as! Data? {
+//                            let decodedAttainmentArray = NSKeyedUnarchiver.unarchiveObject(with: decodedAttainment) as! [AttainmentObject]
+//                
+//                nrRows = decodedAttainmentArray.count
+//                
+//                }
             } else {
                 nrRows = attainmentArray.count
                 if let student = dataManager.currentStudent {
@@ -657,11 +657,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             nrRows = pointsArray.count
             break
         case eventsAttendedTableView:
-            let defaults = UserDefaults.standard
-            let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
-            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
+//            let defaults = UserDefaults.standard
+//            let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
+//            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
 
-            nrRows = decodedArray.count
+            nrRows = eventsAttendedArray.count
             break
         default:
             break
@@ -682,26 +682,26 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             let defaults = UserDefaults.standard
             
             if (internetAvailability == ReachabilityStatus.notReachable) {
-                if let decoded  = defaults.object(forKey: "AttainmentArray") as! Data?{
-                    let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
-
-                    if let theCell = cell as? AttainmentCell {
-                        if indexPath.row < decodedArray.count {
-                            let attObject = decodedArray[indexPath.row]
-                            theCell.loadAttainmentObject(attObject)
-                        } else {
-                            theCell.loadAttainmentObject(nil)
-                        }
-                    
-                    
-                    if indexPath.row < decodedArray.count {
-                        let attObject = decodedArray[indexPath.row]
-                        theCell.loadAttainmentObject(attObject)
-                    } else {
-                        theCell.loadAttainmentObject(nil)
-                    }
-                    }
-                }
+//                if let decoded  = defaults.object(forKey: "AttainmentArray") as! Data?{
+//                    let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
+//
+//                    if let theCell = cell as? AttainmentCell {
+//                        if indexPath.row < decodedArray.count {
+//                            let attObject = decodedArray[indexPath.row]
+//                            theCell.loadAttainmentObject(attObject)
+//                        } else {
+//                            theCell.loadAttainmentObject(nil)
+//                        }
+//                    
+//                    
+//                    if indexPath.row < decodedArray.count {
+//                        let attObject = decodedArray[indexPath.row]
+//                        theCell.loadAttainmentObject(attObject)
+//                    } else {
+//                        theCell.loadAttainmentObject(nil)
+//                    }
+//                    }
+//                }
             } else {
 
             if let theCell = cell as? AttainmentCell {
@@ -737,13 +737,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 print("events attended data loading for cell \(indexPath.row)")
                 //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 
-                let defaults = UserDefaults.standard
-                
-                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
-                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
-                
-                if indexPath.row < decodedArray.count {
-                    theCell.loadEvents(events: decodedArray[indexPath.row])
+//                let defaults = UserDefaults.standard
+//                
+//                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
+//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
+//                
+                if indexPath.row < eventsAttendedArray.count {
+                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 } else {
                     //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
@@ -789,11 +789,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             if let theCell = cell as? EventsAttendedCell {
                 print("displaying data loading for cell \(indexPath.row)")
                 //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-                let defaults = UserDefaults.standard
-                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
-                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
-                if indexPath.row < decodedArray.count {
-                    theCell.loadEvents(events: decodedArray[indexPath.row])
+//                let defaults = UserDefaults.standard
+//                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
+//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
+                if indexPath.row < eventsAttendedArray.count {
+                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
 
                 } else {
                     //theCell.loadAttainmentObject(nil)
