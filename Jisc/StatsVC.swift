@@ -120,7 +120,7 @@ enum GraphType {
 class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, CustomPickerViewDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var contentCenterX:NSLayoutConstraint!
-    //	@IBOutlet weak var pageSegment:UISegmentedControl?
+    @IBOutlet weak var topLabel:UILabel!
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var blueDot:UIImageView!
     @IBOutlet weak var comparisonStudentName:UILabel!
@@ -128,6 +128,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var selectedPeriod:Int = 0 // 30 days
     var selectedStudent:Int = 0
     @IBOutlet weak var graphView:UIView!
+    
     @IBOutlet weak var graphContainer:UIView!
     @IBOutlet weak var graphContainerWidth:NSLayoutConstraint!
     @IBOutlet weak var viewWithVerticalLabels:UIView!
@@ -262,6 +263,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         goToAttainment()
         self.highChartWebView.isHidden = false
+        if(demo()){
+            self.highChartWebView.isHidden = true;
+        }
         self.noPointsLabel.isHidden = false
         self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
@@ -272,6 +276,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         getAttainmentData {
             self.attainmentTableView.reloadData()
         }
@@ -354,11 +359,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             self.attainmentArray.sort(by: { (obj1:AttainmentObject, obj2:AttainmentObject) -> Bool in
                 return (obj2.date.compare(obj1.date) != .orderedDescending)
             })
-            
-//            let defaults = UserDefaults.standard
-//            let encodedDataAttainment: Data = NSKeyedArchiver.archivedData(withRootObject: self.attainmentArray)
-//            defaults.set(encodedDataAttainment, forKey: "AttainmentArray")
-            
+
+            if(self.attainmentArray.count == 0){
+                print("noattain!")
+            }
             self.attainmentTableView.reloadData()
             completion()
         }
@@ -418,7 +422,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let xMGR = xAPIManager()
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: self.eventsAttendedLimit) { (success, result, results, error) in
-
+            
             if (results != nil){
                 print("receiving data")
                 // handle data
@@ -463,9 +467,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 print("results is nil")
             }
 
-           
-           // print("here is the sorted array ", self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
+            print("events array")
+            print(self.eventsAttendedArray)
             
+            
+            print("here is the sorted array ", self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending}))
+            
+            print(self.eventsAttendedArray.count)
             self.eventsAttendedTableView.reloadData()
             completion()
         }
@@ -525,7 +533,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     //	}
     
     func goToGraph() {
-        
+        topLabel.text = "VLE Activity"
         hideUpperViews()
         container.isHidden = false
         
@@ -540,7 +548,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         hideUpperViews()
         container.isHidden = false
-        
+        topLabel.text = "Attainment"
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = 0.0
@@ -555,6 +563,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         hideUpperViews()
         container.isHidden = false
+        topLabel.text = "Activity points"
         
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
@@ -570,6 +579,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     func goToLeaderBoard() {
         hideUpperViews()
+        topLabel.text = "Leaderboard"
+        
         leaderBoard.isHidden = true
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard&contentName=leaderboard"
@@ -579,6 +590,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     func goToEventsAttended() {
         hideUpperViews()
+        topLabel.text = "Events Attended"
+        
         eventAtteneded.isHidden = false
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-events&contentName=eventsAttended"
@@ -588,10 +601,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     func goToAttendance() {
         hideUpperViews()
         attendance.isHidden = false
+        topLabel.text = "Attendance Summary"
+        
         //container.isHidden = false
         //London Developer July 24,2017
         let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
         xAPIManager().checkMod(testUrl:urlString)
+        //   self.view.addSubview(attendance)
+        
     }
     
     private func hideUpperViews() {
@@ -740,12 +757,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case eventsAttendedTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
-//            dateFormatter.dateFormat = "dd/MM/yy"
-//             var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
-//             dateFormatter.dateFormat = "hh:mm"
-//             dateTimeString.append(" \(dateFormatter.string(from: eventsAttendedArray[indexPath.row].date))")
-//             cell.textLabel!.text = "\(dateTimeString) \(eventsAttendedArray[indexPath.row].activity) \(eventsAttendedArray[indexPath.row].module)"
-//            print("events cell asked")
+            //            dateFormatter.dateFormat = "dd/MM/yy"
+            //             var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
+            //             dateFormatter.dateFormat = "hh:mm"
+            //             dateTimeString.append(" \(dateFormatter.string(from: eventsAttendedArray[indexPath.row].date))")
+            //             cell.textLabel!.text = "\(dateTimeString) \(eventsAttendedArray[indexPath.row].activity) \(eventsAttendedArray[indexPath.row].module)"
+            //            print("events cell asked")
             
             if let theCell = cell as? EventsAttendedCell {
                 //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
@@ -762,7 +779,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 }
             }
             break
-
+            
         default:
             cell = UITableViewCell()
             break
@@ -771,7 +788,72 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     //MARK: UITableView Delegate
-    
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        var numOfSections: Int = 0
+        
+        switch tableView {
+        case attainmentTableView:
+            if (attainmentArray.count > 0)
+            {
+                tableView.separatorStyle = .singleLine
+                numOfSections            = 1
+                tableView.backgroundView = nil
+            }
+            else
+            {
+                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                noDataLabel.text          = "No data available"
+                noDataLabel.textColor     = UIColor.black
+                noDataLabel.textAlignment = .center
+                tableView.backgroundView  = noDataLabel
+                tableView.separatorStyle  = .none
+            }
+            break
+        case pointsTable:
+            if (pointsArray.count > 0)
+            {
+                tableView.separatorStyle = .singleLine
+                numOfSections            = 1
+                tableView.backgroundView = nil
+            }
+            else
+            {
+                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                noDataLabel.text          = "No data available"
+                noDataLabel.textColor     = UIColor.black
+                noDataLabel.textAlignment = .center
+                tableView.backgroundView  = noDataLabel
+                tableView.separatorStyle  = .none
+            }
+            
+            break
+        case eventsAttendedTableView:
+            if (eventsAttendedArray.count > 0)
+            {
+                tableView.separatorStyle = .singleLine
+                numOfSections            = 1
+                tableView.backgroundView = nil
+            }
+            else
+            {
+                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                noDataLabel.text          = "No data available"
+                noDataLabel.textColor     = UIColor.black
+                noDataLabel.textAlignment = .center
+                tableView.backgroundView  = noDataLabel
+                tableView.separatorStyle  = .none
+            }
+            
+            break
+        default:
+            break
+        }
+        
+        
+        
+        return numOfSections
+    }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch tableView {
         case attainmentTableView:
@@ -808,6 +890,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 
                 if indexPath.row < eventsAttendedUniqueArray.count {
                     theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
+
 
                 } else {
                     //theCell.loadAttainmentObject(nil)
@@ -910,7 +993,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let result = dateFormatter.string(from: todaysDate)
         let twentyEightDaysAgo = Calendar.current.date(byAdding: .day, value: -34, to: Date())
         let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
-
+        
         
         let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
         var request:URLRequest?
@@ -990,6 +1073,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             
                             let baseUrl = URL(fileURLWithPath: filePath)
                             self.highChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+                            
                         } catch {
                             print ("File HTML error")
                         }
