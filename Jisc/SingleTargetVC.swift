@@ -241,7 +241,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             
             var finalText = ""
             //Checks to see if the module, reason sections are empty and returning the appropriate date.
-            if (module.isEmpty){
+            if (module.isEmpty || module == "no_module"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
                     finalText = "\(describe) by tomorrow because \(reason)"
                 } else if (Calendar.current.isDateInToday(dateObj!)){
@@ -252,7 +252,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 } else {
                     finalText = "\(describe) by \(finalDate) because \(reason)"
                 }
-            } else if (reason.isEmpty){
+            } else if (reason.isEmpty || reason == "Add a reason to keep this target"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
                     finalText = "\(describe) for \(module) by tomorrow"
                 } else if (Calendar.current.isDateInToday(dateObj!)){
