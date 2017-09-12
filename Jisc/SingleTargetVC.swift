@@ -197,7 +197,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             theCell.titleLabel.text = demoData[indexPath.row]
             theCell.targetTypeIcon.image = UIImage(named: "watch_time_sweet")
             theCell.completionColorView.isHidden = true
-
+        } else {
         print("This is the array of responses in SingleTargetVC", arrayOfResponses)
         let singleDictionary = arrayOfResponses[indexPath.row] 
         let describe = singleDictionary["description"] as! String
@@ -214,7 +214,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         } else if (status == "yes" && status2 == "2"){
             theCell.backgroundColor = UIColor.red
-            //theCell.isHidden = true
+            theCell.isHidden = true
         } else {
             print("This is the array of responses in SingleTargetVC", arrayOfResponses)
             let singleDictionary = arrayOfResponses[indexPath.row]
@@ -300,6 +300,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
              5. watch_time_break for overdue
              */
             //Setting in the appropriate images
+            theCell.targetTypeIcon.image = nil
             if (numberOfDaysAgo! >= 7) {
                 theCell.targetTypeIcon.image = UIImage(named: "cool")
             } else if (numberOfDaysAgo! < 7 && numberOfDaysAgo! >= 2){
@@ -317,14 +318,18 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             theCell.completionColorView.isHidden = true
             theCell.titleLabel.text = finalText
         }
-
         }
+        
         return theCell
     }
     
     //MARK: UITableView Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if demo(){
+            return 108.0
+
+        } else {
         let singleDictionary = arrayOfResponses[indexPath.row]
         let status = singleDictionary["status"] as! String
         let status1 = singleDictionary["from_tutor"] as! String
@@ -341,13 +346,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         } else {
             return 108.0
         }
-        if demo(){
-            return 108.0
-        }
         if (status == "0"){
             return 108.0
         }
-
+        }
         
     }
     
