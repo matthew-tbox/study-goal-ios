@@ -601,6 +601,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     func goToAttendance() {
         hideUpperViews()
         attendance.isHidden = false
+        attendance.isUserInteractionEnabled = false
         topLabel.text = "Attendance Summary"
         
         //container.isHidden = false

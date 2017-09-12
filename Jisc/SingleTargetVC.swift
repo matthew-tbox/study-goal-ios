@@ -318,7 +318,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             theCell.titleLabel.text = finalText
         }
 
-        
+        }
         return theCell
     }
     
