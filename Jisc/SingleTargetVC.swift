@@ -197,6 +197,24 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             theCell.titleLabel.text = demoData[indexPath.row]
             theCell.targetTypeIcon.image = UIImage(named: "watch_time_sweet")
             theCell.completionColorView.isHidden = true
+
+        print("This is the array of responses in SingleTargetVC", arrayOfResponses)
+        let singleDictionary = arrayOfResponses[indexPath.row] 
+        let describe = singleDictionary["description"] as! String
+        let endDate = singleDictionary["end_date"] as! String
+        let module = singleDictionary["module"] as! String
+        let reason = singleDictionary["reason"] as! String
+        let status = singleDictionary["from_tutor"] as! String
+        let status2 = singleDictionary["is_accepted"] as! String
+         if (status == "0"){
+          //  theCell.isHidden = true
+            
+        }
+        if(status == "yes" && status2 == "0"){
+            theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+        } else if (status == "yes" && status2 == "2"){
+            theCell.backgroundColor = UIColor.red
+            //theCell.isHidden = true
         } else {
             print("This is the array of responses in SingleTargetVC", arrayOfResponses)
             let singleDictionary = arrayOfResponses[indexPath.row]

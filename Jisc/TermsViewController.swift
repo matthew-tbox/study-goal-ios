@@ -21,7 +21,7 @@ class TermsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let authorizationURL = URL(string:"https://docs.analytics.alpha.jisc.ac.uk/docs/learning-analytics/App-service-terms-and-conditions")
+        let authorizationURL = URL(string:"https://docs.analytics.alpha.jisc.ac.uk/docs/study-goal/App-service-terms-and-conditions")
         let request = URLRequest(url: authorizationURL!)
         termsWebView.loadRequest(request)
         // Do any additional setup after loading the view.
