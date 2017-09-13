@@ -276,7 +276,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 } else if (Calendar.current.isDateInToday(dateObj!)){
                     finalText = "\(describe) for \(module) by end of today"
                 } else if (numberOfDaysAgo! < 0 ){
-                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) for \(module)"
+                    if(module.isEmpty || module == "no_module"){
+                        finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe)"
+                    } else {
+                        finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) for \(module)"
+                    }
                 } else {
                     finalText = "\(describe) for \(module) by \(finalDate)"
                 }
@@ -373,103 +377,108 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
 //            navigationController?.pushViewController(vc, animated: true)
 //            
 //        }
-        print("Should be runnning did select row at indexpath", indexPath.row)
-        let singleDictionary = arrayOfResponses[indexPath.row]
-        let status = singleDictionary["from_tutor"] as! String
-        let status2 = singleDictionary["is_accepted"] as! String
-        if(status == "yes" && status2 == "0"){
-        let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
-            var dictionaryfordis = [String:String]()
-            dictionaryfordis.updateValue("1", forKey: "is_accepted")
-            dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
-            dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
-            dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
-            dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
-
-            dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
-            dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
-            dictionaryfordis.updateValue("en", forKey: "language")
-            if currentUserType() == .social {
-                dictionaryfordis.updateValue("yes", forKey: "is_social")
-
-            } else {
-                dictionaryfordis.updateValue("no", forKey: "is_social")
-
-            }
-//            let url = ""
-//            let body = ""
-//            xAPIManager().postRequest(testUrl: <#T##String#>, body: <#T##String#>)
-            DownloadManager().editToDo(dictionary:dictionaryfordis)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                // your code here
-                self.getTodoListData()
-            }
-        }))
-        alert.addAction(UIAlertAction(title: localized("no"), style: .default, handler: { (action) in
-            let alert2 = UIAlertController(title: "", message: "Please give a reason for rejecting this target", preferredStyle: .alert)
-            alert2.addTextField { (textField) in
-                textField.placeholder = "Description"
-            }
-            alert2.addAction(UIAlertAction(title: localized("ok"), style: .default, handler: { (action) in
-                if let field = alert2.textFields?[0] {
-                    // store your data
-                  print("\(field.text!)")
-                    var dictionaryfordis = [String:String]()
-                    dictionaryfordis.updateValue("2", forKey: "is_accepted")
-                    dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
-                    dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
-                    dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
-                    dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
-
-                    dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
-                    dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
-                    dictionaryfordis.updateValue(field.text!, forKey: "reason_for_ignoring")
-
-                    dictionaryfordis.updateValue("en", forKey: "language")
-                    if currentUserType() == .social {
-                        dictionaryfordis.updateValue("yes", forKey: "is_social")
-                    } else {
-                        dictionaryfordis.updateValue("no", forKey: "is_social")
-                    }
-                    DownloadManager().editToDo(dictionary:dictionaryfordis)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        // your code here
-                        self.getTodoListData()
-                    }
-                } else {
-                    var dictionaryfordis = [String:String]()
-                    dictionaryfordis.updateValue("2", forKey: "is_accepted")
-                    dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
-                    dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
-                    dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
-
-                    dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
-                    dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
-                    dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
-                    
-                    dictionaryfordis.updateValue("en", forKey: "language")
-                    if currentUserType() == .social {
-                        dictionaryfordis.updateValue("yes", forKey: "is_social")
-                    } else {
-                        dictionaryfordis.updateValue("no", forKey: "is_social")
-                    }
-                    DownloadManager().editToDo(dictionary:dictionaryfordis)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        // your code here
-                        self.getTodoListData()
-                    }
-                    // user did not fill field
-                }
-            }))
-            self.navigationController?.present(alert2, animated: true, completion: nil)
+        if demo(){
         
-        }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.navigationController?.present(alert, animated: true, completion: nil)
+        } else {
+            print("Should be runnning did select row at indexpath", indexPath.row)
+            let singleDictionary = arrayOfResponses[indexPath.row]
+            let status = singleDictionary["from_tutor"] as! String
+            let status2 = singleDictionary["is_accepted"] as! String
+            if(status == "yes" && status2 == "0"){
+                let alert = UIAlertController(title: "", message: "Would you like to accept this target request?", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: localized("yes"), style: .default, handler: { (action) in
+                    var dictionaryfordis = [String:String]()
+                    dictionaryfordis.updateValue("1", forKey: "is_accepted")
+                    dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+                    dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                    dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                    dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+                    
+                    dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+                    dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+                    dictionaryfordis.updateValue("en", forKey: "language")
+                    if currentUserType() == .social {
+                        dictionaryfordis.updateValue("yes", forKey: "is_social")
+                        
+                    } else {
+                        dictionaryfordis.updateValue("no", forKey: "is_social")
+                        
+                    }
+                    //            let url = ""
+                    //            let body = ""
+                    //            xAPIManager().postRequest(testUrl: <#T##String#>, body: <#T##String#>)
+                    DownloadManager().editToDo(dictionary:dictionaryfordis)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        // your code here
+                        self.getTodoListData()
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: localized("no"), style: .default, handler: { (action) in
+                    let alert2 = UIAlertController(title: "", message: "Please give a reason for rejecting this target", preferredStyle: .alert)
+                    alert2.addTextField { (textField) in
+                        textField.placeholder = "Description"
+                    }
+                    alert2.addAction(UIAlertAction(title: localized("ok"), style: .default, handler: { (action) in
+                        if let field = alert2.textFields?[0] {
+                            // store your data
+                            print("\(field.text!)")
+                            var dictionaryfordis = [String:String]()
+                            dictionaryfordis.updateValue("2", forKey: "is_accepted")
+                            dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+                            dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                            dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                            dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+                            
+                            dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+                            dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+                            dictionaryfordis.updateValue(field.text!, forKey: "reason_for_ignoring")
+                            
+                            dictionaryfordis.updateValue("en", forKey: "language")
+                            if currentUserType() == .social {
+                                dictionaryfordis.updateValue("yes", forKey: "is_social")
+                            } else {
+                                dictionaryfordis.updateValue("no", forKey: "is_social")
+                            }
+                            DownloadManager().editToDo(dictionary:dictionaryfordis)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                // your code here
+                                self.getTodoListData()
+                            }
+                        } else {
+                            var dictionaryfordis = [String:String]()
+                            dictionaryfordis.updateValue("2", forKey: "is_accepted")
+                            dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+                            dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                            dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+                            
+                            dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                            dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+                            dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+                            
+                            dictionaryfordis.updateValue("en", forKey: "language")
+                            if currentUserType() == .social {
+                                dictionaryfordis.updateValue("yes", forKey: "is_social")
+                            } else {
+                                dictionaryfordis.updateValue("no", forKey: "is_social")
+                            }
+                            DownloadManager().editToDo(dictionary:dictionaryfordis)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                // your code here
+                                self.getTodoListData()
+                            }
+                            // user did not fill field
+                        }
+                    }))
+                    self.navigationController?.present(alert2, animated: true, completion: nil)
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            }
+            
         }
-
-    }
-
+        
+        }
+        
 }
