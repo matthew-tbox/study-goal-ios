@@ -68,16 +68,18 @@ class MenuView: UIView {
             print("nosocial");
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Feed, previousButton: lastButton, isLastButton: false, parent: view)
 			if iPad {
-				lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
+				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
 			} else {
 				lastButton = StatsMenuButton.insertSelfinView(view.menuContent, buttonType: .Stats, previousButton: lastButton, isLastButton: false, parent: view)
 			}
+            
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
             if !demo(){
                 if (result.range(of: "false") != nil){
                     //EXISTS
-                } else {
                     lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
+                } else {
+
                 }
 
             } else {
@@ -132,8 +134,9 @@ class MenuView: UIView {
 	func open() {
         let view = Bundle.main.loadNibNamed("MenuView", owner: nil, options: nil)!.first as! MenuView
         view.profileImage.loadImageWithLink("\(hostPath)\(dataManager.currentStudent!.photo)", type: .profile) { () -> Void in
-            
+            print("Picture code from open function should have been called")
         }
+
 		isUserInteractionEnabled = true
 		superview?.bringSubview(toFront: self)
 		UIView.animate(withDuration: 0.25) { 

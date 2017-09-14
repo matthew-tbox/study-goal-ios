@@ -186,19 +186,20 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         } else {
             _ = navigationController?.popViewController(animated: true)
-            let vc = TargetVC()
-            navigationController?.present(vc, animated: false, completion: nil)
+            _ = navigationController?.popViewController(animated: true)
+
         }
     }
     
     @IBAction func topSegmentControlAction(_ sender: Any) {
         if (topSegmentControl.selectedSegmentIndex == 1){
-            
-            Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
+                        let vc = RecurringTargetVC()
+                        navigationController?.pushViewController(vc, animated: false)
+            //Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         } else {
-            //            let vc = RecurringTargetVC()
-            //            navigationController?.pushViewController(vc, animated: true)
-            Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
+                        let vc = RecurringTargetVC()
+                        navigationController?.pushViewController(vc, animated: false)
+            //Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
         }
         
     }
@@ -299,12 +300,12 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
             target.timeSpan = timeSpan.rawValue
             if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
                 target.module = dataManager.modules()[selectedModule - 1]
-                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
+                let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
                 xAPIManager().checkMod(testUrl:urlString)
             } else {
                 
                 target.module = nil
-                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
+                let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
                 xAPIManager().checkMod(testUrl:urlString)
             }
             target.because = because
@@ -383,7 +384,10 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if (buttonIndex == 0) {
-            _ = navigationController?.popViewController(animated: true)
+            //_ = navigationController?.popViewController(animated: true)
+            let vc = TargetVC()
+            navigationController?.pushViewController(vc, animated: true)
+
         } else {
             saveTarget(UIButton())
         }

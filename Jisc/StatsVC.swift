@@ -270,7 +270,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
         
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         xAPIManager().checkMod(testUrl:urlString)
     }
     
@@ -554,8 +554,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             center.constant = 0.0
             self.view.layoutIfNeeded()
         }
-        //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attainment&contentName=attainment"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attainment&contentName=attainment"
         xAPIManager().checkMod(testUrl:urlString)
     }
     
@@ -571,7 +570,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             self.view.layoutIfNeeded()
         }
         //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-points&contentName=points"
+        let urlString = "https://api.datax.jisc.ac.uksg/log?verb=viewed&contentID=stats-points&contentName=points"
         xAPIManager().checkMod(testUrl:urlString)
         
     }
@@ -583,7 +582,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         leaderBoard.isHidden = true
         //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard&contentName=leaderboard"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard&contentName=leaderboard"
         xAPIManager().checkMod(testUrl:urlString)
         
     }
@@ -594,7 +593,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         eventAtteneded.isHidden = false
         //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-events&contentName=eventsAttended"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-events&contentName=eventsAttended"
         xAPIManager().checkMod(testUrl:urlString)
     }
     
@@ -606,7 +605,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         //container.isHidden = false
         //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
         xAPIManager().checkMod(testUrl:urlString)
         //   self.view.addSubview(attendance)
         
@@ -996,7 +995,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
         
         
-        let urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+        let urlStringCall = "https://api.datax.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
@@ -1877,20 +1876,20 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         //Getting called for FilteredStatModuleMain
         // Add in a condition with all activity do not send the request.
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
         xAPIManager().checkMod(testUrl:urlString)
         if leaderBoard.isHidden == false {
-            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard-module&contentName=leaderboardFilteredByModule&modid=\(String(describing: moduleID))"
+            let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard-module&contentName=leaderboardFilteredByModule&modid=\(String(describing: moduleID))"
             xAPIManager().checkMod(testUrl:urlString)
         }
         
         if eventAtteneded.isHidden == false{
-            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            let urlString = "https://api.datax.jisc.ac.uksg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
             xAPIManager().checkMod(testUrl:urlString)
         }
         
         if (attendance.isHidden == false){
-            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
             xAPIManager().checkMod(testUrl:urlString)
         }
         

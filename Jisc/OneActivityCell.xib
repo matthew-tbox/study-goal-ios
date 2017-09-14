@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="108"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="108"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="107.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xt2-Vp-fAX">
@@ -36,7 +36,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Edit" backgroundImage="lightPurple"/>
+                                        <state key="normal" title="Edit" backgroundImage="lighterBlue"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="edit"/>
                                         </userDefinedRuntimeAttributes>
@@ -186,7 +186,7 @@
         <image name="activity_icon_big_1" width="40" height="34"/>
         <image name="deleteTargetButton" width="23" height="28"/>
         <image name="editTargetButton" width="28" height="28"/>
-        <image name="lightPurple" width="10" height="10"/>
+        <image name="lighterBlue" width="10" height="10"/>
         <image name="red" width="10" height="10"/>
     </resources>
 </document>

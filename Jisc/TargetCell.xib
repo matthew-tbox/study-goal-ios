@@ -77,12 +77,13 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v80-zI-T31" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                                 <rect key="frame" x="-236" y="0.0" width="78" height="107"/>
+                                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="78" id="qAZ-6g-kMa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Mark Done" backgroundImage="lightPurple"/>
+                                                <state key="normal" title="Mark Done"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="done"/>
                                                 </userDefinedRuntimeAttributes>
@@ -100,7 +101,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="40" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Edit" backgroundImage="lightBlue"/>
+                                                <state key="normal" title="Edit" backgroundImage="lighterBlue"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="edit"/>
                                                 </userDefinedRuntimeAttributes>
@@ -222,8 +223,7 @@
         <image name="checkBoxSmall" width="16" height="16"/>
         <image name="deleteTargetButton" width="23" height="28"/>
         <image name="editTargetButton" width="28" height="28"/>
-        <image name="lightBlue" width="10" height="10"/>
-        <image name="lightPurple" width="10" height="10"/>
+        <image name="lighterBlue" width="10" height="10"/>
         <image name="red" width="10" height="10"/>
     </resources>
 </document>

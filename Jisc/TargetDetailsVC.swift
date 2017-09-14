@@ -81,8 +81,7 @@ class TargetDetailsVC: BaseViewController, UIScrollViewDelegate {
 					self.view.layoutIfNeeded()
 					}, completion: nil)
 		})
-        //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-specific&contentName=TargetsDonutCharts"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-specific&contentName=TargetsDonutCharts"
         xAPIManager().checkMod(testUrl:urlString)
 	}
 	

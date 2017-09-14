@@ -83,12 +83,11 @@ class xAPILoginVC: BaseViewController, UIWebViewDelegate {
 								} else {
 									NotificationCenter.default.post(name: Notification.Name(rawValue: xAPILoginCompleteNotification), object: result?["STUDENT_ID"] as? String)
 								}
-                                //London Developer July 24, 2017
-                                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=loggedin"
+                                let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=loggedin"
                                 xAPIManager().checkMod(testUrl:urlString)
-                                let settingsAttendanceURL = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"
-                                let settingsCheckinURL = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"
-                                let settingsAttainmentURL = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attainmentData"
+                                let settingsAttendanceURL = "https://api.datax.jisc.ac.uk/sg/setting?setting=attendanceData"
+                                let settingsCheckinURL = "https://api.datax.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"
+                                let settingsAttainmentURL = "https://api.datax.jisc.ac.uk/sg/setting?setting=attainmentData"
                                 
                                 
                                 xAPIManager().settingsCall(testUrl: settingsAttendanceURL)

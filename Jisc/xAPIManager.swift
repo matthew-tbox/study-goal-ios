@@ -18,7 +18,7 @@ let xAPIGetEngagementDataPath = "v2/engagement"
 let xAPIGetModulesPath = "v2/filter"
 let xAPIGetAttainmentPath = "v2/attainment"
 let xAPIGetComparisonToTop10PercentPath = "v2/engagement"
-let xAPIGetEventsAttendedPath = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/attendance?"
+let xAPIGetEventsAttendedPath = "https://api.datax.jisc.ac.uk/sg/attendance?"
 
 typealias xAPICompletionBlock = ((_ success:Bool, _ result:NSDictionary?, _ results:NSArray?, _ error:String?) -> Void)
 
@@ -565,10 +565,10 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
                 returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String
                 //print(response)
 
-                if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"){
+                if (testUrl=="https://api.datax.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"){
                     let defaults = UserDefaults.standard
                     defaults.set(returnedString, forKey: "SettingsReturn")
-                } else if (testUrl=="https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData") {
+                } else if (testUrl=="https://api.datax.jisc.ac.uk/sg/setting?setting=attendanceData") {
                     let defaults = UserDefaults.standard
                     defaults.set(returnedString, forKey: "SettingsReturnAttendance")
                 }

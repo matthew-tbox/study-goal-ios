@@ -57,7 +57,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	override func viewDidLoad() {
 		super.viewDidLoad()
         //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/setting?setting=attendanceData"
         xAPIManager().checkMod(testUrl:urlString)
 
 		myFriendsLabel.text = "\(dataManager.friends().count)"
@@ -152,6 +152,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	
 	@IBAction func goBack(_ sender:UIButton) {
 		_ = navigationController?.popViewController(animated: true)
+        DELEGATE.menuView = MenuView.createView()
 	}
 	
 	func addCurrentView(_ view:UIView) {
@@ -228,6 +229,9 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	}
 	
     @IBAction func privacyStatement(_ sender: UIButton) {
+        let vc = PrivacyWebViewVC()
+        navigationController?.pushViewController(vc, animated: true)
+        /*
         if (iPad) {
             titleLabel.text = localized("consent")
             addCurrentView(privacyView)
@@ -239,6 +243,7 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
             let vc = PrivacyWebViewVC()
             navigationController?.pushViewController(vc, animated: true)
         }
+         */
     
     }
 	

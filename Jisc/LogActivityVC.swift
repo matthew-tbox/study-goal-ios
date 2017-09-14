@@ -449,7 +449,7 @@ class LogActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 							AlertView.showAlert(true, message: localized("saved_successfully"), completion: { (done) -> Void in
 								_ = self.navigationController?.popToRootViewController(animated: true)
                                 //London Developer July 24,2017
-                                let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(String(describing: newActivity.module?.id))"
+                                let urlString = "https://api.datax.jisc.ac.uk/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(String(describing: newActivity.module?.id))"
                                 xAPIManager().checkMod(testUrl:urlString)
 							})
 						} else {

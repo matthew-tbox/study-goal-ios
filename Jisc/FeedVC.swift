@@ -31,14 +31,14 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		super.viewDidLoad()
 		feedsTableView.register(UINib(nibName: kOneFeedItemCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kOneFeedItemCellIdentifier)
 		feedsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
-		refreshTimer = Timer(timeInterval: 30, target: self, selector: #selector(FeedVC.refreshFeeds(_:)), userInfo:nil, repeats: true)
-		RunLoop.current.add(refreshTimer!, forMode: RunLoopMode.commonModes)
+		//refreshTimer = Timer(timeInterval: 30, target: self, selector: #selector(FeedVC.refreshFeeds(_:)), userInfo:nil, repeats: true)
+		//RunLoop.current.add(refreshTimer!, forMode: RunLoopMode.commonModes)
 		let refreshControl = UIRefreshControl()
 		refreshControl.addTarget(self, action: #selector(FeedVC.manuallyRefreshFeeds(_:)), for: UIControlEvents.valueChanged)
 		feedsTableView.addSubview(refreshControl)
         
         //London Developer July 24,2017
-        let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
+        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
         xAPIManager().checkMod(testUrl:urlString)
         
         let statsClass = StatsVC()
@@ -54,7 +54,7 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		if (dataManager.friendRequests().count > 0) {
 			peopleButton.setImage(UIImage(named: "profileButtonHighlighted"), for: UIControlState())
             //London Developer July 24,2017
-            let urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-friends&contentName=friends"
+            let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-friends&contentName=friends"
             xAPIManager().checkMod(testUrl:urlString)
 
 		} else {
@@ -63,9 +63,8 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	}
 	
 	@IBAction func openMenu(_ sender:UIButton?) {
-        DELEGATE.menuView = MenuView.createView()
+        //DELEGATE.menuView = MenuView.createView()
         DELEGATE.menuView?.open()
-
 		//print("open menu: \(DELEGATE.menuView)")
 	}
 	
