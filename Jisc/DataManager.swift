@@ -26,57 +26,56 @@ var runningActivititesTimer:Timer!
 let maximumMinutesActivity = 180
 
 func readModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"1", name:localized("read"), present: localized("read"), past: localized("read"), english: "read")
+    return (context:managedContext, id:"1", name:localized("reading"), present: localized("read"), past: localized("read"), english: "Reading")
 }
 func writeModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"2", name: localized("write"), present: localized("write"), past: localized("wrote"), english: "write")
+    return (context:managedContext, id:"2", name: localized("writing"), present: localized("write"), past: localized("wrote"), english: "Writing")
 }
 func researchModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"3", name: localized("research"), present: localized("research"), past: localized("researched"), english: "research")
+    return (context:managedContext, id:"3", name: localized("research"), present: localized("research"), past: localized("researched"), english: "Research")
 }
 func groupStudyModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"4", name: localized("group_study"), present: localized("group_study"), past: localized("studied"), english: "group study")
+    return (context:managedContext, id:"4", name: localized("group_study"), present: localized("group_study"), past: localized("studied"), english: "Group Study")
 }
 func designModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"5", name: localized("design"), present: localized("design"), past: localized("designed"), english: "design")
+    return (context:managedContext, id:"5", name: localized("designing"), present: localized("design"), past: localized("designed"), english: "Designing")
 }
 func presentModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"6", name: localized("present"), present: localized("present"), past: localized("presented"), english: "present")
+    return (context:managedContext, id:"6", name: localized("presenting"), present: localized("present"), past: localized("presented"), english: "Presenting")
 }
 func blogModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"7", name: localized("blog"), present: localized("blog"), past: localized("blogged"), english: "blog")
+    return (context:managedContext, id:"7", name: localized("blogging"), present: localized("blog"), past: localized("blogged"), english: "Blogging")
 }
 func reviseModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"8", name: localized("revise"), present: localized("revise"), past: localized("revised"), english: "revise")
+    return (context:managedContext, id:"8", name: localized("revising"), present: localized("revise"), past: localized("revised"), english: "Revising")
 }
 func practiceModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"9", name: localized("practice"), present: localized("practice"), past: localized("practiced"), english: "practice")
+    return (context:managedContext, id:"9", name: localized("practicing"), present: localized("practice"), past: localized("practiced"), english: "Practicing")
 }
 func experimentModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"10", name: localized("experiment"), present: localized("experiment"), past: localized("experimented"), english: "experiment")
+    return (context:managedContext, id:"10", name: localized("experimenting"), present: localized("experiment"), past: localized("experimented"), english: "Experimenting")
 }
 func cAssgnModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"11", name: localized("Complete course assingments"), present: localized("complete_assignment"), past: localized("completed_assignment"), english: "complete course assignments")
+    return (context:managedContext, id:"11", name: localized("completing_assignment"), present: localized("complete_assignment"), past: localized("completed_assignment"), english: "Completing Assignment")
 }
 func examModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"12", name: localized("Go to exams"), present: localized("be_in_an_exam"), past: localized("been_in_an_exam"), english: "attend an exam")
+    return (context:managedContext, id:"12", name: localized("in_an_exam"), present: localized("be_in_an_exam"), past: localized("been_in_an_exam"), english: "In an exam")
 }
 func disModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"13", name: localized("prepare_a_dissertation"), present: localized("prepare_a_dissertation"), past: localized("prepared_a_dissertation"), english: "prepare a dissertation")
+    return (context:managedContext, id:"13", name: localized("preparing_a_dissertation"), present: localized("prepare_a_dissertation"), past: localized("prepared_a_dissertation"), english: "Preparing a dissertation")
 }
 func lecturesModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"14", name: localized("attend_lectures"), present: localized("attend_lectures"), past: localized("attended_lectures"), english: "attend lectures")
+    return (context:managedContext, id:"14", name: localized("attending_lectures"), present: localized("attend_lectures"), past: localized("attended_lectures"), english: "Attending Lectures")
 }
 func seminarsModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"15", name: localized("attend_seminars"), present: localized("attend_seminars"), past: localized("attended_seminars"), english: "attend seminars")
+    return (context:managedContext, id:"15", name: localized("attending_seminars"), present: localized("attend_seminars"), past: localized("attended_seminars"), english: "Attending Seminars")
 }
 func tutorialsModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"16", name: localized("attend_tutorials"), present: localized("attend_tutorials"), past: localized("attended_tutorials"), english: "attend tutorial")
+    return (context:managedContext, id:"16", name: localized("attending_tutorials"), present: localized("attend_tutorials"), past: localized("attended_tutorials"), english: "Attending Tutorials")
 }
 func labsModel() -> (context:NSManagedObjectContext, id:String, name:String, present:String, past:String, english:String) {
-    return (context:managedContext, id:"17", name: localized("attend_labs"), present: localized("attend_labs"), past: localized("attended_labs"), english: "go to labs")
+    return (context:managedContext, id:"17", name: localized("attending_labs"), present: localized("attend_labs"), past: localized("attended_labs"), english: "Attending Labs")
 }
-
 class DataManager: NSObject {
     
     var currentStudent:Student?
