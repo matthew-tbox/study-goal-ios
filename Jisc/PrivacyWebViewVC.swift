@@ -18,9 +18,9 @@ class PrivacyWebViewVC: UIViewController {
         var url:URL
         
         if (language.rawValue==0){ //This checks if the language is English
-            url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")!
+            url = URL(string: "https://docs.analytics.alpha.jisc.ac.uk/docs/learning-analytics/Privacy-Statement")!
         } else { //This checks if the language is Welsh
-             url = URL(string: "https://github.com/jiscdev/learning-analytics/wiki/Privacy-Statement")!
+             url = URL(string: "https://docs.analytics.alpha.jisc.ac.uk/docs/learning-analytics/Privacy-Statement")!
         }
 
         let requestObj = URLRequest(url: url)
