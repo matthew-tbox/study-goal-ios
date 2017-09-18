@@ -104,6 +104,9 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func openMenu(_ sender: Any) {
+        DELEGATE.menuView?.open()
+    }
     //MARK: - Location
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
