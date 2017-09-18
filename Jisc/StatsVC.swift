@@ -248,8 +248,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         blueDot.alpha = 0.0
         comparisonStudentName.alpha = 0.0
-        
-        initialGraphWidth = graphContainerWidth.constant
+        //Commented below to test for iPad
+        //initialGraphWidth = graphContainerWidth.constant
         
         getEngagementData()
         getActivityPoints(period: .SevenDays, completion: {
@@ -757,23 +757,19 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case eventsAttendedTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
-            //            dateFormatter.dateFormat = "dd/MM/yy"
-            //             var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
-            //             dateFormatter.dateFormat = "hh:mm"
-            //             dateTimeString.append(" \(dateFormatter.string(from: eventsAttendedArray[indexPath.row].date))")
-            //             cell.textLabel!.text = "\(dateTimeString) \(eventsAttendedArray[indexPath.row].activity) \(eventsAttendedArray[indexPath.row].module)"
-            //            print("events cell asked")
+
             
             if let theCell = cell as? EventsAttendedCell {
-                //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-                
-//                let defaults = UserDefaults.standard
-//                
-//                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
-//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
-//                
                 if indexPath.row < eventsAttendedUniqueArray.count {
-                    theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
+                    if (indexPath.row == 0){
+                        theCell.activityLabel.text = "Activity"
+                        theCell.timeLabel.text = "Time"
+                        theCell.dateLabel.text = "Date"
+                        theCell.moduleLabel.text = "Module"
+                        print("samlinetest");
+                    } else {
+                        theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
+                    }
                 } else {
                     //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
@@ -889,8 +885,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
                 
                 if indexPath.row < eventsAttendedUniqueArray.count {
-                    theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
-
+                    if (indexPath.row == 0){
+                        theCell.activityLabel.text = "Activity"
+                        theCell.timeLabel.text = "Time"
+                        theCell.dateLabel.text = "Date"
+                        theCell.moduleLabel.text = "Module"
+                        print("samlinetest");
+                    } else {
+                        theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
+                    }
 
                 } else {
                     //theCell.loadAttainmentObject(nil)
@@ -1181,7 +1184,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 if (sender!.columnNames!.count > 7) {
                     graphContainerWidth.constant = min(60.0 * (CGFloat)(sender!.columnNames!.count), 8000.0)
                 } else {
-                    graphContainerWidth.constant = initialGraphWidth
+                    //Testing for ipad commented the following line
+                    //graphContainerWidth.constant = initialGraphWidth
                 }
                 view.layoutIfNeeded()
             } else {

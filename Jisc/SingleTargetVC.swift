@@ -112,9 +112,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     private func getTodoListData(){
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
-
-        let urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
-        print("This is the URL strring from the getTodoListData ", urlStringCall)
+        
+        var urlStringCall = ""
+        
+        if social(){
+         urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?is_social=true&language=en&is_social=no"
+        } else {
+         urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
+        }
         
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {

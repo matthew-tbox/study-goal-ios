@@ -86,6 +86,10 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
         //		}
         
+        if iPad {
+            recurringSegmentControl.isHidden = true
+        }
+        
         
         if (theTarget != nil) {
             isEditingTarget = true
@@ -390,11 +394,21 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                     //self.dismiss(animated: true, completion: nil)
                 }
             }
-            
-            let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
+            var myBody = ""
+            if social(){
+                 myBody = "is_social=true&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
+            } else {
+                 myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
+            }
             
             if (noteTextView.text! == "Add a reason to keep this target"){
-                let myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+                 myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+                if social(){
+                     myBody = "is_social=true&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+                } else {
+                     myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+                }
+
             }
             
             
