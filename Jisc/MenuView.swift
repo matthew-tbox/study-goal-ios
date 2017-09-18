@@ -75,8 +75,9 @@ class MenuView: UIView {
             
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
             if !demo(){
-                if (result.range(of: "false") != nil){
-                    //EXISTS
+                if (result.range(of: "true") != nil)
+                {
+                    //Show check-in when response is true.
                     lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
                 } else {
 
