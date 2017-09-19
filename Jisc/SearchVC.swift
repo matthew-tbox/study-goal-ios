@@ -90,6 +90,7 @@ class SearchVC: BaseViewController, UITextFieldDelegate, UITableViewDataSource, 
 	
 	@IBAction func goBack(_ sender:UIButton) {
 		_ = navigationController?.popViewController(animated: true)
+        
 	}
 	
 	@IBAction func settings(_ sender:UIButton) {

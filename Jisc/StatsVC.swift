@@ -175,6 +175,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var eventsAttendedTableView: UITableView!
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
+    
+    @IBOutlet weak var ipadGraphView: UIView!
+    @IBOutlet weak var ipadAttainmentView: UIView!
+    @IBOutlet weak var ipadPointsView: UIView!
+    
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
@@ -536,6 +541,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         topLabel.text = "VLE Activity"
         hideUpperViews()
         container.isHidden = false
+        if iPad {
+            ipadGraphView.isHidden = false
+            ipadPointsView.isHidden = true
+            ipadAttainmentView.isHidden = true
+        }
         
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
@@ -549,6 +559,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         hideUpperViews()
         container.isHidden = false
         topLabel.text = "Attainment"
+        if iPad {
+            ipadAttainmentView.isHidden = false
+            ipadPointsView.isHidden = true
+            ipadGraphView.isHidden = true
+        }
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = 0.0
@@ -563,7 +578,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         hideUpperViews()
         container.isHidden = false
         topLabel.text = "Activity points"
-        
+        if iPad {
+            ipadPointsView.isHidden = false
+            ipadGraphView.isHidden = true
+            ipadAttainmentView.isHidden = true
+        }
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = -self.view.frame.size.width
@@ -1826,7 +1845,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             view.subviews.first?.removeFromSuperview()
         }
     }
-    
+
     func createLegendLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
