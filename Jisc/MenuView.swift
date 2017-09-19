@@ -46,7 +46,7 @@ class MenuView: UIView {
         if !demo(){
             let defaults = UserDefaults.standard
             result = defaults.object(forKey: "SettingsReturn") as! String
-            
+            print("defaults value \(defaults.object(forKey: "SettingsReturn")!)")
         }
 		var lastButton:MenuButton?
 		let index = getHomeScreenTab().rawValue
@@ -77,14 +77,12 @@ class MenuView: UIView {
             
 			lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Log, previousButton: lastButton, isLastButton: false, parent: view)
             if !demo(){
+                print("menu check \(result.range(of: "true"))")
                 if (result.range(of: "true") != nil)
                 {
                     //Show check-in when response is true.
                     lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
-                } else {
-
                 }
-
             } else {
                     lastButton = MenuButton.insertSelfinView(view.menuContent, buttonType: .Checkin, previousButton: lastButton, isLastButton: false, parent: view)
             }
@@ -124,7 +122,6 @@ class MenuView: UIView {
                 if !demo(){
                     if (result.range(of: "false") == nil){
                         view.feed()
-                        
                     } else {
                         view.checkin()
                         
