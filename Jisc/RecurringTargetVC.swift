@@ -411,18 +411,20 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
 
             }
             
-            
-            print("")
-            
             let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
             
             if (somethingWentWrong){
                 AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
-                    _ = self.navigationController?.popViewController(animated: true)
+                   // _ = self.navigationController?.popViewController(animated: true)
+                    let vc = SingleTargetVC()
+                    self.navigationController?.pushViewController(vc, animated: false)
                 }
             } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
                 AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                    _ = self.navigationController?.popViewController(animated: true)
+                 //   _ = self.navigationController?.popViewController(animated: true)
+                    let vc = SingleTargetVC()
+                    self.navigationController?.pushViewController(vc, animated: false)
+
                 }
             }
 
