@@ -168,9 +168,8 @@ class StatsMenuButton: MenuButton {
             
             // Show events attended and events summary menu items when response contains true.
             if (result.range(of: "true") == nil){
-                //Changed the following two for testing purposes, hide again
-                attendanceButton.alpha = 1.0
-                eventsAttendedButton.alpha = 1.0
+                attendanceButton.alpha = 0
+                eventsAttendedButton.alpha = 0
                 //leaderboardsButton.alpha = 1.0
             } else {
                 attendanceButton.alpha = 1.0
