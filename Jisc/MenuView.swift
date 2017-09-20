@@ -102,7 +102,6 @@ class MenuView: UIView {
                         
                     } else {
                         view.checkin()
-                        
                     }
                 }
 

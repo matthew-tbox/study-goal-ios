@@ -112,9 +112,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     private func getTodoListData(){
         self.arrayOfResponses.removeAll()
         self.arrayOfResponses2.removeAll()
-
-        let urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
-        print("This is the URL strring from the getTodoListData ", urlStringCall)
+        
+        var urlStringCall = ""
+        
+        if social(){
+         urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?is_social=true&language=en&is_social=no"
+        } else {
+         urlStringCall = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_todo_list?student_id=\(dataManager.currentStudent!.id)&language=en&is_social=no"
+        }
         
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
@@ -261,14 +266,14 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             //Checks to see if the module, reason sections are empty and returning the appropriate date.
             if (module.isEmpty || module == "no_module"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
-                    finalText = "\(describe) by tomorrow because \(reason)"
+                    finalText = "\(describe) by tomorrow because \(reason.lowercased())"
                 } else if (Calendar.current.isDateInToday(dateObj!)){
-                    finalText = "\(describe) by end of today because \(reason)"
+                    finalText = "\(describe) by end of today because \(reason.lowercased())"
                 } else if (numberOfDaysAgo! < 0){
-                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
+                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason.lowercased())"
                     
                 } else {
-                    finalText = "\(describe) by \(finalDate) because \(reason)"
+                    finalText = "\(describe) by \(finalDate) because \(reason.lowercased())"
                 }
             } else if (reason.isEmpty || reason == "Add a reason to keep this target"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
@@ -286,13 +291,13 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 }
             } else {
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
-                    finalText = "\(describe) by tomorrow because \(reason)"
+                    finalText = "\(describe) by tomorrow because \(reason.lowercased())"
                 } else if (Calendar.current.isDateInToday(dateObj!)){
-                    finalText = "\(describe) by end of today because \(reason)"
+                    finalText = "\(describe) by end of today because \(reason.lowercased())"
                 } else if (numberOfDaysAgo! < 0){
-                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason)"
+                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason.lowercased())"
                 } else {
-                    finalText = "\(describe) by \(finalDate) because \(reason)"
+                    finalText = "\(describe) by \(finalDate) because \(reason.lowercased())"
                 }
             }
             
@@ -345,6 +350,9 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if(status1 == "yes" && status2 == "0"){
             return 108.0
         } else if (status1 == "yes" && status2 == "2"){
+            return 0.0
+            //theCell.isHidden = true
+        }  else if (status1 == "yes" && status2 == "1"){
             return 0.0
             //theCell.isHidden = true
         } else {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8005369C1F716A8B00A05FEA /* StatsVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8031C4CE94F00F7A3C6 /* StatsVC~ipad.xib */; };
 		800B167C1F46F39C0000D633 /* SingleTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B167A1F46F39C0000D633 /* SingleTargetVC.swift */; };
 		800B167D1F46F39C0000D633 /* SingleTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800B167B1F46F39C0000D633 /* SingleTargetVC.xib */; };
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
@@ -132,7 +133,6 @@
 		DAB0C7EF1C4CE91A00F7A3C6 /* NewRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7F11C4CE91A00F7A3C6 /* NewRequestCell.xib */; };
 		DAB0C7F51C4CE92700F7A3C6 /* MyFriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7F71C4CE92700F7A3C6 /* MyFriendCell.xib */; };
 		DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C7FD1C4CE93D00F7A3C6 /* StatsVC.xib */; };
-		DAB0C8011C4CE94F00F7A3C6 /* StatsVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8031C4CE94F00F7A3C6 /* StatsVC~ipad.xib */; };
 		DAB0C8071C4CE96400F7A3C6 /* AttainmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8091C4CE96400F7A3C6 /* AttainmentCell.xib */; };
 		DAB0C80D1C4CE97400F7A3C6 /* EngagementGraphVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C80F1C4CE97400F7A3C6 /* EngagementGraphVC.xib */; };
 		DAB0C8131C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8151C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib */; };
@@ -1457,7 +1457,6 @@
 				DAB0C82B1C4CE9DB00F7A3C6 /* LogVC~ipad.xib in Resources */,
 				DAB0C8371C4CE9FF00F7A3C6 /* NewActivityVC~ipad.xib in Resources */,
 				DA593EC11E97986C00B54909 /* BarChartHTMLCompare in Resources */,
-				DAB0C8011C4CE94F00F7A3C6 /* StatsVC~ipad.xib in Resources */,
 				DA593EC81E97A29900B54909 /* BarChartHTMLSimple in Resources */,
 				DA11B6AD1E7164E600F823B8 /* CheckinVC.xib in Resources */,
 				DA593ECB1E97A2BD00B54909 /* LineChartHTMLCompare in Resources */,
@@ -1481,6 +1480,7 @@
 				DAB0C8671C4CEA9E00F7A3C6 /* TargetVC~ipad.xib in Resources */,
 				809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */,
 				DA0F577F1C3EA2A700FF5B7A /* trophies.plist in Resources */,
+				8005369C1F716A8B00A05FEA /* StatsVC~ipad.xib in Resources */,
 				DA43DA3F1C58C1FC0092701F /* EngagementIcons.xcassets in Resources */,
 				DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */,
 				DAB0C8911C4CEB3700F7A3C6 /* MyFriendsVC.xib in Resources */,

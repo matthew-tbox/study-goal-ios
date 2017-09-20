@@ -175,6 +175,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var eventsAttendedTableView: UITableView!
     @IBOutlet weak var eventAtteneded: UIView!
     @IBOutlet weak var attendance: UIView!
+    
+    @IBOutlet weak var ipadGraphView: UIView!
+    @IBOutlet weak var ipadAttainmentView: UIView!
+    @IBOutlet weak var ipadPointsView: UIView!
+    
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
@@ -248,8 +253,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         blueDot.alpha = 0.0
         comparisonStudentName.alpha = 0.0
-        
-        initialGraphWidth = graphContainerWidth.constant
+        //Commented below to test for iPad
+        //initialGraphWidth = graphContainerWidth.constant
         
         getEngagementData()
         getActivityPoints(period: .SevenDays, completion: {
@@ -536,6 +541,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         topLabel.text = "VLE Activity"
         hideUpperViews()
         container.isHidden = false
+        if iPad {
+            ipadGraphView.isHidden = false
+            ipadPointsView.isHidden = true
+            ipadAttainmentView.isHidden = true
+        }
         
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
@@ -549,6 +559,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         hideUpperViews()
         container.isHidden = false
         topLabel.text = "Attainment"
+        if iPad {
+            ipadAttainmentView.isHidden = false
+            ipadPointsView.isHidden = true
+            ipadGraphView.isHidden = true
+        }
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = 0.0
@@ -563,7 +578,11 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         hideUpperViews()
         container.isHidden = false
         topLabel.text = "Activity points"
-        
+        if iPad {
+            ipadPointsView.isHidden = false
+            ipadGraphView.isHidden = true
+            ipadAttainmentView.isHidden = true
+        }
         guard let center = contentCenterX else { return }
         UIView.animate(withDuration: 0.25) {
             center.constant = -self.view.frame.size.width
@@ -757,23 +776,19 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case eventsAttendedTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
-            //            dateFormatter.dateFormat = "dd/MM/yy"
-            //             var dateTimeString = dateFormatter.string(from: eventsAttendedArray[indexPath.row].date)
-            //             dateFormatter.dateFormat = "hh:mm"
-            //             dateTimeString.append(" \(dateFormatter.string(from: eventsAttendedArray[indexPath.row].date))")
-            //             cell.textLabel!.text = "\(dateTimeString) \(eventsAttendedArray[indexPath.row].activity) \(eventsAttendedArray[indexPath.row].module)"
-            //            print("events cell asked")
+
             
             if let theCell = cell as? EventsAttendedCell {
-                //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-                
-//                let defaults = UserDefaults.standard
-//                
-//                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
-//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
-//                
                 if indexPath.row < eventsAttendedUniqueArray.count {
-                    theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
+                    if (indexPath.row == 0){
+                        theCell.activityLabel.text = "Activity"
+                        theCell.timeLabel.text = "Time"
+                        theCell.dateLabel.text = "Date"
+                        theCell.moduleLabel.text = "Module"
+                        print("samlinetest");
+                    } else {
+                        theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
+                    }
                 } else {
                     //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
@@ -889,8 +904,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
 //                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
                 
                 if indexPath.row < eventsAttendedUniqueArray.count {
-                    theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
-
+                    if (indexPath.row == 0){
+                        theCell.activityLabel.text = "Activity"
+                        theCell.timeLabel.text = "Time"
+                        theCell.dateLabel.text = "Date"
+                        theCell.moduleLabel.text = "Module"
+                        print("samlinetest");
+                    } else {
+                        theCell.loadEvents(events: eventsAttendedUniqueArray[indexPath.row])
+                    }
 
                 } else {
                     //theCell.loadAttainmentObject(nil)
@@ -1181,7 +1203,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 if (sender!.columnNames!.count > 7) {
                     graphContainerWidth.constant = min(60.0 * (CGFloat)(sender!.columnNames!.count), 8000.0)
                 } else {
-                    graphContainerWidth.constant = initialGraphWidth
+                    //Testing for ipad commented the following line
+                    //graphContainerWidth.constant = initialGraphWidth
                 }
                 view.layoutIfNeeded()
             } else {
@@ -1822,7 +1845,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             view.subviews.first?.removeFromSuperview()
         }
     }
-    
+
     func createLegendLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
