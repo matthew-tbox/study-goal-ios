@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8005369C1F716A8B00A05FEA /* StatsVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB0C8031C4CE94F00F7A3C6 /* StatsVC~ipad.xib */; };
 		800B167C1F46F39C0000D633 /* SingleTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B167A1F46F39C0000D633 /* SingleTargetVC.swift */; };
 		800B167D1F46F39C0000D633 /* SingleTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800B167B1F46F39C0000D633 /* SingleTargetVC.xib */; };
 		800C2DC51F28EBD5006A078B /* stats_attendance_high_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = 800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */; };
@@ -1479,6 +1480,7 @@
 				DAB0C8671C4CEA9E00F7A3C6 /* TargetVC~ipad.xib in Resources */,
 				809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */,
 				DA0F577F1C3EA2A700FF5B7A /* trophies.plist in Resources */,
+				8005369C1F716A8B00A05FEA /* StatsVC~ipad.xib in Resources */,
 				DA43DA3F1C58C1FC0092701F /* EngagementIcons.xcassets in Resources */,
 				DAB0C7D71C4CE8BA00F7A3C6 /* OneFeedItemCell.xib in Resources */,
 				DAB0C8911C4CEB3700F7A3C6 /* MyFriendsVC.xib in Resources */,

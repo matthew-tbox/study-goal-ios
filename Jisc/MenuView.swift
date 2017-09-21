@@ -124,7 +124,6 @@ class MenuView: UIView {
                         view.feed()
                     } else {
                         view.checkin()
-                        
                     }
                 }
 
