@@ -24,7 +24,6 @@
                 <outlet property="emptyScreenMessage" destination="JoS-Dx-q4Z" id="mRG-sI-OR3"/>
                 <outlet property="feedsTableView" destination="fnt-Uh-q2a" id="fWs-Fr-Xhz"/>
                 <outlet property="newPostTextView" destination="ujS-AG-9pM" id="qtZ-lD-sdw"/>
-                <outlet property="peopleButton" destination="JjQ-TZ-Wku" id="xpg-xh-KWg"/>
                 <outlet property="postButtonView" destination="37I-M5-sNJ" id="t8p-Qs-Kig"/>
                 <outlet property="postsViewHeight" destination="5R4-LB-Q9C" id="eb9-pd-oYL"/>
                 <outlet property="postsViewTopSpace" destination="nYY-ra-ts4" id="DEs-wn-6ko"/>
@@ -132,7 +131,7 @@
                     </connections>
                 </button>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoS-Dx-q4Z" customClass="LocalizableView" customModule="Jisc" customModuleProvider="target">
-                    <rect key="frame" x="165.5" y="324.5" width="45.5" height="20"/>
+                    <rect key="frame" x="165" y="324" width="45.5" height="20"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-KH-gWl" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="45.5" height="20"/>
