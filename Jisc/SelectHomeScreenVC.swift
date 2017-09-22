@@ -10,8 +10,10 @@ import UIKit
 
 class SelectHomeScreenVC: BaseViewController {
 	
-	@IBOutlet weak var feedCheckmark:UIImageView!
-	@IBOutlet weak var statsCheckmark:UIImageView!
+    @IBOutlet weak var feedCheckmark:UIImageView!
+    @IBOutlet weak var friendsCheckmark:UIImageView!
+    @IBOutlet weak var statsCheckmark:UIImageView!
+    @IBOutlet weak var checkinCheckmark:UIImageView!
 	@IBOutlet weak var logCheckmark:UIImageView!
 	@IBOutlet weak var targetCheckmark:UIImageView!
 	
@@ -25,8 +27,10 @@ class SelectHomeScreenVC: BaseViewController {
 	}
 	
 	func highlightSelectedItem() {
-		feedCheckmark.alpha = 0.0
-		statsCheckmark.alpha = 0.0
+        feedCheckmark.alpha = 0.0
+        friendsCheckmark.alpha = 0.0
+        statsCheckmark.alpha = 0.0
+        checkinCheckmark.alpha = 0.0
 		logCheckmark.alpha = 0.0
 		targetCheckmark.alpha = 0.0
 		
@@ -34,9 +38,13 @@ class SelectHomeScreenVC: BaseViewController {
 		
 		switch (selectedScreen) {
 		case .feed:
-			feedCheckmark.alpha = 1.0
+            feedCheckmark.alpha = 1.0
+        case .friends:
+            friendsCheckmark.alpha = 1.0
 		case .stats:
-			statsCheckmark.alpha = 1.0
+            statsCheckmark.alpha = 1.0
+        case .checkin:
+            checkinCheckmark.alpha = 1.0
 		case .log:
 			logCheckmark.alpha = 1.0
 		case .target:
@@ -72,11 +80,21 @@ class SelectHomeScreenVC: BaseViewController {
 					self.highlightSelectedItem()
 				})
 				break
+            case .friends:
+                DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "friends", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+                    self.highlightSelectedItem()
+                })
+                break
 			case .stats:
 				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "stats", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
 					self.highlightSelectedItem()
 				})
 				break
+            case .checkin:
+                DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "checkin", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+                    self.highlightSelectedItem()
+                })
+                break
 			case .log:
 				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "log", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
 					self.highlightSelectedItem()

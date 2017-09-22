@@ -34,8 +34,10 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	@IBOutlet var friendsView:MyFriendsView!
 //	@IBOutlet weak var friendsTableView:UITableView!
 	@IBOutlet var homeScreenView:UIView!
-	@IBOutlet weak var feedCheckmark:UIImageView!
-	@IBOutlet weak var statsCheckmark:UIImageView!
+    @IBOutlet weak var feedCheckmark:UIImageView!
+    @IBOutlet weak var friendsCheckmark:UIImageView! //connect
+    @IBOutlet weak var statsCheckmark:UIImageView!
+    @IBOutlet weak var checkinCheckmark:UIImageView! //connect
 	@IBOutlet weak var logCheckmark:UIImageView!
 	@IBOutlet weak var targetCheckmark:UIImageView!
 	@IBOutlet var trophiesView:UIView!
@@ -108,9 +110,13 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 		let tab = getHomeScreenTab()
 		switch (tab) {
 		case .feed:
-			homeScreenLabel.text = localized("feed")
+            homeScreenLabel.text = localized("feed")
+        case .friends:
+            homeScreenLabel.text = localized("friends")
 		case .stats:
-			homeScreenLabel.text = localized("stats")
+            homeScreenLabel.text = localized("stats")
+        case .checkin:
+            homeScreenLabel.text = localized("checkin")
 		case .log:
 			homeScreenLabel.text = localized("log")
 		case .target:
@@ -343,9 +349,13 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 		
 		switch (selectedScreen) {
 		case .feed:
-			feedCheckmark.alpha = 1.0
+            feedCheckmark.alpha = 1.0
+        case .friends:
+            friendsCheckmark.alpha = 1.0
 		case .stats:
-			statsCheckmark.alpha = 1.0
+            statsCheckmark.alpha = 1.0
+        case .checkin:
+            checkinCheckmark.alpha = 1.0
 		case .log:
 			logCheckmark.alpha = 1.0
 		case .target:
@@ -377,11 +387,21 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 					self.highlightSelectedStartScreen()
 				})
 				break
+            case .friends:
+                DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "friends", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+                    self.highlightSelectedStartScreen()
+                })
+                break
 			case .stats:
 				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "stats", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
 					self.highlightSelectedStartScreen()
 				})
 				break
+            case .checkin:
+                DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "checkin", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
+                    self.highlightSelectedStartScreen()
+                })
+                break
 			case .log:
 				DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "home_screen", settingValue: "log", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
 					self.highlightSelectedStartScreen()

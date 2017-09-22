@@ -115,19 +115,25 @@ func buildVersion() -> String {
 //MARK: HomeScreen
 
 enum kHomeScreenTab: Int {
-	case feed = 0
-	case stats = 2
-	case log = 3
-	case target = 4
+    case feed = 0
+    case stats = 2
+    case checkin = 3
+	case log = 4
+    case target = 5
+    case friends = 6
 }
 
 func screenTabFromString(_ string:String) -> kHomeScreenTab {
 	var screenTab:kHomeScreenTab? = nil
 	if (string == "feed") {
 		screenTab = .feed
-	} else if (string == "stats") {
+    } else if (string == "friends") {
+        screenTab = .friends
+    } else if (string == "stats") {
 		screenTab = .stats
-	} else if (string == "log") {
+    } else if (string == "checkin") {
+        screenTab = .checkin
+    } else if (string == "log") {
 		screenTab = .log
 	} else if (string == "target") {
 		screenTab = .target
