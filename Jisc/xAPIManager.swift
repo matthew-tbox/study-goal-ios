@@ -19,6 +19,7 @@ let xAPIGetModulesPath = "v2/filter"
 let xAPIGetAttainmentPath = "v2/attainment"
 let xAPIGetComparisonToTop10PercentPath = "v2/engagement"
 let xAPIGetEventsAttendedPath = "https://api.datax.jisc.ac.uk/sg/attendance?"
+let xAPIGetAppUsagePath = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage"
 
 typealias xAPICompletionBlock = ((_ success:Bool, _ result:NSDictionary?, _ results:NSArray?, _ error:String?) -> Void)
 
@@ -596,4 +597,29 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 			completionBlock?(false, nil, nil, "Error creating the url request")
 		}
 	}
+    
+    func getAppUsage(testUrl:String){
+        var request:URLRequest?
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                request.addValue("\(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                
+                print("the url used in making the call", testUrl)
+                if let data = data,
+                    let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                    print("OMG this is the result", json)
+                }
+            }
+            //startConnectionWithRequest(request)
+        } else {
+            completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+    }
 }
