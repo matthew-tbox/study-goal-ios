@@ -31,11 +31,19 @@ class AttainmentObject {
     var date:Date
     var moduleName:String
     var grade:String
+    var dateString:String
     
     init(date:Date, moduleName:String, grade:String) {
         self.date = date
         self.moduleName = moduleName
         self.grade = grade
+        self.dateString = ""
+    }
+    init(dateString:String, moduleName:String, grade:String){
+        self.dateString = dateString
+        self.moduleName = moduleName
+        self.grade = grade
+        self.date = Date()
     }
 //    //MARK: - NSCoding -
 //    required convenience init(coder aDecoder: NSCoder) {
@@ -185,6 +193,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
+    var attainmentDemoArray = ["Date   Module name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
+    var eventsAttendedDemoArray = [["Lecture","10:20","20/7/2016","Maths"],["Lab","12:00","13/4/2016","Chemistry"],["Lecture", "9:30","14/8/2016","English"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -343,6 +353,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let xMGR = xAPIManager()
         xMGR.silent = true
         xMGR.getAttainment { (success, result, results, error) in
+            self.attainmentArray.append(AttainmentObject(dateString: "Date", moduleName: "Module", grade: "Grade"))
             if (results != nil) {
                 for (_, item) in results!.enumerated() {
                     if let dictionary = item as? NSDictionary {
@@ -407,13 +418,6 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                     }
                 }
-                //Saving to UserDefaults for offline use.
-//                let defaults = UserDefaults.standard
-//                defaults.set(result, forKey: "pointsArrayOffline");
-                
-                //let encodedPoints: Data = NSKeyedArchiver.archivedData(withRootObject: self.pointsArray)
-                //defaults.set(encodedPoints, forKey: "PointsArray")
-
             } else {
                 print("result is nil")
             }
@@ -445,13 +449,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             if let object2 = statement["object"] as? [String:Any] {
                                 if let definition = object2["definition"] as? [String:Any] {
                                     if let name = definition["name"] as? [String:Any]{
-                                        let en = name["en"] as! String
-                                        print("Ahmed this is the en",en)
-                                        var separatedArray = en.components(separatedBy: " ")
-                                        date = separatedArray.popLast()
-                                        time = separatedArray.popLast()
-                                        module = separatedArray.joined(separator: " ")
-                                        print ("Ahmed this date \(date!) time \(time!) module \(module)")
+                                        if let en = name["en"] as? String {
+                                            var separatedArray = en.components(separatedBy: " ")
+                                            date = separatedArray.popLast()
+                                            time = separatedArray.popLast()
+                                            module = separatedArray.joined(separator: " ")
+                                        }
                                         //self.eventsAttendedArray.append(EventsAttendedObject(date: date,activity: activity,module: module))
                                     }
                                 }
@@ -459,12 +462,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             if let context = statement["context"] as? [String:Any]{
                                 if let extensions = context["extensions"] as? [String:Any]{
                                     activity = extensions["http://xapi.jisc.ac.uk/activity_type_id"] as? String
-                                    print("Ahmed this is the acticity for the call", activity!)
                                 }
                             }
                         }
                     }
-                    self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
+                    //Uncomment the following line to populate the eventsAttended table
+                   // self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
                 }
                 
 //                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
@@ -687,14 +690,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         var nrRows = 0
         switch tableView {
         case attainmentTableView:
-            if (internetAvailability == ReachabilityStatus.notReachable) {
-//                let defaults = UserDefaults.standard
-//                if   let decodedAttainment  = defaults.object(forKey: "AttainmentArray") as! Data? {
-//                            let decodedAttainmentArray = NSKeyedUnarchiver.unarchiveObject(with: decodedAttainment) as! [AttainmentObject]
-//                
-//                nrRows = decodedAttainmentArray.count
-//                
-//                }
+            if demo(){
+                nrRows = attainmentDemoArray.count
             } else {
                 nrRows = attainmentArray.count
                 if let student = dataManager.currentStudent {
@@ -703,22 +700,18 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     }
                 }
             }
-//            let defaults = UserDefaults.standard
-//            let decodedAttainment  = defaults.object(forKey: "AttainmentArray") as! Data
-//            let decodedAttainmentArray = NSKeyedUnarchiver.unarchiveObject(with: decodedAttainment) as! [AttainmentObject]
+            
+
                       break
         case pointsTable:
-           // let defaults = UserDefaults.standard
-            //let decoded  = defaults.object(forKey: "PointsArray") as! Data
-            //let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
             nrRows = pointsArray.count
             break
         case eventsAttendedTableView:
-//            let defaults = UserDefaults.standard
-//            let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
-//            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
-
-            nrRows = eventsAttendedArray.count
+            if demo(){
+                nrRows = 3
+            } else {
+                nrRows = eventsAttendedArray.count
+            }
             break
         default:
             break
@@ -731,73 +724,33 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         switch tableView {
         case attainmentTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier, for: indexPath)
-//            let defaults = UserDefaults.standard
-//            
-//            let decoded  = defaults.object(forKey: "AttainmentArray") as! Data
-//            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
-            //            if let theCell = cell as? AttainmentCell {
-            //let defaults = UserDefaults.standard
-            
-            if (internetAvailability == ReachabilityStatus.notReachable) {
-//                if let decoded  = defaults.object(forKey: "AttainmentArray") as! Data?{
-//                    let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
-//
-//                    if let theCell = cell as? AttainmentCell {
-//                        if indexPath.row < decodedArray.count {
-//                            let attObject = decodedArray[indexPath.row]
-//                            theCell.loadAttainmentObject(attObject)
-//                        } else {
-//                            theCell.loadAttainmentObject(nil)
-//                        }
-//                    
-//                    
-//                    if indexPath.row < decodedArray.count {
-//                        let attObject = decodedArray[indexPath.row]
-//                        theCell.loadAttainmentObject(attObject)
-//                    } else {
-//                        theCell.loadAttainmentObject(nil)
-//                    }
-//                    }
-//                }
-            } else {
 
             if let theCell = cell as? AttainmentCell {
-                if indexPath.row < attainmentArray.count {
+                if demo(){
+                    //theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
+                    //theCell.positionLabel.text = String(arc4random_uniform(50))
+                } else if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
                     theCell.loadAttainmentObject(attObject)
                 } else {
                     theCell.loadAttainmentObject(nil)
                 }
+
             }
-        }
+        
             break
         case pointsTable:
             cell = tableView.dequeueReusableCell(withIdentifier: kPointsCellIdentifier, for: indexPath)
             if let theCell = cell as? PointsCell {
-//                let defaults = UserDefaults.standard
-//                let decoded  = defaults.object(forKey: "PointsArray") as! Data
-//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
-
                 theCell.loadPoints(points: pointsArray[indexPath.row])
             }
             break
         case eventsAttendedTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
 
-            
             if let theCell = cell as? EventsAttendedCell {
                 if indexPath.row < eventsAttendedArray.count {
-//                    if (indexPath.row == 0){
-//                        theCell.activityLabel.text = "Activity"
-//                        theCell.timeLabel.text = "Time"
-//                        theCell.dateLabel.text = "Date"
-//                        theCell.moduleLabel.text = "Module"
-//                        print("samlinetest");
-//                    } else {
                         theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-                   // }
-                } else {
-                    //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
             }
             break
@@ -816,20 +769,27 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         switch tableView {
         case attainmentTableView:
-            if (attainmentArray.count > 0)
-            {
-                tableView.separatorStyle = .singleLine
-                numOfSections            = 1
-                tableView.backgroundView = nil
-            }
-            else
-            {
-                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-                noDataLabel.text          = "No data available"
-                noDataLabel.textColor     = UIColor.black
-                noDataLabel.textAlignment = .center
-                tableView.backgroundView  = noDataLabel
-                tableView.separatorStyle  = .none
+            if demo(){
+                numOfSections = 1
+                return numOfSections
+            } else {
+                
+                if (attainmentArray.count > 0)
+                {
+                    tableView.separatorStyle = .singleLine
+                    numOfSections            = 1
+                    tableView.backgroundView = nil
+                }
+                else
+                {
+                    let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                    noDataLabel.text          = "No data available"
+                    noDataLabel.textColor     = UIColor.black
+                    noDataLabel.textAlignment = .center
+                    tableView.backgroundView  = noDataLabel
+                    tableView.separatorStyle  = .none
+                }
+
             }
             break
         case pointsTable:
@@ -851,6 +811,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             
             break
         case eventsAttendedTableView:
+            if demo(){
+                numOfSections = 1
+                return numOfSections
+            }
             if (eventsAttendedArray.count + 1 > 0)
             {
                 tableView.separatorStyle = .singleLine
@@ -880,11 +844,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         switch tableView {
         case attainmentTableView:
             if let theCell = cell as? AttainmentCell {
-//                let defaults = UserDefaults.standard
-//                
-//                let decoded  = defaults.object(forKey: "AttainmentArray") as! Data
-//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [AttainmentObject]
-
+                if demo(){
+                    theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
+                    theCell.positionLabel.text = String(arc4random_uniform(50))
+                }
                 if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]
                     theCell.loadAttainmentObject(attObject)
@@ -895,35 +858,25 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case pointsTable:
             if let theCell = cell as? PointsCell {
-//                let defaults = UserDefaults.standard
-//                let decoded  = defaults.object(forKey: "PointsArray") as! Data
-//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
-
                 theCell.loadPoints(points: pointsArray[indexPath.row])
             }
             break
         case eventsAttendedTableView:
             if let theCell = cell as? EventsAttendedCell {
-                print("displaying data loading for cell \(indexPath.row)")
-                //theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-//                let defaults = UserDefaults.standard
-//                let decoded  = defaults.object(forKey: "EventsAttendedArray") as! Data
-//                let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [EventsAttendedObject]
-                
-                if indexPath.row < eventsAttendedArray.count {
-//                    if (indexPath.row == 0){
-//                        theCell.activityLabel.text = "Activity"
-//                        theCell.timeLabel.text = "Time"
-//                        theCell.dateLabel.text = "Date"
-//                        theCell.moduleLabel.text = "Module"
-//                        print("samlinetest");
-//                    } else {
-                        theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
-                    //}
-
+                if demo(){
+                    for item in self.eventsAttendedDemoArray[indexPath.row]{
+                        theCell.activityLabel.text = item
+                        theCell.timeLabel.text = item
+                        theCell.dateLabel.text = item
+                        theCell.moduleLabel.text = item
+                    }
+                } else if indexPath.row < eventsAttendedArray.count {
+                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                    
                 } else {
                     //theCell.loadAttainmentObject(nil)
                 }
+                
             }
             let lastSectionIndex = tableView.numberOfSections - 1
             let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1

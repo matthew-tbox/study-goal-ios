@@ -264,7 +264,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             
             var finalText = ""
             //Checks to see if the module, reason sections are empty and returning the appropriate date.
-            if (module.isEmpty || module == "no_module"){
+            if (module.isEmpty || module == "no_module" || module == "no module" || module == "No Module"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
                     finalText = "\(describe) by tomorrow because \(reason.lowercased())"
                 } else if (Calendar.current.isDateInToday(dateObj!)){
@@ -281,7 +281,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 } else if (Calendar.current.isDateInToday(dateObj!)){
                     finalText = "\(describe) for \(module) by end of today"
                 } else if (numberOfDaysAgo! < 0 ){
-                    if(module.isEmpty || module == "no_module"){
+                    if(module.isEmpty || module == "no_module" || module == "no module" || module == "No Module"){
                         finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe)"
                     } else {
                         finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) for \(module)"

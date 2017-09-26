@@ -91,12 +91,12 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
 					connectionSuccessfull = true
 				}
 				
-//				if (code == .unauthorized) {
-//					completionBlock = nil
-//
-//					dataManager.logout()
-//					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
-//				}
+				if (code == .unauthorized) {
+					completionBlock = nil
+
+					dataManager.logout()
+					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
+				}
 			}
 		}
 	}
@@ -506,6 +506,32 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 print("the url used in making the call", testUrl)
+            }
+            //startConnectionWithRequest(request)
+        } else {
+            completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+    }
+    func getWithResult(testUrl:String){
+        var request:URLRequest?
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                do {
+                    if let data = data,
+                        let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                            print("This is the JSON", json)
+                    }
+                } catch {
+                    print("Error deserializing JSON: \(error)")
+                }
             }
             //startConnectionWithRequest(request)
         } else {

@@ -318,11 +318,15 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                         }
                         dataManager.deleteObject(target)
                         AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
+                            //_ = self.navigationController?.popViewController(animated: true)
+                            let vc = TargetVC()
+                            self.navigationController?.pushViewController(vc, animated: false)
                         }
                     } else {
                         AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
+                           // _ = self.navigationController?.popViewController(animated: true)
+                            let vc = TargetVC()
+                            self.navigationController?.pushViewController(vc, animated: false)
                         }
                     }
                 })
@@ -331,11 +335,17 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                     if (success) {
                         dataManager.deleteObject(target)
                         AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
+                            //_ = self.navigationController?.popViewController(animated: true)
+                            let vc = TargetVC()
+                            self.navigationController?.pushViewController(vc, animated: false)
+
                         }
                     } else {
                         AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                            _ = self.navigationController?.popViewController(animated: true)
+                            //_ = self.navigationController?.popViewController(animated: true)
+                            let vc = TargetVC()
+                            self.navigationController?.pushViewController(vc, animated: false)
+
                         }
                     }
                 })
