@@ -195,6 +195,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         
         let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
         theCell.completionColorView.isHidden = true
+        theCell.targetTypeIcon.isHidden = true
         print(indexPath.row)
 //        if (theCell == nil) {
 //            theCell = UITableViewCell()
