@@ -14,21 +14,31 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     var leftColumnArray:Array = ["Targets Met","Targets Failed to Meet","Targets Set","Hours of Activity Logged","Sessions on App"]
     var rightColumnArray:Array = ["0","0","0","0","0"]
     
+    @IBOutlet weak var targetsMet: LocalizableLabel!
+    @IBOutlet weak var targetsFailed: LocalizableLabel!
+    @IBOutlet weak var targetsSet: LocalizableLabel!
+    @IBOutlet weak var activites: LocalizableLabel!
+    @IBOutlet weak var sessions: LocalizableLabel!
+    
+    @IBOutlet weak var startDateField: UITextField!
+    var startDatePicker = UIDatePicker()
+    
+    @IBOutlet weak var endDateField: UITextField!
+    var endDatePicker = UIDatePicker()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.leftColumnTableView.register(UINib(nibName: "AppUsageCell", bundle: Bundle.main), forCellReuseIdentifier: "AppUsage")
-        //loadData() { () in
+        customiseLayout()
+        
         let manager = xAPIManager()
         manager.getAppUsage(studentId: dataManager.currentStudent!.id)
-            let defaults = UserDefaults.standard
-            self.rightColumnArray.removeAll()
-            self.rightColumnArray.append(defaults.string(forKey: "AppUsage_targets_met") ?? "null")
-            self.rightColumnArray.append(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")
-            self.rightColumnArray.append(defaults.string(forKey: "AppUsage_targets_set") ?? "null")
-            self.rightColumnArray.append(defaults.string(forKey: "AppUsage_activities") ?? "null")
-            self.rightColumnArray.append(defaults.string(forKey: "AppUsage_sessions") ?? "null")
-
-            self.leftColumnTableView.reloadData()
+        let defaults = UserDefaults.standard
+        
+        self.targetsMet.text?.append(defaults.string(forKey: "AppUsage_targets_met") ?? "null")
+        self.targetsFailed.text?.append(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")
+        self.targetsSet.text?.append(defaults.string(forKey: "AppUsage_targets_set") ?? "null")
+        self.activites.text?.append(defaults.string(forKey: "AppUsage_activities") ?? "null")
+        self.sessions.text?.append(defaults.string(forKey: "AppUsage_sessions") ?? "null")
     }
 
     @IBAction func openMenu(_ sender: Any) {
@@ -60,9 +70,43 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
+
+    func customiseLayout(){
+        startDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
+        startDateField.layer.borderWidth = 1.5
+        startDateField.layer.cornerRadius = 8
+        startDateField.layer.masksToBounds = true
+   
+        startDatePicker.datePickerMode = UIDatePickerMode.date
+        let startToolbar = UIToolbar()
+        startToolbar.sizeToFit()
+        let startDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(startDatePickerDone))
+        startToolbar.setItems([startDoneButton], animated: true)
+        startDateField.inputAccessoryView = startToolbar
+        startDateField.inputView = startDatePicker
+        
+        endDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
+        endDateField.layer.borderWidth = 1.5
+        endDateField.layer.cornerRadius = 8
+        endDateField.layer.masksToBounds = true
+        
+        endDatePicker.datePickerMode = UIDatePickerMode.date
+        let endToolbar = UIToolbar()
+        endToolbar.sizeToFit()
+        let endDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(endDatePickerDone))
+        endToolbar.setItems([endDoneButton], animated: true)
+        endDateField.inputAccessoryView = endToolbar
+        endDateField.inputView = endDatePicker
+        
+    }
     
-    func loadData(completed: @escaping () -> ()){
-        let manager = xAPIManager()
-        manager.getAppUsage(studentId: "13")
+    func startDatePickerDone(){
+        startDateField.text = "\(startDatePicker.date)"
+        self.view.endEditing(true)
+    }
+    
+    func endDatePickerDone(){
+        endDateField.text = "\(endDatePicker.date)"
+        self.view.endEditing(true)
     }
 }
