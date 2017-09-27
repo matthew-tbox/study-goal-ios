@@ -182,25 +182,33 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             let defaults = UserDefaults.standard
             let editedReason = defaults.object(forKey: "EditedReason") as! String
             let editedDescribe = defaults.object(forKey: "EditedDescribe") as! String
-            // let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+            let editedDateObject = defaults.object(forKey: "EditedDate") as! String
             let editedModule = defaults.object(forKey: "EditedModule") as! String
             
             //self.recurringDatePicker.date = editedDateObject
             if !editedReason.isEmpty{
                 myGoalTextField?.textColor = UIColor.black
                 myGoalTextField?.text = editedDescribe
+            } else {
+                myGoalTextField.text = targetReasonPlaceholder
             }
             if !editedDescribe.isEmpty{
                 noteTextView?.textColor = UIColor.black
                 noteTextView?.text = editedReason
+            } else {
+                noteTextView.text = targetReasonPlaceholder
             }
-            if !editedModule.isEmpty{
-               moduleButton.setTitle(editedModule, for: UIControlState())
+            if (editedModule == "No Module" || editedModule == "no_module" || editedModule.isEmpty){
+                moduleButton.setTitle("Any Module", for: UIControlState())
+            } else {
+                moduleButton.setTitle(editedModule, for: UIControlState())
             }
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale.init(identifier: "en_GB")
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let date = dateFormatter.date(from: editedDateObject)
+            self.recurringDatePicker.setDate(date!, animated: true)
         }
-        
         
     }
     
@@ -224,12 +232,12 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         } else {
-             _ = navigationController?.popViewController(animated: true)
-            _ = navigationController?.popViewController(animated: true)
+            // _ = navigationController?.popViewController(animated: true)
+            //_ = navigationController?.popViewController(animated: true)
 
             
-            //let vc = SingleTargetVC()
-        //    navigationController?.present(vc, animated: false, completion: nil)
+            let vc = SingleTargetVC()
+            navigationController?.pushViewController(vc, animated: false)
         }
     }
     /*

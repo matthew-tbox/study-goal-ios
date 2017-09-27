@@ -194,6 +194,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
+        theCell.completionColorView.isHidden = true
         print(indexPath.row)
 //        if (theCell == nil) {
 //            theCell = UITableViewCell()
@@ -216,10 +217,10 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             
         }
         if(status == "yes" && status2 == "0"){
-            theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            //theCell.backgroundColor = UIColor(red: 186.0/255.0, green: 216.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         } else if (status == "yes" && status2 == "2"){
-            theCell.backgroundColor = UIColor.red
-            theCell.isHidden = true
+            //theCell.backgroundColor = UIColor.red
+            //theCell.isHidden = true
         } else {
             print("This is the array of responses in SingleTargetVC", arrayOfResponses)
             let singleDictionary = arrayOfResponses[indexPath.row]
@@ -266,12 +267,23 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             //Checks to see if the module, reason sections are empty and returning the appropriate date.
             if (module.isEmpty || module == "no_module" || module == "no module" || module == "No Module"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
-                    finalText = "\(describe) by tomorrow because \(reason.lowercased())"
+                    if (reason.isEmpty || reason == "Add a reason to keep this target"){
+                        finalText = "\(describe) by tomorrow"
+                    } else {
+                        finalText = "\(describe) by tomorrow because \(reason.lowercased())"
+                    }
                 } else if (Calendar.current.isDateInToday(dateObj!)){
-                    finalText = "\(describe) by end of today because \(reason.lowercased())"
+                    if (reason.isEmpty || reason == "Add a reason to keep this target"){
+                        finalText = "\(describe) by end of today"
+                    } else {
+                        finalText = "\(describe) by end of today because \(reason.lowercased())"
+                    }
                 } else if (numberOfDaysAgo! < 0){
-                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason.lowercased())"
-                    
+                    if (reason.isEmpty || reason == "Add a reason to keep this target"){
+                        finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe)"
+                    } else {
+                        finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason.lowercased())"
+                    }
                 } else {
                     finalText = "\(describe) by \(finalDate) because \(reason.lowercased())"
                 }
@@ -291,16 +303,15 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 }
             } else {
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
-                    finalText = "\(describe) by tomorrow because \(reason.lowercased())"
+                    finalText = "\(describe) by tomorrow"// because \(reason.lowercased())"
                 } else if (Calendar.current.isDateInToday(dateObj!)){
-                    finalText = "\(describe) by end of today because \(reason.lowercased())"
+                    finalText = "\(describe) by end of today"//  because \(reason.lowercased())"
                 } else if (numberOfDaysAgo! < 0){
-                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason.lowercased())"
+                    finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe)"// because \(reason.lowercased())"
                 } else {
-                    finalText = "\(describe) by \(finalDate) because \(reason.lowercased())"
+                    finalText = "\(describe) by \(finalDate)"// because \(reason.lowercased())"
                 }
             }
-            
             /*
              1. Cool is for if there are more than 7 days remaining
              2. watch_time is for fewer than 7 days but more than 2 days before end date.
