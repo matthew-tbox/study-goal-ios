@@ -195,7 +195,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         
         let theCell = tableView.dequeueReusableCell(withIdentifier: kTargetCellIdentifier) as! TargetCell
         theCell.completionColorView.isHidden = true
-        theCell.targetTypeIcon.isHidden = true
         print(indexPath.row)
 //        if (theCell == nil) {
 //            theCell = UITableViewCell()
@@ -380,6 +379,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let theCell:TargetCell? = cell as? TargetCell
+        theCell?.completionColorView.isHidden = true
   if (theCell != nil) {
 //            theCell!.loadTarget(dataManager.targets()[indexPath.row], isLast:(indexPath.row == (dataManager.targets().count - 1)))
             theCell!.indexPath = indexPath

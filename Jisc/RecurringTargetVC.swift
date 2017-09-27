@@ -186,18 +186,18 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             let editedModule = defaults.object(forKey: "EditedModule") as! String
             
             //self.recurringDatePicker.date = editedDateObject
-            if !editedReason.isEmpty{
+           // if !editedReason.isEmpty{
                 myGoalTextField?.textColor = UIColor.black
                 myGoalTextField?.text = editedDescribe
-            } else {
-                myGoalTextField.text = targetReasonPlaceholder
-            }
-            if !editedDescribe.isEmpty{
+            //} else {
+               // myGoalTextField.text = targetReasonPlaceholder
+            //}
+            //if !editedDescribe.isEmpty{
                 noteTextView?.textColor = UIColor.black
                 noteTextView?.text = editedReason
-            } else {
-                noteTextView.text = targetReasonPlaceholder
-            }
+            //} else {
+               // noteTextView.text = targetReasonPlaceholder
+            //}
             if (editedModule == "No Module" || editedModule == "no_module" || editedModule.isEmpty){
                 moduleButton.setTitle("Any Module", for: UIControlState())
             } else {
