@@ -41,8 +41,8 @@ class MenuButton: UIView {
 			button.button.setImage(UIImage(named: "FeedVCMenuIconSelected"), for: .selected)
 			break
         case .Friends:
-            button.button.setImage(UIImage(named: "settingsFriendsIcon"), for: .normal)
-            button.button.setImage(UIImage(named: "settingsFriendsIcon"), for: .selected)
+            button.button.setImage(UIImage(named: "profile_icon"), for: .normal)
+            button.button.setImage(UIImage(named: "profile_icon_blue"), for: .selected)
             break
 		case .Stats:
 			button.button.setImage(UIImage(named: "StatsVCMenuIcon"), for: .normal)
@@ -277,14 +277,14 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
         cell.textLabel?.text = menuItemsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.gray
         cell.textLabel?.font = UIFont(name: "System", size: 10.0)
         return cell
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
         cell.textLabel?.text = menuItemsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.gray
         cell.textLabel?.font = UIFont(name: "System", size: 10.0)
