@@ -189,6 +189,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var ipadGraphView: UIView!
     @IBOutlet weak var ipadAttainmentView: UIView!
     @IBOutlet weak var ipadPointsView: UIView!
+    @IBOutlet weak var eventsAndAttendanceSegment: UISegmentedControl!
     
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
@@ -332,6 +333,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         pieChartWebView.isHidden = !sender.isOn
         lineViews.isHidden = sender.isOn
         rectangleView.isHidden = sender.isOn
+    }
+    @IBAction func eventsAttendedAction(_ sender: Any) {
+        if (eventsAndAttendanceSegment.selectedSegmentIndex == 0){
+            goToEventsAttended()
+        } else {
+            goToAttendance()
+        }
     }
     
     func refreshAttainmentData(_ sender:UIRefreshControl) {
