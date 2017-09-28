@@ -29,16 +29,8 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         customiseLayout()
-        
-        let manager = xAPIManager()
-        manager.getAppUsage(studentId: dataManager.currentStudent!.id)
-        let defaults = UserDefaults.standard
-        
-        self.targetsMet.text?.append(defaults.string(forKey: "AppUsage_targets_met") ?? "null")
-        self.targetsFailed.text?.append(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")
-        self.targetsSet.text?.append(defaults.string(forKey: "AppUsage_targets_set") ?? "null")
-        self.activites.text?.append(defaults.string(forKey: "AppUsage_activities") ?? "null")
-        self.sessions.text?.append(defaults.string(forKey: "AppUsage_sessions") ?? "null")
+    
+        loadData()
     }
 
     @IBAction func openMenu(_ sender: Any) {
@@ -101,12 +93,37 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func startDatePickerDone(){
+        //TODO format date
         startDateField.text = "\(startDatePicker.date)"
         self.view.endEditing(true)
+        if(endDateField.text != "End"){
+            loadData()
+        }
     }
     
     func endDatePickerDone(){
+        //TODO format date
         endDateField.text = "\(endDatePicker.date)"
         self.view.endEditing(true)
+        if(startDateField.text != "Start"){
+            loadData()
+        }
+    }
+    
+    func loadData(){
+        let manager = xAPIManager()
+        if(startDateField.text != "Start" && endDateField.text != "End") {
+            manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: startDateField.text!, endDate: endDateField.text!)
+        }
+        else{
+            manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: "null", endDate: "null")
+        }
+        
+        let defaults = UserDefaults.standard
+        self.targetsMet.text = "Targets met on time: \(defaults.string(forKey: "AppUsage_targets_met") ?? "null"))"
+        self.targetsFailed.text = "Targets not met on time: \(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")"
+        self.targetsSet.text = "Targets not met on time: \(defaults.string(forKey: "AppUsage_targets_set") ?? "null")"
+        self.activites.text = "Hours of activites logged: \(defaults.string(forKey: "AppUsage_activities") ?? "null")"
+        self.sessions.text = "Sessions: \(defaults.string(forKey: "AppUsage_sessions") ?? "null")"
     }
 }

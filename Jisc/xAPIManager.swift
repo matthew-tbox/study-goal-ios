@@ -598,9 +598,15 @@
         }
     }
 
-    func getAppUsage(studentId:String) {
+        func getAppUsage(studentId:String, startDate:String, endDate:String) {
             //print("made it to the call")
-            let urlPath = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage?student_id=" + studentId
+            var urlPath = ""
+            if(startDate == "null" && endDate == "null"){
+                urlPath = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage?student_id=" + studentId
+            }
+            else{
+                urlPath = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage?student_id=" + studentId + "&start_date=" + startDate + "&end_date=" + endDate
+            }
             
             if let url = URL(string: urlPath){
                 print("calling for app usage data")
