@@ -171,6 +171,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var staffAlert:UIAlertController? = UIAlertController(title: localized("staff_stats_alert"), message: "", preferredStyle: .alert)
     
     @IBOutlet weak var noPointsLabel: UILabel!
+    
+    @IBOutlet weak var vleGraphWebView: UIWebView!
     @IBOutlet weak var pieChartWebView: UIWebView!
     
     @IBOutlet weak var highChartWebView: UIWebView!
@@ -190,13 +192,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var ipadAttainmentView: UIView!
     @IBOutlet weak var ipadPointsView: UIView!
     @IBOutlet weak var eventsAndAttendanceSegment: UISegmentedControl!
+    @IBOutlet weak var attendanceSegmentControl: UISegmentedControl!
     
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
     var attainmentDemoArray = ["Date   Module name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
     var eventsAttendedDemoArray = [["Lecture","10:20","20/7/2016","Maths"],["Lab","12:00","13/4/2016","Chemistry"],["Lecture", "9:30","14/8/2016","English"]]
-    
+    var graphTypePath = "bargraph"
     override func viewDidLoad() {
         super.viewDidLoad()
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -282,12 +285,16 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         goToAttainment()
         self.highChartWebView.isHidden = false
+        self.vleGraphWebView.isHidden = false
         if(demo()){
             self.highChartWebView.isHidden = true;
         }
         self.noPointsLabel.isHidden = false
         self.eventsAttendedTableView.isHidden = false
         self.loadHighChart()
+        self.loadVLEChart()
+        
+        self.attendanceSegmentControl.isHidden = true
         
         let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         xAPIManager().checkMod(testUrl:urlString)
@@ -339,6 +346,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             goToEventsAttended()
         } else {
             goToAttendance()
+        }
+    }
+    @IBAction func attendanceAction(_ sender: Any) {
+        if (attendanceSegmentControl.selectedSegmentIndex == 0){
+            goToAttendance()
+            print("From AttendanceAction going to attendance")
+        } else {
+            goToEventsAttended()
+            print("From AttendanceAction going to Events attended")
         }
     }
     
@@ -556,6 +572,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     //	}
     
     func goToGraph() {
+        self.attendanceSegmentControl.isHidden = true
         topLabel.text = "VLE Activity"
         hideUpperViews()
         container.isHidden = false
@@ -573,7 +590,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToAttainment() {
-        
+        self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
         container.isHidden = false
         topLabel.text = "Attainment"
@@ -592,7 +609,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToPoints() {
-        
+        self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
         container.isHidden = false
         topLabel.text = "Activity points"
@@ -614,6 +631,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     
     func goToLeaderBoard() {
+        self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
         topLabel.text = "Leaderboard"
         
@@ -625,6 +643,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToEventsAttended() {
+        self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
         topLabel.text = "Events Attended"
         
@@ -635,6 +654,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToAttendance() {
+        self.attendanceSegmentControl.isHidden = false
         hideUpperViews()
         attendance.isHidden = false
         attendance.isUserInteractionEnabled = false
@@ -914,9 +934,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             graphType = .Bar
+            self.graphTypePath = "bargraph"
         } else {
             graphType = .Line
+            self.graphTypePath = "linegraph"
         }
+        loadVLEChart()
         representValues(graphValues)
     }
     
@@ -944,12 +967,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
              y: 24.03
              } */
             var data: String = ""
-            
-//            let defaults = UserDefaults.standard
-//            let decoded  = defaults.object(forKey: "PointsArray") as! Data
-//            let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [PointsObject]
 
-            
             for point in pointsArray {
                 data += "{"
                 if (point.activity == "Loggedin"){
@@ -973,6 +991,48 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             print ("File HTML error")
         }
     }
+    
+    private func loadVLEChart(){
+        do {
+            guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
+                else {
+                    print ("File reading error")
+                    return
+            }
+            
+            vleGraphWebView.setNeedsLayout()
+            vleGraphWebView.layoutIfNeeded()
+            let w = vleGraphWebView.frame.size.width - 20
+            let h = vleGraphWebView.frame.size.height - 20
+            var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+            contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+            contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+            var dateDataFinal = ""
+            var countDateFinal = ""
+            if (self.graphValues?.columnNames != nil) {
+                 dateDataFinal = self.graphValues!.columnNames!.description
+            } else {
+                 dateDataFinal = ""
+            }
+            if (self.graphValues?.me != nil) {
+                countDateFinal = self.graphValues!.me!.description
+            } else {
+                countDateFinal = ""
+            }
+
+            //dateDataFinal = "['23/09', '24/09', '25/09', '26/09', '27/09', '28/09', '29/09']"
+            //let countDateFinal = "[8,9,9,6,2,8,2]"
+            contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
+            contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
+            
+            let baseUrl = URL(fileURLWithPath: filePath)
+            vleGraphWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+        } catch {
+            print ("File HTML error")
+        }
+        
+    }
+    
     private func loadHighChart() {
         //let completionBlock:downloadCompletionBlock?
         var countArray:[Int] = []
@@ -994,7 +1054,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         if var request = request {
             if let token = xAPIToken() {
-                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                request.addValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MDU4MjcwODQsImp0aSI6ImFXWmF2WHF5ek5KOE02NEd5VnM0SDJnWWlLQUVBSlErK1FIM2owWFlITkE9IiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0XC9leGFtcGxlIiwibmJmIjoxNTA1ODI3MDc0LCJleHAiOjE1MDk5NzQyNzQsImRhdGEiOnsiZXBwbiI6InRvbS5nbGFudmlsbGVAY29ycC5qaXNjLmFjLnVrIiwicGlkIjoidG9tLmdsYW52aWxsZUBjb3JwLmppc2MuYWMudWsiLCJhZmZpbGlhdGlvbiI6InN0YWZmQGNvcnAuamlzYy5hYy51azttZW1iZXJAY29ycC5qaXNjLmFjLnVrIn19.lzH6OoXAeXtmloe0-siPmSTA5TNH3iN8W-HG9Ygkx3OI4igML9ptS18Hm_pthTzq7tRn0GgJmbP_7ptqVeBfBA", forHTTPHeaderField: "Authorization")
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 
@@ -1122,6 +1182,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             self.graphValues = nil
             if (success) {
                 self.graphValues = self.xAPIEngagementDataValues(period, moduleID: moduleID, studentID: studentID, result: result, results: results)
+                self.loadVLEChart()
                 if let status = result?["status"] as? String {
                     if status == "error" {
                         self.graphValues = nil

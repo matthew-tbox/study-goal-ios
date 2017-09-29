@@ -15,6 +15,8 @@
 		80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */; };
 		8014B5F01F44BCD6001BF4E4 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */; };
 		8014B5F11F44BCD6001BF4E4 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */; };
+		8017FBE21F7E89580012B73F /* linegraph.html in Resources */ = {isa = PBXBuildFile; fileRef = 8017FBDD1F7E89540012B73F /* linegraph.html */; };
+		8017FBE31F7E89580012B73F /* bargraph.html in Resources */ = {isa = PBXBuildFile; fileRef = 8017FBE11F7E89560012B73F /* bargraph.html */; };
 		804FD3001F3B68E4002FEDDB /* RecurringTargetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804FD2FE1F3B68E4002FEDDB /* RecurringTargetVC.xib */; };
 		8056FCF81F5EFD06003FBD17 /* AppUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */; };
 		8056FCF91F5EFD06003FBD17 /* AppUsageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */; };
@@ -304,6 +306,8 @@
 		80110A611F4B4E7F00FBF51D /* SingleTargetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleTargetCell.xib; sourceTree = "<group>"; };
 		8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
+		8017FBDD1F7E89540012B73F /* linegraph.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = linegraph.html; sourceTree = "<group>"; };
+		8017FBE11F7E89560012B73F /* bargraph.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = bargraph.html; sourceTree = "<group>"; };
 		804FD2FF1F3B68E4002FEDDB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RecurringTargetVC.xib; sourceTree = "<group>"; };
 		8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUsageViewController.swift; sourceTree = "<group>"; };
 		8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppUsageViewController.xib; sourceTree = "<group>"; };
@@ -1030,6 +1034,8 @@
 			children = (
 				DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */,
 				800C2DC41F28EBD5006A078B /* stats_attendance_high_chart.html */,
+				8017FBE11F7E89560012B73F /* bargraph.html */,
+				8017FBDD1F7E89540012B73F /* linegraph.html */,
 				DAA2AEF41BCE85CD00ED796A /* StatsVC.swift */,
 				DAFC711D1BDFE33700A06C9A /* AttainmentCell.swift */,
 				DAB0C8091C4CE96400F7A3C6 /* AttainmentCell.xib */,
@@ -1442,6 +1448,7 @@
 				DAB0C7E31C4CE8F700F7A3C6 /* SearchVC~ipad.xib in Resources */,
 				DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */,
 				DAD573941C3D46360080B49B /* TrophiesCell.xib in Resources */,
+				8017FBE31F7E89580012B73F /* bargraph.html in Resources */,
 				DAB0C7FB1C4CE93D00F7A3C6 /* StatsVC.xib in Resources */,
 				DA162E271CAD39B100E0C3D0 /* xAPILoginVC.xib in Resources */,
 				DAB0C83D1C4CEA1600F7A3C6 /* LogActivityVC.xib in Resources */,
@@ -1489,6 +1496,7 @@
 				DAD6AE2A1C57B76E00BCBBDD /* TrophyDetailsView.xib in Resources */,
 				DADBA8B91BD1340300BC9CE4 /* OneActivityCell.xib in Resources */,
 				DAC32DCB1BCF9FDC00C4FBF5 /* OratorStd.otf in Resources */,
+				8017FBE21F7E89580012B73F /* linegraph.html in Resources */,
 				DAD6AE261C57B0AB00BCBBDD /* TrophiesCelliPad.xib in Resources */,
 				DA425AD41BD52E0B00C77D76 /* InstituteCell.xib in Resources */,
 				DAB0C8131C4CE98C00F7A3C6 /* EngagementGraphVC~ipad.xib in Resources */,
