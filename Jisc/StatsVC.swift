@@ -276,6 +276,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         getActivityPoints(period: .SevenDays, completion: {
             
         })
+        attainmentArray.removeAll()
         getAttainmentData {
             print("Getting Attainment data")
         }
@@ -377,7 +378,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let xMGR = xAPIManager()
         xMGR.silent = true
         xMGR.getAttainment { (success, result, results, error) in
-            self.attainmentArray.append(AttainmentObject(dateString: "Date", moduleName: "Module", grade: "Grade"))
+            self.attainmentArray.removeAll()
+            self.attainmentArray.append(AttainmentObject(dateString: "Date     ", moduleName: "Module", grade: "Grade"))
             if (results != nil) {
                 for (_, item) in results!.enumerated() {
                     if let dictionary = item as? NSDictionary {
