@@ -285,7 +285,11 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                         finalText = "\(numberOfDaysAgo! * -1) DAYS OVERDUE \(describe) because \(reason.lowercased())"
                     }
                 } else {
-                    finalText = "\(describe) by \(finalDate) because \(reason.lowercased())"
+                    if (reason.isEmpty || reason == "Add a reason to keep this target"){
+                        finalText = "\(describe) by \(finalDate)"
+                    } else {
+                        finalText = "\(describe) by \(finalDate) because \(reason.lowercased())"
+                    }
                 }
             } else if (reason.isEmpty || reason == "Add a reason to keep this target"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
