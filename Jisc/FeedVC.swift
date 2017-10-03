@@ -30,17 +30,19 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 		super.viewDidLoad()
 		feedsTableView.register(UINib(nibName: kOneFeedItemCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kOneFeedItemCellIdentifier)
 		feedsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
-		//refreshTimer = Timer(timeInterval: 30, target: self, selector: #selector(FeedVC.refreshFeeds(_:)), userInfo:nil, repeats: true)
-		//RunLoop.current.add(refreshTimer!, forMode: RunLoopMode.commonModes)
+		refreshTimer = Timer(timeInterval: 30, target: self, selector: #selector(FeedVC.refreshFeeds(_:)), userInfo:nil, repeats: true)
+		RunLoop.current.add(refreshTimer!, forMode: RunLoopMode.commonModes)
 		let refreshControl = UIRefreshControl()
 		refreshControl.addTarget(self, action: #selector(FeedVC.manuallyRefreshFeeds(_:)), for: UIControlEvents.valueChanged)
-		feedsTableView.addSubview(refreshControl)
+
+        
         
         //London Developer July 24,2017
         let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
         xAPIManager().checkMod(testUrl:urlString)
+        feedsTableView.reloadData()
         
-        let statsClass = StatsVC()
+        //let statsClass = StatsVC()
 //        statsClass.getEventsAttended {
 //            print("requested events attended from feed")
 //        }
@@ -65,7 +67,7 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
 	
 	func refreshFeeds(_ sender:Timer) {
 		dataManager.silentStudentFeedsRefresh(false) { (success, failureReason) -> Void in
-			self.feedsTableView.reloadData()
+            self.feedsTableView.reloadData()
 		}
 	}
 	
