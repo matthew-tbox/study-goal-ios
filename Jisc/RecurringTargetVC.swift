@@ -411,12 +411,13 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             } else {
                 module = dataManager.moduleNameAtIndex(selectedModule - 1)!
             }
-            if (myGoalTextField.text.isEmpty){
+            if (myGoalTextField.text.isEmpty || myGoalTextField.text == targetGoalPlaceholder){
                 //Make sure to localize the following message
                 
                 AlertView.showAlert(false, message: localized("Make sure to fill in My Goal section")) { (done) -> Void in
                     //self.dismiss(animated: true, completion: nil)
                 }
+                return
             }
             var myBody = ""
             if social(){
