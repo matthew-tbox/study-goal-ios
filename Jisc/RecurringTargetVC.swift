@@ -694,11 +694,18 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        if(textView == noteTextView){
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
             self.scrollBottomSpace.constant = keyboardHeight - 5.0
             self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height - self.scrollBottomSpace.constant)
             self.view.layoutIfNeeded()
         })
+        } else if (textView == myGoalTextField){
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.scrollBottomSpace.constant = keyboardHeight - 5.0
+                self.contentScroll.contentOffset = CGPoint(x: 0.0, y: 0.0)
+                self.view.layoutIfNeeded()
+            })        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
