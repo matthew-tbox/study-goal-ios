@@ -490,6 +490,8 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             }
         } else {
             recurringDatePicker.minimumDate = Date()
+            let secondsInYear = 365 * 24 * 60 * 60
+            recurringDatePicker.maximumDate = Date(timeInterval: TimeInterval(secondsInYear), since: Date())
         }
 //        let defaults = UserDefaults.standard
 //        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
