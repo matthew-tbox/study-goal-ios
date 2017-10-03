@@ -200,6 +200,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var attainmentDemoArray = ["Date   Module name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
     var eventsAttendedDemoArray = [["Lecture","10:20","20/7/2016","Maths"],["Lab","12:00","13/4/2016","Chemistry"],["Lecture", "9:30","14/8/2016","English"]]
     var graphTypePath = "bargraph"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
@@ -829,7 +830,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             else
             {
-                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
                 noDataLabel.text          = "No data available"
                 noDataLabel.textColor     = UIColor.black
                 noDataLabel.textAlignment = .center
@@ -843,7 +844,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 numOfSections = 1
                 return numOfSections
             }
-            if (eventsAttendedArray.count + 1 > 0)
+            if (eventsAttendedArray.count > 1)
             {
                 tableView.separatorStyle = .singleLine
                 numOfSections            = 1
@@ -860,7 +861,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             
             break
+        
         default:
+            let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text          = "No data available"
+            noDataLabel.textColor     = UIColor.black
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView  = noDataLabel
+            tableView.separatorStyle  = .none
             break
         }
         
