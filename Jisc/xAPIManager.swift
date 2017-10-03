@@ -633,9 +633,35 @@
                                 print("json found")
                                 print(json)
                                 let defaults = UserDefaults.standard
-                                defaults.set(json["met_targets_number"], forKey: "AppUsage_targets_met")
-                                defaults.set(json["failed_targets_number"], forKey: "AppUsage_targets_failed")
-                                defaults.set(json["set_targets_number"], forKey: "AppUsage_targets_set")
+                                
+                                let met_targets_number = json["met_targets_number"] as! [String: Any]
+                                let metRecurringTargets = met_targets_number["recurring targets"] as! Int
+                                let metSingleTargets = met_targets_number["todo tasks"] as! Int
+                                
+                                let metTargets = metRecurringTargets + metSingleTargets
+                                
+                                print("metTargets \(metTargets)")
+                                defaults.set(metTargets, forKey: "AppUsage_targets_met")
+                                
+                                
+                                let failed_targets_number = json["failed_targets_number"] as! [String: Any]
+                                let failedRecurringTargets = failed_targets_number["recurring targets"] as! Int
+                                let failedSingleTargets = failed_targets_number["todo tasks"] as! Int
+                                
+                                let failedTargets = failedRecurringTargets + failedSingleTargets
+                                
+                                print("failedTargets \(failedTargets)")
+                                defaults.set(failedTargets, forKey: "AppUsage_targets_failed")
+                                
+                                
+                                let set_targets_number = json["set_targets_number"] as! [String: Any]
+                                let setRecurringTargets = set_targets_number["recurring targets"] as! Int
+                                let setSingleTargets = set_targets_number["todo tasks"] as! Int
+                                let setTargets = setRecurringTargets + setSingleTargets
+                                print("setTargets \(setTargets)")
+                                
+                                defaults.set(setTargets, forKey: "AppUsage_targets_set")
+                                
                                 defaults.set(json["activity_logged_hours"], forKey: "AppUsage_activities")
                                 defaults.set(json["number_of_sessions"], forKey: "AppUsage_sessions")
                                 //completed()

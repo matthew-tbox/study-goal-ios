@@ -120,9 +120,9 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         let defaults = UserDefaults.standard
-        self.targetsMet.text = "Targets met on time: \(defaults.string(forKey: "AppUsage_targets_met") ?? "null"))"
+        self.targetsMet.text = "Targets met on time: \(defaults.string(forKey: "AppUsage_targets_met") ?? "null")"
         self.targetsFailed.text = "Targets not met on time: \(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")"
-        self.targetsSet.text = "Targets not met on time: \(defaults.string(forKey: "AppUsage_targets_set") ?? "null")"
+        self.targetsSet.text = "Targets set: \(defaults.string(forKey: "AppUsage_targets_set") ?? "null")"
         self.activites.text = "Hours of activites logged: \(defaults.string(forKey: "AppUsage_activities") ?? "null")"
         self.sessions.text = "Sessions: \(defaults.string(forKey: "AppUsage_sessions") ?? "null")"
     }
