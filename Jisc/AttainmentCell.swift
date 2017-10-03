@@ -27,11 +27,17 @@ class AttainmentCell: UITableViewCell {
 	func loadAttainmentObject(_ object:AttainmentObject?) {
 		if let object = object {
 			dateFormatter.dateFormat = "dd/MM/yy"
-			nameLabel.text = "\(dateFormatter.string(from: object.date)) \(object.moduleName)"
-			positionLabel.text = object.grade
-		} else {
-			nameLabel.text = localized("attainment_info")
-			positionLabel.text = ""
+            if object.dateString != "" {
+                nameLabel.text = "\(object.dateString)  \(object.moduleName)"
+                positionLabel.text = object.grade
+            } else {
+                nameLabel.text = "\(dateFormatter.string(from: object.date)) \(object.moduleName)"
+                positionLabel.text = object.grade
+            }
+        } else {
+			//nameLabel.text = localized("attainment_info")
+			//positionLabel.text = ""
 		}
 	}
+
 }

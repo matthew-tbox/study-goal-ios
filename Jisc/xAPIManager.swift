@@ -513,6 +513,32 @@
             completionBlock?(false, nil, nil, "Error creating the url request")
         }
     }
+    func getWithResult(testUrl:String){
+        var request:URLRequest?
+        if let urlString = testUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            if let url = URL(string: urlString) {
+                request = URLRequest(url: url)
+            }
+        }
+        if var request = request {
+            if let token = xAPIToken() {
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
+                do {
+                    if let data = data,
+                        let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                            print("This is the JSON", json)
+                    }
+                } catch {
+                    print("Error deserializing JSON: \(error)")
+                }
+            }
+            //startConnectionWithRequest(request)
+        } else {
+            completionBlock?(false, nil, nil, "Error creating the url request")
+        }
+    }
     func postRequest(testUrl:String, body:String) -> Bool{
         var request:URLRequest?
         var somethingWentWrong = false

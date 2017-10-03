@@ -87,6 +87,10 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
         //		}
         
+        NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetVC
+            .keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         if iPad {
             recurringSegmentControl.isHidden = true
         }
@@ -182,25 +186,33 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             let defaults = UserDefaults.standard
             let editedReason = defaults.object(forKey: "EditedReason") as! String
             let editedDescribe = defaults.object(forKey: "EditedDescribe") as! String
-            // let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+            let editedDateObject = defaults.object(forKey: "EditedDate") as! String
             let editedModule = defaults.object(forKey: "EditedModule") as! String
             
             //self.recurringDatePicker.date = editedDateObject
-            if !editedReason.isEmpty{
+           // if !editedReason.isEmpty{
                 myGoalTextField?.textColor = UIColor.black
                 myGoalTextField?.text = editedDescribe
-            }
-            if !editedDescribe.isEmpty{
+            //} else {
+               // myGoalTextField.text = targetReasonPlaceholder
+            //}
+            //if !editedDescribe.isEmpty{
                 noteTextView?.textColor = UIColor.black
                 noteTextView?.text = editedReason
-            }
-            if !editedModule.isEmpty{
-               moduleButton.setTitle(editedModule, for: UIControlState())
+            //} else {
+               // noteTextView.text = targetReasonPlaceholder
+            //}
+            if (editedModule == "No Module" || editedModule == "no_module" || editedModule.isEmpty){
+                moduleButton.setTitle("Any Module", for: UIControlState())
+            } else {
+                moduleButton.setTitle(editedModule, for: UIControlState())
             }
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale.init(identifier: "en_GB")
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let date = dateFormatter.date(from: editedDateObject)
+            self.recurringDatePicker.setDate(date!, animated: true)
         }
-        
         
     }
     
@@ -224,12 +236,12 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         } else {
-             _ = navigationController?.popViewController(animated: true)
-            _ = navigationController?.popViewController(animated: true)
+            // _ = navigationController?.popViewController(animated: true)
+            //_ = navigationController?.popViewController(animated: true)
 
             
-            //let vc = SingleTargetVC()
-        //    navigationController?.present(vc, animated: false, completion: nil)
+            let vc = SingleTargetVC()
+            navigationController?.pushViewController(vc, animated: false)
         }
     }
     /*
@@ -484,6 +496,23 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
 //        recurringDatePicker.date = editedDateObject
         
     }
+    
+    func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.contentScroll.contentOffset.y != 0{
+//                self.contentScroll.contentOffset.y += 330
+//            }
+//        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        /*if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }*/
+    }
+    
     //MARK: UIAlertView Delegate
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
@@ -829,7 +858,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.scrollBottomSpace.constant = keyboardHeight - 44.0
+            self.scrollBottomSpace.constant = keyboardHeight //- 44.0
             self.view.layoutIfNeeded()
         })
     }

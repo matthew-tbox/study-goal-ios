@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StatsMenuButton" customModule="Jisc" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StatsMenuButton" customModule="Jisc" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
@@ -128,6 +128,14 @@
                                 <action selector="appUsageAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="LgX-47-Egz"/>
                             </connections>
                         </button>
+                        <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dGm-hI-6Id">
+                            <rect key="frame" x="12" y="-4" width="375" height="0.0"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="vkE-at-aCx"/>
+                                <outlet property="delegate" destination="-1" id="6gM-Zq-1Dt"/>
+                            </connections>
+                        </tableView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -139,10 +147,12 @@
                         <constraint firstItem="KF6-Sf-Kqx" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" constant="-40" id="CGn-ar-Ypv"/>
                         <constraint firstItem="h1j-2l-rYa" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="DR3-IR-g9y"/>
                         <constraint firstItem="Xyz-iV-Pau" firstAttribute="bottom" secondItem="h1j-2l-rYa" secondAttribute="bottom" constant="40" id="E0N-wY-YJE"/>
+                        <constraint firstItem="dGm-hI-6Id" firstAttribute="top" secondItem="YG0-U7-Bi6" secondAttribute="top" constant="-4" id="FfX-8s-xeZ"/>
                         <constraint firstItem="dXk-FR-Zp5" firstAttribute="top" secondItem="WHR-CA-m5x" secondAttribute="bottom" id="GxX-2f-U7e"/>
                         <constraint firstAttribute="trailing" secondItem="dXk-FR-Zp5" secondAttribute="trailing" id="JOO-sV-dco"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="height" secondItem="dXk-FR-Zp5" secondAttribute="height" id="OZH-M6-Nkz"/>
                         <constraint firstAttribute="trailing" secondItem="KF6-Sf-Kqx" secondAttribute="trailing" id="P9b-83-o0z"/>
+                        <constraint firstItem="dGm-hI-6Id" firstAttribute="height" secondItem="YG0-U7-Bi6" secondAttribute="height" id="Pag-9Q-vQO"/>
                         <constraint firstAttribute="height" id="Pot-1N-6eR"/>
                         <constraint firstItem="dXk-FR-Zp5" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="Ql4-It-RNU"/>
                         <constraint firstItem="9Vv-fx-jWr" firstAttribute="height" secondItem="WHR-CA-m5x" secondAttribute="height" id="XoQ-vf-RXO"/>
@@ -152,8 +162,10 @@
                         <constraint firstItem="Xyz-iV-Pau" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" id="iDw-eL-GrJ"/>
                         <constraint firstItem="h1j-2l-rYa" firstAttribute="height" secondItem="9Vv-fx-jWr" secondAttribute="height" id="lKP-je-loV"/>
                         <constraint firstItem="WHR-CA-m5x" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="nXj-Hd-pDt"/>
+                        <constraint firstItem="dGm-hI-6Id" firstAttribute="width" secondItem="YG0-U7-Bi6" secondAttribute="width" id="nzf-C5-XC3"/>
                         <constraint firstItem="h1j-2l-rYa" firstAttribute="top" secondItem="KF6-Sf-Kqx" secondAttribute="bottom" id="sxa-lb-VwS"/>
                         <constraint firstAttribute="trailing" secondItem="9Vv-fx-jWr" secondAttribute="trailing" id="u3P-fl-FUU"/>
+                        <constraint firstItem="dGm-hI-6Id" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" constant="12" id="xLc-z3-OU7"/>
                         <constraint firstItem="KF6-Sf-Kqx" firstAttribute="leading" secondItem="YG0-U7-Bi6" secondAttribute="leading" id="zg2-Mj-BPl"/>
                     </constraints>
                 </view>
@@ -184,6 +196,7 @@
                 <outlet property="buttonsHeight" destination="Pot-1N-6eR" id="taV-tA-GQh"/>
                 <outlet property="eventsAttendedButton" destination="h1j-2l-rYa" id="y2c-c0-ipF"/>
                 <outlet property="leaderboardsButton" destination="KF6-Sf-Kqx" id="bpc-VR-WfI"/>
+                <outlet property="statsMenuButtonsTable" destination="dGm-hI-6Id" id="cAC-Gr-16h"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="-9"/>
         </view>

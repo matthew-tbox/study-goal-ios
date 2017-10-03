@@ -67,6 +67,9 @@ class Student: NSManagedObject {
 		staff = boolFromDictionary(userData, key: "is_staff") as NSNumber
 		demo = (jisc_id == "demouser") as NSNumber
 		
+        defaults.set(id, forKey: "StudentId")
+        defaults.synchronize()
+        
 		let name = stringFromDictionary(userData, key: "name")
 		if (!name.isEmpty) {
 			let components = name.components(separatedBy: " ")

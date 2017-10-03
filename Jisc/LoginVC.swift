@@ -227,6 +227,21 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 				clearXAPIToken()
 			}
 		}
+        if (internetAvailability == ReachabilityStatus.notReachable) {
+            if JWTStillValid(){
+                let vc = FeedVC()
+                self.present(vc, animated: true, completion: nil)
+            }
+            let defaults = UserDefaults.standard
+            let studentID = defaults.object(forKey: "StudentId")
+            if (studentID != nil){
+                let vc = FeedVC()
+                self.present(vc, animated: true, completion: nil)
+                print("Ahmed this worked from here!! OMG!!!", studentID)
+            } else {
+                print("Ahmed this is not working")
+            }
+        }
     }
 	
 	deinit {

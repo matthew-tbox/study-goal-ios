@@ -167,11 +167,7 @@ class MenuView: UIView {
 			self.closeButton.alpha = 1.0
 		}
 	}
-    
-    func goToRecurringVC(){
-        
-    }
-	
+    	
 	@IBAction func close(_ sender:UIButton?) {
 		isUserInteractionEnabled = false
 		UIView.animate(withDuration: 0.25) {

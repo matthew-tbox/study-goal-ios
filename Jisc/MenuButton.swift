@@ -43,6 +43,7 @@ class MenuButton: UIView {
         case .Friends:
             button.button.setImage(UIImage(named: "FriendsMenuIcon"), for: .normal)
             button.button.setImage(UIImage(named: "FriendsMenuIconSelected"), for: .selected)
+
             break
 		case .Stats:
 			button.button.setImage(UIImage(named: "StatsVCMenuIcon"), for: .normal)
@@ -136,7 +137,7 @@ class MenuButton: UIView {
 
 }
 
-class StatsMenuButton: MenuButton {
+class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
 	
 	@IBOutlet weak var arrow:UIImageView!
 	@IBOutlet weak var buttonsHeight:NSLayoutConstraint!
@@ -147,7 +148,10 @@ class StatsMenuButton: MenuButton {
     @IBOutlet weak var attainmentButton: UIButton!
     @IBOutlet weak var appUsageButton: UIButton!
     
+    @IBOutlet weak var statsMenuButtonsTable: UITableView!
+    
 	var expanded = false
+    var menuItemsArray = ["Activity Points","App Usage","Attainment","Attendence Summary","Events Attended","VLE Activity"]
 	
 	override func buttonAction(_ sender: UIButton?) {
 		if expanded {
@@ -159,6 +163,9 @@ class StatsMenuButton: MenuButton {
 	
 	func expand() {
 		expanded = true
+        self.statsMenuButtonsTable.delegate = self
+        self.statsMenuButtonsTable.dataSource = self
+        self.statsMenuButtonsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MenuCell")
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
 			self.buttonsHeight.constant = 40 * 6 //This constant multiplication multiplies the height by the number of buttons shown, for example 40 * 4(buttons) or 40 *6(buttons) Adjust it as necesary.
@@ -176,8 +183,8 @@ class StatsMenuButton: MenuButton {
             
             // Show events attended and events summary menu items when response contains true.
             if (result.range(of: "true") == nil){
-                attendanceButton.alpha = 0
-                eventsAttendedButton.alpha = 0
+                attendanceButton.alpha = 1.0
+                eventsAttendedButton.alpha = 1.0
                 //leaderboardsButton.alpha = 1.0
             } else {
                 attendanceButton.alpha = 1.0
@@ -266,5 +273,73 @@ class StatsMenuButton: MenuButton {
         }
         retract()
 
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
+        cell.textLabel?.text = menuItemsArray[indexPath.row]
+        cell.textLabel?.textColor = UIColor.gray
+        cell.textLabel?.font = UIFont(name: "System", size: 10.0)
+        return cell
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
+        cell.textLabel?.text = menuItemsArray[indexPath.row]
+        cell.textLabel?.textColor = UIColor.gray
+        cell.textLabel?.font = UIFont(name: "System", size: 10.0)
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menuItemsArray.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 32.5
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            parent?.close(nil)
+            parent?.stats()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.parent?.statsViewController.goToPoints()
+            }
+            retract()
+        } else if indexPath.row == 1 {
+            parent?.close(nil)
+            parent?.appUsage()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                //Put code here to go to the view controller
+                //self.parent?.appUsageViewController
+            }
+            retract()
+        } else if indexPath.row == 2 {
+            parent?.close(nil)
+            parent?.stats()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.parent?.statsViewController.goToAttainment()
+            }
+            retract()
+        } else if indexPath.row == 3 {
+            parent?.close(nil)
+            parent?.stats()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.parent?.statsViewController.goToAttendance()
+            }
+            retract()
+        } else if indexPath.row == 4 {
+            parent?.close(nil)
+            parent?.stats()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.parent?.statsViewController.goToEventsAttended()
+            }
+            retract()
+        } else if indexPath.row == 5 {
+            parent?.close(nil)
+            parent?.stats()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.parent?.statsViewController.goToGraph()
+            }
+            retract()
+        }
     }
 }
