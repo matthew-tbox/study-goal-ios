@@ -203,6 +203,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        noDataLabel.alpha = 0.0
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
         staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
             if let studentId = dataManager.currentStudent?.id {
@@ -996,7 +998,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             let baseUrl = URL(fileURLWithPath: filePath)
             pieChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
         } catch {
-            print ("File HTML error")
+            print ("File HTML error on pie chart")
+            print("no results for points graph found")
+            self.noDataLabel.alpha = 1.0
+            self.noDataLabel.textColor = UIColor.black
+            self.noDataLabel.text = "No data available"
+            self.noDataLabel.isHidden = false
+            self.graphContainer.alpha = 0.0
         }
     }
     
@@ -1042,6 +1050,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     private func loadHighChart() {
+        print("Loading HighChart")
         //let completionBlock:downloadCompletionBlock?
         var countArray:[Int] = []
         var dateArray:[String] = []
@@ -1066,9 +1075,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 
+                print("data received for events graph")
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                        print("json count events graph \(json.count)")
+                        
                         for item in json {
                             let object = item as? [String:Any]
                             if let count = object?["count"] as? Int {
@@ -1096,6 +1108,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
                                 else {
                                     print ("File reading error")
+                                    self.noDataLabel.alpha = 1.0
+                                    self.graphContainer.alpha = 0.0
                                     return
                             }
                             
@@ -1133,16 +1147,33 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             self.highChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
                             
                         } catch {
-                            print ("File HTML error")
+                            print ("File HTML error for events graph")
+                            self.noDataLabel.alpha = 1.0
+                            self.noDataLabel.textColor = UIColor.black
+                            self.noDataLabel.text = "No data available"
+                            self.noDataLabel.isHidden = false
+                            self.graphContainer.alpha = 0.0
                         }
                     }
                 } catch {
-                    print("Error deserializing JSON: \(error)")
+                    print("Error deserializing JSON for events graph: \(error)")
+                    self.noDataLabel.alpha = 1.0
+                    self.noDataLabel.textColor = UIColor.black
+                    self.noDataLabel.text = "No data available"
+                    self.noDataLabel.isHidden = false
+                    self.graphContainer.alpha = 0.0
+                    
                 }
             }
             //startConnectionWithRequest(request)
         } else {
             // completionBlock?(false, nil, nil, "Error creating the url request")
+            print("no results for events graph found")
+            self.noDataLabel.alpha = 1.0
+            self.noDataLabel.textColor = UIColor.black
+            self.noDataLabel.text = "No data available"
+            self.noDataLabel.isHidden = false
+            self.graphContainer.alpha = 0.0
         }
         
     }
