@@ -34,7 +34,7 @@ class PointsCell: UITableViewCell {
 	
 	func loadPoints(points:PointsObject) {
         if (points.activity == "Loggedin"){
-            activityLabel.text = "Logged in"
+            activityLabel.text = localized("logged_in")
         } else {
             activityLabel.text = points.activity
 

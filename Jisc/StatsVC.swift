@@ -207,6 +207,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         noDataLabel.alpha = 0.0
         noPointsDataLabel.alpha = 0.0
+        noPointsDataLabel.text = localized("no_points_earned_yet")
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
         staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
             if let studentId = dataManager.currentStudent?.id {
@@ -580,7 +581,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     func goToGraph() {
         self.attendanceSegmentControl.isHidden = true
-        topLabel.text = "VLE Activity"
+        topLabel.text = localized("vle_activity")
         hideUpperViews()
         container.isHidden = false
         if iPad {
@@ -600,7 +601,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
         container.isHidden = false
-        topLabel.text = "Attainment"
+        topLabel.text = localized("attainment")
         if iPad {
             ipadAttainmentView.isHidden = false
             ipadPointsView.isHidden = true
@@ -619,7 +620,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
         container.isHidden = false
-        topLabel.text = "Activity points"
+        topLabel.text = localized("activity_points")
         if iPad {
             ipadPointsView.isHidden = false
             ipadGraphView.isHidden = true
@@ -640,7 +641,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     func goToLeaderBoard() {
         self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
-        topLabel.text = "Leaderboard"
+        topLabel.text = localized("leaderboard")
         
         leaderBoard.isHidden = true
         //London Developer July 24,2017
@@ -652,7 +653,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     func goToEventsAttended() {
         self.attendanceSegmentControl.isHidden = true
         hideUpperViews()
-        topLabel.text = "Events Attended"
+        topLabel.text = localized("events_attended")
         
         eventAtteneded.isHidden = false
         //London Developer July 24,2017
@@ -665,7 +666,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         hideUpperViews()
         attendance.isHidden = false
         attendance.isUserInteractionEnabled = false
-        topLabel.text = "Attendance Summary"
+        topLabel.text = localized("attendence_summary")
         
         //container.isHidden = false
         //London Developer July 24,2017
@@ -818,7 +819,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 else
                 {
                     let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-                    noDataLabel.text          = "No data available"
+                    noDataLabel.text          = localized("no_data_available")
                     noDataLabel.textColor     = UIColor.black
                     noDataLabel.textAlignment = .center
                     tableView.backgroundView  = noDataLabel
@@ -837,7 +838,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             else
             {
                 let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-                noDataLabel.text          = "No data available"
+                noDataLabel.text          = localized("no_data_available")
                 noDataLabel.textColor     = UIColor.black
                 noDataLabel.textAlignment = .center
                 tableView.backgroundView  = noDataLabel
@@ -859,7 +860,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             else
             {
                 let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-                noDataLabel.text          = "No data available"
+                noDataLabel.text          = localized("no_data_available")
                 noDataLabel.textColor     = UIColor.black
                 noDataLabel.textAlignment = .center
                 tableView.backgroundView  = noDataLabel
@@ -870,7 +871,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         default:
             let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-            noDataLabel.text          = "No data available"
+            noDataLabel.text          = localized("no_data_available")
             noDataLabel.textColor     = UIColor.black
             noDataLabel.textAlignment = .center
             tableView.backgroundView  = noDataLabel
@@ -985,7 +986,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             for point in pointsArray {
                 data += "{"
                 if (point.activity == "Loggedin"){
-                    data += "name:'Logged in',"
+                    data += "name:'\(localized("logged_in"))',"
                 } else {
                     data += "name:'\(point.activity)',"
                 }
@@ -1150,7 +1151,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             if(dateArray.count == 0){
                                 self.noDataLabel.alpha = 1.0
                                 self.noDataLabel.textColor = UIColor.black
-                                self.noDataLabel.text = "No data available"
+                                self.noDataLabel.text = localized("no_data_available")
                                 self.noDataLabel.isHidden = false
                                 self.graphContainer.alpha = 0.0
                             }
@@ -1162,7 +1163,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             print ("File HTML error for events graph")
                             self.noDataLabel.alpha = 1.0
                             self.noDataLabel.textColor = UIColor.black
-                            self.noDataLabel.text = "No data available"
+                            self.noDataLabel.text = localized("no_data_available")
                             self.noDataLabel.isHidden = false
                             self.graphContainer.alpha = 0.0
                         }
@@ -1171,7 +1172,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     print("Error deserializing JSON for events graph: \(error)")
                     self.noDataLabel.alpha = 1.0
                     self.noDataLabel.textColor = UIColor.black
-                    self.noDataLabel.text = "No data available"
+                    self.noDataLabel.text = localized("no_data_available")
                     self.noDataLabel.isHidden = false
                     self.graphContainer.alpha = 0.0
                     
@@ -1183,7 +1184,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             print("no results for events graph found")
             self.noDataLabel.alpha = 1.0
             self.noDataLabel.textColor = UIColor.black
-            self.noDataLabel.text = "No data available"
+            self.noDataLabel.text = localized("no_data_available")
             self.noDataLabel.isHidden = false
             self.graphContainer.alpha = 0.0
         }
@@ -1221,7 +1222,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 //				studentID = "top_ten"
             } else if (selectedStudent == friends.count + 1) {
                 getAverage = true
-                studentID = "average"
+                studentID = localized("average_small")
             }
         }
         noDataLabel.alpha = 0.0

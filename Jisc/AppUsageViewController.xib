@@ -29,6 +29,7 @@
                 <outlet property="targetsFailed" destination="2d3-Gl-ruC" id="3it-mX-g22"/>
                 <outlet property="targetsMet" destination="cGg-4a-dCo" id="FR7-38-WTR"/>
                 <outlet property="targetsSet" destination="4gv-Uz-Swh" id="eUg-xO-J4I"/>
+                <outlet property="titleLabel" destination="Fv4-ut-z08" id="sIa-pw-pfc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -221,7 +222,7 @@
                         <constraint firstItem="V5I-qa-hG2" firstAttribute="trailing" secondItem="cLv-hi-Jjy" secondAttribute="trailingMargin" id="vsN-2w-KCP"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAI-kA-LO1">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="start" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAI-kA-LO1">
                     <rect key="frame" x="9" y="94" width="171" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="171" id="Tcf-IH-sfl"/>
@@ -233,7 +234,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bEf-13-iVk" userLabel="selectorIndicatorIconStart">
                     <rect key="frame" x="163" y="104" width="12" height="6"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wO-M5-cZN">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="end" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wO-M5-cZN">
                     <rect key="frame" x="194" y="94" width="171" height="30"/>
                     <color key="textColor" red="0.75294117650000003" green="0.62352941179999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>

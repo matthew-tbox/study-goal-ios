@@ -403,4 +403,22 @@
 "demo" = "System Brawf";
 "attainment_info" = "PWYSIG: Mae pob marc a nodir â '**' yn amodol ar gymredoli a chadarnhau gan Fwrdd Arholwyr. Felly marciau/graddau dros dro yw'r rhain a gallent newid.";
 "tutor_target" = "Ni allwch newid targedau sydd wedi'u gosod gan diwtor";
-
+//New Values
+"app_usage" = "PLACEHOLDER";
+"attendence_summary" = "PLACEHOLDER";
+"events_attended" = "PLACEHOLDER";
+"vle_activity" = "PLACEHOLDER";
+"leaderboard" = "PLACEHOLDER";
+"no_data_available" = "PLACEHOLDER";
+"logged_in" = "PLACEHOLDER";
+"average_small" = "PLACEHOLDER";
+"targets_met" = "PLACEHOLDER";
+"targets_failed" = "PLACEHOLDER";
+"targets_set" = "PLACEHOLDER";
+"hours_of_activites_logged" = "PLACEHOLDER";
+"sessions_on_app" = "PLACEHOLDER";
+"start" = "PLACEHOLDER";
+"end" = "PLACEHOLDER";
+"targets_met_on_time" = "PLACEHOLDER";
+"targets_not_met_on_time" = "PLACEHOLDER";
+"sessions" = "PLACEHOLDER";

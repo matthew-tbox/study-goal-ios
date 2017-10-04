@@ -206,7 +206,6 @@ class MenuView: UIView {
     }
     
     func checkin() {
-        print("checking in")
         selectedIndex = 3
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Checkin)
         DELEGATE.mainNavigationController?.setViewControllers([checkinViewController], animated: false)

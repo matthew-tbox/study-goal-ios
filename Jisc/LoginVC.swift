@@ -237,9 +237,6 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
             if (studentID != nil){
                 let vc = FeedVC()
                 self.present(vc, animated: true, completion: nil)
-                print("Ahmed this worked from here!! OMG!!!", studentID)
-            } else {
-                print("Ahmed this is not working")
             }
         }
     }

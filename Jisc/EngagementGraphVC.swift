@@ -148,7 +148,7 @@ class EngagementGraphVC: BaseViewController, CustomPickerViewDelegate, UIScrollV
 //				studentID = "top_ten"
 			} else if (selectedStudent == friends.count + 1) {
 				getAverage = true
-				studentID = "average"
+				studentID = localized("average_small")
 			}
 		}
 		noDataLabel.alpha = 0.0

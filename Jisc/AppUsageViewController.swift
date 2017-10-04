@@ -9,9 +9,11 @@
 import UIKit
 
 class AppUsageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var titleLabel:UILabel!
 
     @IBOutlet weak var leftColumnTableView: UITableView!
-    var leftColumnArray:Array = ["Targets Met","Targets Failed to Meet","Targets Set","Hours of Activity Logged","Sessions on App"]
+    var leftColumnArray:Array = [localized("targets_met"),localized("targets_failed"),localized("targets_set"),localized("hours_of_activites_logged"),localized("sessions_on_app")]
     var rightColumnArray:Array = ["0","0","0","0","0"]
     
     @IBOutlet weak var targetsMet: LocalizableLabel!
@@ -64,6 +66,10 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func customiseLayout(){
+        startDateField.text = localized("start")
+        endDateField.text = localized("end")
+        titleLabel.text = localized("app_usage")
+        
         startDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
         startDateField.layer.borderWidth = 1.5
         startDateField.layer.cornerRadius = 8
@@ -96,7 +102,7 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
         //TODO format date
         startDateField.text = "\(startDatePicker.date)"
         self.view.endEditing(true)
-        if(endDateField.text != "End"){
+        if(endDateField.text != localized("end")){
             loadData()
         }
     }
@@ -105,14 +111,14 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
         //TODO format date
         endDateField.text = "\(endDatePicker.date)"
         self.view.endEditing(true)
-        if(startDateField.text != "Start"){
+        if(startDateField.text != localized("start")){
             loadData()
         }
     }
     
     func loadData(){
         let manager = xAPIManager()
-        if(startDateField.text != "Start" && endDateField.text != "End") {
+        if(startDateField.text != localized("end") && endDateField.text != localized("end")) {
             manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: startDateField.text!, endDate: endDateField.text!)
         }
         else{
@@ -120,10 +126,10 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         let defaults = UserDefaults.standard
-        self.targetsMet.text = "Targets met on time: \(defaults.string(forKey: "AppUsage_targets_met") ?? "null")"
-        self.targetsFailed.text = "Targets not met on time: \(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")"
-        self.targetsSet.text = "Targets set: \(defaults.string(forKey: "AppUsage_targets_set") ?? "null")"
-        self.activites.text = "Hours of activites logged: \(defaults.string(forKey: "AppUsage_activities") ?? "null")"
-        self.sessions.text = "Sessions: \(defaults.string(forKey: "AppUsage_sessions") ?? "null")"
+        self.targetsMet.text = "\(localized("targets_met_on_time")): \(defaults.string(forKey: "AppUsage_targets_met") ?? "null")"
+        self.targetsFailed.text = "\(localized("targets_met_on_time")): \(defaults.string(forKey: "AppUsage_targets_failed") ?? "null")"
+        self.targetsSet.text = "\(localized("targets_set")): \(defaults.string(forKey: "AppUsage_targets_set") ?? "null")"
+        self.activites.text = "\(localized("hours_of_activites_logged")): \(defaults.string(forKey: "AppUsage_activities") ?? "null")"
+        self.sessions.text = "\(localized("sessions")): \(defaults.string(forKey: "AppUsage_sessions") ?? "null")"
     }
 }

@@ -151,7 +151,7 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var statsMenuButtonsTable: UITableView!
     
 	var expanded = false
-    var menuItemsArray = ["Activity Points","App Usage","Attainment","Attendence Summary","Events Attended","VLE Activity"]
+    var menuItemsArray = [localized("activity_points"),localized("app_usage"),localized("attainment"),localized("attendence_summary"),localized("events_attended"),localized("vle_activity")]
 	
 	override func buttonAction(_ sender: UIButton?) {
 		if expanded {

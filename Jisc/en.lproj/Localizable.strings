@@ -411,4 +411,24 @@
 "attainment_info" = "IMPORTANT: All marks / grades indicated with '**' are subject to moderation and confirmation by a Board of Examiners. These marks / grades are therefore provisional and subject to change.";
 "are_you_sure_you_want_to_delete_this_message" = "Are you sure you want to delete item this from feed?";
 "tutor_target" = "You can't edit targets that have been set by a tutor";
+//New Values
+"app_usage" = "App Usage";
+"attendence_summary" = "Attendence Summary";
+"events_attended" = "Events Attended";
+"vle_activity" = "VLE Activity";
+"leaderboard" = "Leaderboard";
+"no_data_available" = "No data available";
+"logged_in" = "Logged in";
+"average_small" = "average";
+"targets_met" = "Targets Met";
+"targets_failed" = "Targets Failed to Meet";
+"targets_set" = "Targets Set";
+"hours_of_activites_logged" = "Hours of Activity Logged";
+"sessions_on_app" = "Sessions on App";
+"start" = "Start";
+"end" = "End";
+"targets_met_on_time" = "Targets met on time";
+"targets_not_met_on_time" = "Targets not met on time";
+"sessions" = "Sessions";
+"no_points_earned_yet" = "No points earned yet";
 

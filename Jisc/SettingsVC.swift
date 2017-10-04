@@ -35,9 +35,9 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 //	@IBOutlet weak var friendsTableView:UITableView!
 	@IBOutlet var homeScreenView:UIView!
     @IBOutlet weak var feedCheckmark:UIImageView!
-    @IBOutlet weak var friendsCheckmark:UIImageView! //connect
+    @IBOutlet weak var friendsCheckmark:UIImageView!
     @IBOutlet weak var statsCheckmark:UIImageView!
-    @IBOutlet weak var checkinCheckmark:UIImageView! //connect
+    @IBOutlet weak var checkinCheckmark:UIImageView! 
 	@IBOutlet weak var logCheckmark:UIImageView!
 	@IBOutlet weak var targetCheckmark:UIImageView!
 	@IBOutlet var trophiesView:UIView!
