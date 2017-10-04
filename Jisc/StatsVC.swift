@@ -145,6 +145,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var viewWithHorizontalLabels:UIView!
     var theGraphView:UIView?
     @IBOutlet weak var noDataLabel:UILabel!
+    @IBOutlet weak var noPointsDataLabel:UILabel!
     var weekDays = [localized("monday"), localized("tuesday"), localized("wednesday"), localized("thursday"), localized("friday"), localized("saturday"), localized("sunday")]
     @IBOutlet weak var moduleButton:UIButton!
     @IBOutlet weak var periodSegment:UISegmentedControl!
@@ -205,6 +206,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         super.viewDidLoad()
         
         noDataLabel.alpha = 0.0
+        noPointsDataLabel.alpha = 0.0
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
         staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
             if let studentId = dataManager.currentStudent?.id {
@@ -994,17 +996,18 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             contents = contents.replacingOccurrences(of: "REPLACE_DATA", with: data)
             
+            if(pointsArray.count == 0 && !demo()){
+                self.noPointsDataLabel.alpha = 1.0
+            }
             
             let baseUrl = URL(fileURLWithPath: filePath)
             pieChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
         } catch {
             print ("File HTML error on pie chart")
             print("no results for points graph found")
-            self.noDataLabel.alpha = 1.0
-            self.noDataLabel.textColor = UIColor.black
-            self.noDataLabel.text = "No data available"
-            self.noDataLabel.isHidden = false
-            self.graphContainer.alpha = 0.0
+            if(!demo()){
+                self.noPointsDataLabel.alpha = 1.0
+            }
         }
     }
     
@@ -1142,6 +1145,13 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
                             contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
                             
+                            if(dateArray.count == 0){
+                                self.noDataLabel.alpha = 1.0
+                                self.noDataLabel.textColor = UIColor.black
+                                self.noDataLabel.text = "No data available"
+                                self.noDataLabel.isHidden = false
+                                self.graphContainer.alpha = 0.0
+                            }
                             
                             let baseUrl = URL(fileURLWithPath: filePath)
                             self.highChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)

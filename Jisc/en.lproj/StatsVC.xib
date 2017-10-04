@@ -46,6 +46,7 @@
                 <outlet property="lineViews" destination="yek-nX-bs8" id="5GS-XM-Kp5"/>
                 <outlet property="moduleButton" destination="JfG-Nq-9Ic" id="vci-Sq-oHh"/>
                 <outlet property="noDataLabel" destination="y0h-Ge-sBM" id="Szv-4d-PCZ"/>
+                <outlet property="noPointsDataLabel" destination="vyM-qN-rPf" id="Dck-NR-oab"/>
                 <outlet property="noPointsLabel" destination="y3R-x6-0Ek" id="x7Z-3D-zau"/>
                 <outlet property="periodSegment" destination="ORu-vw-vpL" id="oET-G9-YVV"/>
                 <outlet property="pieChartSwitch" destination="WE9-Rz-iv6" id="5dD-pF-43l"/>
@@ -921,6 +922,13 @@
                                                                         <outlet property="delegate" destination="-1" id="WP8-ia-Ifx"/>
                                                                     </connections>
                                                                 </tableView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No points earned yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyM-qN-rPf">
+                                                                    <rect key="frame" x="0.0" y="115" width="375" height="44"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
