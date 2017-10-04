@@ -145,6 +145,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var viewWithHorizontalLabels:UIView!
     var theGraphView:UIView?
     @IBOutlet weak var noDataLabel:UILabel!
+    @IBOutlet weak var noPointsDataLabel:UILabel!
     var weekDays = [localized("monday"), localized("tuesday"), localized("wednesday"), localized("thursday"), localized("friday"), localized("saturday"), localized("sunday")]
     @IBOutlet weak var moduleButton:UIButton!
     @IBOutlet weak var periodSegment:UISegmentedControl!
@@ -200,8 +201,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var attainmentDemoArray = ["Date   Module name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
     var eventsAttendedDemoArray = [["Lecture","10:20","20/7/2016","Maths"],["Lab","12:00","13/4/2016","Chemistry"],["Lecture", "9:30","14/8/2016","English"]]
     var graphTypePath = "bargraph"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        noDataLabel.alpha = 0.0
+        noPointsDataLabel.alpha = 0.0
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
         staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
             if let studentId = dataManager.currentStudent?.id {
@@ -831,7 +836,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             else
             {
-                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
                 noDataLabel.text          = "No data available"
                 noDataLabel.textColor     = UIColor.black
                 noDataLabel.textAlignment = .center
@@ -845,7 +850,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 numOfSections = 1
                 return numOfSections
             }
-            if (eventsAttendedArray.count + 1 > 0)
+            if (eventsAttendedArray.count > 1)
             {
                 tableView.separatorStyle = .singleLine
                 numOfSections            = 1
@@ -862,7 +867,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             
             break
+        
         default:
+            let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text          = "No data available"
+            noDataLabel.textColor     = UIColor.black
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView  = noDataLabel
+            tableView.separatorStyle  = .none
             break
         }
         
@@ -986,11 +998,18 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             contents = contents.replacingOccurrences(of: "REPLACE_DATA", with: data)
             
+            if(pointsArray.count == 0 && !demo()){
+                self.noPointsDataLabel.alpha = 1.0
+            }
             
             let baseUrl = URL(fileURLWithPath: filePath)
             pieChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
         } catch {
-            print ("File HTML error")
+            print ("File HTML error on pie chart")
+            print("no results for points graph found")
+            if(!demo()){
+                self.noPointsDataLabel.alpha = 1.0
+            }
         }
     }
     
@@ -1036,6 +1055,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     private func loadHighChart() {
+        print("Loading HighChart")
         //let completionBlock:downloadCompletionBlock?
         var countArray:[Int] = []
         var dateArray:[String] = []
@@ -1060,9 +1080,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {(response, data, error) in
                 
+                print("data received for events graph")
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
+                        print("json count events graph \(json.count)")
+                        
                         for item in json {
                             let object = item as? [String:Any]
                             if let count = object?["count"] as? Int {
@@ -1090,6 +1113,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             guard let filePath = Bundle.main.path(forResource: "stats_attendance_high_chart", ofType: "html")
                                 else {
                                     print ("File reading error")
+                                    self.noDataLabel.alpha = 1.0
+                                    self.graphContainer.alpha = 0.0
                                     return
                             }
                             
@@ -1122,21 +1147,45 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                             contents = contents.replacingOccurrences(of: "COUNT", with: countDataFinal)
                             contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
                             
+                            if(dateArray.count == 0){
+                                self.noDataLabel.alpha = 1.0
+                                self.noDataLabel.textColor = UIColor.black
+                                self.noDataLabel.text = "No data available"
+                                self.noDataLabel.isHidden = false
+                                self.graphContainer.alpha = 0.0
+                            }
                             
                             let baseUrl = URL(fileURLWithPath: filePath)
                             self.highChartWebView.loadHTMLString(contents as String, baseURL: baseUrl)
                             
                         } catch {
-                            print ("File HTML error")
+                            print ("File HTML error for events graph")
+                            self.noDataLabel.alpha = 1.0
+                            self.noDataLabel.textColor = UIColor.black
+                            self.noDataLabel.text = "No data available"
+                            self.noDataLabel.isHidden = false
+                            self.graphContainer.alpha = 0.0
                         }
                     }
                 } catch {
-                    print("Error deserializing JSON: \(error)")
+                    print("Error deserializing JSON for events graph: \(error)")
+                    self.noDataLabel.alpha = 1.0
+                    self.noDataLabel.textColor = UIColor.black
+                    self.noDataLabel.text = "No data available"
+                    self.noDataLabel.isHidden = false
+                    self.graphContainer.alpha = 0.0
+                    
                 }
             }
             //startConnectionWithRequest(request)
         } else {
             // completionBlock?(false, nil, nil, "Error creating the url request")
+            print("no results for events graph found")
+            self.noDataLabel.alpha = 1.0
+            self.noDataLabel.textColor = UIColor.black
+            self.noDataLabel.text = "No data available"
+            self.noDataLabel.isHidden = false
+            self.graphContainer.alpha = 0.0
         }
         
     }
