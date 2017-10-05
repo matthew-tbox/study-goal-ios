@@ -88,6 +88,9 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         //			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
         //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
         //		}
+        topSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
+        topSegmentControl.setTitle(localized("reccuring"), forSegmentAt: 1)
+        
         if (theTarget != nil) {
             isEditingTarget = true
             selectedHours = Int(theTarget!.totalTime) / 60
