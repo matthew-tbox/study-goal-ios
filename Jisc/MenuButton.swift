@@ -33,41 +33,54 @@ class MenuButton: UIView {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.type = buttonType
 		button.parent = parent
-		button.button.setTitle(buttonType.rawValue, for: .normal)
-		button.button.setTitle(buttonType.rawValue, for: .selected)
 		switch buttonType {
 		case .Feed:
 			button.button.setImage(UIImage(named: "FeedVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "FeedVCMenuIconSelected"), for: .selected)
+            button.button.setImage(UIImage(named: "FeedVCMenuIconSelected"), for: .selected)
+            button.button.setTitle(localized("activity_feed"), for: .normal)
+            button.button.setTitle(localized("activity_feed"), for: .selected)
 			break
         case .Friends:
             button.button.setImage(UIImage(named: "FriendsMenuIcon"), for: .normal)
             button.button.setImage(UIImage(named: "FriendsMenuIconSelected"), for: .selected)
-
+            button.button.setTitle(localized("friends"), for: .normal)
+            button.button.setTitle(localized("friends"), for: .selected)
             break
 		case .Stats:
 			button.button.setImage(UIImage(named: "StatsVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "StatsVCMenuIconSelected"), for: .selected)
+            button.button.setImage(UIImage(named: "StatsVCMenuIconSelected"), for: .selected)
+            button.button.setTitle(localized("stats"), for: .normal)
+            button.button.setTitle(localized("stats"), for: .selected)
 			break
 		case .Log:
 			button.button.setImage(UIImage(named: "LogVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "LogVCMenuIconSelected"), for: .selected)
+            button.button.setImage(UIImage(named: "LogVCMenuIconSelected"), for: .selected)
+            button.button.setTitle(localized("log"), for: .normal)
+            button.button.setTitle(localized("log"), for: .selected)
 			break
         case .Checkin:
             button.button.setImage(UIImage(named: "CheckinVCMenuIcon"), for: .normal)
             button.button.setImage(UIImage(named: "CheckinVCMenuIconSelected"), for: .selected)
+            button.button.setTitle(localized("checkin"), for: .normal)
+            button.button.setTitle(localized("checkin"), for: .selected)
             break
 		case .Target:
 			button.button.setImage(UIImage(named: "TargetVCMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "TargetVCMenuIconSelected"), for: .selected)
+            button.button.setImage(UIImage(named: "TargetVCMenuIconSelected"), for: .selected)
+            button.button.setTitle(localized("target"), for: .normal)
+            button.button.setTitle(localized("target"), for: .selected)
 			break
 		case .Settings:
 			button.button.setImage(UIImage(named: "settingsMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "settingsMenuIconSelected"), for: .selected)
+            button.button.setImage(UIImage(named: "settingsMenuIconSelected"), for: .selected)
+            button.button.setTitle(localized("settings"), for: .normal)
+            button.button.setTitle(localized("settings"), for: .selected)
 			break
 		case .Logout:
 			button.button.setImage(UIImage(named: "logoutMenuIcon"), for: .normal)
-			button.button.setImage(UIImage(named: "logoutMenuIcon"), for: .selected)
+            button.button.setImage(UIImage(named: "logoutMenuIcon"), for: .selected)
+            button.button.setTitle(localized("logout"), for: .normal)
+            button.button.setTitle(localized("logout"), for: .selected)
 			break
 		}
 		view.addSubview(button)

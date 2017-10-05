@@ -194,6 +194,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var ipadPointsView: UIView!
     @IBOutlet weak var eventsAndAttendanceSegment: UISegmentedControl!
     @IBOutlet weak var attendanceSegmentControl: UISegmentedControl!
+    @IBOutlet weak var weekOverallSegmentController: UISegmentedControl!
     
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
@@ -208,6 +209,15 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         noDataLabel.alpha = 0.0
         noPointsDataLabel.alpha = 0.0
         noPointsDataLabel.text = localized("no_points_earned_yet")
+        noPointsLabel.text = localized("no_points_earned_yet")
+        
+        eventsAndAttendanceSegment.setTitle(localized("events_attended"), forSegmentAt: 0)
+        eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 1)
+        attendanceSegmentControl.setTitle(localized("events_attended"), forSegmentAt: 0)
+        attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 1)
+        weekOverallSegmentController.setTitle(localized("this_week"), forSegmentAt: 0)
+        weekOverallSegmentController.setTitle(localized("overall"), forSegmentAt: 0)
+        
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
         staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
             if let studentId = dataManager.currentStudent?.id {
@@ -351,16 +361,20 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBAction func eventsAttendedAction(_ sender: Any) {
         if (eventsAndAttendanceSegment.selectedSegmentIndex == 0){
             goToEventsAttended()
+            attendanceSegmentControl.selectedSegmentIndex = 0
         } else {
             goToAttendance()
+            attendanceSegmentControl.selectedSegmentIndex = 1
         }
     }
     @IBAction func attendanceAction(_ sender: Any) {
         if (attendanceSegmentControl.selectedSegmentIndex == 0){
-            goToAttendance()
+            goToEventsAttended()
+            eventsAndAttendanceSegment.selectedSegmentIndex = 0
             print("From AttendanceAction going to attendance")
         } else {
-            goToEventsAttended()
+            goToAttendance()
+            eventsAndAttendanceSegment.selectedSegmentIndex = 1
             print("From AttendanceAction going to Events attended")
         }
     }
@@ -385,7 +399,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         xMGR.silent = true
         xMGR.getAttainment { (success, result, results, error) in
             self.attainmentArray.removeAll()
-            self.attainmentArray.append(AttainmentObject(dateString: "Date     ", moduleName: "Module", grade: "Grade"))
+            self.attainmentArray.append(AttainmentObject(dateString: "\(localized("date"))     ", moduleName: localized("module"), grade: localized("grade")))
             if (results != nil) {
                 for (_, item) in results!.enumerated() {
                     if let dictionary = item as? NSDictionary {
@@ -466,7 +480,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let xMGR = xAPIManager()
         xMGR.silent = true
         xMGR.getEventsAttended(skip: 0, limit: self.eventsAttendedLimit) { (success, result, results, error) in
-            self.eventsAttendedArray.append(EventsAttendedObject(date: "Date", time: "Time", activity: "Activity", module: "Module"))
+            self.eventsAttendedArray.append(EventsAttendedObject(date: localized("date"), time: localized("time"), activity: localized("activity"), module: localized("module")))
             if (results != nil){
                 print("receiving data")
                 // handle data

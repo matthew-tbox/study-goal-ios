@@ -422,3 +422,11 @@
 "targets_met_on_time" = "PLACEHOLDER";
 "targets_not_met_on_time" = "PLACEHOLDER";
 "sessions" = "PLACEHOLDER";
+"no_points_earned_yet" = "PLACEHOLDER";
+"privacy_statement" = "PLACEHOLDER";
+"grade" = "PLACEHOLDER";
+"count" = "PLACEHOLDER";
+"points_awarded" = "PLACEHOLDER";
+"attendance_menu" = "PLACEHOLDER";
+"single" = "PLACEHOLDER";
+"recurring" = "PLACEHOLDER";

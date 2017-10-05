@@ -47,7 +47,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YG0-U7-Bi6">
                     <rect key="frame" x="0.0" y="56" width="375" height="0.0"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Vv-fx-jWr">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Vv-fx-jWr" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="d7r-mD-mfZ"/>
@@ -57,66 +57,90 @@
                             <state key="normal" title="Activity Points">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="activity_points"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="activity_points"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="points:" destination="iN0-l3-epB" eventType="touchUpInside" id="1S3-Mf-eLD"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHR-CA-m5x">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHR-CA-m5x" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="40" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Attainment">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="attainment"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="attainment"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="attainment:" destination="iN0-l3-epB" eventType="touchUpInside" id="cVh-Yd-Rh0"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXk-FR-Zp5">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXk-FR-Zp5" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="80" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Attendance">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="attendance_menu"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="attendance_menu"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="attendance:" destination="iN0-l3-epB" eventType="touchUpInside" id="SyQ-UG-zgG"/>
                             </connections>
                         </button>
-                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KF6-Sf-Kqx" userLabel="Leaderboard">
+                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KF6-Sf-Kqx" userLabel="Leaderboard" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="120" width="375" height="0.0"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Engagement Leaderboard">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="leaderboard"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="leaderboard"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="leaderBoard:" destination="iN0-l3-epB" eventType="touchUpInside" id="BCx-zK-UxH"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1j-2l-rYa" userLabel="Events Attended">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1j-2l-rYa" userLabel="Events Attended" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="120" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Events Attended">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="events_attended"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="events_attended"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="eventsAttended:" destination="iN0-l3-epB" eventType="touchUpInside" id="Zvi-kf-g0w"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-iV-Pau">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyz-iV-Pau" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="160" width="375" height="40"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="VLE Activity">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="vle_activity"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="vle_activity"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="graph:" destination="iN0-l3-epB" eventType="touchUpInside" id="dqa-9l-qqS"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1s-Rf-iVw">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1s-Rf-iVw" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="205" width="375" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
@@ -124,6 +148,10 @@
                             <state key="normal" title="App Usage">
                                 <color key="titleColor" red="0.61561751369999995" green="0.61572593450000002" blue="0.61561065910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="app_usage"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="app_usage"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="appUsageAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="LgX-47-Egz"/>
                             </connections>

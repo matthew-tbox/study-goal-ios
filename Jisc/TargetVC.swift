@@ -20,6 +20,10 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         recurringTargetSegmentControl.selectedSegmentIndex = 1
+        
+        recurringTargetSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
+        recurringTargetSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
+        
 		targetsTableView.register(UINib(nibName: kTargetCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kTargetCellIdentifier)
 		targetsTableView.contentInset = UIEdgeInsetsMake(20.0, 0, 20.0, 0)
         //London Developer July 24,2017
