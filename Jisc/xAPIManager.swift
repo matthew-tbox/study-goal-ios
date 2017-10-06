@@ -688,7 +688,8 @@
                                 
                                 defaults.set(setTargets, forKey: "AppUsage_targets_set")
                                 
-                                defaults.set(json["activity_logged_hours"], forKey: "AppUsage_activities")
+                                let activityHours = (json["activity_logged_hours"] as! Int)/60
+                                defaults.set(activityHours, forKey: "AppUsage_activities")
                                 defaults.set(json["number_of_sessions"], forKey: "AppUsage_sessions")
                                 //completed()
                             } catch {
