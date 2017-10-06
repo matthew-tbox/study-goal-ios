@@ -282,7 +282,6 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         parent?.close(nil)
         parent?.appUsage()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            //Put code here to go to the view controller
             self.parent?.appUsageViewController
         }
         retract()
@@ -322,8 +321,7 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             parent?.close(nil)
             parent?.appUsage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                //Put code here to go to the view controller
-                //self.parent?.appUsageViewController
+                self.parent?.appUsageViewController
             }
             retract()
         } else if indexPath.row == 2 {
