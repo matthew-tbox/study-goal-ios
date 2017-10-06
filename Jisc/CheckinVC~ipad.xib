@@ -21,6 +21,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckinVC" customModule="Jisc" customModuleProvider="target">
             <connections>
                 <outlet property="entryField" destination="SNP-Kc-3Ll" id="OsD-9L-jXU"/>
+                <outlet property="sendButton" destination="Ls9-ld-OpN" id="MrJ-Mh-Al5"/>
                 <outlet property="view" destination="iN0-l3-epB" id="0QM-WF-lZN"/>
                 <outletCollection property="viewsWithRoundedCorners" destination="QwA-I1-ou2" collectionClass="NSMutableArray" id="4Pu-DC-R3W"/>
             </connections>
@@ -125,7 +126,7 @@
                                 <constraint firstItem="SNP-Kc-3Ll" firstAttribute="leading" secondItem="FCH-SB-9dd" secondAttribute="leading" constant="20" id="ve8-w1-QNv"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-JZ-b7T">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7e-JZ-b7T">
                             <rect key="frame" x="350" y="185" width="300" height="320"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcI-fs-VUa">
@@ -279,7 +280,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QwA-I1-ou2" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QwA-I1-ou2" customClass="ViewWithRoundedCorners" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="440" y="525" width="121" height="33"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ls9-ld-OpN" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
@@ -314,12 +315,12 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="y7e-JZ-b7T" secondAttribute="bottom" constant="210" id="AJo-Zu-Szh"/>
-                        <constraint firstItem="QwA-I1-ou2" firstAttribute="leading" secondItem="NyA-cv-haY" secondAttribute="leading" constant="455" id="CB2-ev-SKX"/>
-                        <constraint firstAttribute="trailing" secondItem="y7e-JZ-b7T" secondAttribute="trailing" constant="359" id="NbE-cL-bvG"/>
+                        <constraint firstItem="QwA-I1-ou2" firstAttribute="leading" secondItem="NyA-cv-haY" secondAttribute="leading" constant="440" id="CB2-ev-SKX"/>
+                        <constraint firstAttribute="trailing" secondItem="y7e-JZ-b7T" secondAttribute="trailing" constant="374" id="NbE-cL-bvG"/>
                         <constraint firstAttribute="trailing" secondItem="FCH-SB-9dd" secondAttribute="trailing" id="RAP-Zx-FsF"/>
                         <constraint firstItem="y7e-JZ-b7T" firstAttribute="top" secondItem="FCH-SB-9dd" secondAttribute="bottom" constant="105" id="U5d-M4-ut6"/>
                         <constraint firstItem="FCH-SB-9dd" firstAttribute="leading" secondItem="NyA-cv-haY" secondAttribute="leading" id="Wkj-VB-dfS"/>
-                        <constraint firstItem="y7e-JZ-b7T" firstAttribute="leading" secondItem="NyA-cv-haY" secondAttribute="leading" constant="365" id="aW1-kH-St9"/>
+                        <constraint firstItem="y7e-JZ-b7T" firstAttribute="leading" secondItem="NyA-cv-haY" secondAttribute="leading" constant="350" id="aW1-kH-St9"/>
                         <constraint firstAttribute="bottom" secondItem="QwA-I1-ou2" secondAttribute="bottom" constant="157" id="cOQ-mA-fet"/>
                         <constraint firstItem="QwA-I1-ou2" firstAttribute="top" secondItem="y7e-JZ-b7T" secondAttribute="bottom" constant="20" id="kOP-Xd-VFb"/>
                         <constraint firstItem="y7e-JZ-b7T" firstAttribute="centerX" secondItem="QwA-I1-ou2" secondAttribute="centerX" id="x3c-Ps-aRT"/>

@@ -16,12 +16,14 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var didChangeLocationPermissions = false
     var checkingIn = false
+    @IBOutlet weak var sendButton:UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         entryField.adjustsFontSizeToFitWidth = true
         entryField.text = currentPin
         locationManager.delegate = self
+        sendButton.isEnabled = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +51,16 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
     @IBAction func digit(_ sender:UIButton) {
         currentPin = currentPin + "\(sender.tag)"
         entryField.text = currentPin
+        
+        if let text = entryField.text {
+            if text.characters.count > 0 {
+                sendButton.isEnabled = true
+                if(text.characters.count > 4) {
+                    sendButton.isEnabled = false
+                }
+            }
+        }
+        
         view.layoutIfNeeded()
     }
     @IBAction func backButton(_ sender: Any) {
@@ -56,18 +68,30 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
 
     }
     @IBAction func backspace(_ sender:UIButton?) {
-        if !currentPin.isEmpty {
-            currentPin = currentPin.substring(to: currentPin.characters.index(before: currentPin.characters.endIndex))
-            entryField.text = currentPin
-            view.layoutIfNeeded()
+        if let text = entryField.text {
+            if text.characters.count > 0 {
+                currentPin = currentPin.substring(to: currentPin.characters.index(before: currentPin.characters.endIndex))
+                entryField.text = currentPin
+                
+                if(currentPin.characters.count < 5){
+                    sendButton.isEnabled = true
+                }
+                if(currentPin.characters.count == 0) {
+                    sendButton.isEnabled = false
+                }
+                
+                view.layoutIfNeeded()
+            }
         }
     }
     
     @IBAction func sendPin(_ sender:UIButton?) {
+        sendButton.isEnabled = false
         if currentUserType() == .staff {
             let alert = UIAlertController(title: "", message: localized("checkin_staff_message"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
+            sendButton.isEnabled = true
         } else {
             if currentPin.isEmpty {
                 let alert = UIAlertController(title: "", message: localized("enter_pin"), preferredStyle: .alert)
@@ -95,6 +119,7 @@ class CheckinVC: BaseViewController, CLLocationManagerDelegate {
                     }))
                     navigationController?.present(alert, animated: true, completion: nil)
                 }
+                sendButton.isEnabled = true
             }
         }
     }

@@ -651,7 +651,6 @@
                 let dataCallTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
                     if error != nil {
                         print("error on getting data from url")
-                        //print("\(error)")
                     } else {
                         if let jsondata = data{
                             do {
@@ -691,10 +690,8 @@
                                 let activityHours = (json["activity_logged_hours"] as! Int)/60
                                 defaults.set(activityHours, forKey: "AppUsage_activities")
                                 defaults.set(json["number_of_sessions"], forKey: "AppUsage_sessions")
-                                //completed()
                             } catch {
                                 print("error on JSONSerialization")
-                                //completed()
                             }
                         }
                     }
