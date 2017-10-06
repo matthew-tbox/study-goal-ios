@@ -73,6 +73,7 @@
                         <constraint firstItem="TNg-aZ-foI" firstAttribute="top" secondItem="PCX-LB-NPu" secondAttribute="top" id="0B4-U4-uuf"/>
                         <constraint firstItem="FzD-DB-KuH" firstAttribute="centerX" secondItem="Fv4-ut-z08" secondAttribute="centerX" id="27i-QH-SW2"/>
                         <constraint firstItem="FzD-DB-KuH" firstAttribute="leading" secondItem="jGS-hF-sjN" secondAttribute="leading" id="2uT-g5-JM2"/>
+                        <constraint firstItem="TNg-aZ-foI" firstAttribute="leading" secondItem="jGS-hF-sjN" secondAttribute="leading" id="A0K-es-aib"/>
                         <constraint firstItem="oHj-hv-Ca6" firstAttribute="baseline" secondItem="Fv4-ut-z08" secondAttribute="firstBaseline" id="G3Z-gQ-DKx"/>
                         <constraint firstItem="TNg-aZ-foI" firstAttribute="top" secondItem="jGS-hF-sjN" secondAttribute="top" constant="20" id="PJK-Wv-6MJ"/>
                         <constraint firstItem="TNg-aZ-foI" firstAttribute="centerY" secondItem="oHj-hv-Ca6" secondAttribute="centerY" id="Qtu-zi-Nun"/>
@@ -82,6 +83,7 @@
                         <constraint firstItem="TNg-aZ-foI" firstAttribute="baseline" secondItem="PCX-LB-NPu" secondAttribute="baseline" id="VtT-nK-6lQ"/>
                         <constraint firstItem="Fv4-ut-z08" firstAttribute="top" secondItem="jGS-hF-sjN" secondAttribute="top" constant="28" id="YOF-Cf-n12"/>
                         <constraint firstItem="oHj-hv-Ca6" firstAttribute="baseline" secondItem="Fv4-ut-z08" secondAttribute="baseline" id="aM8-rr-4J9"/>
+                        <constraint firstItem="oHj-hv-Ca6" firstAttribute="leading" secondItem="TNg-aZ-foI" secondAttribute="trailing" id="br4-GX-lNW"/>
                         <constraint firstItem="FzD-DB-KuH" firstAttribute="top" secondItem="jGS-hF-sjN" secondAttribute="top" id="dJg-od-Auc"/>
                         <constraint firstAttribute="trailing" secondItem="FzD-DB-KuH" secondAttribute="trailing" id="ewZ-7r-2KF"/>
                         <constraint firstItem="Fv4-ut-z08" firstAttribute="leading" secondItem="oHj-hv-Ca6" secondAttribute="trailing" constant="68" id="ip6-7T-ZLd"/>

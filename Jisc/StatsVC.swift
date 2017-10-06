@@ -210,14 +210,17 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         noPointsDataLabel.alpha = 0.0
         noPointsDataLabel.text = localized("no_points_earned_yet")
         noPointsLabel.text = localized("no_points_earned_yet")
-        
-        eventsAndAttendanceSegment.setTitle(localized("events_attended"), forSegmentAt: 0)
-        eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 1)
-        attendanceSegmentControl.setTitle(localized("events_attended"), forSegmentAt: 0)
-        attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 1)
-        weekOverallSegmentController.setTitle(localized("this_week"), forSegmentAt: 0)
-        weekOverallSegmentController.setTitle(localized("overall"), forSegmentAt: 0)
-        
+        if !iPad{
+            eventsAndAttendanceSegment.setTitle(localized("events_attended"), forSegmentAt: 0)
+            eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 1)
+            
+            attendanceSegmentControl.setTitle(localized("events_attended"), forSegmentAt: 0)
+            attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 1)
+            
+            weekOverallSegmentController.setTitle(localized("this_week"), forSegmentAt: 0)
+            weekOverallSegmentController.setTitle(localized("overall"), forSegmentAt: 0)
+        }
+
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
         staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
             if let studentId = dataManager.currentStudent?.id {
@@ -302,7 +305,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         goToAttainment()
         self.highChartWebView.isHidden = false
-        self.vleGraphWebView.isHidden = false
+        if !iPad{
+            self.vleGraphWebView.isHidden = false
+        }
         if(demo()){
             self.highChartWebView.isHidden = true;
         }
@@ -311,7 +316,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         self.loadHighChart()
         self.loadVLEChart()
         
-        self.attendanceSegmentControl.isHidden = true
+        if !iPad{
+            self.attendanceSegmentControl.isHidden = true
+        }
         
         let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
         xAPIManager().checkMod(testUrl:urlString)
@@ -594,7 +601,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     //	}
     
     func goToGraph() {
-        self.attendanceSegmentControl.isHidden = true
+        if !iPad{
+            self.attendanceSegmentControl.isHidden = true
+        }
         topLabel.text = localized("vle_activity")
         hideUpperViews()
         container.isHidden = false
@@ -612,7 +621,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToAttainment() {
-        self.attendanceSegmentControl.isHidden = true
+        if let attendanceSC = attendanceSegmentControl {
+            self.attendanceSegmentControl.isHidden = true
+        }
         hideUpperViews()
         container.isHidden = false
         topLabel.text = localized("attainment")
@@ -631,7 +642,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToPoints() {
-        self.attendanceSegmentControl.isHidden = true
+        if let attendanceSC = attendanceSegmentControl {
+            self.attendanceSegmentControl.isHidden = true
+        }
         hideUpperViews()
         container.isHidden = false
         topLabel.text = localized("activity_points")
@@ -665,7 +678,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToEventsAttended() {
-        self.attendanceSegmentControl.isHidden = true
+        if !iPad{
+            self.attendanceSegmentControl.isHidden = true
+        }
         hideUpperViews()
         topLabel.text = localized("events_attended")
         
@@ -676,7 +691,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func goToAttendance() {
-        self.attendanceSegmentControl.isHidden = false
+        if !iPad{
+            self.attendanceSegmentControl.isHidden = false
+        }
         hideUpperViews()
         attendance.isHidden = false
         attendance.isUserInteractionEnabled = false
@@ -1029,6 +1046,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     private func loadVLEChart(){
+        if !iPad{
         do {
             guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
                 else {
@@ -1065,6 +1083,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             vleGraphWebView.loadHTMLString(contents as String, baseURL: baseUrl)
         } catch {
             print ("File HTML error")
+        }
         }
         
     }
