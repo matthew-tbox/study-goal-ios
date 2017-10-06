@@ -60,14 +60,16 @@ class SelectLanguageVC: BaseViewController {
 					DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "language", settingValue: "english", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
 						self.highlightSelectedItem()
 						BundleLocalization.sharedInstance().language = kAppLanguage.English.rawValue
-						DELEGATE.initializeApp()
+                        let vc = SettingsVC()
+                        DELEGATE.mainNavigationController?.pushViewController(vc, animated: true)
 					})
 					break
 				case .welsh:
 					DownloadManager().changeAppSettings(dataManager.currentStudent!.id, settingType: "language", settingValue: "welsh", alertAboutInternet: true, completion: { (success, result, results, error) -> Void in
 						self.highlightSelectedItem()
 						BundleLocalization.sharedInstance().language = kAppLanguage.Welsh.rawValue
-						DELEGATE.initializeApp()
+                        let vc = SettingsVC()
+                        DELEGATE.mainNavigationController?.pushViewController(vc, animated: true)
 					})
 					break
 				}
