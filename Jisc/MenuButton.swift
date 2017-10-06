@@ -178,6 +178,7 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
 		expanded = true
         self.statsMenuButtonsTable.delegate = self
         self.statsMenuButtonsTable.dataSource = self
+        self.statsMenuButtonsTable.separatorStyle = UITableViewCellSeparatorStyle.none
         self.statsMenuButtonsTable.register(UITableViewCell.self, forCellReuseIdentifier: "MenuCell")
 		UIView.animate(withDuration: 0.25) {
 			self.arrow.transform = CGAffineTransform(rotationAngle: .pi / 2.0)
@@ -294,20 +295,20 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
         cell.textLabel?.text = menuItemsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.gray
-        cell.textLabel?.font = UIFont(name: "System", size: 10.0)
+        cell.textLabel?.font = UIFont(name: "Myriad Pro", size: 14.0)
         return cell
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as! UITableViewCell
         cell.textLabel?.text = menuItemsArray[indexPath.row]
         cell.textLabel?.textColor = UIColor.gray
-        cell.textLabel?.font = UIFont(name: "System", size: 10.0)
+        cell.textLabel?.font = UIFont(name: "Myriad Pro", size: 14.0)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItemsArray.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 32.5
+        return 40
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
