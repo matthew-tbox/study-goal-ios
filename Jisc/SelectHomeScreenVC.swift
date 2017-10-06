@@ -63,6 +63,8 @@ class SelectHomeScreenVC: BaseViewController {
 			navigationController?.present(alert, animated: true, completion: nil)
 		} else {
 			var selectedScreen = kHomeScreenTab(rawValue: sender.tag)
+            print("selected Screen is \(sender.tag)")
+            print("selected Screen is \(selectedScreen)")
 			if (dataManager.currentStudent != nil) {
 				if (!dataManager.currentStudent!.institution.isLearningAnalytics.boolValue) {
 					if (selectedScreen == .stats) {

@@ -116,11 +116,11 @@ func buildVersion() -> String {
 
 enum kHomeScreenTab: Int {
     case feed = 0
+    case friends = 1
     case stats = 2
     case checkin = 3
 	case log = 4
     case target = 5
-    case friends = 6
 }
 
 func screenTabFromString(_ string:String) -> kHomeScreenTab {
