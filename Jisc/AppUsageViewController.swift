@@ -24,6 +24,8 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var startDateField: UITextField!
     var startDatePicker = UIDatePicker()
+    let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "dd/MM/yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    let databaseDateFormat = DateFormatter.dateFormat(fromTemplate: "dd-MM-yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
     
     @IBOutlet weak var endDateField: UITextField!
     var endDatePicker = UIDatePicker()
@@ -76,6 +78,7 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
         startDateField.layer.masksToBounds = true
    
         startDatePicker.datePickerMode = UIDatePickerMode.date
+        startDatePicker.maximumDate = Date()
         let startToolbar = UIToolbar()
         startToolbar.sizeToFit()
         let startDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(startDatePickerDone))
@@ -89,6 +92,7 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
         endDateField.layer.masksToBounds = true
         
         endDatePicker.datePickerMode = UIDatePickerMode.date
+        endDatePicker.maximumDate = Date()
         let endToolbar = UIToolbar()
         endToolbar.sizeToFit()
         let endDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(endDatePickerDone))
@@ -99,8 +103,15 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func startDatePickerDone(){
-        //TODO format date
-        startDateField.text = "\(startDatePicker.date)"
+        if(endDateField.text != localized("end") && startDatePicker.date > endDatePicker.date) {
+            //TODO nice message
+            self.view.endEditing(true)
+            return
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = gbDateFormat
+        let gbDate = formatter.string(from: startDatePicker.date)
+        startDateField.text = "\(gbDate)"
         self.view.endEditing(true)
         if(endDateField.text != localized("end")){
             loadData()
@@ -108,8 +119,15 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func endDatePickerDone(){
-        //TODO format date
-        endDateField.text = "\(endDatePicker.date)"
+        if(startDateField.text != localized("start") && endDatePicker.date < startDatePicker.date) {
+            //TODO nice message
+            self.view.endEditing(true)
+            return
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = gbDateFormat
+        let gbDate = formatter.string(from: endDatePicker.date)
+        endDateField.text = "\(gbDate)"
         self.view.endEditing(true)
         if(startDateField.text != localized("start")){
             loadData()
@@ -118,8 +136,12 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func loadData(){
         let manager = xAPIManager()
-        if(startDateField.text != localized("end") && endDateField.text != localized("end")) {
-            manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: startDateField.text!, endDate: endDateField.text!)
+        if(startDateField.text != localized("start") && endDateField.text != localized("end")) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = databaseDateFormat
+            let startDate = formatter.string(from: startDatePicker.date)
+            let endDate = formatter.string(from: endDatePicker.date)
+            manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: startDate, endDate: endDate)
         }
         else{
             manager.getAppUsage(studentId: dataManager.currentStudent!.id, startDate: "null", endDate: "null")
