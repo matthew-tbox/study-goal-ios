@@ -218,7 +218,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 1)
             
             weekOverallSegmentController.setTitle(localized("this_week"), forSegmentAt: 0)
-            weekOverallSegmentController.setTitle(localized("overall"), forSegmentAt: 0)
+            weekOverallSegmentController.setTitle(localized("overall"), forSegmentAt: 1)
         }
 
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
