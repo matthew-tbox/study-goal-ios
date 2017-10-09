@@ -438,4 +438,5 @@
 "attendance_menu" = "Attendance";
 "single" = "Single";
 "recurring" = "Recurring";
+"logout" = "logout";
 
