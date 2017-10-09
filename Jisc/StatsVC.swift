@@ -211,10 +211,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         noPointsDataLabel.text = localized("no_points_earned_yet")
         noPointsLabel.text = localized("no_points_earned_yet")
         if !iPad{
-            eventsAndAttendanceSegment.setTitle(localized("events_attended"), forSegmentAt: 0)
+            eventsAndAttendanceSegment.setTitle(localized("events_attended_segment"), forSegmentAt: 0)
             eventsAndAttendanceSegment.setTitle(localized("attendence_summary"), forSegmentAt: 1)
             
-            attendanceSegmentControl.setTitle(localized("events_attended"), forSegmentAt: 0)
+            attendanceSegmentControl.setTitle(localized("events_attended_segment"), forSegmentAt: 0)
             attendanceSegmentControl.setTitle(localized("attendence_summary"), forSegmentAt: 1)
             
             weekOverallSegmentController.setTitle(localized("this_week"), forSegmentAt: 0)
@@ -684,7 +684,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             self.attendanceSegmentControl.isHidden = true
         }
         hideUpperViews()
-        topLabel.text = localized("events_attended")
+        topLabel.text = localized("events_attended_segment")
         
         eventAtteneded.isHidden = false
         //London Developer July 24,2017
