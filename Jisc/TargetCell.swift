@@ -32,12 +32,18 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 	var panStartPoint:CGPoint = CGPoint.zero
 	@IBOutlet weak var separator:UIView!
 	weak var parent:TargetVC?
+    var optionsOpened = false
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		let panGesture = UIPanGestureRecognizer(target: self, action: #selector(TargetCell.panAction(_:)))
 		panGesture.delegate = self
 		addGestureRecognizer(panGesture)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TargetCell.tapAction(_:)))
+        tapGesture.delegate = self
+        addGestureRecognizer(tapGesture)
+        
 		NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherTargetCellOpenedOptions), object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeTargetCellSelectedStyleOn), object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(TargetCell.changeSelectedStyleOff), name: NSNotification.Name(rawValue: kChangeTargetCellSelectedStyleOff), object: nil)
@@ -136,9 +142,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
             self.tableView?.reloadData()
         }
-
-
-        
     }
 	
 	@IBAction func editTarget(_ sender:UIButton) {
@@ -284,6 +287,16 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 		}
 	}
 	
+    func tapAction(_ sender: UITapGestureRecognizer){
+        if(!optionsOpened){
+            openCellOptions()
+        } else {
+            closeCellOptions()
+        }
+        optionsOpened = !optionsOpened
+        print("cell tapped")
+    }
+    
 	func openCellOptions() {
 		NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherTargetCellOpenedOptions), object: self)
 		optionsState = .open
