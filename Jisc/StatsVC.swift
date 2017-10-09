@@ -199,7 +199,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     var eventsAttendedArray = [EventsAttendedObject]()
     var eventsAttendedUniqueArray = [EventsAttendedObject]()
     var eventsAttendedLimit:Int = 20
-    var attainmentDemoArray = ["Date   Module name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
+    var attainmentDemoArray = ["Date   Module Name","20/7/2016 Introduction to Cell Biology", "18/4/2017 Computing 101", "11/11/2017 Introduction to World Literature"]
     var eventsAttendedDemoArray = [["Lecture","10:20","20/7/2016","Maths"],["Lab","12:00","13/4/2016","Chemistry"],["Lecture", "9:30","14/8/2016","English"]]
     var graphTypePath = "bargraph"
     
@@ -239,6 +239,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         pointsTable.estimatedRowHeight = 36.0
         pointsTable.rowHeight = UITableViewAutomaticDimension
         pointsTable.register(UINib(nibName: kPointsCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kPointsCellIdentifier)
+        pointsTable.alwaysBounceVertical = false;
+        pointsTable.tableFooterView = UIView()
         
         let eventsRefreshControl = UIRefreshControl()
         eventsRefreshControl.addTarget(self, action: #selector(eventsRefreshAttainmentData(_:)), for: UIControlEvents.valueChanged)
