@@ -202,7 +202,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             //} else {
                // noteTextView.text = targetReasonPlaceholder
             //}
-            if (editedModule == "No Module" || editedModule == "no_module" || editedModule.isEmpty){
+            if (editedModule.uppercased() == "NO MODULE" || editedModule == "no_module" || editedModule.isEmpty){
                 moduleButton.setTitle("Any Module", for: UIControlState())
             } else {
                 moduleButton.setTitle(editedModule, for: UIControlState())

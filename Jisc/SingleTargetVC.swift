@@ -265,7 +265,7 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
             
             var finalText = ""
             //Checks to see if the module, reason sections are empty and returning the appropriate date.
-            if (module.isEmpty || module == "no_module" || module == "no module" || module == "No Module"){
+            if (module.isEmpty || module == "no_module" || module.uppercased() == "NO MODULE" || module == "No Module"){
                 if (Calendar.current.isDateInTomorrow(dateObj!)){
                     if (reason.isEmpty || reason == "Add a reason to keep this target"){
                         finalText = "\(describe) by tomorrow"
