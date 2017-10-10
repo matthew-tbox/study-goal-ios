@@ -19,13 +19,13 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     
     @IBOutlet weak var topSegmentControl: UISegmentedControl!
+    @IBOutlet weak var recurringSegmentControl: UISegmentedControl!
     
     @IBOutlet weak var myGoalTextField: UITextView! //H
     @IBOutlet weak var recurringDatePicker: UIDatePicker!//H
     @IBOutlet weak var recurringBecauseTextField: UITextView!
     
     @IBOutlet weak var moduleLabel: LocalizableLabel! //H
-    @IBOutlet weak var recurringSegmentControl: UISegmentedControl! // H
     @IBOutlet weak var activityTypeButton:UIButton!
     @IBOutlet weak var chooseActivityButton:UIButton!
     @IBOutlet weak var intervalButton:UIButton!
@@ -89,7 +89,9 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
         //		}
         topSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
-        topSegmentControl.setTitle(localized("reccuring"), forSegmentAt: 1)
+        topSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
+        //recurringSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
+        //recurringSegmentControl.setTitle(localized("reccuring"), forSegmentAt: 1)
         
         if (theTarget != nil) {
             isEditingTarget = true
@@ -107,6 +109,8 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 selectedModule += 1
             }
             titleLabel.text = localized("edit_target")
+            topSegmentControl.isHidden = true
+            //recurringSegmentControl.isHidden = true
         }
         hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
         minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)

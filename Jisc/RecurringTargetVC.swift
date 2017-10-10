@@ -95,6 +95,8 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             recurringSegmentControl.isHidden = true
         }
         
+        recurringSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
+        recurringSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
         
         if (theTarget != nil) {
             isEditingTarget = true
@@ -112,6 +114,8 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 selectedModule += 1
             }
             titleLabel.text = localized("edit_target")
+            topSegmentControl.isHidden = true
+            recurringSegmentControl.isHidden = true
         }
 //        hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
 //        minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
