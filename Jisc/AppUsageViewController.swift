@@ -25,7 +25,7 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var startDateField: UITextField!
     var startDatePicker = UIDatePicker()
     let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "dd/MM/yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
-    let databaseDateFormat = DateFormatter.dateFormat(fromTemplate: "dd-MM-yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    let databaseDateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy-MM-dd", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
     
     @IBOutlet weak var endDateField: UITextField!
     var endDatePicker = UIDatePicker()
