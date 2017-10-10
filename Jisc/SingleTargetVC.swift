@@ -10,6 +10,7 @@ import UIKit
 
 let emptySingleTargetPageMessage = localized("empty_target_page_message")
 let myNotificationKey = "goToSingleTarget"
+var optionsOpened = false
 
 class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -404,7 +405,6 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
         if demo(){
         
         } else {
-            print("Should be runnning did select row at indexpath", indexPath.row)
             let singleDictionary = arrayOfResponses[indexPath.row]
             let status = singleDictionary["from_tutor"] as! String
             let status2 = singleDictionary["is_accepted"] as! String
@@ -499,10 +499,17 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.navigationController?.present(alert, animated: true, completion: nil)
+            } else {
+                if let cell = tableView.cellForRow(at: indexPath) as? TargetCell {
+                    if(!cell.optionsOpened){
+                        cell.openCellOptions()
+                        //cell.optionsOpened = true
+                    } else {
+                        cell.closeCellOptions()
+                        //cell.optionsOpened = false
+                    }
+                }
             }
-            
         }
-        
         }
-        
 }

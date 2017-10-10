@@ -115,6 +115,7 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 		if (aCellIsOpen) {
 			tableView.reloadData()
 		} else {
+            
 			let target = dataManager.targets()[indexPath.row]
 			let vc = TargetDetailsVC(target: target, index: indexPath.row)
 			navigationController?.pushViewController(vc, animated: true)

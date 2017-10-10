@@ -18,7 +18,7 @@ let kChangeSingleTargetCellSelectedStyleOff = "kChangeSingleTargetCellSelectedSt
 let greenSingleTargetColor = UIColor(red: 0.1, green: 0.69, blue: 0.12, alpha: 1.0)
 let orangeSingleTargetColor = UIColor(red: 0.99, green: 0.51, blue: 0.23, alpha: 1.0)
 let redSingleTargetColor = UIColor(red: 0.99, green: 0.24, blue: 0.26, alpha: 1.0)
-var optionsOpened = false
+//var optionsOpened = false
 
 class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
     
@@ -43,9 +43,9 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         panGesture.delegate = self
         addGestureRecognizer(panGesture)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SingleTargetCell.tapAction(_:)))
+        /*let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SingleTargetCell.tapAction(_:)))
         tapGesture.delegate = self
-        addGestureRecognizer(tapGesture)
+        addGestureRecognizer(tapGesture)*/
         
         NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.anotherCellOpenedOptions(_:)), name: NSNotification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SingleTargetCell.changeSelectedStyleOn), name: NSNotification.Name(rawValue: kChangeSingleTargetCellSelectedStyleOn), object: nil)
@@ -183,7 +183,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     
-    func tapAction(_ sender: UITapGestureRecognizer){
+    /*func tapAction(_ sender: UITapGestureRecognizer){
         if(!optionsOpened){
             openCellOptions()
         } else {
@@ -191,7 +191,7 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         }
         optionsOpened = !optionsOpened
         print("cell tapped")
-    }
+    }*/
     
     func openCellOptions() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kAnotherSingleTargetCellOpenedOptions), object: self)
