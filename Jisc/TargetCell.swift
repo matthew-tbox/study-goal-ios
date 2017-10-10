@@ -108,39 +108,47 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
         } else {
-            let defaults = UserDefaults.standard
+            var markAsDoneAlert = UIAlertController(title: "", message: "Are you sure you want to mark this task as done?", preferredStyle: UIAlertControllerStyle.alert)
             
-            var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
-            
-            let singleDictionary = samTest[(indexPath?.row)!]
-            
-            var dictionaryfordis = [String:String]()
-            dictionaryfordis.updateValue("1", forKey: "is_accepted")
-            dictionaryfordis.updateValue("1", forKey: "is_completed")
-            dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
-            dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
-            dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
-            dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
-            
-            dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
-            dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
-            dictionaryfordis.updateValue("en", forKey: "language")
-            if currentUserType() == .social {
-                dictionaryfordis.updateValue("yes", forKey: "is_social")
+            markAsDoneAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                let defaults = UserDefaults.standard
                 
-            } else {
-                dictionaryfordis.updateValue("no", forKey: "is_social")
+                var samTest = defaults.object(forKey: "AllTheSingleTargets") as! [[String:Any]]
                 
-            }
+                let singleDictionary = samTest[(self.indexPath?.row)!]
+                
+                var dictionaryfordis = [String:String]()
+                dictionaryfordis.updateValue("1", forKey: "is_accepted")
+                dictionaryfordis.updateValue("1", forKey: "is_completed")
+                dictionaryfordis.updateValue(String(describing: singleDictionary["student_id"]!), forKey: "student_id")
+                dictionaryfordis.updateValue(String(describing: singleDictionary["id"]!), forKey: "record_id")
+                dictionaryfordis.updateValue(singleDictionary["module"] as! String, forKey: "module")
+                dictionaryfordis.updateValue(singleDictionary["from_tutor"] as! String, forKey: "from_tutor")
+                
+                dictionaryfordis.updateValue(singleDictionary["description"] as! String, forKey: "description")
+                dictionaryfordis.updateValue(singleDictionary["end_date"] as! String, forKey: "end_date")
+                dictionaryfordis.updateValue("en", forKey: "language")
+                if currentUserType() == .social {
+                    dictionaryfordis.updateValue("yes", forKey: "is_social")
+                } else {
+                    dictionaryfordis.updateValue("no", forKey: "is_social")
+                }
+                
+                DownloadManager().editToDo(dictionary:dictionaryfordis)
+                
+                let alert = UIAlertController(title: "", message: "Congratulations on completing your task!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+                self.navigationController?.present(alert, animated: true, completion: nil)
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
+                self.tableView?.reloadData()
+            }))
             
-            DownloadManager().editToDo(dictionary:dictionaryfordis)
+            markAsDoneAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                
+            }))
             
-            let alert = UIAlertController(title: "", message: "Congratulations on completeing your task!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-            navigationController?.present(alert, animated: true, completion: nil)
-            
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
-            self.tableView?.reloadData()
+            navigationController?.present(markAsDoneAlert, animated: true, completion: nil)
         }
     }
 	
@@ -342,10 +350,10 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 if let token = xAPIToken() {
                     request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                     request.httpMethod = "DELETE"
-                    //request.httpBody = bodyString.data(using: .utf8)
                 }
                 let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                    guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                    guard let data = data, error == nil else {
+                        // check for fundamental networking error
                         print("error=\(error!)")
                         return
                     }
@@ -361,11 +369,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 }
                 task.resume()
             }
-           // self.tableView?.deleteRows(at: [self.indexPath!], with: UITableViewRowAnimation.automatic)
-//            NotificationCenter.default.post(name: Notification.Name(rawValue: "getToDoList"), object: self)
-//            self.tableView?.reloadData()
-
-            
         } else if (buttonIndex > 0) {
 			let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
 			dataManager.deleteTarget(target) { (success, failureReason) -> Void in
@@ -378,8 +381,6 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
 					AlertView.showAlert(false, message: failureReason, completion: nil)
 				}
 			}
-
         }
-
 	}
 }
