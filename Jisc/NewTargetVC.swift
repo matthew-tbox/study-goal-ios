@@ -90,10 +90,9 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
         //		}
         topSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
         topSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
-        //recurringSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
-        //recurringSegmentControl.setTitle(localized("reccuring"), forSegmentAt: 1)
         
         if (theTarget != nil) {
+            print("editing mode entered")
             isEditingTarget = true
             selectedHours = Int(theTarget!.totalTime) / 60
             selectedMinutes = Int(theTarget!.totalTime) % 60
@@ -110,8 +109,8 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
             }
             titleLabel.text = localized("edit_target")
             topSegmentControl.isHidden = true
-            //recurringSegmentControl.isHidden = true
         }
+        
         hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
         minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
         if (because.isEmpty) {

@@ -99,6 +99,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         recurringSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
         
         if (theTarget != nil) {
+            print("editing mode entered")
             isEditingTarget = true
             selectedHours = Int(theTarget!.totalTime) / 60
             selectedMinutes = Int(theTarget!.totalTime) % 60
@@ -114,9 +115,9 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 selectedModule += 1
             }
             titleLabel.text = localized("edit_target")
-            topSegmentControl.isHidden = true
             recurringSegmentControl.isHidden = true
         }
+        
 //        hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
 //        minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
         if (because.isEmpty) {
