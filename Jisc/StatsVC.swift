@@ -412,7 +412,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         xMGR.silent = true
         xMGR.getAttainment { (success, result, results, error) in
             self.attainmentArray.removeAll()
-            self.attainmentArray.append(AttainmentObject(dateString: "\(localized("date"))     ", moduleName: localized("module"), grade: localized("grade")))
+            self.attainmentArray.append(AttainmentObject(dateString: "\(localized("date"))     ", moduleName: localized("module"), grade: localized("mark")))
             if (results != nil) {
                 for (_, item) in results!.enumerated() {
                     if let dictionary = item as? NSDictionary {
