@@ -81,18 +81,11 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //		if iPad {
-        //			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-        //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-        //		} else {
-        //			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-        //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-        //		}
         topSegmentControl.setTitle(localized("single"), forSegmentAt: 0)
         topSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
         
         if (theTarget != nil) {
-            print("editing mode entered")
+            print("editing mode for recurring targets entered")
             isEditingTarget = true
             selectedHours = Int(theTarget!.totalTime) / 60
             selectedMinutes = Int(theTarget!.totalTime) % 60

@@ -79,13 +79,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //		if iPad {
-        //			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-        //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 44.0)
-        //		} else {
-        //			hoursTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-        //			minutesTextField.font = UIFont(name: "MyriadPro-Light", size: 52.0)
-        //		}
         
         NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(RecurringTargetVC
@@ -99,8 +92,9 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         recurringSegmentControl.setTitle(localized("recurring"), forSegmentAt: 1)
         
         if (theTarget != nil) {
-            print("editing mode entered")
+            print("editing mode for single targets entered")
             isEditingTarget = true
+            isInEditingMode = true
             selectedHours = Int(theTarget!.totalTime) / 60
             selectedMinutes = Int(theTarget!.totalTime) % 60
             if let tempTimeSpan = kTargetTimeSpan(rawValue: theTarget!.timeSpan) {
@@ -118,8 +112,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             recurringSegmentControl.isHidden = true
         }
         
-//        hoursPicker.selectRow(selectedHours, inComponent: 0, animated: false)
-//        minutesPicker.selectRow(selectedMinutes, inComponent: 0, animated: false)
         if (because.isEmpty) {
             because = targetReasonPlaceholder
         }
@@ -137,30 +129,8 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             myGoalTextField.textColor = UIColor.lightGray
         }
         
-        
-////        activityTypeButton.setTitle(dataManager.activityTypeNameAtIndex(selectedActivityType), for: UIControlState())
-//        activityTypeButton.titleLabel?.adjustsFontSizeToFitWidth = true
-//        activityTypeButton.titleLabel?.numberOfLines = 2
-        let activityType = dataManager.activityTypes()[selectedActivityType]
-//        chooseActivityButton.setTitle(dataManager.activityAtIndex(selectedActivity, type: activityType)?.name, for: UIControlState())
-//        chooseActivityButton.titleLabel?.adjustsFontSizeToFitWidth = true
-//        chooseActivityButton.titleLabel?.numberOfLines = 2
         timeSpan = timeSpans[selectedTimeSpan]
-        var string = ""
-//        switch (timeSpan) {
-//        case .Daily:
-//            maxTargetHours = 8
-//            string = localized("day").capitalized
-//        case .Weekly:
-//            maxTargetHours = 40
-//            string = localized("week").capitalized
-//        case .Monthly:
-//            maxTargetHours = 99
-//            string = localized("month").capitalized
-//        }
-//        intervalButton.setTitle(string, for: UIControlState())
-//        intervalButton.titleLabel?.adjustsFontSizeToFitWidth = true
-//        intervalButton.titleLabel?.numberOfLines = 2
+        
         if (selectedModule > 0) {
             moduleButton.setTitle(dataManager.moduleNameAtIndex(selectedModule - 1), for: UIControlState())
         } else {
@@ -168,16 +138,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         }
         moduleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         moduleButton.titleLabel?.numberOfLines = 2
-        //var title = "\(selectedHours)"
-//        if (selectedHours < 10) {
-//            title = "0\(selectedHours)"
-//        }
-//        hoursTextField.text = title
-//        title = "\(selectedMinutes)"
-//        if (selectedMinutes < 10) {
-//            title = "0\(selectedMinutes)"
-//        }
-//        minutesTextField.text = title
         
         initialSelectedActivityType = selectedActivityType
         initialSelectedActivity = selectedActivity
@@ -187,26 +147,19 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         initialReason = because
         
         if (isInEditingMode){
-            //Below two lines of code to read from the userDefaults
+            print("isInEditingMode trying to add information")
             let defaults = UserDefaults.standard
             let editedReason = defaults.object(forKey: "EditedReason") as! String
             let editedDescribe = defaults.object(forKey: "EditedDescribe") as! String
             let editedDateObject = defaults.object(forKey: "EditedDate") as! String
             let editedModule = defaults.object(forKey: "EditedModule") as! String
             
-            //self.recurringDatePicker.date = editedDateObject
-           // if !editedReason.isEmpty{
-                myGoalTextField?.textColor = UIColor.black
-                myGoalTextField?.text = editedDescribe
-            //} else {
-               // myGoalTextField.text = targetReasonPlaceholder
-            //}
-            //if !editedDescribe.isEmpty{
-                noteTextView?.textColor = UIColor.black
-                noteTextView?.text = editedReason
-            //} else {
-               // noteTextView.text = targetReasonPlaceholder
-            //}
+            myGoalTextField?.textColor = UIColor.black
+            myGoalTextField?.text = editedDescribe
+            
+            noteTextView?.textColor = UIColor.black
+            noteTextView?.text = editedReason
+            
             if (editedModule.uppercased() == "NO MODULE" || editedModule == "no_module" || editedModule.isEmpty){
                 moduleButton.setTitle("Any Module", for: UIControlState())
             } else {
@@ -223,8 +176,6 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //moduleLabel.text = "Module"
-        // recurringDatePicker.minimumDate = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -241,34 +192,19 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
         if (changesWereMade()) {
             UIAlertView(title: localized("confirmation"), message: localized("would_you_like_to_save_the_changes_you_made"), delegate: self, cancelButtonTitle: localized("no"), otherButtonTitles: localized("yes")).show()
         } else {
-            // _ = navigationController?.popViewController(animated: true)
-            //_ = navigationController?.popViewController(animated: true)
-
-            
             let vc = SingleTargetVC()
             navigationController?.pushViewController(vc, animated: false)
         }
     }
-    /*
-    @IBAction func topSegmentControlAction(_ sender: Any) {
-        if (topSegmentControl.selectedSegmentIndex == 1){
-            Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
-        } else {
-            Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
-        }
-        
-    }
- */
+    
     @IBAction func recurringSegmentControlAction(_ sender: Any) {
         if (recurringSegmentControl.selectedSegmentIndex == 0){
             let vc = RecurringTargetVC()
             navigationController?.pushViewController(vc, animated: false)
-           //Bundle.main.loadNibNamed("RecurringTargetVC", owner: self, options: nil)
             
         } else {
-           let vc = NewTargetVC()
+            let vc = NewTargetVC()
             navigationController?.pushViewController(vc, animated: false)
-            //Bundle.main.loadNibNamed("NewTargetVC", owner: self, options: nil)
         }
     }
     
@@ -361,12 +297,12 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
                 xAPIManager().checkMod(testUrl:urlString)
             } else {
-                
                 target.module = nil
                 let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
                 xAPIManager().checkMod(testUrl:urlString)
             }
             target.because = because
+            
             if (theTarget != nil) {
                 dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
                     if (success) {
@@ -401,15 +337,17 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func recurringSaveAction(_ sender: Any) {
+        print("saving is using this method")
         if demo(){
             let alert = UIAlertController(title: "", message: localized("demo_mode_save_target"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
-
+            
         } else {
             dateFormatter.dateFormat = "y-MM-dd"
             let somedateString = dateFormatter.string(from: self.recurringDatePicker.date)
             let urlString = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_add_todo_task?"
+            let urlStringEdit = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_edit_todo_task?"
             var module = ""
             if (selectedModule - 1 < 0){
                 module = "No Module"
@@ -424,50 +362,68 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                 }
                 return
             }
+            
             var myBody = ""
             if social(){
-                 myBody = "is_social=true&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
+                myBody = "is_social=true&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
             } else {
-                 myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
+                myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en&reason=\(noteTextView.text!)"
             }
             
             if (noteTextView.text! == "Add a reason to keep this target"){
-                 myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+                myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
                 if social(){
-                     myBody = "is_social=true&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+                    myBody = "is_social=true&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
                 } else {
-                     myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
+                    myBody = "student_id=\(dataManager.currentStudent!.id)&module=\(module)&description=\(myGoalTextField.text!)&end_date=\(somedateString)&language=en"
                 }
-
+                
             }
             
-            let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
-            
-            if (somethingWentWrong){
-                AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
-                   // _ = self.navigationController?.popViewController(animated: true)
-                    let vc = SingleTargetVC()
-                    self.navigationController?.pushViewController(vc, animated: false)
+            if(!isInEditingMode){
+                let somethingWentWrong = xAPIManager().postRequest(testUrl: urlString, body: myBody)
+                
+                if (somethingWentWrong){
+                    AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
+                        let vc = SingleTargetVC()
+                        self.navigationController?.pushViewController(vc, animated: false)
+                    }
+                } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
+                    AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
+                        let vc = SingleTargetVC()
+                        self.navigationController?.pushViewController(vc, animated: false)
+                    }
                 }
-            } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
-                AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                 //   _ = self.navigationController?.popViewController(animated: true)
-                    let vc = SingleTargetVC()
-                    self.navigationController?.pushViewController(vc, animated: false)
-
+            } else {
+                print("saving edited single target")
+                let defaults = UserDefaults.standard
+                let recordId = defaults.object(forKey: "EditedID") as! Int
+                myBody = myBody + "&record_id=\(recordId)"
+                print(myBody)
+                
+                //let somethingWentWrong = xAPIManager().editSingleTarget(body: myBody)
+                let somethingWentWrong = xAPIManager().postRequest(testUrl: urlStringEdit, body: myBody)
+                
+                if (somethingWentWrong){
+                    AlertView.showAlert(false, message: localized("something_went_wrong")) { (done) -> Void in
+                        let vc = SingleTargetVC()
+                        self.navigationController?.pushViewController(vc, animated: false)
+                    }
+                } else if (!somethingWentWrong && !myGoalTextField.text.isEmpty){
+                    AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
+                        let vc = SingleTargetVC()
+                        self.navigationController?.pushViewController(vc, animated: false)
+                    }
                 }
             }
-
         }
-        
-        
     }
     
     @IBAction func datePickerAction(_ sender: Any) {
         if (isInEditingMode){
             let defaults = UserDefaults.standard
-             if demo(){
-             } else {
+            if demo(){
+            } else {
                 let editedTutor = defaults.object(forKey: "EditedTutor") as! String //as! Date
                 if (editedTutor == "yes"){
                     let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
@@ -478,20 +434,20 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
                         
                         recurringDatePicker.date = TestDateTime!
                         
-                         UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+                        UIAlertView(title: localized("error"), message: localized("tutor_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
                         
                     }
-
+                    
                 } else {
-            let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
-            if (editedDateObject != nil){
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
-                let TestDateTime = formatter.string(from: recurringDatePicker.date)
-              //  recurringDatePicker.date = TestDateTime!
-                defaults.set(TestDateTime, forKey: "EditedDate")
-                
-            }
+                    let editedDateObject = defaults.object(forKey: "EditedDate") //as! Date
+                    if (editedDateObject != nil){
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd"
+                        let TestDateTime = formatter.string(from: recurringDatePicker.date)
+                        //  recurringDatePicker.date = TestDateTime!
+                        defaults.set(TestDateTime, forKey: "EditedDate")
+                        
+                    }
                 }
             }
         } else {
@@ -499,26 +455,26 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             let secondsInYear = 365 * 24 * 60 * 60
             recurringDatePicker.maximumDate = Date(timeInterval: TimeInterval(secondsInYear), since: Date())
         }
-//        let defaults = UserDefaults.standard
-//        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
-//        recurringDatePicker.date = editedDateObject
+        //        let defaults = UserDefaults.standard
+        //        let editedDateObject = defaults.object(forKey: "EditedDate") as! Date
+        //        recurringDatePicker.date = editedDateObject
         
     }
     
     func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.contentScroll.contentOffset.y != 0{
-//                self.contentScroll.contentOffset.y += 330
-//            }
-//        }
+        //        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        //            if self.contentScroll.contentOffset.y != 0{
+        //                self.contentScroll.contentOffset.y += 330
+        //            }
+        //        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         /*if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }*/
+         if self.view.frame.origin.y != 0{
+         self.view.frame.origin.y += keyboardSize.height
+         }
+         }*/
     }
     
     //MARK: UIAlertView Delegate
@@ -528,7 +484,7 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             //_ = navigationController?.popViewController(animated: false)
             let vc = SingleTargetVC()
             navigationController?.pushViewController(vc, animated: true)
-
+            
         } else {
             saveTarget(UIButton())
         }
@@ -700,11 +656,11 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if(textView == noteTextView){
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            self.scrollBottomSpace.constant = keyboardHeight - 5.0
-            self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height - self.scrollBottomSpace.constant)
-            self.view.layoutIfNeeded()
-        })
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                self.scrollBottomSpace.constant = keyboardHeight - 5.0
+                self.contentScroll.contentOffset = CGPoint(x: 0.0, y: self.contentScroll.contentSize.height - self.scrollBottomSpace.constant)
+                self.view.layoutIfNeeded()
+            })
         } else if (textView == myGoalTextField){
             UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 self.scrollBottomSpace.constant = keyboardHeight - 5.0

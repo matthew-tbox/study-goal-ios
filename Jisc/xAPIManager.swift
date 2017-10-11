@@ -1,69 +1,70 @@
-    //
-    //  xAPIManager.swift
-    //  Jisc
-    //
-    //  Created by Therapy Box on 3/15/16.
-    //  Copyright © 2016 Therapy Box. All rights reserved.
-    //
+//
+//  xAPIManager.swift
+//  Jisc
+//
+//  Created by Therapy Box on 3/15/16.
+//  Copyright © 2016 Therapy Box. All rights reserved.
+//
 
-    import Foundation
-    import UIKit
+import Foundation
+import UIKit
 
-    let xAPIHostPath = "https://app.analytics.alpha.jisc.ac.uk/"
-    let xAPIHostName = NSURL(string: hostPath)?.host
+let xAPIHostPath = "https://app.analytics.alpha.jisc.ac.uk/"
+let xAPIHostName = NSURL(string: hostPath)?.host
 
-    let xAPIGetIDPSPath = "idps"
-    let xAPIGetActivityPointsPath = "v2/activity/points"
-    let xAPIGetEngagementDataPath = "v2/engagement"
-    let xAPIGetModulesPath = "v2/filter"
-    let xAPIGetAttainmentPath = "v2/attainment"
-    let xAPIGetComparisonToTop10PercentPath = "v2/engagement"
-    let xAPIGetEventsAttendedPath = "https://api.datax.jisc.ac.uk/sg/attendance?"
-    let xAPIGetAppUsagePath = "http://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage"
+let xAPIGetIDPSPath = "idps"
+let xAPIGetActivityPointsPath = "v2/activity/points"
+let xAPIGetEngagementDataPath = "v2/engagement"
+let xAPIGetModulesPath = "v2/filter"
+let xAPIGetAttainmentPath = "v2/attainment"
+let xAPIGetComparisonToTop10PercentPath = "v2/engagement"
+let xAPIGetEventsAttendedPath = "https://api.datax.jisc.ac.uk/sg/attendance?"
+let xAPIGetAppUsagePath = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage"
+let xAPIEditToDoPath = "fn_edit_todo_task?"
 
-    typealias xAPICompletionBlock = ((_ success:Bool, _ result:NSDictionary?, _ results:NSArray?, _ error:String?) -> Void)
+typealias xAPICompletionBlock = ((_ success:Bool, _ result:NSDictionary?, _ results:NSArray?, _ error:String?) -> Void)
 
-    enum kXAPIEngagementScope: String {
+enum kXAPIEngagementScope: String {
     case Overall = "overall"
     case SevenDays = "7d"
     case ThirtyDays = "28d"
-    }
+}
 
-    enum kXAPIEngagementFilterType: String {
+enum kXAPIEngagementFilterType: String {
     case Course = "course"
     case Module = "module"
-    }
+}
 
-    enum kXAPIEngagementCompareType: String {
+enum kXAPIEngagementCompareType: String {
     case Average = "average"
     case Friend = "friend"
     case Top = "top"
-    }
+}
 
-    enum kXAPIActivityPointsPeriod: String {
+enum kXAPIActivityPointsPeriod: String {
     case Overall = "overall"
     case SevenDays = "7d"
-    }
+}
 
-    struct EngagementGraphOptions {
+struct EngagementGraphOptions {
     var scope:kXAPIEngagementScope?
     var filterType:kXAPIEngagementFilterType?
     var filterValue:String?
     var compareType:kXAPIEngagementCompareType?
     var compareValue:String?
-    }
+}
 
-    class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegate {
-
+class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegate {
+    
     var rawData:NSMutableData = NSMutableData()
     var completionBlock:downloadCompletionBlock?
     var silent:Bool = inheritSilent
     var connectionSuccessfull:Bool = false
     var code:kRequestStatusCode?
     var shouldNotifyAboutInternetConnection:Bool = true
-
+    
     //MARK: NSURLConnection Data Delegate
-
+    
     func connection(_ connection: NSURLConnection, didReceive data: Data) {
         rawData.append(data)
     }
@@ -92,16 +93,16 @@
                     connectionSuccessfull = true
                 }
                 
-    //				if (code == .unauthorized) {
-    //					completionBlock = nil
-    //
-    //					dataManager.logout()
-    //					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
-    //				}
+                //				if (code == .unauthorized) {
+                //					completionBlock = nil
+                //
+                //					dataManager.logout()
+                //					UIAlertView(title: localized("session_expired_title"), message: localized("session_expired_message"), delegate: nil, cancelButtonTitle: localized("ok")).show()
+                //				}
             }
         }
     }
-
+    
     func connectionDidFinishLoading(_ connection: NSURLConnection) {
         if (!silent) {
             LoadingView.hide()
@@ -172,9 +173,9 @@
             }
         }
     }
-
+    
     //MARK: NSURLConnection Delegate
-
+    
     func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         if (!silent) {
             LoadingView.hide()
@@ -188,15 +189,15 @@
             })
         }
     }
-
+    
     //MARK: Helpful Functions
-
+    
     func urlWithHost(_ host:String, path:String) -> URL? {
         let fullPath = "\(host)\(path)"
         let theURL:URL? = URL(string: fullPath)
         return theURL
     }
-
+    
     func urlWithPath(_ path:String) -> URL? {
         let fullPath = "\(xAPIHostPath)\(path)"
         var theURL = URL(string: "")
@@ -209,7 +210,7 @@
         }
         return theURL
     }
-
+    
     func createGetRequest(_ path:String, withJWT:Bool) -> URLRequest? {
         var request:URLRequest?
         if let url = urlWithPath(path) {
@@ -222,7 +223,7 @@
         }
         return request
     }
-
+    
     func bodyStringFromDictionary(_ dictionary:[String:String]) -> String {
         var string:String = ""
         let elements:NSMutableArray = NSMutableArray()
@@ -266,7 +267,7 @@
         
         return string
     }
-
+    
     func createPostRequest(_ path:String, bodyString:String)  -> URLRequest? {
         let postData:Data? = bodyString.data(using: String.Encoding.utf8, allowLossyConversion: true)
         var request:URLRequest?
@@ -284,7 +285,7 @@
         request?.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         return request
     }
-
+    
     func createPutRequest(_ path:String, bodyString:String)  -> URLRequest? {
         let postData:Data? = bodyString.data(using: String.Encoding.utf8, allowLossyConversion: true)
         var request:URLRequest?
@@ -302,7 +303,7 @@
         request?.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         return request
     }
-
+    
     func createDeleteRequest(_ path:String)  -> URLRequest? {
         var request:URLRequest?
         if let url = urlWithPath(path) {
@@ -314,7 +315,7 @@
         request?.httpMethod = "DELETE"
         return request
     }
-
+    
     func createProfileImageUploadRequest(_ path: String, myID:String, image:UIImage) -> URLRequest?
     {
         var request:URLRequest?
@@ -368,7 +369,7 @@
         
         return request
     }
-
+    
     func startConnectionWithRequest(_ request:URLRequest?) {
         if let request = request {
             if (internetAvailability == ReachabilityStatus.notInitialized) {
@@ -399,13 +400,13 @@
             completionBlock?(false, nil, nil, "Error creating the url request")
         }
     }
-
+    
     func delayedConnection(_ timer:Timer) {
         startConnectionWithRequest(timer.userInfo as? URLRequest)
     }
-
+    
     //MARK: Download Functions
-
+    
     func getStudentDetails(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         var request:URLRequest?
@@ -423,12 +424,12 @@
         }
         startConnectionWithRequest(request)
     }
-
+    
     func getIDPS(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest(xAPIGetIDPSPath, withJWT: false))
     }
-
+    
     func getActivityPoints(_ period:kXAPIActivityPointsPeriod, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest("\(xAPIGetActivityPointsPath)?scope=\(period.rawValue)", withJWT: true))
@@ -450,25 +451,25 @@
         completionBlock = completion
         startConnectionWithRequest(createGetRequest(xAPIGetModulesPath, withJWT: true))
     }
-
+    
     func getModuleTest(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest("module/test?scope=overall", withJWT: true))
     }
-
+    
     func getAttainment(_ completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         startConnectionWithRequest(createGetRequest(xAPIGetAttainmentPath, withJWT: true))
     }
-
+    
     func callEventsAttended(){
         print("This is from XAPI Manager Events attended")
-    //        let statsClass = StatsVC() 
-    //        statsClass.getEventsAttended {
-    //            print("requested events attended")
-    //        }
+        //        let statsClass = StatsVC()
+        //        statsClass.getEventsAttended {
+        //            print("requested events attended")
+        //        }
     }
-
+    
     func getEngagementData(_ options:EngagementGraphOptions, completion:@escaping xAPICompletionBlock) {
         completionBlock = completion
         var path = xAPIGetEngagementDataPath
@@ -528,7 +529,7 @@
                 do {
                     if let data = data,
                         let json = try JSONSerialization.jsonObject(with: data) as? [Any] {
-                            print("This is the JSON", json)
+                        print("This is the JSON", json)
                     }
                 } catch {
                     print("Error deserializing JSON: \(error)")
@@ -558,7 +559,7 @@
                 guard let data = data, error == nil else {                                                 // check for fundamental networking error
                     print("error=\(error!)")
                     somethingWentWrong = true
-                    return 
+                    return
                 }
                 
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
@@ -575,7 +576,7 @@
         }
         return somethingWentWrong
     }
-
+    
     func settingsCall(testUrl:String){
         var request:URLRequest?
         var returnedString:String = ""
@@ -592,7 +593,7 @@
                 returnedString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)! as String
                 print("returned String is: \(returnedString)")
                 print("response from server \(String(describing: response))")
-
+                
                 if (testUrl=="https://api.datax.jisc.ac.uk/sg/setting?setting=studyGoalAttendance"){
                     let defaults = UserDefaults.standard
                     defaults.set(returnedString, forKey: "SettingsReturn")
@@ -611,7 +612,7 @@
         var request:URLRequest?
         if let urlString = "https://api.x-staging.data.alpha.jisc.ac.uk/att/checkin?checkinpin=\(pin)&geo_tag=\(location)&timestamp=\(timestamp)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
-                request = URLRequest(url: url)  
+                request = URLRequest(url: url)
             }
         }
         if var request = request {
@@ -623,81 +624,117 @@
             completionBlock?(false, nil, nil, "Error creating the url request")
         }
     }
-
-        func getAppUsage(studentId:String, startDate:String, endDate:String) {
-            //print("made it to the call")
-            var urlPath = ""
-            if(startDate == "null" && endDate == "null"){
-                urlPath = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage?student_id=" + studentId
-            }
-            else{
-                urlPath = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage?student_id=" + studentId + "&start_date=" + startDate + "&end_date=" + endDate
+    
+    func getAppUsage(studentId:String, startDate:String, endDate:String) {
+        //print("made it to the call")
+        var urlPath = ""
+        if(startDate == "null" && endDate == "null"){
+            urlPath = xAPIGetAppUsagePath + "?student_id=" + studentId
+        }
+        else{
+            urlPath = xAPIGetAppUsagePath + "?student_id=" + studentId + "&start_date=" + startDate + "&end_date=" + endDate
+        }
+        
+        if let url = URL(string: urlPath){
+            print("calling for app usage data")
+            print("url " + urlPath)
+            
+            //let session = URLSession.shared
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "GET"
+            if let token = xAPIToken() {
+                request.addValue("\(token)", forHTTPHeaderField: "Authorization")
+            } else {
+                print("error with token")
+                return
             }
             
-            if let url = URL(string: urlPath){
-                print("calling for app usage data")
-                print("url " + urlPath)
-                
-                //let session = URLSession.shared
-                let request = NSMutableURLRequest(url: url)
-                request.httpMethod = "GET"
-                if let token = xAPIToken() {
-                    request.addValue("\(token)", forHTTPHeaderField: "Authorization")
+            let dataCallTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+                if error != nil {
+                    print("error on getting data from url")
                 } else {
-                    print("error with token")
-                    return
-                }
-            
-                let dataCallTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-                    if error != nil {
-                        print("error on getting data from url")
-                    } else {
-                        if let jsondata = data{
-                            do {
-                                let json = try JSONSerialization.jsonObject(with: jsondata) as! [String: Any]
-                                print("json found")
-                                print(json)
-                                let defaults = UserDefaults.standard
-                                
-                                let met_targets_number = json["met_targets_number"] as! [String: Any]
-                                let metRecurringTargets = met_targets_number["recurring targets"] as! Int
-                                let metSingleTargets = met_targets_number["todo tasks"] as! Int
-                                
-                                let metTargets = metRecurringTargets + metSingleTargets
-                                
-                                print("metTargets \(metTargets)")
-                                defaults.set(metTargets, forKey: "AppUsage_targets_met")
-                                
-                                
-                                let failed_targets_number = json["failed_targets_number"] as! [String: Any]
-                                let failedRecurringTargets = failed_targets_number["recurring targets"] as! Int
-                                let failedSingleTargets = failed_targets_number["todo tasks"] as! Int
-                                
-                                let failedTargets = failedRecurringTargets + failedSingleTargets
-                                
-                                print("failedTargets \(failedTargets)")
-                                defaults.set(failedTargets, forKey: "AppUsage_targets_failed")
-                                
-                                
-                                let set_targets_number = json["set_targets_number"] as! [String: Any]
-                                let setRecurringTargets = set_targets_number["recurring targets"] as! Int
-                                let setSingleTargets = set_targets_number["todo tasks"] as! Int
-                                let setTargets = setRecurringTargets + setSingleTargets
-                                print("setTargets \(setTargets)")
-                                
-                                defaults.set(setTargets, forKey: "AppUsage_targets_set")
-                                
-                                let activityHours = (json["activity_logged_hours"] as! Int)/60
-                                defaults.set(activityHours, forKey: "AppUsage_activities")
-                                defaults.set(json["number_of_sessions"], forKey: "AppUsage_sessions")
-                            } catch {
-                                print("error on JSONSerialization")
-                            }
+                    if let jsondata = data{
+                        do {
+                            let json = try JSONSerialization.jsonObject(with: jsondata) as! [String: Any]
+                            print("json found")
+                            print(json)
+                            let defaults = UserDefaults.standard
+                            
+                            let met_targets_number = json["met_targets_number"] as! [String: Any]
+                            let metRecurringTargets = met_targets_number["recurring targets"] as! Int
+                            let metSingleTargets = met_targets_number["todo tasks"] as! Int
+                            
+                            let metTargets = metRecurringTargets + metSingleTargets
+                            
+                            print("metTargets \(metTargets)")
+                            defaults.set(metTargets, forKey: "AppUsage_targets_met")
+                            
+                            
+                            let failed_targets_number = json["failed_targets_number"] as! [String: Any]
+                            let failedRecurringTargets = failed_targets_number["recurring targets"] as! Int
+                            let failedSingleTargets = failed_targets_number["todo tasks"] as! Int
+                            
+                            let failedTargets = failedRecurringTargets + failedSingleTargets
+                            
+                            print("failedTargets \(failedTargets)")
+                            defaults.set(failedTargets, forKey: "AppUsage_targets_failed")
+                            
+                            
+                            let set_targets_number = json["set_targets_number"] as! [String: Any]
+                            let setRecurringTargets = set_targets_number["recurring targets"] as! Int
+                            let setSingleTargets = set_targets_number["todo tasks"] as! Int
+                            let setTargets = setRecurringTargets + setSingleTargets
+                            print("setTargets \(setTargets)")
+                            
+                            defaults.set(setTargets, forKey: "AppUsage_targets_set")
+                            
+                            let activityHours = (json["activity_logged_hours"] as! Int)/60
+                            defaults.set(activityHours, forKey: "AppUsage_activities")
+                            defaults.set(json["number_of_sessions"], forKey: "AppUsage_sessions")
+                        } catch {
+                            print("error on JSONSerialization")
                         }
                     }
                 }
-                dataCallTask.resume()
             }
+            dataCallTask.resume()
         }
     }
+    
+    func editSingleTarget(body: String) -> URLRequest? {
+        print("made it to the call")
+        var urlPath = xAPIEditToDoPath
+        
+        let postData:Data? = body.data(using: String.Encoding.utf8, allowLossyConversion: true)
+        var request:URLRequest?
+        
+        if let url = urlWithPath(urlPath) {
+            print("edittodo calling for edit todo target")
+            print("edittodo url " + urlPath)
+            request = URLRequest(url: url)
+        } else {
+            print("edittodo url not created")
+        }
+        
+        if let token = xAPIToken() {
+            request?.addValue("\(token)\"}", forHTTPHeaderField: "Authorization")
+        } else {
+            print("edittodo token not found")
+        }
+        
+        request?.httpMethod = "POST"
+        if (postData != nil) {
+            request?.setValue("\(postData!.count)", forHTTPHeaderField: "Content-Length")
+            request?.httpBody = body.data(using: String.Encoding.utf8, allowLossyConversion: true)
+            print("edittodo \(request?.url)")
+            print("edittodo \(request?.httpBody)")
+            print("edittodo \(request?.allHTTPHeaderFields)")
+        } else {
+            print("edittodo post data nil")
+        }
+        
+        request?.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        return request
+    }
+}
 

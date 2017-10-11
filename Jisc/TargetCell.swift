@@ -177,7 +177,11 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
                 defaults.set(module, forKey: "EditedModule") //Module
                 defaults.set(tutor, forKey: "EditedTutor") //Module
 
-                NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
+                let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
+                let vc = RecurringTargetVC(target: target)
+                navigationController?.pushViewController(vc, animated: true)
+                
+                //NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
 
             } else {
 
@@ -185,6 +189,7 @@ class TargetCell: UITableViewCell, UIAlertViewDelegate {
         }else{
         closeCellOptions()
             if (indexPath != nil) {
+                print("edit for recurring target called")
                 let target = dataManager.targets()[(indexPath! as NSIndexPath).row]
                 let vc = NewTargetVC(target: target)
                 navigationController?.pushViewController(vc, animated: true)

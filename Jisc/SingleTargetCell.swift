@@ -103,11 +103,13 @@ class SingleTargetCell: UITableViewCell, UIAlertViewDelegate {
         }
     }
     @IBAction func editSingleTarget(_ sender: Any) {
+        print("edit for single target called")
         NotificationCenter.default.post(name: Notification.Name(rawValue: myNotificationKey), object: self)
     }
 
     @IBAction func editTarget(_ sender:UIButton) {
-
+        
+        print("edit for single target called without notification")
         let vc = RecurringTargetVC()
         navigationController?.pushViewController(vc, animated: true)
         //DELEGATE.menuView?.open()
