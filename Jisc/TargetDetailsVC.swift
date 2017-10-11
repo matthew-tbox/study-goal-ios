@@ -81,7 +81,12 @@ class TargetDetailsVC: BaseViewController, UIScrollViewDelegate {
 					self.view.layoutIfNeeded()
 					}, completion: nil)
 		})
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-specific&contentName=TargetsDonutCharts"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-specific&contentName=TargetsDonutCharts"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-specific&contentName=TargetsDonutCharts"
+        }
         xAPIManager().checkMod(testUrl:urlString)
 	}
 	

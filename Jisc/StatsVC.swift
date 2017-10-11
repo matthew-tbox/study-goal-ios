@@ -45,20 +45,20 @@ class AttainmentObject {
         self.grade = grade
         self.date = Date()
     }
-//    //MARK: - NSCoding -
-//    required convenience init(coder aDecoder: NSCoder) {
-//        let date = aDecoder.decodeObject(forKey: "date") as! Date
-//        let moduleName = aDecoder.decodeObject(forKey: "moduleName") as! String
-//        let grade = aDecoder.decodeObject(forKey: "grade") as! String
-//        self.init(date: date, moduleName: moduleName, grade: grade)
-//    }
-//    
-//    func encode(with aCoder: NSCoder) {
-//        aCoder.encode(date, forKey: "date")
-//        aCoder.encode(moduleName, forKey: "moduleName")
-//        aCoder.encode(grade, forKey: "grade")
-//        
-//    }
+    //    //MARK: - NSCoding -
+    //    required convenience init(coder aDecoder: NSCoder) {
+    //        let date = aDecoder.decodeObject(forKey: "date") as! Date
+    //        let moduleName = aDecoder.decodeObject(forKey: "moduleName") as! String
+    //        let grade = aDecoder.decodeObject(forKey: "grade") as! String
+    //        self.init(date: date, moduleName: moduleName, grade: grade)
+    //    }
+    //
+    //    func encode(with aCoder: NSCoder) {
+    //        aCoder.encode(date, forKey: "date")
+    //        aCoder.encode(moduleName, forKey: "moduleName")
+    //        aCoder.encode(grade, forKey: "grade")
+    //
+    //    }
 }
 
 class PointsObject {
@@ -71,23 +71,23 @@ class PointsObject {
         self.count = count
         self.points = points
     }
-//    //MARK: - NSCoding -
-//    required convenience init(coder aDecoder: NSCoder) {
-//        let activity = aDecoder.decodeObject(forKey: "activity") as! String
-//        let count1 = aDecoder.decodeObject(forKey: "count") as! String
-//        let points1 = aDecoder.decodeObject(forKey: "points") as! String
-//        let count:Int =  Int(count1)!
-//        let points:Int = Int(points1)!
-//        self.init(activity: activity, count: count, points: points)
-//    }
-//    
-//    func encode(with aCoder: NSCoder) {
-//        aCoder.encode(activity, forKey: "activity")
-//        aCoder.encode(count, forKey: "count")
-//        aCoder.encode(points, forKey: "points")
-//        
-//    }
-
+    //    //MARK: - NSCoding -
+    //    required convenience init(coder aDecoder: NSCoder) {
+    //        let activity = aDecoder.decodeObject(forKey: "activity") as! String
+    //        let count1 = aDecoder.decodeObject(forKey: "count") as! String
+    //        let points1 = aDecoder.decodeObject(forKey: "points") as! String
+    //        let count:Int =  Int(count1)!
+    //        let points:Int = Int(points1)!
+    //        self.init(activity: activity, count: count, points: points)
+    //    }
+    //
+    //    func encode(with aCoder: NSCoder) {
+    //        aCoder.encode(activity, forKey: "activity")
+    //        aCoder.encode(count, forKey: "count")
+    //        aCoder.encode(points, forKey: "points")
+    //
+    //    }
+    
 }
 
 class EventsAttendedObject {
@@ -102,20 +102,20 @@ class EventsAttendedObject {
         self.activity = activity
         self.module = module
     }
-//    //MARK: - NSCoding -
-//    required convenience init(coder aDecoder: NSCoder) {
-//        let date = aDecoder.decodeObject(forKey: "date") as! Date
-//        let activity = aDecoder.decodeObject(forKey: "activity") as! String
-//        let module = aDecoder.decodeObject(forKey: "module") as! String
-//        self.init(date: date, activity: activity, module: module)
-//    }
-//    
-//    func encode(with aCoder: NSCoder) {
-//        aCoder.encode(date, forKey: "date")
-//        aCoder.encode(activity, forKey: "activity")
-//        aCoder.encode(module, forKey: "module")
-//
-//    }
+    //    //MARK: - NSCoding -
+    //    required convenience init(coder aDecoder: NSCoder) {
+    //        let date = aDecoder.decodeObject(forKey: "date") as! Date
+    //        let activity = aDecoder.decodeObject(forKey: "activity") as! String
+    //        let module = aDecoder.decodeObject(forKey: "module") as! String
+    //        self.init(date: date, activity: activity, module: module)
+    //    }
+    //
+    //    func encode(with aCoder: NSCoder) {
+    //        aCoder.encode(date, forKey: "date")
+    //        aCoder.encode(activity, forKey: "activity")
+    //        aCoder.encode(module, forKey: "module")
+    //
+    //    }
 }
 
 let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
@@ -224,7 +224,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             
             
         }
-
+        
         staffAlert?.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
         staffAlert?.addAction(UIAlertAction(title: localized("dont_show_again"), style: .default, handler: { (action) in
             if let studentId = dataManager.currentStudent?.id {
@@ -326,7 +326,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             self.attendanceSegmentControl.isHidden = true
         }
         
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main&contentName=MainStats"
+        }
         xAPIManager().checkMod(testUrl:urlString)
     }
     
@@ -430,14 +435,14 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                     }
                 }
-
+                
             } else {
                 print("No results")
             }
             self.attainmentArray.sort(by: { (obj1:AttainmentObject, obj2:AttainmentObject) -> Bool in
                 return (obj2.date.compare(obj1.date) != .orderedDescending)
             })
-
+            
             if(self.attainmentArray.count == 0){
                 print("noattain!")
             }
@@ -526,21 +531,21 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                     }
                     //Uncomment the following line to populate the eventsAttended table
-                   // self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
+                    // self.eventsAttendedArray.append(EventsAttendedObject(date: date!, time: time!, activity: activity!, module: module!))
                 }
                 
-//                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
-//                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
+                //                self.eventsAttendedArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
+                //                self.eventsAttendedUniqueArray = self.eventsAttendedArray.filterDuplicates { $0.date == $1.date }
                 //self.eventsAttendedUniqueArray.sort(by: { $0.date.compare($1.date) == .orderedDescending})
                 //Saving to UserDefaults for offline use.
-//                let defaults = UserDefaults.standard
-//                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
-//                defaults.set(encodedData, forKey: "EventsAttendedArray")
-
+                //                let defaults = UserDefaults.standard
+                //                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.eventsAttendedArray)
+                //                defaults.set(encodedData, forKey: "EventsAttendedArray")
+                
             } else {
                 print("results is nil")
             }
-
+            
             print("events array")
             print(self.eventsAttendedArray)
             
@@ -643,7 +648,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             center.constant = 0.0
             self.view.layoutIfNeeded()
         }
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attainment&contentName=attainment"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attainment&contentName=attainment"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attainment&contentName=attainment"
+        }
         xAPIManager().checkMod(testUrl:urlString)
     }
     
@@ -665,7 +675,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             self.view.layoutIfNeeded()
         }
         //London Developer July 24,2017
-        let urlString = "https://api.datax.jisc.ac.uksg/log?verb=viewed&contentID=stats-points&contentName=points"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-points&contentName=points"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-points&contentName=points"
+        }
         xAPIManager().checkMod(testUrl:urlString)
         
     }
@@ -678,7 +693,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         leaderBoard.isHidden = true
         //London Developer July 24,2017
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard&contentName=leaderboard"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard&contentName=leaderboard"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard&contentName=leaderboard"
+        }
         xAPIManager().checkMod(testUrl:urlString)
         
     }
@@ -692,7 +712,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         eventAtteneded.isHidden = false
         //London Developer July 24,2017
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-events&contentName=eventsAttended"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-events&contentName=eventsAttended"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-events&contentName=eventsAttended"
+        }
         xAPIManager().checkMod(testUrl:urlString)
     }
     
@@ -707,7 +732,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         
         //container.isHidden = false
         //London Developer July 24,2017
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-attendance-summary&contentName=attendanceGraph"
+        }
         xAPIManager().checkMod(testUrl:urlString)
         //   self.view.addSubview(attendance)
         
@@ -774,8 +804,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 }
             }
             
-
-                      break
+            
+            break
         case pointsTable:
             nrRows = pointsArray.count
             break
@@ -797,7 +827,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         switch tableView {
         case attainmentTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: kAttainmentCellIdentifier, for: indexPath)
-
+            
             if let theCell = cell as? AttainmentCell {
                 if demo(){
                     //theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
@@ -808,9 +838,9 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                 } else {
                     theCell.loadAttainmentObject(nil)
                 }
-
+                
             }
-        
+            
             break
         case pointsTable:
             cell = tableView.dequeueReusableCell(withIdentifier: kPointsCellIdentifier, for: indexPath)
@@ -820,10 +850,10 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             break
         case eventsAttendedTableView:
             cell = tableView.dequeueReusableCell(withIdentifier: "EventsAttendedCell", for: indexPath)
-
+            
             if let theCell = cell as? EventsAttendedCell {
                 if indexPath.row < eventsAttendedArray.count {
-                        theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
+                    theCell.loadEvents(events: eventsAttendedArray[indexPath.row])
                 }
             }
             break
@@ -862,7 +892,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
                     tableView.backgroundView  = noDataLabel
                     tableView.separatorStyle  = .none
                 }
-
+                
             }
             break
         case pointsTable:
@@ -905,7 +935,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             
             break
-        
+            
         default:
             let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: tableView.bounds.size.height, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             noDataLabel.text          = localized("no_data_available")
@@ -1019,7 +1049,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
              y: 24.03
              } */
             var data: String = ""
-
+            
             for point in pointsArray {
                 data += "{"
                 if (point.activity == "Loggedin"){
@@ -1053,43 +1083,43 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
     
     private func loadVLEChart(){
         if !iPad{
-        do {
-            guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
-                else {
-                    print ("File reading error")
-                    return
+            do {
+                guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
+                    else {
+                        print ("File reading error")
+                        return
+                }
+                
+                vleGraphWebView.setNeedsLayout()
+                vleGraphWebView.layoutIfNeeded()
+                let w = vleGraphWebView.frame.size.width - 20
+                let h = vleGraphWebView.frame.size.height - 20
+                var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+                contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+                contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+                var dateDataFinal = ""
+                var countDateFinal = ""
+                if (self.graphValues?.columnNames != nil) {
+                    dateDataFinal = self.graphValues!.columnNames!.description
+                } else {
+                    dateDataFinal = ""
+                }
+                if (self.graphValues?.me != nil) {
+                    countDateFinal = self.graphValues!.me!.description
+                } else {
+                    countDateFinal = ""
+                }
+                
+                //dateDataFinal = "['23/09', '24/09', '25/09', '26/09', '27/09', '28/09', '29/09']"
+                //let countDateFinal = "[8,9,9,6,2,8,2]"
+                contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
+                contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
+                
+                let baseUrl = URL(fileURLWithPath: filePath)
+                vleGraphWebView.loadHTMLString(contents as String, baseURL: baseUrl)
+            } catch {
+                print ("File HTML error")
             }
-            
-            vleGraphWebView.setNeedsLayout()
-            vleGraphWebView.layoutIfNeeded()
-            let w = vleGraphWebView.frame.size.width - 20
-            let h = vleGraphWebView.frame.size.height - 20
-            var contents = try String(contentsOfFile: filePath, encoding: .utf8)
-            contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
-            contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
-            var dateDataFinal = ""
-            var countDateFinal = ""
-            if (self.graphValues?.columnNames != nil) {
-                 dateDataFinal = self.graphValues!.columnNames!.description
-            } else {
-                 dateDataFinal = ""
-            }
-            if (self.graphValues?.me != nil) {
-                countDateFinal = self.graphValues!.me!.description
-            } else {
-                countDateFinal = ""
-            }
-
-            //dateDataFinal = "['23/09', '24/09', '25/09', '26/09', '27/09', '28/09', '29/09']"
-            //let countDateFinal = "[8,9,9,6,2,8,2]"
-            contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
-            contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
-            
-            let baseUrl = URL(fileURLWithPath: filePath)
-            vleGraphWebView.loadHTMLString(contents as String, baseURL: baseUrl)
-        } catch {
-            print ("File HTML error")
-        }
         }
         
     }
@@ -1107,7 +1137,12 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         let daysAgoResult = dateFormatter.string(from: twentyEightDaysAgo!)
         
         
-        let urlStringCall = "https://api.datax.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+        var urlStringCall = ""
+        if(!dataManager.developerMode){
+            urlStringCall = "https://api.datax.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+        } else {
+            urlStringCall = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/weeklyattendance?startdate=\(daysAgoResult)&enddate=\(result)"
+        }
         var request:URLRequest?
         if let urlString = urlStringCall.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             if let url = URL(string: urlString) {
@@ -1965,7 +2000,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             view.subviews.first?.removeFromSuperview()
         }
     }
-
+    
     func createLegendLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -2019,20 +2054,40 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         //Getting called for FilteredStatModuleMain
         // Add in a condition with all activity do not send the request.
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+        } else{
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+        }
         xAPIManager().checkMod(testUrl:urlString)
         if leaderBoard.isHidden == false {
-            let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard-module&contentName=leaderboardFilteredByModule&modid=\(String(describing: moduleID))"
+            var urlString = ""
+            if(!dataManager.developerMode){
+                urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard-module&contentName=leaderboardFilteredByModule&modid=\(String(describing: moduleID))"
+            } else {
+                urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-leaderboard-module&contentName=leaderboardFilteredByModule&modid=\(String(describing: moduleID))"
+            }
             xAPIManager().checkMod(testUrl:urlString)
         }
         
         if eventAtteneded.isHidden == false{
-            let urlString = "https://api.datax.jisc.ac.uksg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            var urlString = ""
+            if(!dataManager.developerMode){
+                urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            } else {
+                urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            }
             xAPIManager().checkMod(testUrl:urlString)
         }
         
         if (attendance.isHidden == false){
-            let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            var urlString = ""
+            if(!dataManager.developerMode){
+                urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            } else {
+                urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+            }
             xAPIManager().checkMod(testUrl:urlString)
         }
         

@@ -18,7 +18,7 @@ let xAPIGetEngagementDataPath = "v2/engagement"
 let xAPIGetModulesPath = "v2/filter"
 let xAPIGetAttainmentPath = "v2/attainment"
 let xAPIGetComparisonToTop10PercentPath = "v2/engagement"
-let xAPIGetEventsAttendedPath = "https://api.datax.jisc.ac.uk/sg/attendance?"
+var xAPIGetEventsAttendedPath = "https://api.datax.jisc.ac.uk/sg/attendance?"
 let xAPIGetAppUsagePath = "https://stuapp.analytics.alpha.jisc.ac.uk/fn_get_appusage"
 let xAPIEditToDoPath = "fn_edit_todo_task?"
 
@@ -63,8 +63,14 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
     var code:kRequestStatusCode?
     var shouldNotifyAboutInternetConnection:Bool = true
     
-    //MARK: NSURLConnection Data Delegate
+    override init(){
+        super.init()
+        if(dataManager.developerMode){
+            xAPIGetEventsAttendedPath = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/attendance?"
+        }
+    }
     
+    //MARK: NSURLConnection Data Delegate
     func connection(_ connection: NSURLConnection, didReceive data: Data) {
         rawData.append(data)
     }
