@@ -84,6 +84,7 @@ class DataManager: NSObject {
     var studentOverallRankings:[Int:Int] = [Int:Int]()
     var runningLogs:[RunningLogContainer] = [RunningLogContainer]()
     var myAssignmentRankings:[(name:String, rank:Int)] = [(name:String, rank:Int)]()
+    var developerMode = false
     
     func initialize() {
         cleanEverything()

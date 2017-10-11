@@ -38,7 +38,12 @@ class FeedVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, UI
         
         
         //London Developer July 24,2017
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=feed-main&contentName=MainFeed"
+        }
         xAPIManager().checkMod(testUrl:urlString)
         feedsTableView.reloadData()
         

@@ -59,7 +59,12 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 	override func viewDidLoad() {
 		super.viewDidLoad()
         //London Developer July 24,2017
-        let urlString = "https://api.datax.jisc.ac.uk/sg/setting?setting=attendanceData"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/setting?setting=attendanceData"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/setting?setting=attendanceData"
+        }
         xAPIManager().checkMod(testUrl:urlString)
 
 		myFriendsLabel.text = "\(dataManager.friends().count)"

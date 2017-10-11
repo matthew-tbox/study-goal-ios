@@ -294,11 +294,21 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
             target.timeSpan = timeSpan.rawValue
             if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
                 target.module = dataManager.modules()[selectedModule - 1]
-                let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
+                var urlString = ""
+                if(!dataManager.developerMode){
+                    urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
+                } else {
+                    urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
+                }
                 xAPIManager().checkMod(testUrl:urlString)
             } else {
                 target.module = nil
-                let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
+                var urlString = ""
+                if(!dataManager.developerMode){
+                    urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
+                } else {
+                    urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
+                }
                 xAPIManager().checkMod(testUrl:urlString)
             }
             target.because = because

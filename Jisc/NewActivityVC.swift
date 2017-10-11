@@ -415,7 +415,12 @@ class NewActivityVC: BaseViewController, UIPickerViewDelegate, UIPickerViewDataS
 						_ = self.navigationController?.popViewController(animated: true)
 					})
                     //London Developer July 24,2017
-                    let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(String(describing: self.theActivity?.module?.id))"
+                    var urlString = ""
+                    if(!dataManager.developerMode){
+                        urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(String(describing: self.theActivity?.module?.id))"
+                    } else {
+                        urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-timed&contentName=logTimed&modid=\(String(describing: self.theActivity?.module?.id))"
+                    }
                     xAPIManager().checkMod(testUrl:urlString)
 				} else if (failureReason == "timeZero") {
 					AlertView.showAlert(false, message: localized("activity_was_cancelled_due_to_short_time_spent"), completion: { (done) -> Void in

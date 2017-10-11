@@ -33,7 +33,12 @@ class LogVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, Cus
 		refreshControl.addTarget(self, action: #selector(LogVC.manuallyRefreshLogs(_:)), for: UIControlEvents.valueChanged)
 		activityLogsTable.addSubview(refreshControl)
         //London Developer July 24,2017
-        let urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-main&contentName=MainLogsPage"
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-main&contentName=MainLogsPage"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=logs-main&contentName=MainLogsPage"
+        }
         xAPIManager().checkMod(testUrl:urlString)
 	}
 	

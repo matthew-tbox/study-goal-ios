@@ -98,6 +98,8 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 	@IBOutlet weak var institutesTable:UITableView!
 	@IBOutlet weak var institutesTableHeight:NSLayoutConstraint!
 	var filteredInstitutions:[Institution] = [Institution]()
+    
+    var developerModeCounter = 0
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -644,4 +646,34 @@ class LoginVC: BaseViewController, UITableViewDelegate, UITableViewDataSource, U
 		
 		instituteTextField.resignFirstResponder()
 	}
+    
+    @IBAction func changeDeveloperMode(){
+        developerModeCounter += 1
+        if(developerModeCounter == 5){
+            developerModeCounter = 0
+            if(dataManager.developerMode){
+                showToast(message: "Developer Mode turned off")
+            } else {
+                showToast(message: "Developer Mode turned on")
+            }
+            dataManager.developerMode = !dataManager.developerMode
+        }
+    }
+    
+    func showToast(message: String) {
+        let toast = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 125, y: self.view.frame.size.height-100, width: 250, height: 35))
+        toast.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toast.textColor = UIColor.white
+        toast.textAlignment = .center;
+        toast.text = message
+        toast.alpha = 1.0
+        toast.layer.cornerRadius = 10;
+        toast.clipsToBounds  =  true
+        self.view.addSubview(toast)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+            toast.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toast.removeFromSuperview()
+        })
+    }
 }
