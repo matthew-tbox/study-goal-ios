@@ -56,34 +56,6 @@ class PointsObject {
     
 }
 
-class EventsAttendedObject {
-    var date:String
-    var time:String
-    var activity:String
-    var module:String
-    
-    init(date:String,time:String,activity:String,module:String){
-        self.date = date
-        self.time = time
-        self.activity = activity
-        self.module = module
-    }
-    //    //MARK: - NSCoding -
-    //    required convenience init(coder aDecoder: NSCoder) {
-    //        let date = aDecoder.decodeObject(forKey: "date") as! Date
-    //        let activity = aDecoder.decodeObject(forKey: "activity") as! String
-    //        let module = aDecoder.decodeObject(forKey: "module") as! String
-    //        self.init(date: date, activity: activity, module: module)
-    //    }
-    //
-    //    func encode(with aCoder: NSCoder) {
-    //        aCoder.encode(date, forKey: "date")
-    //        aCoder.encode(activity, forKey: "activity")
-    //        aCoder.encode(module, forKey: "module")
-    //
-    //    }
-}
-
 let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
 let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
 let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)

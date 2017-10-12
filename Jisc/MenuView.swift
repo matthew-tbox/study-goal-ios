@@ -18,6 +18,7 @@ class MenuView: UIView {
 	let targetViewController = TargetVC()
     let appUsageViewController = AppUsageViewController()
     let statsAttainmentViewController = AttainmentViewController()
+    let statsAttendanceViewController = AttendanceViewController()
 
 	@IBOutlet weak var profileImage:UIImageDownload!
 	@IBOutlet weak var nameLabel:UILabel!
@@ -210,6 +211,13 @@ class MenuView: UIView {
         selectedIndex = 2
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
         DELEGATE.mainNavigationController?.setViewControllers([statsAttainmentViewController], animated: false)
+        close(nil)
+    }
+    
+    func statsAttendance() {
+        selectedIndex = 2
+        NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
+        DELEGATE.mainNavigationController?.setViewControllers([statsAttendanceViewController], animated: false)
         close(nil)
     }
     

@@ -30,6 +30,8 @@
 		97A245061F8F647300CD9239 /* AttainmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A245041F8F647300CD9239 /* AttainmentViewController.xib */; };
 		97A2450D1F8F7A9200CD9239 /* AttainmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A2450B1F8F7A9200CD9239 /* AttainmentCell.swift */; };
 		97A2450E1F8F7A9200CD9239 /* AttainmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A2450C1F8F7A9200CD9239 /* AttainmentCell.xib */; };
+		97A245161F8F95EC00CD9239 /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */; };
+		97A245171F8F95EC00CD9239 /* AttendanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */; };
 		DA0081E01DF833D50034786A /* splash_screen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081DF1DF833D50034786A /* splash_screen.mp4 */; };
 		DA0081E21DF833DD0034786A /* splash_screen_iPad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DA0081E11DF833DD0034786A /* splash_screen_iPad.mp4 */; };
 		DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA0BDBF21E850FFD00166E16 /* LoginVC.xib */; };
@@ -323,6 +325,8 @@
 		97A245041F8F647300CD9239 /* AttainmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttainmentViewController.xib; sourceTree = "<group>"; };
 		97A2450B1F8F7A9200CD9239 /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
 		97A2450C1F8F7A9200CD9239 /* AttainmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttainmentCell.xib; sourceTree = "<group>"; };
+		97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
+		97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttendanceViewController.xib; sourceTree = "<group>"; };
 		AA5AB1488B3C5169A21992B9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE36E7B48A149906611638BD /* Pods-Jisc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.debug.xcconfig"; sourceTree = "<group>"; };
 		D1C2B6248A9A876366B5C2F7 /* Pods-Jisc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jisc.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jisc/Pods-Jisc.release.xcconfig"; sourceTree = "<group>"; };
@@ -598,6 +602,17 @@
 			name = StatsAttainment;
 			sourceTree = "<group>";
 		};
+		97A2450F1F8F959D00CD9239 /* StatsAttendance */ = {
+			isa = PBXGroup;
+			children = (
+				97A245141F8F95EC00CD9239 /* AttendanceViewController.swift */,
+				97A245151F8F95EC00CD9239 /* AttendanceViewController.xib */,
+				80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */,
+				80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */,
+			);
+			name = StatsAttendance;
+			sourceTree = "<group>";
+		};
 		C99704E93C2B375DBBA083D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -805,8 +820,6 @@
 				DA76411A1BD7BE3300A7D5C1 /* AlertView.xib */,
 				8014B5EE1F44BCD5001BF4E4 /* TermsViewController.swift */,
 				8014B5EF1F44BCD5001BF4E4 /* TermsViewController.xib */,
-				80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */,
-				80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */,
 				DAD644CA1C6227C800AA62E8 /* Localizable.strings */,
 				DA425AAF1BD4F5C400C77D76 /* AppObjects */,
 				DA7F1D271BD8CFB5004EA957 /* Utilities */,
@@ -891,6 +904,7 @@
 		DAA2AEEE1BCE85A600ED796A /* Stats */ = {
 			isa = PBXGroup;
 			children = (
+				97A2450F1F8F959D00CD9239 /* StatsAttendance */,
 				97A244FB1F8E624000CD9239 /* StatsAttainment */,
 				DAD1D7E91C50EF81005BA786 /* Common */,
 				DAD1D7E81C50EF7F005BA786 /* iPhone */,
@@ -1446,6 +1460,7 @@
 				DAB0C7F51C4CE92700F7A3C6 /* MyFriendCell.xib in Resources */,
 				DAB0C8611C4CEA8900F7A3C6 /* TargetVC.xib in Resources */,
 				DAB0C8731C4CEAC400F7A3C6 /* NewTargetVC~ipad.xib in Resources */,
+				97A245171F8F95EC00CD9239 /* AttendanceViewController.xib in Resources */,
 				DA4085B81EE6AFE50012A561 /* MenuButton.xib in Resources */,
 				DAC32DC91BCF9F5B00C4FBF5 /* MyriadPro-Regular.otf in Resources */,
 				DAD66C9C1C52745500074B79 /* LoginVC~ipad-OLD.xib in Resources */,
@@ -1703,6 +1718,7 @@
 				DAD4C8241BF4E78E001C4435 /* Colleague.swift in Sources */,
 				DA26FB451C6CCD1500FB8CF5 /* MyFriendsView.swift in Sources */,
 				DA7641241BD7CC0800A7D5C1 /* SettingsVC.swift in Sources */,
+				97A245161F8F95EC00CD9239 /* AttendanceViewController.swift in Sources */,
 				DAD644DE1C623B8500AA62E8 /* LocalizableTextView.swift in Sources */,
 				DA7641151BD7800700A7D5C1 /* DataManager.swift in Sources */,
 				DAD644D91C623A4400AA62E8 /* LocalizableButton.swift in Sources */,

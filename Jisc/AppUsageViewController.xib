@@ -39,32 +39,32 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGS-hF-sjN" userLabel="Header">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="FzD-DB-KuH">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-aZ-foI">
-                            <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                            <rect key="frame" x="0.0" y="20" width="34" height="45"/>
                             <state key="normal" image="openMenuButton"/>
                             <connections>
                                 <action selector="openMenu:" destination="-1" eventType="touchUpInside" id="vzP-Iy-nMX"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHj-hv-Ca6" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="40" y="32" width="27.5" height="17"/>
+                            <rect key="frame" x="34" y="33" width="30.5" height="20"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Usage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fv4-ut-z08">
-                            <rect key="frame" x="135.5" y="28" width="104" height="22"/>
+                            <rect key="frame" x="132.5" y="28" width="110" height="26"/>
                             <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCX-LB-NPu">
-                            <rect key="frame" x="334.5" y="20" width="40.5" height="40"/>
+                            <rect key="frame" x="337.5" y="20" width="37.5" height="45"/>
                             <state key="normal" image="settingsButton"/>
                         </button>
                     </subviews>
@@ -95,10 +95,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tus-89-Nqm" userLabel="met/failed targets">
-                    <rect key="frame" x="0.0" y="179" width="375" height="75"/>
+                    <rect key="frame" x="0.0" y="184" width="375" height="70"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Targets met on time: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGg-4a-dCo" userLabel="targetsMet" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="117" y="16" width="250" height="17"/>
+                            <rect key="frame" x="117" y="16" width="250" height="20"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Targets not met on time: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d3-Gl-ruC" userLabel="targetsFailed" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="117" y="41" width="250" height="17"/>
+                            <rect key="frame" x="117" y="44" width="250" height="20"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -116,7 +116,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="targets_met" translatesAutoresizingMaskIntoConstraints="NO" id="xUQ-OK-27i">
-                            <rect key="frame" x="37" y="22" width="30" height="30"/>
+                            <rect key="frame" x="37" y="22" width="30" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="O22-FH-wYb"/>
                             </constraints>
@@ -225,7 +225,7 @@
                     </constraints>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="start" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hAI-kA-LO1">
-                    <rect key="frame" x="9" y="94" width="171" height="30"/>
+                    <rect key="frame" x="9" y="99" width="171" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="171" id="Tcf-IH-sfl"/>
                     </constraints>
@@ -234,16 +234,16 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bEf-13-iVk" userLabel="selectorIndicatorIconStart">
-                    <rect key="frame" x="163" y="104" width="12" height="6"/>
+                    <rect key="frame" x="163" y="109" width="12" height="6"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="end" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wO-M5-cZN">
-                    <rect key="frame" x="194" y="94" width="171" height="30"/>
+                    <rect key="frame" x="194" y="99" width="171" height="30"/>
                     <color key="textColor" red="0.75294117650000003" green="0.62352941179999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="CyK-dG-DMB" userLabel="selectorIndicatorIconEnd">
-                    <rect key="frame" x="347" y="104" width="12" height="6"/>
+                    <rect key="frame" x="347" y="109" width="12" height="6"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

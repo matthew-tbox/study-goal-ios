@@ -333,19 +333,12 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             retract()
         } else if indexPath.row == 3 {
             parent?.close(nil)
-            parent?.stats()
+            parent?.statsAttendance()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                self.parent?.statsViewController.goToAttendance()
+                self.parent?.statsAttendanceViewController
             }
             retract()
         } else if indexPath.row == 4 {
-            parent?.close(nil)
-            parent?.stats()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                self.parent?.statsViewController.goToEventsAttended()
-            }
-            retract()
-        } else if indexPath.row == 5 {
             parent?.close(nil)
             parent?.stats()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
