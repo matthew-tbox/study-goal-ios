@@ -26,6 +26,8 @@
                 <outlet property="attendanceSummaryView" destination="gPy-RB-Mgu" id="mPL-8r-xT7"/>
                 <outlet property="endDateFieldAll" destination="Ohw-r6-VmQ" id="EFc-K1-3D0"/>
                 <outlet property="endDateFieldSummary" destination="r1X-sy-92i" id="gdx-YF-PHx"/>
+                <outlet property="moduleButtonAll" destination="AUI-Ie-I4e" id="lov-iG-L9h"/>
+                <outlet property="moduleButtonSummary" destination="3Yk-2C-ige" id="ByJ-Tc-arX"/>
                 <outlet property="noDataWebViewLabel" destination="bzr-hR-wYi" id="GKB-hi-Rcj"/>
                 <outlet property="segmentControl" destination="FSF-It-PhI" id="4O7-9H-1fO"/>
                 <outlet property="startDateFieldAll" destination="gvK-tX-kPH" id="hh3-LL-phD"/>

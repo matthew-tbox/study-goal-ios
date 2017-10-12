@@ -22,7 +22,7 @@ class EventsAttendedObject {
     }
 }
 
-class AttendanceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AttendanceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CustomPickerViewDelegate {
 
     @IBOutlet weak var segmentControl:UISegmentedControl!
     @IBOutlet weak var attendanceAllView:UIView!
@@ -44,6 +44,11 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     var endDatePicker = UIDatePicker()
     let gbDateFormat = DateFormatter.dateFormat(fromTemplate: "dd/MM/yyyy", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
     let databaseDateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy-MM-dd", options: 0, locale: NSLocale(localeIdentifier: "en-GB") as Locale)
+    
+    @IBOutlet weak var moduleButtonAll:UIButton!
+    @IBOutlet weak var moduleButtonSummary:UIButton!
+    var moduleSelectorView:CustomPickerView = CustomPickerView()
+    var selectedModule:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -288,4 +293,60 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
 
+    @IBAction func showModuleSelector(_ sender:UIButton) {
+        var array:[String] = [String]()
+        array.append(localized("modules"))
+        let centeredIndexes = [Int]()
+        for (_, item) in dataManager.modules().enumerated() {
+            array.append(" - \(item.name)")
+        }
+        moduleSelectorView = CustomPickerView.create(localized("filter"), delegate: self, contentArray: array, selectedItem: selectedModule)
+        moduleSelectorView.centerIndexes = centeredIndexes
+        view.addSubview(moduleSelectorView)
+        var moduleID:String? = nil
+        
+        if (selectedModule > 0) {
+            let theIndex = selectedModule - 1
+            if (theIndex < dataManager.modules().count) {
+                moduleID = dataManager.modules()[theIndex].id
+            }
+        }
+
+        var urlString = ""
+        if(!dataManager.developerMode){
+            urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+        } else {
+            urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=stats-main-module&contentName=MainStatsFilteredByModule&modid=\(String(describing: moduleID))"
+        }
+        xAPIManager().checkMod(testUrl:urlString)
+    }
+    
+    func view(_ view: CustomPickerView, selectedRow: Int) {
+        /*if (selectedModule != selectedRow) {
+            selectedModule = selectedRow
+            moduleButton.setTitle(view.contentArray[selectedRow], for: UIControlState())
+            let moduleIndex = selectedModule - (1 + dataManager.courses().count)
+            if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
+                moduleButton.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
+            }
+            if (selectedModule == 0) {
+                    friendsInModule.removeAll()
+                    selectedStudent = 0
+                    compareToButton.setTitle(localized("no_one"), for: UIControlState())
+                    compareToView.alpha = 0.5
+                    compareToView.isUserInteractionEnabled = false
+                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
+                        self.blueDot.alpha = 0.0
+                        self.comparisonStudentName.alpha = 0.0
+                    })
+                } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
+                    DownloadManager().getFriendsByModule(dataManager.currentStudent!.id, module: dataManager.modules()[moduleIndex].id, alertAboutInternet: false, completion: { (success, result, results, error) in
+                        if let array = results {
+                            print("ARRAY: \(array)")
+                        }
+                    })
+                }
+                getEngagementData()
+            }
+            break*/
 }
