@@ -27,40 +27,6 @@ fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class AttainmentObject {
-    var date:Date
-    var moduleName:String
-    var grade:String
-    var dateString:String
-    
-    init(date:Date, moduleName:String, grade:String) {
-        self.date = date
-        self.moduleName = moduleName
-        self.grade = grade
-        self.dateString = ""
-    }
-    init(dateString:String, moduleName:String, grade:String){
-        self.dateString = dateString
-        self.moduleName = moduleName
-        self.grade = grade
-        self.date = Date()
-    }
-    //    //MARK: - NSCoding -
-    //    required convenience init(coder aDecoder: NSCoder) {
-    //        let date = aDecoder.decodeObject(forKey: "date") as! Date
-    //        let moduleName = aDecoder.decodeObject(forKey: "moduleName") as! String
-    //        let grade = aDecoder.decodeObject(forKey: "grade") as! String
-    //        self.init(date: date, moduleName: moduleName, grade: grade)
-    //    }
-    //
-    //    func encode(with aCoder: NSCoder) {
-    //        aCoder.encode(date, forKey: "date")
-    //        aCoder.encode(moduleName, forKey: "moduleName")
-    //        aCoder.encode(grade, forKey: "grade")
-    //
-    //    }
-}
-
 class PointsObject {
     var activity:String
     var count:Int
@@ -955,8 +921,8 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
         case attainmentTableView:
             if let theCell = cell as? AttainmentCell {
                 if demo(){
-                    theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
-                    theCell.positionLabel.text = String(arc4random_uniform(50))
+                    //theCell.nameLabel.text = attainmentDemoArray[indexPath.row]
+                    //theCell.positionLabel.text = String(arc4random_uniform(50))
                 }
                 if indexPath.row < attainmentArray.count {
                     let attObject = attainmentArray[indexPath.row]

@@ -221,9 +221,10 @@ class xAPIManager: NSObject, NSURLConnectionDataDelegate, NSURLConnectionDelegat
         var request:URLRequest?
         if let url = urlWithPath(path) {
             request = URLRequest(url: url)
+            print("url is \(url)")
             if (withJWT) {
                 if let token = xAPIToken() {
-                    request?.addValue("\(token)\"}", forHTTPHeaderField: "Authorization")
+                    request?.addValue("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE1MDU4MjcwODQsImp0aSI6ImFXWmF2WHF5ek5KOE02NEd5VnM0SDJnWWlLQUVBSlErK1FIM2owWFlITkE9IiwiaXNzIjoiaHR0cDpcL1wvbG9jYWxob3N0XC9leGFtcGxlIiwibmJmIjoxNTA1ODI3MDc0LCJleHAiOjE1MDk5NzQyNzQsImRhdGEiOnsiZXBwbiI6InRvbS5nbGFudmlsbGVAY29ycC5qaXNjLmFjLnVrIiwicGlkIjoidG9tLmdsYW52aWxsZUBjb3JwLmppc2MuYWMudWsiLCJhZmZpbGlhdGlvbiI6InN0YWZmQGNvcnAuamlzYy5hYy51azttZW1iZXJAY29ycC5qaXNjLmFjLnVrIn19.lzH6OoXAeXtmloe0-siPmSTA5TNH3iN8W-HG9Ygkx3OI4igML9ptS18Hm_pthTzq7tRn0GgJmbP_7ptqVeBfBA\"}", forHTTPHeaderField: "Authorization")
                 }
             }
         }

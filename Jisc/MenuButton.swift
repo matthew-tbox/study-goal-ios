@@ -326,9 +326,9 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
             retract()
         } else if indexPath.row == 2 {
             parent?.close(nil)
-            parent?.stats()
+            parent?.statsAttainment()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                self.parent?.statsViewController.goToAttainment()
+                self.parent?.statsAttainmentViewController
             }
             retract()
         } else if indexPath.row == 3 {
