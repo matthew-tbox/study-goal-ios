@@ -131,13 +131,17 @@
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-Ie-I4e">
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-Ie-I4e" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="8" y="49" width="359" height="42"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
-                                    <state key="normal" title="Module" backgroundImage="purpleBorder">
+                                    <state key="normal" title="Filter Modules" backgroundImage="purpleBorder">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="filter_modules"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="filter_modules"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="showModuleSelector:" destination="-1" eventType="touchUpInside" id="7mv-WQ-4BT"/>
                                     </connections>
@@ -241,13 +245,17 @@
                                     <rect key="frame" x="300" y="281" width="12" height="6"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yk-2C-ige">
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yk-2C-ige" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                                     <rect key="frame" x="8" y="311" width="359" height="42"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
-                                    <state key="normal" title="Module" backgroundImage="purpleBorder">
+                                    <state key="normal" title="Filter Modules" backgroundImage="purpleBorder">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="filter_modules"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="filter_modules"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="showModuleSelector:" destination="-1" eventType="touchUpInside" id="GIQ-Za-Oaz"/>
                                     </connections>
@@ -260,8 +268,12 @@
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compare to Leader" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-rr-jfT" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="8" y="360" width="238" height="42"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="networkBlue" translatesAutoresizingMaskIntoConstraints="NO" id="iAy-Fd-Z7y">
+                                    <rect key="frame" x="16" y="366" width="30" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compare to Leader" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-rr-jfT" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                                    <rect key="frame" x="63" y="360" width="183" height="42"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                                     <color key="textColor" red="0.40784313725490196" green="0.40781933069229126" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -298,6 +310,7 @@
     <resources>
         <image name="cool" width="30" height="30"/>
         <image name="lightBlue" width="10" height="10"/>
+        <image name="networkBlue" width="30" height="29"/>
         <image name="openMenuButton" width="22" height="22"/>
         <image name="purpleBorder" width="8" height="8"/>
         <image name="selectorIndicatorIcon" width="12" height="6"/>

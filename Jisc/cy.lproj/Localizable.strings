@@ -408,7 +408,7 @@
 "events_attended" = "Digwyddiadau a Fynychwyd";
 "vle_activity" = "Gweithgaredd VLE";
 "leaderboard" = "Bwrdd yr Arweinydd";
-"no_data_available" = "Dim data";
+"no_data_available" = "dim data";
 "logged_in" = "Mewngofnodi";
 "average_small" = "Cyfartaledd";
 "targets_met" = "Cyrhaeddwyd y targedau";
@@ -437,3 +437,4 @@
 "all" = "PLACEHOLDER";
 "summary" = "PLACEHOLDER";
 "compare_to_leader" = "PLACEHOLDER";
+"filter_modules" = "PLACEHOLDER";

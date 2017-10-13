@@ -416,7 +416,7 @@
 "events_attended" = "Events Attended";
 "vle_activity" = "VLE Activity";
 "leaderboard" = "Leaderboard";
-"no_data_available" = "No data available";
+"no_data_available" = "no data available";
 "logged_in" = "Logged in";
 "average_small" = "average";
 "targets_met" = "Targets Met";
@@ -444,3 +444,4 @@
 "all" = "All";
 "summary" = "Summary";
 "compare_to_leader" = "Compare to Leader";
+"filter_modules" = "Filter Modules";

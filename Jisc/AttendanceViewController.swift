@@ -295,7 +295,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
-        array.append(localized("all_modules"))
+        array.append(localized("filter_modules"))
         let centeredIndexes = [Int]()
         for (_, item) in dataManager.modules().enumerated() {
             array.append(" - \(item.name)")
