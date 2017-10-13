@@ -127,7 +127,7 @@
                                     <rect key="frame" x="325" y="0.0" width="42" height="42"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="17"/>
-                                    <state key="normal" image="cool" backgroundImage="purpleBorder">
+                                    <state key="normal" image="settingsWheelGray" backgroundImage="purpleBorder">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
@@ -264,7 +264,7 @@
                                     <rect key="frame" x="325" y="263" width="42" height="42"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="17"/>
-                                    <state key="normal" image="cool" backgroundImage="purpleBorder">
+                                    <state key="normal" image="settingsWheelGray" backgroundImage="purpleBorder">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
@@ -308,11 +308,11 @@
         </view>
     </objects>
     <resources>
-        <image name="cool" width="30" height="30"/>
         <image name="lightBlue" width="10" height="10"/>
         <image name="networkBlue" width="30" height="29"/>
         <image name="openMenuButton" width="22" height="22"/>
         <image name="purpleBorder" width="8" height="8"/>
         <image name="selectorIndicatorIcon" width="12" height="6"/>
+        <image name="settingsWheelGray" width="18" height="18"/>
     </resources>
 </document>

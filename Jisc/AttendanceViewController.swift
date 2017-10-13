@@ -72,6 +72,8 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
         tableView.register(EventsAttendedCell.self, forCellReuseIdentifier: kEventsAttendedCellIdentifier)
         tableView.register(UINib(nibName: kEventsAttendedCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kEventsAttendedCellIdentifier)
+        tableView.alwaysBounceVertical = false;
+        tableView.tableFooterView = UIView()
         
         self.attendanceData.removeAll()
         getAttendance {
@@ -307,7 +309,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
-        array.append(localized("filter_modules"))
+        array.append(localized("all_modules"))
         let centeredIndexes = [Int]()
         for (_, item) in dataManager.modules().enumerated() {
             array.append(" - \(item.name)")
@@ -339,9 +341,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             let moduleIndex = selectedModule - 1
             
             if (selectedModule == 0) {
-                moduleButtonAll.setTitle(localized("module"), for: UIControlState())
+                moduleButtonAll.setTitle(localized("filter_modules"), for: UIControlState())
                 if(!iPad){
-                    moduleButtonSummary.setTitle(localized("module"), for: UIControlState())
+                    moduleButtonSummary.setTitle(localized("filter_modules"), for: UIControlState())
                 }
             } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
                 moduleButtonAll.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())

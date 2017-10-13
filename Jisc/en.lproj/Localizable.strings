@@ -445,3 +445,5 @@
 "summary" = "Summary";
 "compare_to_leader" = "Compare to Leader";
 "filter_modules" = "Filter Modules";
+"chart" = "Chart";
+"all_modules" = "All Modules";

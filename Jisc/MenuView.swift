@@ -17,6 +17,7 @@ class MenuView: UIView {
 	let logViewController = LogVC()
 	let targetViewController = TargetVC()
     let appUsageViewController = AppUsageViewController()
+    let statsActivityPointsViewController = ActivityPointsViewController()
     let statsAttainmentViewController = AttainmentViewController()
     let statsAttendanceViewController = AttendanceViewController()
 
@@ -199,6 +200,13 @@ class MenuView: UIView {
 		DELEGATE.mainNavigationController?.setViewControllers([statsViewController], animated: false)
 		close(nil)
 	}
+    
+    func statsActivityPoints() {
+        selectedIndex = 2
+        NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Stats)
+        DELEGATE.mainNavigationController?.setViewControllers([statsActivityPointsViewController], animated: false)
+        close(nil)
+    }
     
     func appUsage() {
         selectedIndex = 2

@@ -27,35 +27,6 @@ fileprivate func <= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class PointsObject {
-    var activity:String
-    var count:Int
-    var points:Int
-    
-    init(activity:String, count:Int, points:Int) {
-        self.activity = activity
-        self.count = count
-        self.points = points
-    }
-    //    //MARK: - NSCoding -
-    //    required convenience init(coder aDecoder: NSCoder) {
-    //        let activity = aDecoder.decodeObject(forKey: "activity") as! String
-    //        let count1 = aDecoder.decodeObject(forKey: "count") as! String
-    //        let points1 = aDecoder.decodeObject(forKey: "points") as! String
-    //        let count:Int =  Int(count1)!
-    //        let points:Int = Int(points1)!
-    //        self.init(activity: activity, count: count, points: points)
-    //    }
-    //
-    //    func encode(with aCoder: NSCoder) {
-    //        aCoder.encode(activity, forKey: "activity")
-    //        aCoder.encode(count, forKey: "count")
-    //        aCoder.encode(points, forKey: "points")
-    //
-    //    }
-    
-}
-
 let periods:[kXAPIEngagementScope] = [.SevenDays, .ThirtyDays]
 let myColor = UIColor(red: 0.53, green: 0.39, blue: 0.78, alpha: 1.0)
 let otherStudentColor = UIColor(red: 0.22, green: 0.57, blue: 0.93, alpha: 1.0)

@@ -312,9 +312,9 @@ class StatsMenuButton: MenuButton,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             parent?.close(nil)
-            parent?.stats()
+            parent?.statsActivityPoints()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                self.parent?.statsViewController.goToPoints()
+                self.parent?.statsActivityPointsViewController
             }
             retract()
         } else if indexPath.row == 1 {

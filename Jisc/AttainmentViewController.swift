@@ -49,6 +49,8 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         tableView.estimatedRowHeight = 35.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(UINib(nibName: kAttainmentCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kAttainmentCellIdentifier)
+        tableView.alwaysBounceVertical = false;
+        tableView.tableFooterView = UIView()
         
         //get attainment date
         attainmentData.removeAll()
@@ -164,7 +166,7 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
-        array.append(localized("all_activity"))
+        array.append(localized("all_modules"))
         var centeredIndexes = [Int]()
         for (_, item) in dataManager.courses().enumerated() {
             centeredIndexes.append(array.count)
@@ -203,7 +205,7 @@ class AttainmentViewController: UIViewController, UITableViewDataSource, UITable
         if (selectedModule != selectedRow) {
             selectedModule = selectedRow
             if(selectedModule == 0){
-                moduleButton.setTitle(localized("module"), for: UIControlState())
+                moduleButton.setTitle(localized("filter_modules"), for: UIControlState())
                 getAttainmentData {
                     print("getting all attainment data")
                 }
