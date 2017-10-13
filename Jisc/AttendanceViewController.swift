@@ -295,7 +295,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBAction func showModuleSelector(_ sender:UIButton) {
         var array:[String] = [String]()
-        array.append(localized("modules"))
+        array.append(localized("all_modules"))
         let centeredIndexes = [Int]()
         for (_, item) in dataManager.modules().enumerated() {
             array.append(" - \(item.name)")
@@ -322,32 +322,21 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func view(_ view: CustomPickerView, selectedRow: Int) {
-        /*if (selectedModule != selectedRow) {
+        if (selectedModule != selectedRow) {
             selectedModule = selectedRow
-            moduleButton.setTitle(view.contentArray[selectedRow], for: UIControlState())
-            let moduleIndex = selectedModule - (1 + dataManager.courses().count)
-            if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
-                moduleButton.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
-            }
+            let moduleIndex = selectedModule - 1
+            
             if (selectedModule == 0) {
-                    friendsInModule.removeAll()
-                    selectedStudent = 0
-                    compareToButton.setTitle(localized("no_one"), for: UIControlState())
-                    compareToView.alpha = 0.5
-                    compareToView.isUserInteractionEnabled = false
-                    UIView.animate(withDuration: 0.25, animations: { () -> Void in
-                        self.blueDot.alpha = 0.0
-                        self.comparisonStudentName.alpha = 0.0
-                    })
-                } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
-                    DownloadManager().getFriendsByModule(dataManager.currentStudent!.id, module: dataManager.modules()[moduleIndex].id, alertAboutInternet: false, completion: { (success, result, results, error) in
-                        if let array = results {
-                            print("ARRAY: \(array)")
-                        }
-                    })
-                }
-                getEngagementData()
+                moduleButtonAll.setTitle(localized("module"), for: UIControlState())
+                moduleButtonSummary.setTitle(localized("module"), for: UIControlState())
+            } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
+                moduleButtonAll.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
+                moduleButtonSummary.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
+                //specific call
             }
-            break*/
+            getAttendance {
+                
+            }
+        }
     }
 }

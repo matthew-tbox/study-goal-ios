@@ -138,6 +138,9 @@
                                     <state key="normal" title="Module" backgroundImage="purpleBorder">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="showModuleSelector:" destination="-1" eventType="touchUpInside" id="7mv-WQ-4BT"/>
+                                    </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selectorIndicatorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="yhq-in-71A" userLabel="selectorIndicatorIconEnd">
                                     <rect key="frame" x="291" y="17" width="12" height="6"/>
@@ -245,6 +248,9 @@
                                     <state key="normal" title="Module" backgroundImage="purpleBorder">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="showModuleSelector:" destination="-1" eventType="touchUpInside" id="GIQ-Za-Oaz"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2L-Ky-rkN" userLabel="Date Settings">
                                     <rect key="frame" x="325" y="263" width="42" height="42"/>
