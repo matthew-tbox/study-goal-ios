@@ -54,8 +54,10 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         
         //set localization for segment controller
-        segmentControl.setTitle(localized("summary"), forSegmentAt: 0)
-        segmentControl.setTitle(localized("all"), forSegmentAt: 1)
+        if(!iPad){
+            segmentControl.setTitle(localized("summary"), forSegmentAt: 0)
+            segmentControl.setTitle(localized("all"), forSegmentAt: 1)
+        }
         
         customizeLayout()
         setupDatePickers()
@@ -210,15 +212,17 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func customizeLayout(){
-        startDateFieldSummary.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
-        startDateFieldSummary.layer.borderWidth = 1
-        startDateFieldSummary.layer.cornerRadius = 4
-        startDateFieldSummary.layer.masksToBounds = true
-        
-        endDateFieldSummary.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
-        endDateFieldSummary.layer.borderWidth = 1
-        endDateFieldSummary.layer.cornerRadius = 4
-        endDateFieldSummary.layer.masksToBounds = true
+        if(!iPad){
+            startDateFieldSummary.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
+            startDateFieldSummary.layer.borderWidth = 1
+            startDateFieldSummary.layer.cornerRadius = 4
+            startDateFieldSummary.layer.masksToBounds = true
+            
+            endDateFieldSummary.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
+            endDateFieldSummary.layer.borderWidth = 1
+            endDateFieldSummary.layer.cornerRadius = 4
+            endDateFieldSummary.layer.masksToBounds = true
+        }
         
         startDateFieldAll.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
         startDateFieldAll.layer.borderWidth = 1
@@ -238,8 +242,10 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         startToolbar.sizeToFit()
         let startDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(startDatePickerDone))
         startToolbar.setItems([startDoneButton], animated: true)
-        startDateFieldSummary.inputAccessoryView = startToolbar
-        startDateFieldSummary.inputView = startDatePicker
+        if(!iPad){
+            startDateFieldSummary.inputAccessoryView = startToolbar
+            startDateFieldSummary.inputView = startDatePicker
+        }
         startDateFieldAll.inputAccessoryView = startToolbar
         startDateFieldAll.inputView = startDatePicker
         
@@ -249,14 +255,16 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         endToolbar.sizeToFit()
         let endDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(endDatePickerDone))
         endToolbar.setItems([endDoneButton], animated: true)
-        endDateFieldSummary.inputAccessoryView = endToolbar
-        endDateFieldSummary.inputView = endDatePicker
+        if(!iPad){
+            endDateFieldSummary.inputAccessoryView = endToolbar
+            endDateFieldSummary.inputView = endDatePicker
+        }
         endDateFieldAll.inputAccessoryView = endToolbar
         endDateFieldAll.inputView = endDatePicker
     }
     
     func startDatePickerDone(){
-        if(endDateFieldSummary.text != localized("end") && startDatePicker.date > endDatePicker.date) {
+        if(endDateFieldAll.text != localized("end") && startDatePicker.date > endDatePicker.date) {
             //TODO nice message
             self.view.endEditing(true)
             return
@@ -264,10 +272,12 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         let formatter = DateFormatter()
         formatter.dateFormat = gbDateFormat
         let gbDate = formatter.string(from: startDatePicker.date)
-        startDateFieldSummary.text = "\(gbDate)"
+        if(!iPad){
+            startDateFieldSummary.text = "\(gbDate)"
+        }
         startDateFieldAll.text = "\(gbDate)"
         self.view.endEditing(true)
-        if(endDateFieldSummary.text != localized("end")){
+        if(endDateFieldAll.text != localized("end")){
             getAttendance {
                 
             }
@@ -275,7 +285,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func endDatePickerDone(){
-        if(startDateFieldSummary.text != localized("start") && endDatePicker.date < startDatePicker.date) {
+        if(startDateFieldAll.text != localized("start") && endDatePicker.date < startDatePicker.date) {
             //TODO nice message
             self.view.endEditing(true)
             return
@@ -283,10 +293,12 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         let formatter = DateFormatter()
         formatter.dateFormat = gbDateFormat
         let gbDate = formatter.string(from: endDatePicker.date)
-        endDateFieldSummary.text = "\(gbDate)"
+        if(!iPad){
+            endDateFieldSummary.text = "\(gbDate)"
+        }
         endDateFieldAll.text = "\(gbDate)"
         self.view.endEditing(true)
-        if(startDateFieldSummary.text != localized("start")){
+        if(startDateFieldAll.text != localized("start")){
             getAttendance {
                 
             }
@@ -328,10 +340,14 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             
             if (selectedModule == 0) {
                 moduleButtonAll.setTitle(localized("module"), for: UIControlState())
-                moduleButtonSummary.setTitle(localized("module"), for: UIControlState())
+                if(!iPad){
+                    moduleButtonSummary.setTitle(localized("module"), for: UIControlState())
+                }
             } else if (moduleIndex >= 0 && moduleIndex < dataManager.modules().count) {
                 moduleButtonAll.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
-                moduleButtonSummary.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
+                if(!iPad){
+                    moduleButtonSummary.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
+                }
                 //specific call
             }
             getAttendance {
