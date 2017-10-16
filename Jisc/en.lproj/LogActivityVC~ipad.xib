@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -72,88 +72,66 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W3j-cv-ZWW">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="124"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="7Ph-vH-hj4">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="124"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYc-tZ-whJ" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="455" y="28" width="115" height="22"/>
-                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
+                            <rect key="frame" x="416" y="41" width="194" height="44"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="37"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="log_activity"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAL-fa-7My">
-                            <rect key="frame" x="5" y="20" width="40" height="40"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSg-M9-Qal" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
-                                    <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bp-cC-sym">
-                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="UJ4-In-IBW"/>
-                                        <constraint firstAttribute="height" constant="40" id="i72-pA-0c9"/>
-                                    </constraints>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="backButton"/>
-                                    <connections>
-                                        <action selector="goBack:" destination="-1" eventType="touchUpInside" id="HSt-Pz-Mwo"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSg-M9-Qal" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="113" y="46" width="83" height="39"/>
                             <constraints>
-                                <constraint firstItem="iSg-M9-Qal" firstAttribute="top" secondItem="lAL-fa-7My" secondAttribute="top" id="0Of-HQ-FoZ"/>
-                                <constraint firstItem="4Bp-cC-sym" firstAttribute="centerX" secondItem="iSg-M9-Qal" secondAttribute="centerX" id="1IO-Zc-9aj"/>
-                                <constraint firstItem="iSg-M9-Qal" firstAttribute="leading" secondItem="lAL-fa-7My" secondAttribute="leading" id="ABG-pq-gLW"/>
-                                <constraint firstAttribute="trailing" secondItem="iSg-M9-Qal" secondAttribute="trailing" id="Osk-dF-tvc"/>
-                                <constraint firstItem="4Bp-cC-sym" firstAttribute="top" secondItem="lAL-fa-7My" secondAttribute="top" id="PEE-eS-zqf"/>
-                                <constraint firstAttribute="bottom" secondItem="4Bp-cC-sym" secondAttribute="bottom" id="o3a-UF-xFK"/>
-                                <constraint firstItem="4Bp-cC-sym" firstAttribute="width" secondItem="iSg-M9-Qal" secondAttribute="width" id="zI4-Ut-oTW"/>
+                                <constraint firstAttribute="width" constant="83" id="fht-be-KkO"/>
                             </constraints>
-                        </view>
-                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zg8-8D-UIu">
-                            <rect key="frame" x="976" y="20" width="40" height="40"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="30"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bp-cC-sym">
+                            <rect key="frame" x="44" y="42" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="Vn5-dV-frh"/>
-                                <constraint firstAttribute="width" constant="40" id="jj5-OF-zm9"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="UJ4-In-IBW"/>
+                                <constraint firstAttribute="height" constant="40" id="i72-pA-0c9"/>
                             </constraints>
-                            <state key="normal" image="settingsButton"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" backgroundImage="backButton"/>
                             <connections>
-                                <action selector="settings:" destination="-1" eventType="touchUpInside" id="Itt-Bw-jpS"/>
+                                <action selector="goBack:" destination="-1" eventType="touchUpInside" id="HSt-Pz-Mwo"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="UYc-tZ-whJ" secondAttribute="bottom" constant="10" id="2TU-O5-vtS"/>
-                        <constraint firstAttribute="height" constant="60" id="3Fk-ke-N36"/>
-                        <constraint firstAttribute="bottom" secondItem="zg8-8D-UIu" secondAttribute="bottom" id="8O1-zh-Neh"/>
+                        <constraint firstAttribute="bottom" secondItem="UYc-tZ-whJ" secondAttribute="bottom" constant="39" id="2TU-O5-vtS"/>
+                        <constraint firstAttribute="height" constant="124" id="3Fk-ke-N36"/>
                         <constraint firstItem="7Ph-vH-hj4" firstAttribute="leading" secondItem="W3j-cv-ZWW" secondAttribute="leading" id="BeV-fq-Ofk"/>
+                        <constraint firstItem="4Bp-cC-sym" firstAttribute="leading" secondItem="W3j-cv-ZWW" secondAttribute="leading" constant="44" id="Hky-iP-S4c"/>
                         <constraint firstAttribute="bottom" secondItem="7Ph-vH-hj4" secondAttribute="bottom" id="Ro5-ki-ggP"/>
-                        <constraint firstAttribute="trailing" secondItem="zg8-8D-UIu" secondAttribute="trailing" constant="8" id="STx-SY-htb"/>
-                        <constraint firstItem="lAL-fa-7My" firstAttribute="leading" secondItem="W3j-cv-ZWW" secondAttribute="leading" constant="5" id="TF6-Hy-ayK"/>
+                        <constraint firstItem="iSg-M9-Qal" firstAttribute="top" secondItem="W3j-cv-ZWW" secondAttribute="top" constant="46" id="SrN-9i-YOJ"/>
+                        <constraint firstItem="iSg-M9-Qal" firstAttribute="bottom" secondItem="UYc-tZ-whJ" secondAttribute="bottom" id="ZaH-cA-Jck"/>
+                        <constraint firstItem="iSg-M9-Qal" firstAttribute="leading" secondItem="4Bp-cC-sym" secondAttribute="trailing" constant="29" id="byQ-Sk-TiE"/>
                         <constraint firstAttribute="trailing" secondItem="7Ph-vH-hj4" secondAttribute="trailing" id="gCD-bM-g3D"/>
                         <constraint firstItem="7Ph-vH-hj4" firstAttribute="top" secondItem="W3j-cv-ZWW" secondAttribute="top" id="h2l-3A-mRX"/>
-                        <constraint firstAttribute="bottom" secondItem="lAL-fa-7My" secondAttribute="bottom" id="kQh-5n-4fC"/>
-                        <constraint firstItem="UYc-tZ-whJ" firstAttribute="centerX" secondItem="W3j-cv-ZWW" secondAttribute="centerX" id="ld2-Ge-yTi"/>
+                        <constraint firstItem="UYc-tZ-whJ" firstAttribute="centerX" secondItem="W3j-cv-ZWW" secondAttribute="centerX" constant="1" id="ld2-Ge-yTi"/>
+                        <constraint firstItem="4Bp-cC-sym" firstAttribute="centerY" secondItem="7Ph-vH-hj4" secondAttribute="centerY" id="qKb-Wm-pNq"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Hl-Gb-8lo">
-                    <rect key="frame" x="0.0" y="60" width="1024" height="708"/>
+                    <rect key="frame" x="0.0" y="124" width="1024" height="644"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4j-6D-yi7">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="644"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="upE-Wl-CsJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="667"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="644"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bK-wB-a6j">
                                             <rect key="frame" x="25" y="40" width="467" height="467"/>
@@ -192,7 +170,7 @@
                                                                     <rect key="frame" x="59" y="0.0" width="121" height="67"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Module" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtm-8S-jhc" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                            <rect key="frame" x="8" y="25" width="113" height="17"/>
+                                                                            <rect key="frame" x="8" y="24" width="113" height="20"/>
                                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -310,7 +288,7 @@
                                                                     <rect key="frame" x="59" y="0.0" width="121" height="67"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9b-DR-Lz3" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                            <rect key="frame" x="8" y="25" width="113" height="17"/>
+                                                                            <rect key="frame" x="8" y="24" width="113" height="20"/>
                                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -425,7 +403,7 @@
                                                                     <rect key="frame" x="59" y="0.0" width="121" height="67"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Activity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOO-UI-wQH" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                            <rect key="frame" x="8" y="25" width="113" height="17"/>
+                                                                            <rect key="frame" x="8" y="14" width="113" height="40"/>
                                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                                                                             <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -535,7 +513,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="467" height="50"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Module and Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGG-wV-r8H" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                            <rect key="frame" x="25" y="16" width="235" height="20"/>
+                                                            <rect key="frame" x="25" y="13" width="252" height="24"/>
                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -582,7 +560,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="233.5" height="50"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Spent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSy-4k-VLr" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                            <rect key="frame" x="69.5" y="16" width="94.5" height="20"/>
+                                                                            <rect key="frame" x="66" y="13" width="103" height="24"/>
                                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -601,7 +579,7 @@
                                                                     <rect key="frame" x="233.5" y="0.0" width="233.5" height="50"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBe-AS-KKV" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                            <rect key="frame" x="97.5" y="16" width="39.5" height="20"/>
+                                                                            <rect key="frame" x="96" y="13" width="42" height="24"/>
                                                                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -644,7 +622,7 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="233.5" height="44"/>
                                                                             <subviews>
                                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jNg-mM-CAw">
-                                                                                    <rect key="frame" x="21.5" y="0.0" width="47" height="44"/>
+                                                                                    <rect key="frame" x="16" y="0.0" width="47" height="44"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="47" id="Xa1-gw-0Up"/>
                                                                                         <constraint firstAttribute="height" constant="44" id="tJf-tP-ou8"/>
@@ -657,7 +635,7 @@
                                                                                     </connections>
                                                                                 </textField>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myi-7m-Zhw" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                                    <rect key="frame" x="66.5" y="17.5" width="45.5" height="20"/>
+                                                                                    <rect key="frame" x="61" y="15" width="51" height="24"/>
                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                                                                                     <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -686,7 +664,7 @@
                                                                                     </connections>
                                                                                 </textField>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGC-Dc-EEs" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                                    <rect key="frame" x="165" y="17.5" width="65.5" height="20"/>
+                                                                                    <rect key="frame" x="165" y="15" width="71" height="24"/>
                                                                                     <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                                                                                     <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -743,7 +721,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="233.5" height="133.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday 17th Aug 2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzO-w8-IvS">
-                                                                            <rect key="frame" x="10" y="56" width="213.5" height="22"/>
+                                                                            <rect key="frame" x="10" y="54" width="213.5" height="26"/>
                                                                             <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="22"/>
                                                                             <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -802,7 +780,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="467" height="50"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5h-0T-DdH" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                                    <rect key="frame" x="209" y="16" width="49" height="20"/>
+                                                                    <rect key="frame" x="207" y="13" width="53" height="24"/>
                                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -937,7 +915,7 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="FIP-ix-Lzu" secondAttribute="bottom" constant="41" id="AKf-T1-uuG"/>
                                         <constraint firstItem="FIP-ix-Lzu" firstAttribute="top" secondItem="CwH-Ca-LpN" secondAttribute="bottom" constant="41" id="Euo-W2-nhg"/>
-                                        <constraint firstAttribute="bottom" secondItem="FIP-ix-Lzu" secondAttribute="bottom" constant="81" id="Ief-81-Cpz"/>
+                                        <constraint firstAttribute="bottom" secondItem="FIP-ix-Lzu" secondAttribute="bottom" constant="58" id="Ief-81-Cpz"/>
                                         <constraint firstItem="6bK-wB-a6j" firstAttribute="centerY" secondItem="upE-Wl-CsJ" secondAttribute="centerY" constant="-40" id="TJH-SW-cOc"/>
                                         <constraint firstAttribute="trailing" secondItem="CwH-Ca-LpN" secondAttribute="trailing" constant="25" id="VfC-7t-TEJ"/>
                                         <constraint firstItem="CwH-Ca-LpN" firstAttribute="top" secondItem="upE-Wl-CsJ" secondAttribute="top" constant="40" id="hek-W6-ASN"/>
@@ -1035,7 +1013,7 @@
                     <rect key="frame" x="0.0" y="768" width="1024" height="260"/>
                     <subviews>
                         <pickerView contentMode="scaleToFill" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ug-ZK-juk">
-                            <rect key="frame" x="417.5" y="44" width="44" height="216"/>
+                            <rect key="frame" x="412" y="44" width="44" height="216"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="44" id="aCb-02-rum"/>
                             </constraints>
@@ -1045,7 +1023,7 @@
                             </connections>
                         </pickerView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPr-1I-oDj">
-                            <rect key="frame" x="461.5" y="148" width="45.5" height="20"/>
+                            <rect key="frame" x="456" y="145" width="51" height="24"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                             <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -1068,7 +1046,7 @@
                             </connections>
                         </pickerView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxl-Fu-lUm">
-                            <rect key="frame" x="561" y="148" width="65.5" height="20"/>
+                            <rect key="frame" x="561" y="145" width="71" height="24"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="20"/>
                             <color key="textColor" red="0.53333333329999999" green="0.38823529410000002" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -1204,6 +1182,5 @@
         <image name="networkBlue" width="30" height="29"/>
         <image name="purpleButton" width="9" height="48"/>
         <image name="selectorIndicatorIcon" width="12" height="6"/>
-        <image name="settingsButton" width="23" height="22"/>
     </resources>
 </document>
