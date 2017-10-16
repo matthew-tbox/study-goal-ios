@@ -63,7 +63,7 @@
 "last_week" = "Wythnos Diwethaf";
 "me" = "Fi";
 "period" = "Cyfnod";
-"compare_to" = "Cymharu i";
+"compare_to" = "Cymharu i ...";
 "choose_period" = "Dewis Myfyriwr/wraig";
 "last_24_hours" = "24 awr diwethaf";
 "last_7_days" = "7Â diwrnod dwethaf";
@@ -440,3 +440,5 @@
 "filter_modules" = "PLACEHOLDER";
 "chart" = "PLACEHOLDER";
 "all_modules" = "PLACEHOLDER";
+"bar_graph" = "PLACEHOLDER";
+"line_graph" = "PLACEHOLDER";

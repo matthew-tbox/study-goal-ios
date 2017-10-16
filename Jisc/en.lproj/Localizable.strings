@@ -63,7 +63,7 @@
 "last_week" = "Last Week";
 "me" = "Me";
 "period" = "Period";
-"compare_to" = "Compare to";
+"compare_to" = "Compare to ...";
 "choose_period" = "Choose Period";
 "last_24_hours" = "Last 24 hours";
 "last_7_days" = "Last 7 days";
@@ -447,3 +447,5 @@
 "filter_modules" = "Filter Modules";
 "chart" = "Chart";
 "all_modules" = "All Modules";
+"bar_graph" = "Bar Graph";
+"line_graph" = "Line Graph";

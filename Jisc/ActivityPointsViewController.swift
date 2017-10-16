@@ -135,6 +135,15 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
             self.loadPieChart()
             
             self.tableView.reloadData()
+            
+            if(self.activityPointsData.count == 0){
+                let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0, y: self.tableView.bounds.size.height, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
+                noDataLabel.text          = localized("no_data_available")
+                noDataLabel.textColor     = UIColor.black
+                noDataLabel.textAlignment = .center
+                self.tableView.backgroundView  = noDataLabel
+                self.tableView.separatorStyle  = .none
+            }
             completion()
         }
     }

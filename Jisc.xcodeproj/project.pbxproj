@@ -32,6 +32,8 @@
 		9766E2151F90CA3300963DD8 /* EventsAttendedCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E2141F90CA3300963DD8 /* EventsAttendedCell~ipad.xib */; };
 		9766E21C1F90CE9300963DD8 /* ActivityPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9766E21A1F90CE9300963DD8 /* ActivityPointsViewController.swift */; };
 		9766E21D1F90CE9300963DD8 /* ActivityPointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E21B1F90CE9300963DD8 /* ActivityPointsViewController.xib */; };
+		9766E2221F90F83000963DD8 /* VLEActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9766E2201F90F83000963DD8 /* VLEActivityViewController.swift */; };
+		9766E2231F90F83000963DD8 /* VLEActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E2211F90F83000963DD8 /* VLEActivityViewController.xib */; };
 		97A245051F8F647300CD9239 /* AttainmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A245031F8F647300CD9239 /* AttainmentViewController.swift */; };
 		97A245061F8F647300CD9239 /* AttainmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A245041F8F647300CD9239 /* AttainmentViewController.xib */; };
 		97A2450D1F8F7A9200CD9239 /* AttainmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A2450B1F8F7A9200CD9239 /* AttainmentCell.swift */; };
@@ -332,6 +334,8 @@
 		9766E2141F90CA3300963DD8 /* EventsAttendedCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "EventsAttendedCell~ipad.xib"; sourceTree = "<group>"; };
 		9766E21A1F90CE9300963DD8 /* ActivityPointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityPointsViewController.swift; sourceTree = "<group>"; };
 		9766E21B1F90CE9300963DD8 /* ActivityPointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityPointsViewController.xib; sourceTree = "<group>"; };
+		9766E2201F90F83000963DD8 /* VLEActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLEActivityViewController.swift; sourceTree = "<group>"; };
+		9766E2211F90F83000963DD8 /* VLEActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VLEActivityViewController.xib; sourceTree = "<group>"; };
 		97A245031F8F647300CD9239 /* AttainmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentViewController.swift; sourceTree = "<group>"; };
 		97A245041F8F647300CD9239 /* AttainmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttainmentViewController.xib; sourceTree = "<group>"; };
 		97A2450B1F8F7A9200CD9239 /* AttainmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttainmentCell.swift; sourceTree = "<group>"; };
@@ -660,6 +664,26 @@
 			name = StatsActivityPoints;
 			sourceTree = "<group>";
 		};
+		9766E21E1F90F7ED00963DD8 /* StatsAppUsage */ = {
+			isa = PBXGroup;
+			children = (
+				8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */,
+				8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */,
+				80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */,
+				80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */,
+			);
+			name = StatsAppUsage;
+			sourceTree = "<group>";
+		};
+		9766E21F1F90F81500963DD8 /* StatsVLEActivity */ = {
+			isa = PBXGroup;
+			children = (
+				9766E2201F90F83000963DD8 /* VLEActivityViewController.swift */,
+				9766E2211F90F83000963DD8 /* VLEActivityViewController.xib */,
+			);
+			name = StatsVLEActivity;
+			sourceTree = "<group>";
+		};
 		97A244FB1F8E624000CD9239 /* StatsAttainment */ = {
 			isa = PBXGroup;
 			children = (
@@ -968,6 +992,8 @@
 		DAA2AEEE1BCE85A600ED796A /* Stats */ = {
 			isa = PBXGroup;
 			children = (
+				9766E21F1F90F81500963DD8 /* StatsVLEActivity */,
+				9766E21E1F90F7ED00963DD8 /* StatsAppUsage */,
 				9766E2191F90CE6F00963DD8 /* StatsActivityPoints */,
 				97A2450F1F8F959D00CD9239 /* StatsAttendance */,
 				97A244FB1F8E624000CD9239 /* StatsAttainment */,
@@ -1141,10 +1167,6 @@
 				DA1039FE1E9D05650000737F /* TargetGraphSimple */,
 				DA103A031E9D05730000737F /* TargetGraphStretch */,
 				DAD8BD6E1DB8BC08004F21DE /* GraphViews */,
-				8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */,
-				8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */,
-				80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */,
-				80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */,
 			);
 			name = GraphAssets;
 			sourceTree = "<group>";
@@ -1537,6 +1559,7 @@
 				DAD66C6F1C52336400074B79 /* TrophiesSilverBig.xcassets in Resources */,
 				DA6CFB091BE11A85004A5FB0 /* TargetCell.xib in Resources */,
 				DAD8BD781DB8BD46004F21DE /* SingleBarView.xib in Resources */,
+				9766E2231F90F83000963DD8 /* VLEActivityViewController.xib in Resources */,
 				DAD66CA61C527A1200074B79 /* CustomPickerView.xib in Resources */,
 				DAB0C7E31C4CE8F700F7A3C6 /* SearchVC~ipad.xib in Resources */,
 				DA0BDBF31E850FFD00166E16 /* LoginVC.xib in Resources */,
@@ -1737,6 +1760,7 @@
 				DAC369EE1CC7BBA000F156B1 /* xAPIRegisterVC.swift in Sources */,
 				DABF97871C46393A00C62108 /* ActivityTrophyCell.swift in Sources */,
 				DA6CFB081BE11A85004A5FB0 /* TargetCell.swift in Sources */,
+				9766E2221F90F83000963DD8 /* VLEActivityViewController.swift in Sources */,
 				DAD573901C3D108F0080B49B /* Trophy.swift in Sources */,
 				DAFB88BE1C107208000CCD65 /* Mark+CoreDataProperties.swift in Sources */,
 				DA46D97B1BF2482400AA1476 /* Module+CoreDataProperties.swift in Sources */,

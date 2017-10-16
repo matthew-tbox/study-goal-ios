@@ -219,7 +219,7 @@ class StatsVC: BaseViewController, UITableViewDataSource, UITableViewDelegate, C
             print("requested events attended")
         }
         goToAttainment()
-        self.highChartWebView.isHidden = false
+        self.vleGraphWebView.isHidden = false
         if !iPad{
             self.vleGraphWebView.isHidden = false
         }

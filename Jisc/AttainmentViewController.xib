@@ -72,13 +72,17 @@
                     <rect key="frame" x="0.0" y="58" width="375" height="609"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbg-Sh-SOR">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbg-Sh-SOR" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
                             <rect key="frame" x="8" y="8" width="359" height="42"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Light" family="Myriad Pro" pointSize="17"/>
-                            <state key="normal" title="Module" backgroundImage="purpleBorder">
+                            <state key="normal" title="Filter Modules" backgroundImage="purpleBorder">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeyNormal" value="filter_modules"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKeySelected" value="filter_modules"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="showModuleSelector:" destination="-1" eventType="touchUpInside" id="DtN-om-zk3"/>
                             </connections>
