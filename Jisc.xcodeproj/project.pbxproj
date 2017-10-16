@@ -747,7 +747,11 @@
 		DA0F590B1C3EB51600FF5B7A /* Trophies */ = {
 			isa = PBXGroup;
 			children = (
-				DAD1D7F91C50F0EE005BA786 /* Common */,
+				DA0F577E1C3EA2A700FF5B7A /* trophies.plist */,
+				DAD6AE271C57B76300BCBBDD /* TrophyDetailsView.swift */,
+				DAD6AE291C57B76E00BCBBDD /* TrophyDetailsView.xib */,
+				DA0F57781C3E972F00FF5B7A /* NewTrophyAlert.swift */,
+				DAB0C8BD1C4CEC2300F7A3C6 /* NewTrophyAlert.xib */,
 				DAD1D7FA1C50F107005BA786 /* iPhone */,
 				DAD1D7FB1C50F110005BA786 /* iPad */,
 			);
@@ -821,9 +825,9 @@
 		DA76413F1BD7DD1D00A7D5C1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				DAD1D7F51C50F077005BA786 /* Common */,
-				DAD1D7F41C50F075005BA786 /* iPhone */,
 				DAD1D7F31C50F073005BA786 /* iPad */,
+				DA7641221BD7CC0800A7D5C1 /* SettingsVC.swift */,
+				DAB0C8871C4CEB1200F7A3C6 /* SettingsVC.xib */,
 				DA7F1D281BD8E18C004EA957 /* subSections */,
 			);
 			name = Settings;
@@ -848,7 +852,8 @@
 		DA7F1D281BD8E18C004EA957 /* subSections */ = {
 			isa = PBXGroup;
 			children = (
-				DAD1D7F61C50F093005BA786 /* Common */,
+				DA7F1D2D1BD8E463004EA957 /* OneFriendCell.swift */,
+				DAB0C89F1C4CEB5900F7A3C6 /* OneFriendCell.xib */,
 				DAD1D7F71C50F0A8005BA786 /* iPhone */,
 				DA0F590B1C3EB51600FF5B7A /* Trophies */,
 			);
@@ -1303,31 +1308,6 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
-		DAD1D7F41C50F075005BA786 /* iPhone */ = {
-			isa = PBXGroup;
-			children = (
-				DAB0C8871C4CEB1200F7A3C6 /* SettingsVC.xib */,
-			);
-			name = iPhone;
-			sourceTree = "<group>";
-		};
-		DAD1D7F51C50F077005BA786 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				DA7641221BD7CC0800A7D5C1 /* SettingsVC.swift */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
-		DAD1D7F61C50F093005BA786 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				DA7F1D2D1BD8E463004EA957 /* OneFriendCell.swift */,
-				DAB0C89F1C4CEB5900F7A3C6 /* OneFriendCell.xib */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
 		DAD1D7F71C50F0A8005BA786 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
@@ -1343,18 +1323,6 @@
 				DA3F7B851C996B9B00E15678 /* ConsentVC.xib */,
 			);
 			name = iPhone;
-			sourceTree = "<group>";
-		};
-		DAD1D7F91C50F0EE005BA786 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				DA0F577E1C3EA2A700FF5B7A /* trophies.plist */,
-				DAD6AE271C57B76300BCBBDD /* TrophyDetailsView.swift */,
-				DAD6AE291C57B76E00BCBBDD /* TrophyDetailsView.xib */,
-				DA0F57781C3E972F00FF5B7A /* NewTrophyAlert.swift */,
-				DAB0C8BD1C4CEC2300F7A3C6 /* NewTrophyAlert.xib */,
-			);
-			name = Common;
 			sourceTree = "<group>";
 		};
 		DAD1D7FA1C50F107005BA786 /* iPhone */ = {

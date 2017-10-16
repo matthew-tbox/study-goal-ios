@@ -731,4 +731,8 @@ class SettingsVC: BaseViewController, UIAlertViewDelegate, UIImagePickerControll
 		NotificationCenter.default.removeObserver(self)
 		supportedInterfaceOrientationsForIPad = UIInterfaceOrientationMask.landscape
 	}
+    
+    @IBAction func openMenu(_ sender:UIButton?) {
+        DELEGATE.menuView?.open()
+    }
 }

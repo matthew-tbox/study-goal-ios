@@ -52,7 +52,6 @@
                 <outlet property="welshCheckmark" destination="zFH-68-v7n" id="5cl-qk-bbI"/>
                 <outlet property="wonTrophiesTable" destination="qY6-Ve-qBS" id="rNX-eg-GAb"/>
                 <outletCollection property="viewsWithShadow" destination="VkT-MV-ejr" collectionClass="NSMutableArray" id="hbY-jc-Cm9"/>
-                <outletCollection property="localizableLabels" destination="7B2-AS-gPZ" collectionClass="NSMutableArray" id="Lrr-kL-Oql"/>
                 <outletCollection property="localizableButtons" destination="y3V-Zh-lV0" collectionClass="NSMutableArray" id="slD-hM-Iwn"/>
                 <outletCollection property="localizableLabels" destination="KqM-Ab-653" collectionClass="NSMutableArray" id="xX8-a9-1es"/>
                 <outletCollection property="localizableButtons" destination="0LY-Kp-DhI" collectionClass="NSMutableArray" id="jGn-F3-3fO"/>
@@ -77,116 +76,62 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEu-O2-ibw">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="4gb-4h-GTA">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7B2-AS-gPZ" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="121" y="28" width="78" height="22"/>
-                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jisc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vre-HH-hUL" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="113" y="46" width="54" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="30"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpj-ic-91Q" userLabel="menuButton">
+                            <rect key="frame" x="37" y="35" width="55" height="55"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="openMenuButton"/>
+                            <connections>
+                                <action selector="openMenu:" destination="-1" eventType="touchUpInside" id="VJi-67-cSd"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilL-CT-4cO" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
+                            <rect key="frame" x="175" y="40" width="145" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="26"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="settings"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmH-eD-i0r">
-                            <rect key="frame" x="5" y="20" width="40" height="40"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgJ-f9-OP2" customClass="AppTitleLabel" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="40" height="17"/>
-                                    <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ekk-79-Ae3">
-                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="OkQ-mY-FyU"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="yXt-2p-djd"/>
-                                    </constraints>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" image="backButton"/>
-                                    <connections>
-                                        <action selector="goBack:" destination="-1" eventType="touchUpInside" id="vcK-o2-NMF"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="EgJ-f9-OP2" secondAttribute="trailing" id="9vV-Bh-Dvf"/>
-                                <constraint firstItem="EgJ-f9-OP2" firstAttribute="top" secondItem="tmH-eD-i0r" secondAttribute="top" id="GJG-Km-Jqe"/>
-                                <constraint firstItem="Ekk-79-Ae3" firstAttribute="width" secondItem="EgJ-f9-OP2" secondAttribute="width" id="YSS-6K-6Qy"/>
-                                <constraint firstAttribute="bottom" secondItem="Ekk-79-Ae3" secondAttribute="bottom" id="gPH-D3-May"/>
-                                <constraint firstItem="Ekk-79-Ae3" firstAttribute="centerX" secondItem="EgJ-f9-OP2" secondAttribute="centerX" id="hov-XB-QFw"/>
-                                <constraint firstItem="EgJ-f9-OP2" firstAttribute="leading" secondItem="tmH-eD-i0r" secondAttribute="leading" id="ipY-F9-hFo"/>
-                                <constraint firstItem="Ekk-79-Ae3" firstAttribute="top" secondItem="tmH-eD-i0r" secondAttribute="top" id="rf8-uo-PzN"/>
-                            </constraints>
-                        </view>
-                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhA-Hb-IPO">
-                            <rect key="frame" x="280" y="20" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="8wp-2h-jnS"/>
-                                <constraint firstAttribute="height" constant="40" id="8yE-2y-PpO"/>
-                                <constraint firstAttribute="width" secondItem="zhA-Hb-IPO" secondAttribute="height" multiplier="1:1" id="Flv-qN-NOn"/>
-                            </constraints>
-                            <state key="normal" image="logoutButton"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Flv-qN-NOn"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="logout:" destination="-1" eventType="touchUpInside" id="j6y-Ho-HQd"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="7B2-AS-gPZ" firstAttribute="centerX" secondItem="cEu-O2-ibw" secondAttribute="centerX" id="2jf-UR-KlU"/>
-                        <constraint firstAttribute="bottom" secondItem="tmH-eD-i0r" secondAttribute="bottom" id="3vD-bx-FCM"/>
                         <constraint firstItem="4gb-4h-GTA" firstAttribute="leading" secondItem="cEu-O2-ibw" secondAttribute="leading" id="7AA-qj-ryw"/>
                         <constraint firstItem="4gb-4h-GTA" firstAttribute="top" secondItem="cEu-O2-ibw" secondAttribute="top" id="Efn-Hp-P3I"/>
-                        <constraint firstItem="zhA-Hb-IPO" firstAttribute="top" secondItem="cEu-O2-ibw" secondAttribute="top" constant="20" id="FtY-aP-kgK"/>
-                        <constraint firstAttribute="height" constant="60" id="NBP-aS-x1L"/>
-                        <constraint firstItem="tmH-eD-i0r" firstAttribute="leading" secondItem="cEu-O2-ibw" secondAttribute="leading" constant="5" id="T2C-wQ-jy5"/>
-                        <constraint firstAttribute="bottom" secondItem="7B2-AS-gPZ" secondAttribute="bottom" constant="10" id="Uvk-c9-G70"/>
+                        <constraint firstAttribute="height" constant="124" id="NBP-aS-x1L"/>
                         <constraint firstAttribute="width" constant="320" id="ZSm-sw-4dl"/>
                         <constraint firstAttribute="bottom" secondItem="4gb-4h-GTA" secondAttribute="bottom" id="ldD-j8-5ki"/>
-                        <constraint firstAttribute="trailing" secondItem="zhA-Hb-IPO" secondAttribute="trailing" id="q3V-7E-O8H"/>
-                        <constraint firstAttribute="bottom" secondItem="zhA-Hb-IPO" secondAttribute="bottom" id="sVg-F2-q1l"/>
                         <constraint firstAttribute="trailing" secondItem="4gb-4h-GTA" secondAttribute="trailing" id="tna-fs-3K8"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="FtY-aP-kgK"/>
-                        </mask>
-                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDX-aX-eg6">
-                    <rect key="frame" x="320" y="0.0" width="704" height="60"/>
+                    <rect key="frame" x="320" y="0.0" width="704" height="124"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lightBlue" translatesAutoresizingMaskIntoConstraints="NO" id="hPE-pX-A7I">
-                            <rect key="frame" x="0.0" y="0.0" width="704" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="704" height="124"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pR-ZU-Mzs">
-                            <rect key="frame" x="321" y="28" width="62" height="22"/>
-                            <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="22"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="hPE-pX-A7I" secondAttribute="bottom" id="1De-h5-O3I"/>
                         <constraint firstAttribute="trailing" secondItem="hPE-pX-A7I" secondAttribute="trailing" id="6Hc-Qh-TxK"/>
-                        <constraint firstAttribute="height" constant="60" id="92t-nv-ju5"/>
-                        <constraint firstAttribute="bottom" secondItem="8pR-ZU-Mzs" secondAttribute="bottom" constant="10" id="ALy-U2-Gua"/>
+                        <constraint firstAttribute="height" constant="124" id="92t-nv-ju5"/>
                         <constraint firstAttribute="width" constant="1024" id="Avo-4k-rpP"/>
                         <constraint firstItem="hPE-pX-A7I" firstAttribute="leading" secondItem="pDX-aX-eg6" secondAttribute="leading" id="CRc-Tg-mrL"/>
                         <constraint firstItem="hPE-pX-A7I" firstAttribute="top" secondItem="pDX-aX-eg6" secondAttribute="top" id="Zp1-Lg-22D"/>
-                        <constraint firstItem="8pR-ZU-Mzs" firstAttribute="centerX" secondItem="pDX-aX-eg6" secondAttribute="centerX" id="ihs-jb-mbR"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -195,7 +140,7 @@
                     </variation>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wh2-lc-A0t">
-                    <rect key="frame" x="0.0" y="60" width="320" height="708"/>
+                    <rect key="frame" x="0.0" y="122" width="320" height="644"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkT-MV-ejr">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="339"/>
@@ -562,29 +507,37 @@
                         <constraint firstItem="VkT-MV-ejr" firstAttribute="leading" secondItem="Wh2-lc-A0t" secondAttribute="leading" id="ugX-9z-BmF"/>
                         <constraint firstAttribute="trailing" secondItem="VkT-MV-ejr" secondAttribute="trailing" id="vH8-6B-M8A"/>
                         <constraint firstItem="VkT-MV-ejr" firstAttribute="width" secondItem="Wh2-lc-A0t" secondAttribute="width" id="vrs-gf-ZBh"/>
-                        <constraint firstAttribute="bottom" secondItem="VkT-MV-ejr" secondAttribute="bottom" constant="369" id="wQK-7d-G5Q"/>
+                        <constraint firstAttribute="bottom" secondItem="VkT-MV-ejr" secondAttribute="bottom" constant="305" id="wQK-7d-G5Q"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjx-VO-zAB">
-                    <rect key="frame" x="320" y="60" width="704" height="708"/>
+                    <rect key="frame" x="320" y="122" width="704" height="646"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pR-ZU-Mzs">
+                    <rect key="frame" x="620" y="47.5" width="104.5" height="37"/>
+                    <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="37"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="8pR-ZU-Mzs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="160.25" id="0oC-DN-3af"/>
                 <constraint firstAttribute="trailing" secondItem="xjx-VO-zAB" secondAttribute="trailing" id="7sF-FC-Ugf"/>
                 <constraint firstItem="pDX-aX-eg6" firstAttribute="leading" secondItem="cEu-O2-ibw" secondAttribute="trailing" id="8nl-0w-Mz6"/>
+                <constraint firstAttribute="bottom" secondItem="8pR-ZU-Mzs" secondAttribute="bottom" constant="683.5" id="DPQ-WP-LeV"/>
                 <constraint firstItem="cEu-O2-ibw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GfK-Rd-tiO"/>
                 <constraint firstItem="cEu-O2-ibw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="InW-4Y-cHU"/>
                 <constraint firstAttribute="trailing" secondItem="cEu-O2-ibw" secondAttribute="trailing" id="Iyc-G1-tyF"/>
-                <constraint firstItem="xjx-VO-zAB" firstAttribute="top" secondItem="pDX-aX-eg6" secondAttribute="bottom" id="R7n-GV-ZNk"/>
+                <constraint firstItem="xjx-VO-zAB" firstAttribute="top" secondItem="pDX-aX-eg6" secondAttribute="bottom" constant="-2" id="R7n-GV-ZNk"/>
                 <constraint firstAttribute="trailing" secondItem="pDX-aX-eg6" secondAttribute="trailing" id="Rh0-XY-HMu"/>
                 <constraint firstAttribute="bottom" secondItem="xjx-VO-zAB" secondAttribute="bottom" id="Tsi-Sk-ZA4"/>
                 <constraint firstItem="Wh2-lc-A0t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wgv-Xx-WhD"/>
                 <constraint firstItem="pDX-aX-eg6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zab-jW-59s"/>
-                <constraint firstAttribute="bottom" secondItem="Wh2-lc-A0t" secondAttribute="bottom" id="aW1-vm-Rm9"/>
+                <constraint firstAttribute="bottom" secondItem="Wh2-lc-A0t" secondAttribute="bottom" constant="2" id="aW1-vm-Rm9"/>
                 <constraint firstItem="xjx-VO-zAB" firstAttribute="leading" secondItem="Wh2-lc-A0t" secondAttribute="trailing" id="ffL-l2-6GS"/>
-                <constraint firstItem="Wh2-lc-A0t" firstAttribute="top" secondItem="cEu-O2-ibw" secondAttribute="bottom" id="iXi-mT-0bJ"/>
+                <constraint firstItem="Wh2-lc-A0t" firstAttribute="top" secondItem="cEu-O2-ibw" secondAttribute="bottom" constant="-2" id="iXi-mT-0bJ"/>
                 <constraint firstAttribute="trailing" secondItem="Wh2-lc-A0t" secondAttribute="trailing" id="uLT-9G-qHr"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -1233,7 +1186,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="52"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select language" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g13-kg-hhQ" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                            <rect key="frame" x="453" y="17" width="120" height="18"/>
+                            <rect key="frame" x="452" y="17" width="120" height="18"/>
                             <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                             <color key="textColor" red="0.61742734909057617" green="0.61742734909057617" blue="0.61742734909057617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -1492,7 +1445,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Request" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kmf-IC-1Ej">
-                                                    <rect key="frame" x="0.0" y="11" width="325" height="20"/>
+                                                    <rect key="frame" x="0.0" y="10" width="325" height="20"/>
                                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="20"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1546,7 +1499,7 @@
                                             <rect key="frame" x="0.0" y="101.5" width="325" height="45"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everything" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7S-w1-WIZ" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="14" width="86" height="19"/>
+                                                    <rect key="frame" x="20" y="13" width="86" height="19"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                     <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1574,7 +1527,7 @@
                                             <rect key="frame" x="0.0" y="147.5" width="325" height="45"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My result" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXp-Kc-UUO" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="14" width="73" height="19"/>
+                                                    <rect key="frame" x="20" y="13" width="73" height="19"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                     <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1602,7 +1555,7 @@
                                             <rect key="frame" x="0.0" y="193.5" width="325" height="45"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My course engagement" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liL-zM-Ibm" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="14" width="187.5" height="19"/>
+                                                    <rect key="frame" x="20" y="13" width="187.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                     <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1630,7 +1583,7 @@
                                             <rect key="frame" x="0.0" y="239.5" width="325" height="45"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity log" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVY-VY-U4x" customClass="LocalizableLabel" customModule="Jisc" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="14" width="89.5" height="19"/>
+                                                    <rect key="frame" x="20" y="13" width="89.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="19"/>
                                                     <color key="textColor" red="0.3294117647" green="0.61960784310000006" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2116,13 +2069,12 @@
         </view>
     </objects>
     <resources>
-        <image name="backButton" width="8" height="15"/>
         <image name="cameraButton" width="30" height="24"/>
         <image name="checkBoxBlue" width="20" height="20"/>
         <image name="checkBoxBlueOFF" width="20" height="20"/>
         <image name="lightBlue" width="10" height="10"/>
         <image name="logButtonBG" width="1" height="60"/>
-        <image name="logoutButton" width="22" height="18"/>
+        <image name="openMenuButton" width="22" height="22"/>
         <image name="purple" width="10" height="10"/>
         <image name="purpleBorder" width="8" height="8"/>
         <image name="purpleCheckmark" width="16" height="12"/>
