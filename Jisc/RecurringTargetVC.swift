@@ -347,9 +347,8 @@ class RecurringTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func recurringSaveAction(_ sender: Any) {
-        print("saving is using this method")
         if demo(){
-            let alert = UIAlertController(title: "", message: localized("demo_mode_save_target"), preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: localized("demo_mode_add_target"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
             

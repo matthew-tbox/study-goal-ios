@@ -260,9 +260,6 @@ class MenuView: UIView {
 	}
 	
 	func settings() {
-		/*let vc = SettingsVC()
-		DELEGATE.mainNavigationController?.pushViewController(vc, animated: true)
-		close(nil)*/
         selectedIndex = 6
         NotificationCenter.default.post(name: kButtonSelectionNotification, object: MenuButtonType.Settings)
         DELEGATE.mainNavigationController?.setViewControllers([settingsViewController], animated: false)

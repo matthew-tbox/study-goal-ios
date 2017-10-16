@@ -449,3 +449,4 @@
 "all_modules" = "All Modules";
 "bar_graph" = "Bar Graph";
 "line_graph" = "Line Graph";
+"demo_mode_addtarget" = "Demo Mode - please login to add targets";

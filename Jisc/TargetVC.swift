@@ -57,14 +57,14 @@ class TargetVC: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	@IBAction func newTarget(_ sender:UIButton) {
-		if demo() {
+		/*if demo() {
 			let alert = UIAlertController(title: "", message: localized("demo_mode_addtarget"), preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
 			navigationController?.present(alert, animated: true, completion: nil)
-		} else {
+		} else {*/
 			let vc = NewTargetVC()
 			navigationController?.pushViewController(vc, animated: true)
-		}
+		//}
 	}
     
     @IBAction func recurringTargetSegmentAction(_ sender: Any) {

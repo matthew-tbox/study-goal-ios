@@ -93,14 +93,8 @@ class SingleTargetVC: BaseViewController, UITableViewDataSource, UITableViewDele
     }
 
     @IBAction func newTargetAction(_ sender: Any) {
-        if demo() {
-            let alert = UIAlertController(title: "", message: localized("demo_mode_addtarget"), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
-            navigationController?.present(alert, animated: true, completion: nil)
-        } else {
-            let vc = RecurringTargetVC()
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = RecurringTargetVC()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func singelTargetSegmentAction(_ sender: Any) {

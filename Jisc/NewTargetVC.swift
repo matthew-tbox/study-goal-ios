@@ -284,80 +284,86 @@ class NewTargetVC: BaseViewController, UIPickerViewDataSource, UIPickerViewDeleg
     }
     
     @IBAction func saveTarget(_ sender:UIButton) {
-        if (selectedMinutes == 0 && selectedHours == 0) {
-            UIAlertView(title: localized("error"), message: localized("please_enter_a_time_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
-        } else if (checkForTargetConflicts()) {
-            UIAlertView(title: localized("error"), message: localized("you_already_have_a_target_with_the_same_parameters_set"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+        if(demo()){
+            let alert = UIAlertController(title: "", message: localized("demo_mode_addtarget"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: localized("ok"), style: .cancel, handler: nil))
+            navigationController?.present(alert, animated: true, completion: nil)
         } else {
-            var target = Target.insertInManagedObjectContext(managedContext, dictionary: NSDictionary())
-            if (theTarget != nil) {
-                dataManager.deleteObject(target)
-                target = theTarget!
-            }
-            target.activityType = dataManager.activityTypes()[selectedActivityType]
-            target.activity = dataManager.activityAtIndex(selectedActivity, type: target.activityType)!
-            target.totalTime = ((selectedHours * 60) + selectedMinutes) as NSNumber
-            target.timeSpan = timeSpan.rawValue
-            if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
-                target.module = dataManager.modules()[selectedModule - 1]
-                var urlString = ""
-                if(!dataManager.developerMode){
-                    urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
-                } else {
-                    urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
-                }
-                xAPIManager().checkMod(testUrl:urlString)
+            if (selectedMinutes == 0 && selectedHours == 0) {
+                UIAlertView(title: localized("error"), message: localized("please_enter_a_time_target"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
+            } else if (checkForTargetConflicts()) {
+                UIAlertView(title: localized("error"), message: localized("you_already_have_a_target_with_the_same_parameters_set"), delegate: nil, cancelButtonTitle: localized("ok").capitalized).show()
             } else {
-                
-                target.module = nil
-                var urlString = ""
-                if(!dataManager.developerMode){
-                    urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
-                } else {
-                    urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
+                var target = Target.insertInManagedObjectContext(managedContext, dictionary: NSDictionary())
+                if (theTarget != nil) {
+                    dataManager.deleteObject(target)
+                    target = theTarget!
                 }
-                xAPIManager().checkMod(testUrl:urlString)
-            }
-            target.because = because
-            if (theTarget != nil) {
-                dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
-                    if (success) {
-                        for (_, item) in target.stretchTargets.enumerated() {
-                            dataManager.deleteObject(item as! NSManagedObject)
-                        }
-                        dataManager.deleteObject(target)
-                        AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                            //_ = self.navigationController?.popViewController(animated: true)
-                            let vc = TargetVC()
-                            self.navigationController?.pushViewController(vc, animated: false)
-                        }
+                target.activityType = dataManager.activityTypes()[selectedActivityType]
+                target.activity = dataManager.activityAtIndex(selectedActivity, type: target.activityType)!
+                target.totalTime = ((selectedHours * 60) + selectedMinutes) as NSNumber
+                target.timeSpan = timeSpan.rawValue
+                if (selectedModule > 0 && selectedModule - 1 < dataManager.modules().count) {
+                    target.module = dataManager.modules()[selectedModule - 1]
+                    var urlString = ""
+                    if(!dataManager.developerMode){
+                        urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
                     } else {
-                        AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                           // _ = self.navigationController?.popViewController(animated: true)
-                            let vc = TargetVC()
-                            self.navigationController?.pushViewController(vc, animated: false)
-                        }
+                        urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget&modid=\(String(describing: target.module))"
                     }
-                })
-            } else {
-                dataManager.addTarget(target, completion: { (success, failureReason) -> Void in
-                    if (success) {
-                        dataManager.deleteObject(target)
-                        AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
-                            //_ = self.navigationController?.popViewController(animated: true)
-                            let vc = TargetVC()
-                            self.navigationController?.pushViewController(vc, animated: false)
-
-                        }
+                    xAPIManager().checkMod(testUrl:urlString)
+                } else {
+                    
+                    target.module = nil
+                    var urlString = ""
+                    if(!dataManager.developerMode){
+                        urlString = "https://api.datax.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
                     } else {
-                        AlertView.showAlert(false, message: failureReason) { (done) -> Void in
-                            //_ = self.navigationController?.popViewController(animated: true)
-                            let vc = TargetVC()
-                            self.navigationController?.pushViewController(vc, animated: false)
-
-                        }
+                        urlString = "https://api.x-dev.data.alpha.jisc.ac.uk/sg/log?verb=viewed&contentID=targets-add&contentName=newTarget)"
                     }
-                })
+                    xAPIManager().checkMod(testUrl:urlString)
+                }
+                target.because = because
+                if (theTarget != nil) {
+                    dataManager.editTarget(theTarget!, completion: { (success, failureReason) -> Void in
+                        if (success) {
+                            for (_, item) in target.stretchTargets.enumerated() {
+                                dataManager.deleteObject(item as! NSManagedObject)
+                            }
+                            dataManager.deleteObject(target)
+                            AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
+                                //_ = self.navigationController?.popViewController(animated: true)
+                                let vc = TargetVC()
+                                self.navigationController?.pushViewController(vc, animated: false)
+                            }
+                        } else {
+                            AlertView.showAlert(false, message: failureReason) { (done) -> Void in
+                               // _ = self.navigationController?.popViewController(animated: true)
+                                let vc = TargetVC()
+                                self.navigationController?.pushViewController(vc, animated: false)
+                            }
+                        }
+                    })
+                } else {
+                    dataManager.addTarget(target, completion: { (success, failureReason) -> Void in
+                        if (success) {
+                            dataManager.deleteObject(target)
+                            AlertView.showAlert(true, message: localized("saved_successfully")) { (done) -> Void in
+                                //_ = self.navigationController?.popViewController(animated: true)
+                                let vc = TargetVC()
+                                self.navigationController?.pushViewController(vc, animated: false)
+
+                            }
+                        } else {
+                            AlertView.showAlert(false, message: failureReason) { (done) -> Void in
+                                //_ = self.navigationController?.popViewController(animated: true)
+                                let vc = TargetVC()
+                                self.navigationController?.pushViewController(vc, animated: false)
+
+                            }
+                        }
+                    })
+                }
             }
         }
     }
