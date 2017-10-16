@@ -59,10 +59,8 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         customizeLayout()
         setupDatePickers()
 
-        tableView.estimatedRowHeight = 36.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(UINib(nibName: kPointsCellNibName, bundle: Bundle.main), forCellReuseIdentifier: kPointsCellIdentifier)
-        tableView.alwaysBounceVertical = false;
         tableView.tableFooterView = UIView()
         
         getActivityPoints(period: .Overall) {
