@@ -21,8 +21,6 @@
 		8056FCF81F5EFD06003FBD17 /* AppUsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */; };
 		8056FCF91F5EFD06003FBD17 /* AppUsageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */; };
 		80587B661F4C96A3006E4AEE /* RecurringTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */; };
-		80620A821F5FFBDC00B7C182 /* AppUsageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */; };
-		80620A831F5FFBDC00B7C182 /* AppUsageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */; };
 		80847D7D1F4DE52B00052B11 /* EventsAttendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */; };
 		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */; };
@@ -326,8 +324,6 @@
 		8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUsageViewController.swift; sourceTree = "<group>"; };
 		8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppUsageViewController.xib; sourceTree = "<group>"; };
 		80587B651F4C96A3006E4AEE /* RecurringTargetVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurringTargetVC.swift; sourceTree = "<group>"; };
-		80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUsageCell.swift; sourceTree = "<group>"; };
-		80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppUsageCell.xib; sourceTree = "<group>"; };
 		80847D7B1F4DE52B00052B11 /* EventsAttendedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAttendedCell.swift; sourceTree = "<group>"; };
 		80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsAttendedCell.xib; sourceTree = "<group>"; };
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -693,8 +689,6 @@
 				971DEEF41F94D4D400F8731E /* iPad */,
 				8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */,
 				8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */,
-				80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */,
-				80620A811F5FFBDC00B7C182 /* AppUsageCell.xib */,
 			);
 			name = StatsAppUsage;
 			sourceTree = "<group>";
@@ -1667,7 +1661,6 @@
 				80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
 				971DEEF71F94D4F400F8731E /* AppUsageViewController~ipad.xib in Resources */,
-				80620A831F5FFBDC00B7C182 /* AppUsageCell.xib in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
 				DA1039FF1E9D05650000737F /* TargetGraphSimple in Resources */,
 				DA76411B1BD7BE3300A7D5C1 /* AlertView.xib in Resources */,
@@ -1763,7 +1756,6 @@
 				DA868B181BE79C0E00032225 /* EngagementGraphVC.swift in Sources */,
 				80110A621F4B4E7F00FBF51D /* SingleTargetCell.swift in Sources */,
 				DAD573931C3D46360080B49B /* TrophiesCell.swift in Sources */,
-				80620A821F5FFBDC00B7C182 /* AppUsageCell.swift in Sources */,
 				DAB0C8E81C4D20DF00F7A3C6 /* BundleLocalization.m in Sources */,
 				DA425AA81BD4E77F00C77D76 /* DownloadManager.swift in Sources */,
 				DA46D9661BF1F9E900AA1476 /* Activity.swift in Sources */,

@@ -163,7 +163,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayg-B8-VFC" userLabel="Compare to" customClass="LocalizableButton" customModule="Jisc" customModuleProvider="target">
-                                    <rect key="frame" x="45" y="250" width="422" height="42"/>
+                                    <rect key="frame" x="45" y="250" width="422" height="52"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="StagSansApp-Book" family="Stag Sans App" pointSize="17"/>
                                     <state key="normal" title="Compare to ..." backgroundImage="purpleBorder">

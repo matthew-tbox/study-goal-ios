@@ -8,12 +8,10 @@
 
 import UIKit
 
-class AppUsageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AppUsageViewController: UIViewController {
     
     @IBOutlet weak var titleLabel:UILabel!
 
-    @IBOutlet weak var leftColumnTableView: UITableView!
-    var leftColumnArray:Array = [localized("targets_met"),localized("targets_failed"),localized("targets_set"),localized("hours_of_activites_logged"),localized("sessions_on_app")]
     var rightColumnArray:Array = ["0","0","0","0","0"]
     
     @IBOutlet weak var targetsMet: LocalizableLabel!
@@ -41,37 +39,7 @@ class AppUsageViewController: UIViewController, UITableViewDataSource, UITableVi
         DELEGATE.menuView?.open()
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AppUsage", for: indexPath) as! AppUsageCell
-        cell.leftLabel.text = leftColumnArray[indexPath.row]
-        cell.rightLabel.text = rightColumnArray[indexPath.row]
-        //cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.leftLabel.font = UIFont(name: "System", size: 12.0)
-        cell.rightLabel.font = UIFont(name: "System", size: 12.0)
-
-        return cell
-
-    }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AppUsage", for: indexPath) as! AppUsageCell
-        cell.leftLabel.text = leftColumnArray[indexPath.row]
-        cell.rightLabel.text = rightColumnArray[indexPath.row]
-        //cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.leftLabel.font = UIFont(name: "System", size: 12.0)
-        cell.rightLabel.font = UIFont(name: "System", size: 12.0)
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-
     func customiseLayout(){
-        startDateField.text = localized("start")
-        endDateField.text = localized("end")
-        titleLabel.text = localized("app_usage")
-        
         startDateField.layer.borderColor = UIColor(red: 192.0/255.0, green: 159.0/255.0, blue: 246.0/255.0, alpha: 1.0).cgColor
         startDateField.layer.borderWidth = 1.5
         startDateField.layer.cornerRadius = 8
