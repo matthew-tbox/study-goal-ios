@@ -12,6 +12,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
 
     @IBOutlet weak var segmentControl:UISegmentedControl!
     @IBOutlet weak var webView:UIWebView!
+    @IBOutlet weak var webViewLineiPad:UIWebView!
     @IBOutlet weak var webViewNullMessage:UILabel!
 
     @IBOutlet weak var startDateField:UITextField!
@@ -44,8 +45,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         customizeLayout()
         setupDatePickers()
         
-        //getEngagementData()
-        loadVLEChart()
+        getEngagementData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,19 +79,12 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             let studentIndex = selectedStudent - 1
             if (studentIndex >= 0 && studentIndex < friends.count) {
                 studentID = friends[studentIndex].jisc_id
-                //			} else if (selectedStudent == friends.count + 1) {
-                //				getTopTenPercent = true
-                //				studentID = "top_ten"
             } else if (selectedStudent == friends.count + 1) {
                 getAverage = true
                 studentID = localized("average_small")
             }
         }
-        //noDataLabel.alpha = 0.0
-        //graphContainer.alpha = 0.0
-        //setVerticalValues([""])
-        //setHorizontalValues([""])
-        
+
         let completion:downloadCompletionBlock = {(success, result, results, error) in
             self.vleActivityOptions = nil
             if (success) {
@@ -104,14 +97,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 }
                 self.loadVLEChart()
             }
-            self.representValues(self.vleActivityOptions)
-            //self.indicatorLeading.constant = 0.0
             self.view.layoutIfNeeded()
-            /*if (self.graphScroll.contentSize.width > self.graphScroll.frame.size.width) {
-                self.scrollIndicator.alpha = 1.0
-            } else {
-                self.scrollIndicator.alpha = 0.0
-            }*/
         }
         
         var requestOptions = EngagementGraphOptions(scope: nil, filterType: nil, filterValue: nil, compareType: nil, compareValue: nil)
@@ -188,7 +174,6 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                         columnNames?.append("\(month) '\(year)")
                     }
                 } else {
-                    //columnNames = columnNamesXAPI30Days()
                     myValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
                     if studentID != nil {
                         otherStudentValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
@@ -220,7 +205,6 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 }
                 break
             case .ThirtyDays:
-                //columnNames = columnNamesXAPI30Days()
                 myValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
                 if studentID != nil {
                     otherStudentValues = [Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1), Double((arc4random() % 100) + 1)]
@@ -456,111 +440,6 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         return values
     }
     
-    func representValues(_ sender:(me:[Double]?, myMax:Double, otherStudent:[Double]?, otherStudentMax:Double, columnNames:[String]?)?) {
-        if (sender != nil) {
-            if (sender!.columnNames != nil) {
-                /*if (sender!.columnNames!.count > 7) {
-                    graphContainerWidth.constant = min(60.0 * (CGFloat)(sender!.columnNames!.count), 8000.0)
-                } else {
-                    //Testing for ipad commented the following line
-                    //graphContainerWidth.constant = initialGraphWidth
-                }*/
-                view.layoutIfNeeded()
-            } else {
-                //graphContainerWidth.constant = initialGraphWidth
-                view.layoutIfNeeded()
-            }
-        } else {
-            //graphContainerWidth.constant = initialGraphWidth
-            view.layoutIfNeeded()
-        }
-        
-        //theGraphView?.removeFromSuperview()
-        //graphScroll.setContentOffset(CGPoint.zero, animated: false)
-        var values = sender
-        if (values != nil) {
-            //graphContainer.alpha = 1.0
-            var maximum = Double(0.0)
-            if (values!.me != nil) {
-                for (_, item) in values!.me!.enumerated() {
-                    maximum = max(maximum, item)
-                }
-            }
-            if (values!.otherStudent != nil) {
-                for (_, item) in values!.otherStudent!.enumerated() {
-                    maximum = max(maximum, item)
-                }
-            }
-            if (maximum > 3) {
-                //self.setVerticalValues(["0", "\(Int(maximum * 0.25))", "\(Int(maximum * 0.5))", "\(Int(maximum * 0.75))", "\(Int(maximum))"])
-            } else if (maximum >= 2) {
-                //self.setVerticalValues(["0", "1", "\(Int(maximum))"])
-            } else {
-                //self.setVerticalValues(["0", "1"])
-            }
-            if (values!.columnNames != nil) {
-                //self.setHorizontalValues(values!.columnNames!)
-            }
-            //let frame = graphContainer.bounds
-            var myV:[Double]?
-            var hisV:[Double]?
-            if (values!.me != nil) {
-                if (values!.me!.count < 3) {
-                    values!.me!.insert(0.0, at: 0)
-                    values!.me!.append(0.0)
-                }
-                myV = values!.me
-            }
-            if (values!.otherStudent != nil) {
-                if (values!.otherStudent!.count < 3) {
-                    values!.otherStudent!.insert(0.0, at: 0)
-                    values!.otherStudent!.append(0.0)
-                }
-                hisV = values!.otherStudent
-            }
-            
-            if (maximum == 0.0) {
-                //noDataLabel.alpha = 1.0
-                //graphContainer.alpha = 0.0
-                //setVerticalValues([])
-                //setHorizontalValues([])
-            } else {
-                if (myV != nil) {
-                    if (hisV != nil) {
-                        switch graphType {
-                        case .Line:
-                            //theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [myV!, hisV!], colors: [myColor, otherStudentColor], animationDuration: 0.0)
-                            break
-                        case .Bar:
-                            //theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [myV!, hisV!], colors: [myColor, otherStudentColor])
-                            break
-                        }
-                    } else {
-                        switch graphType {
-                        case .Line:
-                            //theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [myV!], colors: [myColor], animationDuration: 0.0)
-                            break
-                        case .Bar:
-                            //theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [myV!], colors: [myColor])
-                            break
-                        }
-                    }
-                } else if (hisV != nil) {
-                    switch graphType {
-                    case .Line:
-                        //theGraphView = GraphGenerator.drawLineGraphInView(graphContainer, frame: frame, values: [hisV!], colors: [otherStudentColor], animationDuration: 0.0)
-                        break
-                    case .Bar:
-                        //theGraphView = GraphGenerator.drawBarChartInView(graphContainer, frame: frame, values: [hisV!], colors: [otherStudentColor])
-                        break
-                    }
-                }
-            }
-        } else {
-            //noDataLabel.alpha = 1.0
-        }
-    }
-    
     private func loadVLEChart(){
         do {
             guard let filePath = Bundle.main.path(forResource: self.graphTypePath, ofType: "html")
@@ -594,6 +473,40 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             
             let baseUrl = URL(fileURLWithPath: filePath)
             webView.loadHTMLString(contents as String, baseURL: baseUrl)
+            
+            if(iPad){
+                guard let filePath = Bundle.main.path(forResource: "linegraph", ofType: "html")
+                    else {
+                        print ("File reading error")
+                        return
+                }
+                
+                webViewLineiPad.setNeedsLayout()
+                webViewLineiPad.layoutIfNeeded()
+                let w = webViewLineiPad.frame.size.width - 20
+                let h = webViewLineiPad.frame.size.height - 20
+                var contents = try String(contentsOfFile: filePath, encoding: .utf8)
+                contents = contents.replacingOccurrences(of: "300px", with: "\(w)px")
+                contents = contents.replacingOccurrences(of: "220px", with: "\(h)px")
+                var dateDataFinal = ""
+                var countDateFinal = ""
+                if (self.vleActivityOptions?.columnNames != nil) {
+                    dateDataFinal = self.vleActivityOptions!.columnNames!.description
+                } else {
+                    dateDataFinal = ""
+                }
+                if (self.vleActivityOptions?.me != nil) {
+                    countDateFinal = self.vleActivityOptions!.me!.description
+                } else {
+                    countDateFinal = ""
+                }
+                
+                contents = contents.replacingOccurrences(of: "COUNT", with: countDateFinal)
+                contents = contents.replacingOccurrences(of: "DATES", with: dateDataFinal)
+                
+                let baseUrl = URL(fileURLWithPath: filePath)
+                webViewLineiPad.loadHTMLString(contents as String, baseURL: baseUrl)
+            }
         } catch {
             print ("File HTML error")
         }
@@ -655,9 +568,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         startDateField.text = "\(gbDate)"
         self.view.endEditing(true)
         if(endDateField.text != localized("end")){
-            /*getActivityPoints(period: .Overall) {
-                
-            }*/
+            getEngagementData()
         }
     }
     
@@ -673,9 +584,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         endDateField.text = "\(gbDate)"
         self.view.endEditing(true)
         if(startDateField.text != localized("start")){
-            /*getActivityPoints(period: .Overall) {
-                
-            }*/
+            getEngagementData()
         }
     }
     
@@ -695,8 +604,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
             break
         }
         
-        loadVLEChart()
-        //representValues(graphValues)
+        getEngagementData()
     }
     
     @IBAction func showModuleSelector(_ sender:UIButton) {
@@ -738,9 +646,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
                 moduleButton.setTitle(dataManager.modules()[moduleIndex].name, for: UIControlState())
                 //specific call
             }
-            /*getAttendance {
-                
-            }*/
+            getEngagementData()
         }
     }
 }

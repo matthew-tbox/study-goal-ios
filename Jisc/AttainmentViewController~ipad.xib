@@ -22,6 +22,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AttainmentViewController" customModule="Jisc" customModuleProvider="target">
             <connections>
+                <outlet property="moduleButton" destination="Nzr-Ma-hVa" id="4Fz-dZ-Nm8"/>
                 <outlet property="tableView" destination="fat-Nz-WVd" id="A4V-hC-B01"/>
                 <outlet property="view" destination="iN0-l3-epB" id="8Py-0r-vm9"/>
             </connections>

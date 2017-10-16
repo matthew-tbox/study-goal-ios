@@ -23,7 +23,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AttendanceViewController" customModule="Jisc" customModuleProvider="target">
             <connections>
                 <outlet property="endDateFieldAll" destination="u2L-IT-uoe" id="7Wq-iv-3aT"/>
-                <outlet property="moduleButtonAll" destination="PFq-aG-yE1" id="bwe-Yv-ZRt"/>
+                <outlet property="moduleButtonAll" destination="PFq-aG-yE1" id="gU1-kU-eZH"/>
                 <outlet property="noDataWebViewLabel" destination="fKa-ov-prs" id="Ktf-Lp-f74"/>
                 <outlet property="startDateFieldAll" destination="WXU-Vo-pAb" id="uXU-cb-yQL"/>
                 <outlet property="tableView" destination="llD-r6-6cD" id="XdD-ZC-MFX"/>

@@ -20,10 +20,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VLEActivityViewController" customModule="Jisc" customModuleProvider="target">
             <connections>
                 <outlet property="endDateField" destination="sck-OW-dHP" id="lUP-Zu-odW"/>
-                <outlet property="moduleButton" destination="KcJ-UI-yFK" id="JnU-Dk-Dvo"/>
+                <outlet property="moduleButton" destination="KcJ-UI-yFK" id="ejy-Lf-sJs"/>
                 <outlet property="startDateField" destination="Dsx-2E-jBg" id="QIG-RU-68F"/>
                 <outlet property="view" destination="iN0-l3-epB" id="p2v-fi-Ooi"/>
                 <outlet property="webView" destination="J99-Zd-4jz" id="BA2-DV-lY3"/>
+                <outlet property="webViewLineiPad" destination="Kke-ir-ahQ" id="Hwg-04-5oq"/>
                 <outlet property="webViewNullMessage" destination="9X6-5w-CDF" id="4Pe-Y7-jd9"/>
             </connections>
         </placeholder>

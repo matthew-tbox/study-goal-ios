@@ -80,6 +80,9 @@
                                 <segment title="Bar Graph"/>
                                 <segment title="Line Graph"/>
                             </segments>
+                            <connections>
+                                <action selector="indexChanged:" destination="-1" eventType="valueChanged" id="hCf-DL-5be"/>
+                            </connections>
                         </segmentedControl>
                         <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbI-1b-77t">
                             <rect key="frame" x="0.0" y="70" width="375" height="255"/>
