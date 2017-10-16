@@ -231,6 +231,7 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         formatter.dateFormat = gbDateFormat
         let gbDate = formatter.string(from: startDatePicker.date)
         startDateField.text = "\(gbDate)"
+        startDateField.textColor = UIColor.darkGray
         self.view.endEditing(true)
         if(endDateField.text != localized("end")){
             getActivityPoints(period: .Overall) {
@@ -249,6 +250,7 @@ class ActivityPointsViewController: UIViewController, UITableViewDataSource, UIT
         formatter.dateFormat = gbDateFormat
         let gbDate = formatter.string(from: endDatePicker.date)
         endDateField.text = "\(gbDate)"
+        endDateField.textColor = UIColor.darkGray
         self.view.endEditing(true)
         if(startDateField.text != localized("start")){
             getActivityPoints(period: .Overall) {

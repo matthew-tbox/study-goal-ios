@@ -276,8 +276,10 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         let gbDate = formatter.string(from: startDatePicker.date)
         if(!iPad){
             startDateFieldSummary.text = "\(gbDate)"
+            startDateFieldSummary.textColor = UIColor.darkGray
         }
         startDateFieldAll.text = "\(gbDate)"
+        startDateFieldAll.textColor = UIColor.darkGray
         self.view.endEditing(true)
         if(endDateFieldAll.text != localized("end")){
             getAttendance {
@@ -297,8 +299,10 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         let gbDate = formatter.string(from: endDatePicker.date)
         if(!iPad){
             endDateFieldSummary.text = "\(gbDate)"
+            endDateFieldSummary.textColor = UIColor.darkGray
         }
         endDateFieldAll.text = "\(gbDate)"
+        endDateFieldAll.textColor = UIColor.darkGray
         self.view.endEditing(true)
         if(startDateFieldAll.text != localized("start")){
             getAttendance {

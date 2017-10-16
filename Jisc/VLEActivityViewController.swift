@@ -566,6 +566,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         formatter.dateFormat = gbDateFormat
         let gbDate = formatter.string(from: startDatePicker.date)
         startDateField.text = "\(gbDate)"
+        startDateField.textColor = UIColor.darkGray
         self.view.endEditing(true)
         if(endDateField.text != localized("end")){
             getEngagementData()
@@ -582,6 +583,7 @@ class VLEActivityViewController: UIViewController, CustomPickerViewDelegate {
         formatter.dateFormat = gbDateFormat
         let gbDate = formatter.string(from: endDatePicker.date)
         endDateField.text = "\(gbDate)"
+        endDateField.textColor = UIColor.darkGray
         self.view.endEditing(true)
         if(startDateField.text != localized("start")){
             getEngagementData()

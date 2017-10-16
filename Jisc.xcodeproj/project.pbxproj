@@ -27,6 +27,7 @@
 		8089677A1F320DA0004E83F7 /* stats_points_pi_chart.html in Resources */ = {isa = PBXBuildFile; fileRef = DDFE93D31F18611900A62400 /* stats_points_pi_chart.html */; };
 		809129DD1F571829008DD0BE /* EventsAttendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */; };
 		971DEEF31F94C38900F8731E /* VLEActivityViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971DEEF21F94C38900F8731E /* VLEActivityViewController~ipad.xib */; };
+		971DEEF71F94D4F400F8731E /* AppUsageViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971DEEF61F94D4F400F8731E /* AppUsageViewController~ipad.xib */; };
 		9766E2061F90AB6700963DD8 /* AttendanceViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E2051F90AB6700963DD8 /* AttendanceViewController~ipad.xib */; };
 		9766E20D1F90C40C00963DD8 /* AttainmentViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E20C1F90C40C00963DD8 /* AttainmentViewController~ipad.xib */; };
 		9766E2111F90C73300963DD8 /* AttainmentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9766E2101F90C73300963DD8 /* AttainmentCell~ipad.xib */; };
@@ -331,6 +332,7 @@
 		80847D7C1F4DE52B00052B11 /* EventsAttendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsAttendedCell.xib; sourceTree = "<group>"; };
 		84D383A4B7AA065C8D65C534 /* Pods_Jisc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jisc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		971DEEF21F94C38900F8731E /* VLEActivityViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "VLEActivityViewController~ipad.xib"; sourceTree = "<group>"; };
+		971DEEF61F94D4F400F8731E /* AppUsageViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AppUsageViewController~ipad.xib"; sourceTree = "<group>"; };
 		9766E2051F90AB6700963DD8 /* AttendanceViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AttendanceViewController~ipad.xib"; sourceTree = "<group>"; };
 		9766E20C1F90C40C00963DD8 /* AttainmentViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AttainmentViewController~ipad.xib"; sourceTree = "<group>"; };
 		9766E2101F90C73300963DD8 /* AttainmentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AttainmentCell~ipad.xib"; sourceTree = "<group>"; };
@@ -617,6 +619,14 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
+		971DEEF41F94D4D400F8731E /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				971DEEF61F94D4F400F8731E /* AppUsageViewController~ipad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		9766E2121F90CA0800963DD8 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,6 +690,7 @@
 		9766E21E1F90F7ED00963DD8 /* StatsAppUsage */ = {
 			isa = PBXGroup;
 			children = (
+				971DEEF41F94D4D400F8731E /* iPad */,
 				8056FCF61F5EFD06003FBD17 /* AppUsageViewController.swift */,
 				8056FCF71F5EFD06003FBD17 /* AppUsageViewController.xib */,
 				80620A801F5FFBDC00B7C182 /* AppUsageCell.swift */,
@@ -1655,6 +1666,7 @@
 				DAB0C89D1C4CEB5900F7A3C6 /* OneFriendCell.xib in Resources */,
 				80110A631F4B4E7F00FBF51D /* SingleTargetCell.xib in Resources */,
 				DA593A681C47A03300C68513 /* ActivityTypesIconsBig.xcassets in Resources */,
+				971DEEF71F94D4F400F8731E /* AppUsageViewController~ipad.xib in Resources */,
 				80620A831F5FFBDC00B7C182 /* AppUsageCell.xib in Resources */,
 				DAB0C8A31C4CEB6800F7A3C6 /* SelectHomeScreenVC.xib in Resources */,
 				DA1039FF1E9D05650000737F /* TargetGraphSimple in Resources */,
